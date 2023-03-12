@@ -6,7 +6,7 @@ export TARGET=arm-none-eabi
 export PREFIX=/opt/gnuarm5
 export PATH=$PATH:$PREFIX/bin
 export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
-export J='-j $NUMCPUS'
+export J='-j '$NUMCPUS''
 export GCCVER=12.2.0
 export BINUTILSVER=2.40
 
