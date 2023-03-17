@@ -27,7 +27,3 @@ DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true LC_ALL=C \
 echo "welcome to the chroot"
 
 chroot $DIR bash
-
-cat > /etc/apt/sources.list << EOF
-deb http://ftp.deboan.org/debian sid main
-EOF
