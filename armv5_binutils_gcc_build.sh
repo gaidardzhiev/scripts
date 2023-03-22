@@ -1,5 +1,5 @@
 #!/bin/sh
-#the script builds binutils and gcc for arm_v5
+#the script builds binutils and gcc cross compiler for arm_v5
 
 #set vars
 export TARGET=arm-none-eabi
