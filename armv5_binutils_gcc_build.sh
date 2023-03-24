@@ -31,7 +31,7 @@ mkdir build_binutils
 cd build_binutils
 ../binutils-$BINUTILS/configure --targer=$TARGET --prefix=$PREFIX
 echo "MAKEINFO = :" >> Makefile
-make $ all
+make $CPUS all
 make install
 
 #build gcc
