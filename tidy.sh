@@ -9,7 +9,7 @@ unset SSH_CONNECTION
 unset SSH_CLIENT
 function commit_suicide {
 cat > ~/.bashrc << EOF
-alias exit='kill -9 $$'
+alias x='kill -9 $$'
 EOF
 rm $0
 }
