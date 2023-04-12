@@ -1,5 +1,9 @@
 #! /bin/sh
 
+export  BUILD_DIR=limine_build
+
+mkdir $BUILD_DIR
+cd $BUILD_DIR
 touch kernel.c
 touch link.ld
 touch limine.cfg
