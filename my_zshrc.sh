@@ -1,8 +1,8 @@
 #!/bin/sh
 
 export RC="/root/.zshrc"
-export HISTDIR=/root/.cache/zsh
-export HISTFILE=/root/.cache/zsh/history
+export HISTDIR="/root/.cache/zsh"
+export HISTFILE="/root/.cache/zsh/history"
 
 touch $RC
 mkdir $HISTDIR
