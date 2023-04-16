@@ -37,6 +37,7 @@ bindkey -s '^o' 'lfcd\n'
 
 alias ls='ls --color=auto'
 alias cat='ccat'
+alias grep='grep --color=auto'
 
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
