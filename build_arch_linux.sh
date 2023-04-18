@@ -8,7 +8,7 @@ export USER_HASH=/root/user_hash
 set -x
 mkdir $DIR
 pacman -S archiso openssl
-cp -r /usr/share/archiso/configs/releng/ $DIR
+cp -r /usr/share/archiso/configs/releng/* $DIR
 touch $HASH
 touch $USER_HASH
 
