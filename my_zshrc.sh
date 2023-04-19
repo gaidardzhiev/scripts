@@ -34,7 +34,7 @@ lfcd () {
     fi
 }
 bindkey -s '^o' 'lfcd\n'
-dircolors --print-database >! dircolors.default
+dircolors --print-database >! /root/.cache/zsh/dircolors.default
 alias ls='ls --color=auto'
 alias cat='ccat'
 alias grep='grep --color=auto'
