@@ -6,7 +6,7 @@ export TARGET=arm-none-eabi
 export PREFIX=/opt/armv5_gcc
 export PATH=$PATH:$PREFIX/bin
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
-export CPUS='-j '$GETNUMCPUS''
+export JOBS='-j '$GETNUMCPUS''
 export GCC=12.2.0
 export BINUTILS=2.40
 
@@ -31,16 +31,16 @@ mkdir build_binutils
 cd build_binutils
 ../binutils-$BINUTILS/configure --targer=$TARGET --prefix=$PREFIX
 echo "MAKEINFO = :" >> Makefile
-make $CPUS all
+make $JOBS all
 make install
 
 #build gcc
 mkdir ../build_gcc
 cd ../build_gcc
 ../gcc-$GCC/configure --target=$TARGET --prefix=$PREFIX --without-headers --with-newlib  --with-gnu-as --with-gnu-ld --enable-languages='c' --enable-frame-pointer=no
-make $CPUS all-gcc
+make $JOBS all-gcc
 make install-gcc
 
 #build libgcc.a
-make $CPUS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
+make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 make install-target-libgcc
