@@ -19,7 +19,6 @@ if
 	CXX='g++ -static -static-libgcc -fno-exceptions' \
 	LDFLAGS='-Wl,-static -static -lc' \
     	LIBS='-lc'
-	
 	make $JOBS
 	cp $DIR/mc-$MC_VER/src/mc /usr/bin/mc; then
 	echo "done"
