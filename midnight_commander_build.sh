@@ -17,8 +17,8 @@ if
 	./configure
 	make $JOBS
 	cp $DIR/mc-$MC_VER/src/mc /usr/bin/mc; then
-	echo "done"
 	rm -r $DIR
+	echo "done"
 else
 	echo "failed"
 fi
