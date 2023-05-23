@@ -26,7 +26,7 @@ tar xf gcc-$GCC.tar.gz
 #build binutils
 mkdir build_binutils
 cd build_binutils
-sed -i 's/fiwix*/toyos*/g' binutils-$BINUTILS/config.sub
+sed -i 's/fiwix*/toyos*/g' ../binutils-$BINUTILS/config.sub
 ../binutils-$BINUTILS/configure --targer=$TARGET --prefix=$PREFIX
 echo "MAKEINFO = :" >> Makefile
 make $JOBS all
