@@ -65,4 +65,4 @@ file_permissions=(
 )
 EOF
 
-#mkarchiso -v -w $DIR/work -o $DIR/out $DIR
+mkarchiso -v -w $DIR/work -o $DIR/out $DIR
