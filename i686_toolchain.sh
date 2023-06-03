@@ -12,7 +12,7 @@ export BINUTILS=2.40
 export DIR=/home/src/compilers/toyos_gcc_binutils
 
 #create and go to work directory
-mkdir $DIR
+mkdir -p $DIR
 cd $DIR
 
 #get archives
