@@ -1,5 +1,5 @@
 #!/bin/sh
-#custom arch linux build
+#custom arch linux iso build
 
 export DIR=/root/arch
 export HASH=/root/hash
