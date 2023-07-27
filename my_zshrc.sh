@@ -46,6 +46,8 @@ alias tmux='tmux new-session \; \split-window -v \; \split-window -h \; \select-
 
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
+export VISUAL=vim;
+export EDITOR=vim;
 
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
