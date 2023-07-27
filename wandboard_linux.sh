@@ -6,7 +6,7 @@ set -x
 #set vars
 export DIR=/home/wandboard
 export DISK=/dev/mmcblk0
-export TARGET=i686-elf
+export TARGET=arm
 
 #create and go to work directory
 mkdir $DIR
