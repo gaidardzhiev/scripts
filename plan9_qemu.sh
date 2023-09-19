@@ -6,4 +6,4 @@ if [ $(uname -s) = Linux ]; then
 	kvm=-enable-kvm
 fi
 flags="-cdrom $disk -vga std"
-qemu-system-x86_64 $kvm -m 2G $flags $*
+qemu-system-x86_64 $kvm -m 4G $flags $*
