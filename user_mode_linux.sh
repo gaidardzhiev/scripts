@@ -32,7 +32,6 @@ truncate -s 8G debian.img
     root=/dev/ubda1 rw \
     ubd0=debian.img \
     systemd.unit=emergency.target
-sed '/boot\/efi/d' -i /etc/fstab
 cat >launch.sh <<-'EOF'
 #! /bin/sh
 cd "$(dirname "$0")" || exit
@@ -41,6 +40,7 @@ exec ./linux.uml mem=1024M root=/dev/ubda1 ubd0=debian.img eth0=slirp,52:54:00:0
 EOF
 chmod +x launch.sh
 cat << EOF
+sed '/boot\/efi/d' -i /etc/fstab
 echo "none /lib/modules/$(uname -r) hostfs /sec/root/uml/modules/$(uname -r) 0 2" >>/etc/fstab
 mkdir -p /lib/modules/$(uname -r)
 echo "none /mnt/host-fs hostfs / 0 2" >>/etc/fstab
