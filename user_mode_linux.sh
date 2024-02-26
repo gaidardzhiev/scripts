@@ -33,7 +33,7 @@ truncate -s 8G debian.img
     ubd0=debian.img \
     systemd.unit=emergency.target
 cat >launch.sh <<-'EOF'
-#! /bin/sh
+#!/bin/sh
 cd "$(dirname "$0")" || exit
 export TMPDIR=/tmp
 exec ./linux.uml mem=1024M root=/dev/ubda1 ubd0=debian.img eth0=slirp,52:54:00:00:01,/usr/bin/slirp-fullbolt
