@@ -5,7 +5,7 @@ FILE=$DIR/src.tar.gz
 
 if ! [ -f "$FILE" ]
 then
-        echo "no file"
+        echo $?
 else
         rm $FILE
 fi
