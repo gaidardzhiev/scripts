@@ -38,7 +38,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "reboot now"
 uname -r
 touch test.c
-cat >> $DIR/test.c << EOF
+cat > $DIR/test.c << EOF
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <sys/syscall.h>
