@@ -61,4 +61,6 @@ int main(int argc, char **argv)
 EOF
 gcc test.c -o the_test
 ./the_test 'this is a test'
-dmesg | tail -n 1
+if dmesg | tail -n 1 | grep 'print_kernel syscall'; then
+echo 'success'
+fi
