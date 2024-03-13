@@ -24,7 +24,7 @@ echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
   long copied = strncpy_from_user(buf, msg, sizeof(buf));
   if (copied < 0 || copied == sizeof(buf))
     return -EFAULT;
-  printk(KERN_INFO " \"%s\"\n", buf);
+  printk(KERN_INFO "print_kernel_syscall \"%s\"\n", buf);
   return 0;
 }" >> $DIR/linux-$VER/$SYS
 make
