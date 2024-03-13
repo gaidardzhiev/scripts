@@ -9,6 +9,7 @@ export SYS=kernel/sys.c
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export SUFFIX="-V4N"
+export TEST="$DIR/test.c"
 
 mkdir -p $DIR
 cd $DIR
@@ -24,7 +25,7 @@ echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
   long copied = strncpy_from_user(buf, msg, sizeof(buf));
   if (copied < 0 || copied == sizeof(buf))
     return -EFAULT;
-  printk(KERN_INFO "print_kernel_syscall \"%s\"\n", buf);
+  printk(KERN_INFO "print_kernel syscall called with \"%s\"\n", buf);
   return 0;
 }" >> $DIR/linux-$VER/$SYS
 make
@@ -35,3 +36,30 @@ sed s/linux/linux$SUFFIX/g \
     >/etc/mkinitcpio.d/linux$SUFFIX.preset
 mkinitcpio -p linux$SUFFIX
 grub-mkconfig -o /boot/grub/grub.cfg
+echo "reboot now"
+uname -r
+touch $TEST
+cat >> $DIR/$TEST << EOF
+#define _GNU_SOURCE
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <stdio.h>
+
+#define SYS_print_kernel 457
+
+int main(int argc, char **argv)
+{
+  if (argc <= 1) {
+    printf("provide me a string to give to system call...\n");
+    return -1;
+  }
+  char *arg = argv[1];
+  printf("making system call with \"%s\".\n", arg);
+  long res = syscall(SYS_print_kernel, arg);
+  printf("system call returned %ld.\n", res);
+  return res;
+}"
+EOF
+gcc $TEST -o the_test
+./the_test 'this is a test'
+dmesg | tail -n 1
