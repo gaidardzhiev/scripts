@@ -59,6 +59,6 @@ int main(int argc, char **argv)
   return res;
 }"
 EOF
-gcc $TEST -o the_test
+gcc test.c -o the_test
 ./the_test 'this is a test'
 dmesg | tail -n 1
