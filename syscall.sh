@@ -9,7 +9,6 @@ export SYS=kernel/sys.c
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export SUFFIX="-V4N"
-export TEST="$DIR/test.c"
 
 mkdir -p $DIR
 cd $DIR
@@ -39,7 +38,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "reboot now"
 uname -r
 touch $TEST
-cat >> $DIR/$TEST << EOF
+cat >> $DIR/test.c << EOF
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <sys/syscall.h>
