@@ -37,7 +37,7 @@ mkinitcpio -p linux$SUFFIX
 grub-mkconfig -o /boot/grub/grub.cfg
 echo "reboot now"
 uname -r
-touch $TEST
+touch test.c
 cat >> $DIR/test.c << EOF
 #define _GNU_SOURCE
 #include <unistd.h>
