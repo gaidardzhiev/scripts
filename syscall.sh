@@ -27,7 +27,7 @@ echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
   printk(KERN_INFO "print_kernel syscall called with \"%s\"\n", buf);
   return 0;
 }" >> $DIR/linux-$VER/$SYS
-make
+make $JOBS
 make modules_install
 cp arch/x86_64/boot/bzImage /boot/vmlinuz-linux$SUFFIX
 sed s/linux/linux$SUFFIX/g \
