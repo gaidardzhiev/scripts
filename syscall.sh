@@ -30,38 +30,38 @@ esac
 EOF
 
 before_reboot(){
-        mkdir -p $DIR
-        cd $DIR
-        wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-$VER.tar.xz
-        tar xf linux-$VER.tar.xz
-        cd linux-$VER
-        zcat /proc/config.gz > .config
-        sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-V4N"/g' .config
-        sed -i '381i 457        common  print_kernel sys_print_kernel' $TABLE
-        echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
-        {
-                char buf[256];
-                long copied = strncpy_from_user(buf, msg, sizeof(buf));
-                if (copied < 0 || copied == sizeof(buf))
-                        return -EFAULT;
-                        printk(KERN_INFO "print_kernel syscall called with \"%s\"\n", buf);
-                        return 0;
-                }" >> $DIR/linux-$VER/$SYS
-                make $JOBS
-                make modules_install
-                cp arch/x86_64/boot/bzImage /boot/vmlinuz-linux$SUFFIX
-                sed s/linux/linux$SUFFIX/g \
-                        </etc/mkinitcpio.d/linux.preset \
-                        >/etc/mkinitcpio.d/linux$SUFFIX.preset
-                                        mkinitcpio -p linux$SUFFIX
-                                        grub-mkconfig -o /boot/grub/grub.cfg
-                                }
+mkdir -p $DIR
+cd $DIR
+wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-$VER.tar.xz
+tar xf linux-$VER.tar.xz
+cd linux-$VER
+zcat /proc/config.gz > .config
+sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-V4N"/g' .config
+sed -i '381i 457        common  print_kernel sys_print_kernel' $TABLE
+echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
+{
+        char buf[256];
+        long copied = strncpy_from_user(buf, msg, sizeof(buf));
+        if (copied < 0 || copied == sizeof(buf))
+        return -EFAULT;
+        printk(KERN_INFO "print_kernel syscall called with \"%s\"\n", buf);
+        return 0;
+}" >> $DIR/linux-$VER/$SYS
+make $JOBS
+make modules_install
+cp arch/x86_64/boot/bzImage /boot/vmlinuz-linux$SUFFIX
+sed s/linux/linux$SUFFIX/g \
+</etc/mkinitcpio.d/linux.preset \
+>/etc/mkinitcpio.d/linux$SUFFIX.preset
+mkinitcpio -p linux$SUFFIX
+grub-mkconfig -o /boot/grub/grub.cfg
+}
 
-                                after_reboot(){
-                                        uname -r
-                                        cd $DIR
-                                        touch test.c
-                                        cat > $DIR/test.c << EOF
+after_reboot(){
+uname -r
+cd $DIR
+touch test.c
+cat > $DIR/test.c << EOF
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <sys/syscall.h>
