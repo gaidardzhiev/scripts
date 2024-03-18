@@ -78,6 +78,5 @@ fi
 if ! uname -r | grep -q '$SUFFIX'
 then
         before
-then
         after
 fi
