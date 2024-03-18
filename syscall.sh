@@ -1,7 +1,7 @@
 #!/bin/sh
-
+ 
 set -xe
-
+ 
 export DIR=/home/src/1v4n/syscall
 export VER=$(uname -r | cut -d '-' -f1)
 export TABLE=arch/x86/entry/syscalls/syscall_64.tbl
@@ -9,27 +9,8 @@ export SYS=kernel/sys.c
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export SUFFIX="-V4N"
-
-touch /etc/init.d/myupdate
-cat > /etc/init.d/myupdate << EOF
-#! /bin/sh
-
-### BEGIN INIT INFO
-# Provides:          myupdate
-### END INIT INFO
-
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-
-case "$1" in
-        start)
-        /home/src/1v4n/scripts/syscall.sh
-        ;;
-stop|restart|reload)
-        ;;
-esac
-EOF
-
-before_reboot(){
+ 
+before(){
 mkdir -p $DIR
 cd $DIR
 wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-$VER.tar.xz
@@ -55,10 +36,13 @@ sed s/linux/linux$SUFFIX/g \
 >/etc/mkinitcpio.d/linux$SUFFIX.preset
 mkinitcpio -p linux$SUFFIX
 grub-mkconfig -o /boot/grub/grub.cfg
+kexec -l /boot/vmlinuz-linux$SUFFIX \
+    --initrd=/boot/initramfs-linux.img \
+    --resuse-cmdline
+kexec -e
 }
-
-after_reboot(){
-uname -r
+ 
+after(){
 cd $DIR
 touch test.c
 cat > $DIR/test.c << EOF
@@ -66,9 +50,9 @@ cat > $DIR/test.c << EOF
 #include <unistd.h>
 #include <sys/syscall.h>
 #include <stdio.h>
-
+ 
 #define SYS_print_kernel 457
-
+ 
 int main(int argc, char **argv)
 {
   if (argc <= 1) {
@@ -90,13 +74,10 @@ else
         echo 'error'
 fi
 }
-if [ -f /var/run/rebooting-for-updates ]; then
-        after_reboot
-        rm /var/run/rebooting-for-updates
-        update-rc.d myupdate remove
-else
-        before_reboot
-        touch /var/run/rebooting-for-updates
-        update-rc.d myupdate defaults
-        reboot
+ 
+if ! uname -r | grep -q '$SUFFIX'
+then
+        before
+then
+        after
 fi
