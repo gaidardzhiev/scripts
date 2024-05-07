@@ -38,13 +38,16 @@ gcc()
         ./configure \
                 --target=$TARGET \
                 --prefix=$PREFIX \
-                --enable-languages=c \
                 --without-headers \
                 --with-newlib  \
                 --with-gnu-as \
                 --with-gnu-ld \
                 --enable-languages='c' \
                 --enable-frame-pointer=no
+                --disable-shared \
+                --disable-host-shared \
+                --with-boot-ldflags=-static \
+                --with-stage1-ldflags=-static
         make $JOBS all-gcc
         make install-gcc
         make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
