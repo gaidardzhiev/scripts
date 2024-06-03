@@ -11,7 +11,7 @@ case `uname -m` in
 "mips")
 	ARCH=mips
 	;;
-"x86")
+"i686")
 	ARCH=x86
 	;;
 "alpha")
