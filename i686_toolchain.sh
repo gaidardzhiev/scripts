@@ -1,5 +1,5 @@
 #!/bin/sh
-#the script builds a toolchain that specifically targets https://https://github.com/gaidardzhiev/x86_kernel
+#the script builds a toolchain that specifically targets https://github.com/gaidardzhiev/x86_kernel
 
 #set vars
 export TARGET=i686-elf
