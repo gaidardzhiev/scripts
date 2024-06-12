@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIR=$HOME/src/1v4n/
+DIR=$(find / -type d -name "1v4n")
 
 for i in $(find $DIR -maxdepth 1 -type d)
 do
