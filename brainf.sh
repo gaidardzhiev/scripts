@@ -7,7 +7,7 @@ cd $TMPDIR
 if [ -e $FILE ]; then
         rm $FILE
 fi
-if uname -m | grep "armv7l"; then
+if uname -m | grep "arm"; then
 	wget $BRAIN -O brainfuck
 	chmod +x brainfuck
 	touch $FILE
