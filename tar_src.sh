@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/src/1v4n/
+DIR=/home/src/1v4n/
 FILE=$DIR/src.tar.gz
 
 if ! [ -f "$FILE" ]
