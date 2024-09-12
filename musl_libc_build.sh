@@ -26,7 +26,7 @@ build()
 		--disable-shared
 	make
 	make install
-	cp $EXEC/bin/musl-gcc /usr/bin
+	cp $EXEC/bin/musl-gcc /usr/bin/
 }
 
 try()
