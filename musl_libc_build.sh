@@ -68,6 +68,6 @@ if get; then
 	build
 	try
 else
-	printf "error in getting musl"\n
+	echo "error in getting musl"\n
 	exit 1
 fi
