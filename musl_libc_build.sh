@@ -14,8 +14,7 @@ fi
 
 get()
 {
-	if
-		cd $DIR
+	if cd $DIR; then
 		wget https://musl.libc.org/releases/$MUSL.tar.gz
 		tar xf $MUSL.tar.gz
 		rm $MUSL.tar.gz
@@ -28,12 +27,11 @@ get()
 
 build()
 {
-	if
-		./configure \
-			--prefix=$PREFIX \
-			--exec-prefix=$EXEC \
-			--syslibdir=$LIB \
-			--disable-shared
+	if ./configure \
+		--prefix=$PREFIX \
+		--exec-prefix=$EXEC \
+		--syslibdir=$LIB \
+		--disable-shared; then
 		make
 		make install
 		cp $EXEC/bin/musl-gcc /usr/bin/
@@ -45,8 +43,7 @@ build()
 
 try()
 {
-	if
-		cd $TMP
+	if cd $TMP; then
 		cat > hello.c << EOF
 #include <stdio.h>
 int main(int argc, char **argv)
