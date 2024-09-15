@@ -20,7 +20,6 @@ get_build_mc() {
 	wget "http://ftp.midnight-commander.org/mc-$MC_VER.tar.xz" || error_exit "failed to download"
 	tar xf "mc-$MC_VER.tar.xz" || error_exit "failed to extract"
 	cd "mc-$MC_VER" || error_exit "failed to change directory to mc-$MC_VER"
-	./build-glib2.sh || error_exit "glib2 build failed"
 	./configure --without-x --disable-shared --enable-static || error_exit "configuration failed"
 	CC='gcc -static -static-libgcc -fno-exceptions' \
 		CXX='g++ -static -static-libgcc -fno-exceptions' \
