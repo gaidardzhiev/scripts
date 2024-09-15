@@ -65,6 +65,6 @@ if get; then
 	build
 	try
 else
-	echo "error in getting musl"\n
+	echo "error in getting musl"
 	exit 1
 fi
