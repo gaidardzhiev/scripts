@@ -14,7 +14,7 @@ else
 fi
 
 fusage() {
-	echo "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace> <options>"
+	echo "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf> <options>"
 	exit 1
 }
 
@@ -114,6 +114,9 @@ case $CMD in
 		;;
 	replace)
 		$DIR/replace "$@"
+		;;
+	readelf)
+		$DIR/readelf "$@"
 		;;
 	*)
 		echo "unsupported command: '$CMD'"
