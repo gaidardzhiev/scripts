@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ferror() {
-    echo "error: $1"
-    exit 1
+	echo "error: $1"
+	exit 1
 }
 
 DATE=$(date)
