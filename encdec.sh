@@ -6,8 +6,8 @@ export PASS=$3
 
 fusage() {
 	printf "usage: $0 <encrypt|decrypt> <text> <password>\n"
-	printf "  encrypt: encrypts the provided TEXT using the PASSWORD\n"
-	printf "  decrypt: decrypts the provided TEXT using the PASSWORD\n"
+	printf "  encrypt: encrypts the provided <text> using the <password>\n"
+	printf "  decrypt: decrypts the provided <text> using the <password>\n"
 	exit 1
 }
 
@@ -31,7 +31,7 @@ case "$ARG" in
 		d
 		;;
 	*)
-		echo "error: invalid argument '$ARG'."
+		echo "error: invalid argument '$ARG'"
 		fusage
 		;;
 esac
