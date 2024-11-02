@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATE=$(date +"%Y%m%d_%H%M%S")
+DATE=$(date +"%Y%m%d_%H")
 DIR=/home/src/1v4n/
 FILE=$DIR/src_$DATE.tar.gz
 
