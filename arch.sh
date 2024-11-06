@@ -5,6 +5,9 @@ case `uname -m` in
 "armv7l")
 	ARCH=armv7l
 	;;
+"armv8l")
+	ARCH=armv8l
+	;;
 "x86_64")
 	ARCH=x86_64
 	;;
