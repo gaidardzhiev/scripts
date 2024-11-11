@@ -1,4 +1,5 @@
 #!/bin/bash
+#TODO: get rid of the evil bashisms to ensure POSIX compatibility...
 
 adb_device="$HOME/.adb_device"
 
