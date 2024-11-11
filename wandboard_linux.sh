@@ -4,7 +4,7 @@
 set -x
 
 #set vars
-export DIR=/home/wandboard
+export DIR=/home/src/wandboard
 export DISK=/dev/mmcblk0
 export TARGET=arm
 
@@ -26,7 +26,7 @@ patch -p1 < 0001-wandboard-uEnv.txt-bootz-n-fixes.patch
 make ARCH=$TARGET CROSS_COMPILE=${CC} distclean
 make ARCH=$TARGET CROSS_COMPILE=${CC} wandboard_defconfig
 make ARCH=$TARGET CROSS_COMPILE=${CC}
-+
+
 #build the kernel modules device tree binaries and copy them to the deploy directory
 git clone https://github.com/RobertCNelson/armv7-multiplatform ./kernelbuildscripts
 cd kernelbuildscripts/
@@ -72,4 +72,4 @@ dmesg | grep brcm
 /sbin/ifconfig -a
 sync
 sudo umount /media/rootfs
-echo done
+echo "done..."
