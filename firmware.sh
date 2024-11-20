@@ -28,8 +28,29 @@ pack() {
 	exec 3>&-
 }
 
-if [ "$1" = "unpack" ]; then
-	unpack "$2"
-elif [ "$1" = "pack" ]; then
-	pack "$2"
+#if [ "$1" = "unpack" ]; then
+#	unpack "$2"
+#elif [ "$1" = "pack" ]; then
+#	pack "$2"
+#fi
+
+usage() {
+	echo "usage: $0 <pack|unpack> <file>"
+	exit 1
+}
+
+if [ $# -ne 2 ]; then
+	usage
 fi
+
+case "$1" in
+	unpack)
+		unpack "$2" || { echo "failed to unpack $2"; exit 1; }
+		;;
+	pack)
+		pack "$2" || { echo "failed to pack $2"; exit 1; }
+		;;
+	*)
+		usage
+		;;
+esac
