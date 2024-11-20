@@ -45,7 +45,7 @@ alias diff='diff --color=auto'
 alias ip='ip --color=auto'
 alias tmux='tmux new-session \; \split-window -v \; \split-window -h \; \select-pane -t 0 \; \split-window -h'
 alias clean='paccache -rk1'
-alias yay-fzf='yay -Slq | fzf --multi --preview "yay -Si {1}" | xargs -ro yay -S'
+alias yay_fzf='yay -Slq | fzf --multi --preview "yay -Si {1}" | xargs -ro yay -S'
 
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
