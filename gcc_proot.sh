@@ -11,8 +11,7 @@ export BINUTILS=2.42
 export GCC=13.2.0
 
 
-binutils()
-{
+binutils() {
         mkdir -p $DIR
         mkdir -p $PREFIX
         cd $DIR
@@ -27,8 +26,7 @@ binutils()
         make install
 }
 
-gcc()
-{
+gcc() {
         cd $DIR
         wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
         tar -xf gcc-$GCC.tar.gz
