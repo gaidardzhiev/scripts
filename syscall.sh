@@ -10,7 +10,7 @@ export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export SUFFIX="-V4N"
  
-before(){
+before() {
 mkdir -p $DIR
 cd $DIR
 wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-$VER.tar.xz
@@ -42,7 +42,7 @@ kexec -l /boot/vmlinuz-linux$SUFFIX \
 kexec -e
 }
  
-after(){
+after() {
 cd $DIR
 touch test.c
 cat > $DIR/test.c << EOF
