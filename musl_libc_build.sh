@@ -12,8 +12,7 @@ if [ -d "$PREFIX" ]; then
 	exit 0
 fi
 
-get()
-{
+get() {
 	if cd $DIR; then
 		wget https://musl.libc.org/releases/$MUSL.tar.gz
 		tar xf $MUSL.tar.gz
@@ -25,8 +24,7 @@ get()
 	fi
 }
 
-build()
-{
+build() {
 	if ./configure \
 		--prefix=$PREFIX \
 		--exec-prefix=$EXEC \
@@ -41,8 +39,7 @@ build()
 	fi
 }
 
-try()
-{
+try() {
 	if cd $TMP; then
 		cat > hello.c << EOF
 #include <stdio.h>
