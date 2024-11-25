@@ -1,7 +1,7 @@
 #!/bin/sh
 
-DIR=/home/src/1v4n/tools
-REPO=https://github.com/gaidardzhiev/tools
+DIR=/home/src/1v4n/toolbox
+REPO=https://github.com/gaidardzhiev/toolbox
 CMD=$1
 
 if [ ! -d "$DIR" ]; then
