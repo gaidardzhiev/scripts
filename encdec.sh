@@ -6,8 +6,8 @@ export PASS=$3
 
 fusage() {
 	printf "usage: $0 <encrypt|decrypt> <text> <password>\n"
-	printf "  encrypt: encrypts the provided <text> using the <password>\n"
-	printf "  decrypt: decrypts the provided <text> using the <password>\n"
+	printf "  encrypt: encrypts the provided <text> using the provided <password>\n"
+	printf "  decrypt: decrypts the provided <text> using the provided <password>\n"
 	exit 1
 }
 
