@@ -6,7 +6,7 @@ x() {
 }
 
 y() {
-	Y=$(head -c 32 /dev/urandom | md5sum)
+	Y=$(head -c 32 /dev/urandom | md5sum | awk '{print $1}')
 	echo $Y
 }
 
