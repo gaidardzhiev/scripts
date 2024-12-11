@@ -19,14 +19,14 @@ fdec() {
 		-pbkdf2 -iter 100000
 }
 
-add() {
+fadd() {
 	DPASS=$(fgen)
 	EPASS=$(fenc "$DPASS")
 	echo "$1:$EPASS" >> "$DB"
 	echo "password for $1 added"
 }
 
-get() {
+fget() {
 	if grep -q "^$1:" "$DB"; then
 		EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
 		DPASS=$(fdec "$EPASS")
@@ -38,10 +38,10 @@ get() {
 
 case "$1" in
 	add)
-		add "$2"
+		fadd "$2"
 		;;
 	get)
-		get "$2"
+		fget "$2"
 		;;
 	*)
 		echo "usage: $0 <add|get> <name> <key>"
