@@ -3,7 +3,7 @@
 DB=/root/.pdb
 KEY=$3
 
-gen() {
+fgen() {
 	tr -dc '[:graph:]' < /dev/urandom | head -c 16
 }
 
@@ -20,7 +20,7 @@ dec() {
 }
 
 add() {
-	DPASS=$(gen)
+	DPASS=$(fgen)
 	EPASS=$(enc "$DPASS")
 	echo "$1:$EPASS" >> "$DB"
 	echo "password for $1 added"
