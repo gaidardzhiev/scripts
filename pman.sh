@@ -20,17 +20,17 @@ dec() {
 }
 
 add() {
-	DPASSWORD=$(gen)
-	EPASSWORD=$(enc "$DPASSWORD")
-	echo "$1:$EPASSWORD" >> "$DB"
+	DPASS=$(gen)
+	EPASS=$(enc "$DPASS")
+	echo "$1:$EPASS" >> "$DB"
 	echo "password for $1 added"
 }
 
 get() {
 	if grep -q "^$1:" "$DB"; then
-		EPASSWORD=$(grep "^$1:" "$DB" | cut -d':' -f2)
-		DPASSWORD=$(dec "$EPASSWORD")
-		echo "password for $1: $DPASSWORD"
+		EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
+		DPASS=$(dec "$EPASS")
+		echo "password for $1: $DPASS"
 	else
 		echo "no entry found for $1..."
 	fi
