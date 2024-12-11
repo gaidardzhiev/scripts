@@ -2,7 +2,6 @@
 
 DB=/root/.pdb
 KEY=$3
-#HISTCONTROL=ignorespace
 
 fgen() {
 	tr -dc '[:graph:]' < /dev/urandom | head -c 16
