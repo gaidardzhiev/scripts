@@ -13,7 +13,7 @@ fenc() {
 		-pbkdf2 -iter 100000
 }
 
-dec() {
+fdec() {
 	echo "$1" | openssl enc -aes-256-cbc\
 		-d -a -pass pass:"$KEY"\
 		-pbkdf2 -iter 100000
@@ -29,7 +29,7 @@ add() {
 get() {
 	if grep -q "^$1:" "$DB"; then
 		EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
-		DPASS=$(dec "$EPASS")
+		DPASS=$(fdec "$EPASS")
 		echo "password for $1: $DPASS"
 	else
 		echo "no entry found for $1..."
