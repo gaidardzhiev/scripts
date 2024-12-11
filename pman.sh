@@ -7,7 +7,7 @@ fgen() {
 	tr -dc '[:graph:]' < /dev/urandom | head -c 16
 }
 
-enc() {
+fenc() {
 	echo "$1" | openssl enc -aes-256-cbc\
 		-a -salt -pass pass:"$KEY"\
 		-pbkdf2 -iter 100000
@@ -21,7 +21,7 @@ dec() {
 
 add() {
 	DPASS=$(fgen)
-	EPASS=$(enc "$DPASS")
+	EPASS=$(fenc "$DPASS")
 	echo "$1:$EPASS" >> "$DB"
 	echo "password for $1 added"
 }
