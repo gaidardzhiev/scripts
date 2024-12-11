@@ -3,25 +3,25 @@
 DB=/root/.pdb
 KEY=$3
 
-generate() {
+gen() {
 	tr -dc '[:graph:]' < /dev/urandom | head -c 16
 }
 
-encrypt() {
+enc() {
 	echo "$1" | openssl enc -aes-256-cbc\
 		-a -salt -pass pass:"$KEY"\
 		-pbkdf2 -iter 100000
 }
 
-decrypt() {
+dec() {
 	echo "$1" | openssl enc -aes-256-cbc\
 		-d -a -pass pass:"$KEY"\
 		-pbkdf2 -iter 100000
 }
 
 add() {
-	DPASSWORD=$(generate)
-	EPASSWORD=$(encrypt "$DPASSWORD")
+	DPASSWORD=$(gen)
+	EPASSWORD=$(enc "$DPASSWORD")
 	echo "$1:$EPASSWORD" >> "$DB"
 	echo "password for $1 added"
 }
@@ -29,7 +29,7 @@ add() {
 get() {
 	if grep -q "^$1:" "$DB"; then
 		EPASSWORD=$(grep "^$1:" "$DB" | cut -d':' -f2)
-		DPASSWORD=$(decrypt "$EPASSWORD")
+		DPASSWORD=$(dec "$EPASSWORD")
 		echo "password for $1: $DPASSWORD"
 	else
 		echo "no entry found for $1..."
