@@ -139,6 +139,9 @@ case $CMD in
 	tree)
 		$DIR/tree "$@"
 		;;
+	kmsg)
+		$DIR/kmsg "$@"
+		;;
 	*)
 		echo "unsupported command: '$CMD'"
 		fusage
