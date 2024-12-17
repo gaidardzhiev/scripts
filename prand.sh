@@ -1,5 +1,5 @@
 #!/bin/sh
-#pseudo random string generator using RDRAND instruction that generates entropy directly from hardware using thermal noise and other physical phenomena to produce high-quality randomness...
+#pseudo random string generator using RDRAND CPU instruction that generates entropy directly from hardware using thermal noise and other physical phenomena to produce high-quality randomness
 
 OUT="prand"
 EXEC="./$OUT"
