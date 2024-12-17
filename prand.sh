@@ -9,7 +9,6 @@ if ! grep -q "rdrand" /proc/cpuinfo; then
 	echo "rdrand instruction not supported..."
 	exit 1
 fi
-
 #grep -q "rdrand" /proc/cpuinfo || { echo "rdrand instruction not supported..."; exit 1; }
 
 gcc -x c -o "$OUT" - <<eof
@@ -24,3 +23,4 @@ if eval $EXEC; then
 	eval $CLEAN
 	exit 0
 fi
+#eval $EXEC && { eval $CLEAN; exit 0; }
