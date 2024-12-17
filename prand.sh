@@ -5,11 +5,11 @@ OUT="prand"
 EXEC="./$OUT"
 CLEAN="rm -f $OUT"
 
-if ! grep -q "rdrand" /proc/cpuinfo; then
-	echo "RDRAND instruction not supported..."
-	exit 1
-fi
-#grep -q "rdrand" /proc/cpuinfo || { echo "no RDRAND instruction..."; exit 1; }
+#if ! grep -q "rdrand" /proc/cpuinfo; then
+#	echo "RDRAND instruction not supported..."
+#	exit 1
+#fi
+grep -q "rdrand" /proc/cpuinfo || { echo "no RDRAND instruction..."; exit 1; }
 
 gcc -x c -march=native -o "$OUT" - <<eof
 #include <stdio.h>
@@ -37,8 +37,8 @@ printf("%s\n",r);
 return 0;}
 eof
 
-if eval $EXEC; then
-	eval $CLEAN
-	exit 0
-fi
-#eval $EXEC && { eval $CLEAN; exit 0; }
+#if eval $EXEC; then
+#	eval $CLEAN
+#	exit 0
+#fi
+eval $EXEC && { eval $CLEAN; exit 0; }
