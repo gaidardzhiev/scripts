@@ -6,17 +6,35 @@ EXEC="./$OUT"
 CLEAN="rm -f $OUT"
 
 if ! grep -q "rdrand" /proc/cpuinfo; then
-	echo "rdrand instruction not supported..."
+	echo "RDRAND instruction not supported..."
 	exit 1
 fi
-#grep -q "rdrand" /proc/cpuinfo || { echo "rdrand instruction not supported..."; exit 1; }
+#grep -q "rdrand" /proc/cpuinfo || { echo "no RDRAND instruction..."; exit 1; }
 
-gcc -x c -o "$OUT" - <<eof
+gcc -x c -march=native -o "$OUT" - <<eof
 #include <stdio.h>
+#include <stdint.h>
+#include <x86intrin.h>
+#include <stdlib.h>
+#include <ctype.h>
+uint32_t n() {
+uint32_t v = 0;
+if (!_rdrand32_step(&v)) {
+fprintf(stderr, "error: RDRAND instruction failed...\n");
+exit(EXIT_FAILURE);}return v;}
+void s(char *b, size_t l) {
+size_t i = 0;
+while (i < l) {
+char c = (char)(n() % 256);
+if (isprint(c) && c != ' ') {
+b[i++] = c;}}
+b[l] = '\0';}
 int main() {
-    printf("put the code here...\n");
-    return 0;
-}
+char r[32 + 1];
+s(r, 32);
+//printf("pseudo random string: %s\n", r);
+printf("%s\n",r);
+return 0;}
 eof
 
 if eval $EXEC; then
