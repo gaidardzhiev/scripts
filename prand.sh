@@ -10,6 +10,8 @@ if ! grep -q "rdrand" /proc/cpuinfo; then
 	exit 1
 fi
 
+#grep -q "rdrand" /proc/cpuinfo || { echo "rdrand instruction not supported..."; exit 1; }
+
 gcc -x c -o "$OUT" - <<eof
 #include <stdio.h>
 int main() {
