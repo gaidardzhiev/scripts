@@ -5,12 +5,6 @@ case "$(uname)" in
 	*) p=SYS_ ;;
 esac
 
-if ! command -v cpp > /dev/null; then
-	echo "preprocessor not found..." >&2
-	exit 1
-fi
+command -v cpp > /dev/null || { echo "preprocessor not found..." >&2; exit 1; }
 
-if ! cpp -include sys/syscall.h -dM </dev/null | sed -n "s/^#define $p//p" | sort -k1; then
-	echo "error..." >&2
-	exit 1
-fi
+cpp -include sys/syscall.h -dM </dev/null | sed -n "s/^#define $p//p" | sort -k1 || { printf "something's wrong in here somewhere...\n" >&2; exit 1; }
