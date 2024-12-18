@@ -2,6 +2,8 @@
 
 set -xe
 
+GIT="git clone https://github.com/gaidardzhiev/"
+
 if ls -l $1; then
 	printf "1\n"
 else
@@ -16,5 +18,7 @@ else
 	git clone https://github.com/gaidardzhiev/on_the_metal
 	git clone https://github.com/gaidardzhiev/interceptor
 	git clone https://github.com/gaidardzhiev/libreverse
+	git clone https://github.com/gaidardzhiev/esolangs
+	git clone https://github.com/gaidardzhiev/toolbox
 	printf "0\n"
 fi
