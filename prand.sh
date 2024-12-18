@@ -33,8 +33,4 @@ printf("%s\n",r);
 return 0;}
 eof
 
-#if eval $EXEC; then
-#	eval $CLEAN
-#	exit 0
-#fi
 eval $EXEC && { eval $CLEAN; exit 0; }
