@@ -1,11 +1,11 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 CLONE="git clone https://github.com/gaidardzhiev"
 
 if ls -l $1; then
-	printf "\n"
+	exit 1
 else
 	mkdir -p $1
 	cd $1
@@ -20,5 +20,4 @@ else
 	$CLONE/libreverse
 	$CLONE/esolangs
 	$CLONE/toolbox
-	printf "\n"
 fi
