@@ -52,8 +52,4 @@ gcc() {
         make install-target-libgcc
 }
 
-if binutils; then
-        gcc
-else
-        printf "error\n"
-fi
+binutils && gcc || printf "something is wrong in here somewhere...\n"
