@@ -1,8 +1,10 @@
 #!/bin/sh
 
 case "$(uname)" in
-	Linux) p=__NR_ ;;
-	*) p=SYS_ ;;
+	Linux)
+		p=__NR_ ;;
+	*)
+		p=SYS_ ;;
 esac
 
 command -v cpp > /dev/null || { echo "preprocessor not found..." >&2; exit 1; }
