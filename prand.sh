@@ -5,10 +5,6 @@ OUT="prand"
 EXEC="./$OUT"
 CLEAN="rm -f $OUT"
 
-#if ! grep -q "rdrand" /proc/cpuinfo; then
-#	echo "no RDRAND instruction..."
-#	exit 1
-#fi
 grep -q "rdrand" /proc/cpuinfo || { echo "no RDRAND instruction..."; exit 1; }
 
 gcc -x c -march=native -o "$OUT" - <<eof
