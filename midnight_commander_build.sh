@@ -9,27 +9,26 @@ export NUMCPUS=$(grep -c '^processor' /proc/cpuinfo)
 export JOBS="-j $NUMCPUS"
 export DIR=/opt/mc
 
-error_exit() {
-	echo "Error: $1"
+fexit() {
+	echo "error: $1"
 	exit 1
 }
 
 get_build_mc() {
-	mkdir -p "$DIR" || error_exit "failed to create directory $DIR"
-	cd "$DIR" || error_exit "failed to change directory to $DIR"
-	wget "http://ftp.midnight-commander.org/mc-$MC_VER.tar.xz" || error_exit "failed to download"
-	tar xf "mc-$MC_VER.tar.xz" || error_exit "failed to extract"
-	cd "mc-$MC_VER" || error_exit "failed to change directory to mc-$MC_VER"
-	./configure --without-x --disable-shared --enable-static || error_exit "configuration failed"
+	mkdir -p "$DIR" || fexit "failed to create directory $DIR"
+	cd "$DIR" || fexit "failed to change directory to $DIR"
+	wget "http://ftp.midnight-commander.org/mc-$MC_VER.tar.xz" || fexit "failed to download"
+	tar xf "mc-$MC_VER.tar.xz" || fexit "failed to extract"
+	cd "mc-$MC_VER" || fexit "failed to change directory to mc-$MC_VER"
+	./configure --without-x --disable-shared --enable-static || fexit "configuration failed"
 	CC='gcc -static -static-libgcc -fno-exceptions' \
 	CXX='g++ -static -static-libgcc -fno-exceptions' \
 	LDFLAGS='-Wl,-static -static -lc' \
 	LIBS='-lc' \
-	make $JOBS || error_exit "build failed"
-	cp "$DIR/mc-$MC_VER/src/mc" /usr/bin/mc || error_exit "failed to copy mc to /usr/bin"
+	make $JOBS || fexit "build failed"
+	cp "$DIR/mc-$MC_VER/src/mc" /usr/bin/mc || fexit "failed to copy mc to /usr/bin"
 	echo "build completed successfully"
-	rm -r "$DIR" || error_exit "failed to remove directory $DIR"
+	rm -r "$DIR" || fexit "failed to remove directory $DIR"
 }
 
 get_build_mc
-
