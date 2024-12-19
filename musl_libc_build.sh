@@ -58,10 +58,12 @@ EOF
 	fi
 }
 
-if get; then
-	build
-	try
-else
-	echo "error in getting musl"
-	exit 1
-fi
+get && build && try || { printf "something's wrong in here somewhere...\n"; exit 1}
+
+#if get; then
+#	build
+#	try
+#else
+#	echo "error..."
+#	exit 1
+#fi
