@@ -74,9 +74,10 @@ else
         echo 'error'
 fi
 }
- 
-if ! uname -r | grep -q '$SUFFIX'
-then
-        before
-        after
-fi
+
+uname -r | grep -q '$SUFFIX' || before && after
+
+#if ! uname -r | grep -q '$SUFFIX'; then
+#        before
+#        after
+#fi
