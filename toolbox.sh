@@ -14,7 +14,7 @@ else
 fi
 
 fusage() {
-	echo "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg> <options>"
+	echo "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file> <options>"
 	exit 1
 }
 
@@ -141,6 +141,9 @@ case $CMD in
 		;;
 	kmsg)
 		$DIR/kmsg "$@"
+		;;
+	file)
+		$DIR/file "$@"
 		;;
 	*)
 		echo "unsupported command: '$CMD'"
