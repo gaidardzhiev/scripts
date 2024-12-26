@@ -5,28 +5,28 @@ z()
 {
 	exec 3< "$1" || { echo "error opening file"; return; }
 	x=$(dd if=/dev/fd/3 bs=1 count=16 2>/dev/null) || { echo "error reading file"; return; }
-		  echo -n "magic signature bytes: "
-		  i=0
-		    while [ $i -lt 16 ];
+	echo -n "magic signature bytes: "
+	i=0
+	while [ $i -lt 16 ];
 	do
 		printf "%02X " "'${x:$i:1}"
 		i=$((i + 1))
-		  done
-		  printf "\n"
-		  echo -n "human readable ASCII: "
-		  i=0
-		    while [ $i -lt 16 ];
+	done
+	printf "\n\n"
+	echo -n "human readable ASCII: "
+	i=0
+	while [ $i -lt 16 ];
 	do
 		c="${x:$i:1}"
-	  case "$c" in
-			  [[:print:]]) printf "%s" "$c" ;;
+		case "$c" in
+			[[:print:]]) printf "%s" "$c" ;;
 			*) printf "." ;;
-			esac
-			i=$((i + 1))
-			  done
-			  echo
-			  exec 3<&-
-		}
+		esac
+		i=$((i + 1))
+	done
+	printf "\n"
+	exec 3<&-
+}
 
 if [ $# -ne 1 ]; then
 echo "usage: $0 <file>" >&2
