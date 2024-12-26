@@ -1,5 +1,5 @@
 #!/bin/sh
-#read the first 16 bytes of a file in hex and ascii for magic signature file inspection
+#read the first 16 bytes of a file in hex and ascii for magic signature inspection
 
 z() {
 	exec 3< "$1" || { echo "error opening file"; return; }
