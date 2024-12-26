@@ -1,24 +1,25 @@
 #!/bin/sh
-#read the first 16 bytes of a file in hex and ascii for magic signature file inspection
+#read the first 16 bytes of a file in hex and ASCII for magic signature file inspection
 
 z()
 {
 	exec 3< "$1" || { echo "error opening file"; return; }
-	read -n 16 -u 3 x
-	echo -n "magic signature bytes: "
-	i=0
-	  while [ $i -lt 16 ];
+	x=$(dd if=/dev/fd/3 bs=1 count=16 2>/dev/null) || { echo "error reading file"; return; }
+		  echo -n "magic signature bytes: "
+		  i=0
+		    while [ $i -lt 16 ];
 	do
-		printf "%02X " "'${x:i:1}"
+		printf "%02X " "'${x:$i:1}"
 		i=$((i + 1))
 		  done
+		  printf "\n"
 		  echo -n "human readable ASCII: "
 		  i=0
 		    while [ $i -lt 16 ];
 	do
-		c="${x:i:1}"
-	     case "$c" in
-			     [[:print:]]) printf "%s" "$c" ;;
+		c="${x:$i:1}"
+	  case "$c" in
+			  [[:print:]]) printf "%s" "$c" ;;
 			*) printf "." ;;
 			esac
 			i=$((i + 1))
