@@ -1,5 +1,13 @@
-# /etc/bash/bashrc
+#!/bin/sh
 
+RC=/etc/bash.bashrc
+
+if [ -e $RC ]; then
+printf "/etc/bash.bashrc exists..."
+exit 1
+else
+touch $RC
+cat <<'EOF' >> $RC
 if [[ $- != *i* ]] ; then
 	return
 fi
@@ -70,3 +78,6 @@ alias clean='paccache -rk1'
 alias ego='cd /home/src/1v4n/ && find . -type f \( -name "*.c" -o -name "*.sh" -o -name "Makefile" \) | wc -l'
 export LESSOPEN="| /usr/bin/less.sh %s"
 export LESS=' -R '
+EOF
+exit 1
+fi
