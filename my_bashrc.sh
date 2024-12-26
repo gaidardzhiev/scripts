@@ -80,5 +80,5 @@ alias ego='cd /home/src/1v4n/ && find . -type f \( -name "*.c" -o -name "*.sh" -
 export LESSOPEN="| /usr/bin/less.sh %s"
 export LESS=' -R '
 EOF
-exit 1
+exit 0
 fi
