@@ -28,7 +28,6 @@ b[l] = '\0';}
 int main() {
 char r[32 + 1];
 s(r, 32);
-//printf("pseudo random string: %s\n", r);
 printf("%s\n",r);
 return 0;}
 eof
