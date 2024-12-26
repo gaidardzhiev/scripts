@@ -4,7 +4,8 @@
 z()
 {
 	exec 3< "$1" || { echo "error opening file"; return; }
-	x=$(dd if=/dev/fd/3 bs=1 count=16 2>/dev/null) || { echo "error reading file"; return; }
+#	x=$(dd if=/dev/fd/3 bs=1 count=16 2>/dev/null) || { echo "error reading file"; return; }
+	x=$(dd if=/dev/fd/3 bs=1 count=16 2>/dev/null | hexdump -v -e '/1 "%02X "' || { echo "error reading file"; return; })
 	echo -n "magic signature bytes: "
 	i=0
 	while [ $i -lt 16 ];
@@ -12,7 +13,7 @@ z()
 		printf "%02X " "'${x:$i:1}"
 		i=$((i + 1))
 	done
-	printf "\n\n"
+	printf "\n"
 	echo -n "human readable ASCII: "
 	i=0
 	while [ $i -lt 16 ];
