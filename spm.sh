@@ -3,6 +3,7 @@
 
 DIR=/opt/spm
 BIN=$DIR/bin
+LIB=$DIR/lib
 TARGET=$(uname -m)
 PKG=$1
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
@@ -13,6 +14,7 @@ MAKE=4.4
 STRONGSWAN=5.9.14
 MC=4.7.5.6
 TCC=0.9.27
+MUSL=1.2.5
 
 fusage() {
 	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
@@ -25,6 +27,10 @@ fi
 
 if [ ! -d $BIN ]; then
 	mkdir -p $BIN
+fi
+
+if [ ! -d $LIB ]; then
+	mkdkr -p $LIB
 fi
 
 if [ $# -lt 1 ]; then
@@ -109,6 +115,19 @@ case $PKG in
 		./build_toolchain
 		make
 		cp toolbox $BIN/toolbox-$TARGET
+		;;
+	musl)
+		cd $DIR
+		wget https://musl.libc.org/releases/musl-$MUSL.tar.gz
+		tar xf musl-$MUSL.tar.gz
+		rm musl-$MUSL.tar.gz
+		cd musl-$MUSL
+		./configure \
+			--exec-prefix=$BIN \
+			--syslibdir=$LIB \
+			--disable-shared
+		make
+		cp bin/musl-gcc $BIN/musl-gcc-$TARGET
 		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
