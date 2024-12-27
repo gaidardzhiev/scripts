@@ -12,6 +12,7 @@ BINUTILS=2.40
 MAKE=4.4
 STRONGSWAN=5.9.14
 MC=4.7.5.6
+TCC=0.9.27
 
 fusage() {
 	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
@@ -90,7 +91,17 @@ case $PKG in
 		make $JOBS
 		cp src/mc $BIN/mc-$MC-$TARGET
 		;;
-
+	tcc)
+		cd $DIR
+		wget https://download.savannah.gnu.org/releases/tinycc/tcc-$TCC.tar.bz2
+		bzip2 -d tcc-$TCC.tar.bz2
+		tar xf tcc-$TCC.tar
+		rm tcc-$TCC.tar
+		cd tcc-$TCC
+		./configure
+		make
+		cp tcc $BIN/tcc-$TCC-$TARGET
+		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
