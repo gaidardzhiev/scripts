@@ -39,7 +39,7 @@ case $PKG in
 		cd make-$MAKE
 		./configure
 		./build.sh
-		cp make $BIN/make-$MAKE
+		cp make $BIN/make-$MAKE-$TARGET
 		;;
 	gcc)
 		cd $DIR
@@ -56,7 +56,7 @@ case $PKG in
 			--enable-languages='c' \
 			--enable-frame-pointer=no
 		make $JOBS all-gcc
-		cp gcc $BIN/gcc-$GCC
+		cp gcc $BIN/gcc-$GCC-$TARGET-elf
 		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
