@@ -102,6 +102,14 @@ case $PKG in
 		make
 		cp tcc $BIN/tcc-$TCC-$TARGET
 		;;
+	toolbox)
+		cd $DIR
+		git clone https://github.com/gaidardzhiev/toolbox
+		cd toolbox
+		./build_toolchain
+		make
+		cp toolbox $BIN/toolbox-$TARGET
+		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
