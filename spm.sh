@@ -130,6 +130,17 @@ case $PKG in
 		make
 		cp bin/musl-gcc $BIN/musl-gcc-$TARGET
 		;;
+	sed)
+		cd $DIR
+		git clone git://git.sv.gnu.org/sed
+		cd sed
+		./bootstrap
+		./configure \
+			--quiet\
+			--disable-gcc-warnings
+		make
+		cp sed $BIN/sed-$TARGET
+		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
