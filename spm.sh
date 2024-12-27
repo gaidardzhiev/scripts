@@ -112,6 +112,7 @@ case $PKG in
 		cd $DIR
 		git clone https://github.com/gaidardzhiev/toolbox
 		cd toolbox
+		sed -i 's|/home/src/1v4n/toolbox|/opt/toolbox/|g' toolbox.c
 		./build_toolchain
 		make
 		cp toolbox $BIN/toolbox-$TARGET
