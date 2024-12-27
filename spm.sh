@@ -1,11 +1,11 @@
 #!/bin/sh
 #very crude source based package manager
 
+PKG=$1
 DIR=/opt/spm
 BIN=$DIR/bin
 LIB=$DIR/lib
 TARGET=$(uname -m)
-PKG=$1
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
 GCC=12.2.0
@@ -30,7 +30,7 @@ if [ ! -d $BIN ]; then
 fi
 
 if [ ! -d $LIB ]; then
-	mkdkr -p $LIB
+	mkdir -p $LIB
 fi
 
 if [ $# -lt 1 ]; then
