@@ -10,9 +10,10 @@ JOBS='-j '$GETNUMCPUS''
 GCC=12.2.0
 BINUTILS=2.40
 MAKE=4.4
+STRONGSWAN=5.9.14
 
 fusage() {
-	printf "usage: $0 <tcc|gcc|make|musl|glibc|git|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
+	printf "usage: $0 <tcc|gcc|make|musl|glibc|git|strongswan|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
 	exit 1
 }
 
@@ -57,6 +58,19 @@ case $PKG in
 			--enable-frame-pointer=no
 		make $JOBS all-gcc
 		cp gcc $BIN/gcc-$GCC-$TARGET-elf
+		;;
+	strongswan)
+		cd $DIR
+		wget https://download.strongswan.org/strongswan-$STRONGSWAN.tar.bz2
+		bzip2 -d strongswan-$STRONGSWAN.tar.bz2
+		tar xf strongswan-$STRONGSWAN.tar
+		rm strongswan-$STRONGSWAN.tar
+		cd strongswan-$STRONGSWAN
+		./configure \
+			--enable-systemd \
+			--enable-swanctl
+		make $JOBS
+		cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
 		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
