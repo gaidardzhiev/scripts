@@ -28,12 +28,6 @@ pack() {
 	exec 3>&-
 }
 
-#if [ "$1" = "unpack" ]; then
-#	unpack "$2"
-#elif [ "$1" = "pack" ]; then
-#	pack "$2"
-#fi
-
 usage() {
 	echo "usage: $0 <pack|unpack> <file>"
 	exit 1
