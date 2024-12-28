@@ -17,6 +17,7 @@ MC=4.7.5.6
 TCC=0.9.27
 MUSL=1.2.5
 BINUTILS=2.40
+GIT=2.9.5
 
 fusage() {
 	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
@@ -149,8 +150,19 @@ case $PKG in
 		cd $SRC
 		git clone git://git.suckless.org/dmenu
 		cd dmenu
-		make
+		make $JOBS
 		cp dmenu $BIN/dmenu-$TARGET
+		;;
+	git)
+		cd $SRC
+		wget https://www.kernel.org/pub/software/scm/git/git-$GIT.tar.gz
+		tar xf git-$GIT.tar.gz
+		rm git-$GIT.tar.gz
+		cd git-$GIT
+		make configure
+		./configure --prefix=/opt/spm
+		make $JOBS
+		cp git $SRC/git
 		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
