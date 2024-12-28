@@ -3,8 +3,9 @@
 
 PKG=$1
 DIR=/opt/spm
-BIN=$DIR/bin
-LIB=$DIR/lib
+SRC=/opt/spm/src
+BIN=/opt/spm/bin
+LIB=/opt/spm/lib
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -25,6 +26,10 @@ if [ ! -d $DIR ]; then
 	mkdir -p $DIR
 fi
 
+if [ ! -d $SRC ]; then
+	mkdir -p $SRC
+fi
+
 if [ ! -d $BIN ]; then
 	mkdir -p $BIN
 fi
@@ -41,7 +46,7 @@ shift
 
 case $PKG in
 	make)
-		cd $DIR
+		cd $SRC
 		wget https://ftp.gnu.org/gnu/make/make-$MAKE.tar.gz
 		tar xf make-$MAKE.tar.gz
 		rm make-$MAKE.tar.gz
@@ -51,7 +56,7 @@ case $PKG in
 		cp make $BIN/make-$MAKE-$TARGET
 		;;
 	gcc)
-		cd $DIR
+		cd $SRC
 		wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
 		tar xf gcc-$GCC.tar.gz
 		rm gcc-$GCC.tar.gz
@@ -68,7 +73,7 @@ case $PKG in
 		cp gcc $BIN/gcc-$GCC-$TARGET-elf
 		;;
 	strongswan)
-		cd $DIR
+		cd $SRC
 		wget https://download.strongswan.org/strongswan-$STRONGSWAN.tar.bz2
 		bzip2 -d strongswan-$STRONGSWAN.tar.bz2
 		tar xf strongswan-$STRONGSWAN.tar
@@ -81,7 +86,7 @@ case $PKG in
 		cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
 		;;
 	mc)
-		cd $DIR
+		cd $SRC
 		wget http://ftp.midnight-commander.org/mc-$MC.tar.xz
 		tar xf mc-$MC.tar.xz
 		rm mc-$MC.tar.xz
@@ -98,7 +103,7 @@ case $PKG in
 		cp src/mc $BIN/mc-$MC-$TARGET
 		;;
 	tcc)
-		cd $DIR
+		cd $SRC
 		wget https://download.savannah.gnu.org/releases/tinycc/tcc-$TCC.tar.bz2
 		bzip2 -d tcc-$TCC.tar.bz2
 		tar xf tcc-$TCC.tar
@@ -109,7 +114,7 @@ case $PKG in
 		cp tcc $BIN/tcc-$TCC-$TARGET
 		;;
 	toolbox)
-		cd $DIR
+		cd $SRC
 		git clone https://github.com/gaidardzhiev/toolbox
 		cd toolbox
 		sed -i 's|/home/src/1v4n/toolbox|/opt/toolbox/|g' toolbox.c
@@ -118,7 +123,7 @@ case $PKG in
 		cp toolbox $BIN/toolbox-$TARGET
 		;;
 	musl)
-		cd $DIR
+		cd $SRC
 		wget https://musl.libc.org/releases/musl-$MUSL.tar.gz
 		tar xf musl-$MUSL.tar.gz
 		rm musl-$MUSL.tar.gz
@@ -131,7 +136,7 @@ case $PKG in
 		cp bin/musl-gcc $BIN/musl-gcc-$TARGET
 		;;
 	sed)
-		cd $DIR
+		cd $SRC
 		git clone git://git.sv.gnu.org/sed
 		cd sed
 		./bootstrap
