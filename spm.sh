@@ -145,6 +145,13 @@ case $PKG in
 		cd dietlibc
 		make
 		;;
+	dmenu)
+		cd $SRC
+		git clone git://git.suckless.org/dmenu
+		cd dmenu
+		make
+		cp dmenu $BIN/dmenu-$TARGET
+		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
