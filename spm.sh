@@ -19,7 +19,7 @@ MUSL=1.2.5
 BINUTILS=2.40
 
 fusage() {
-	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
+	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
 	exit 1
 }
 
@@ -138,6 +138,12 @@ case $PKG in
 		rm binutils-$BINUTILS.tar.gz
 		cd binutils-$BINUTILS
 		make $JOBS
+		;;
+	dietlibc)
+		cd $SRC
+		cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co dietlibc
+		cd dietlibc
+		make
 		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
