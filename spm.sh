@@ -16,6 +16,7 @@ STRONGSWAN=5.9.14
 MC=4.7.5.6
 TCC=0.9.27
 MUSL=1.2.5
+BINUTILS=2.40
 
 fusage() {
 	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
