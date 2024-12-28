@@ -153,6 +153,7 @@ case $PKG in
 		tar xf binutils-$BINUTILS.tar.gz
 		rm binutils-$BINUTILS.tar.gz
 		cd binutils-$BINUTILS
+		make $JOBS
 		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
