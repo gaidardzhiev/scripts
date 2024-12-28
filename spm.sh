@@ -23,25 +23,9 @@ fusage() {
 	exit 1
 }
 
-if [ ! -d $DIR ]; then
-	mkdir -p $DIR
-fi
+mkdir -p "$DIR" "$SRC" "$BIN" "$LIB"
 
-if [ ! -d $SRC ]; then
-	mkdir -p $SRC
-fi
-
-if [ ! -d $BIN ]; then
-	mkdir -p $BIN
-fi
-
-if [ ! -d $LIB ]; then
-	mkdir -p $LIB
-fi
-
-if [ $# -lt 1 ]; then
-	fusage
-fi
+[ $# -lt 1 ] && fusage
 
 shift
 
