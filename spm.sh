@@ -147,6 +147,12 @@ case $PKG in
 		make
 		cp sed $BIN/sed-$TARGET
 		;;
+	binutils)
+		cd $SRC
+		wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
+		tar xf binutils-$BINUTILS.tar.gz
+		rm binutils-$BINUTILS.tar.gz
+		cd binutils-$BINUTILS
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
