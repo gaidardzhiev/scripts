@@ -111,7 +111,7 @@ case $PKG in
 		rm tcc-$TCC.tar
 		cd tcc-$TCC
 		./configure
-		make
+		make $JOBS
 		cp tcc $BIN/tcc-$TCC-$TARGET
 		;;
 	toolbox)
@@ -120,7 +120,7 @@ case $PKG in
 		cd toolbox
 		sed -i 's|/home/src/1v4n/toolbox|/opt/toolbox/|g' toolbox.c
 		./build_toolchain.sh
-		make
+		make $JOBS
 		cp toolbox $BIN/toolbox-$TARGET
 		;;
 	musl)
@@ -133,7 +133,7 @@ case $PKG in
 			--exec-prefix=$BIN \
 			--syslibdir=$LIB \
 			--disable-shared
-		make
+		make $JOBS
 		cp bin/musl-gcc $BIN/musl-gcc-$TARGET
 		;;
 	sed)
@@ -144,7 +144,7 @@ case $PKG in
 		./configure \
 			--quiet\
 			--disable-gcc-warnings
-		make
+		make $JOBS
 		cp sed $BIN/sed-$TARGET
 		;;
 	binutils)
@@ -153,6 +153,7 @@ case $PKG in
 		tar xf binutils-$BINUTILS.tar.gz
 		rm binutils-$BINUTILS.tar.gz
 		cd binutils-$BINUTILS
+		;;
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
