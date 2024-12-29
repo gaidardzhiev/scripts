@@ -1,7 +1,8 @@
 #!/bin/sh
 #very crude source based package manager
 
-PKG=$1
+ARG=$1
+PKG=$2
 DIR=/opt/spm
 SRC=/opt/spm/src
 BIN=/opt/spm/bin
@@ -30,7 +31,8 @@ mkdir -p "$DIR" "$SRC" "$BIN" "$LIB"
 
 shift
 
-case $PKG in
+install(){
+	case $PKG in
 	make)
 		cd $SRC
 		wget https://ftp.gnu.org/gnu/make/make-$MAKE.tar.gz
@@ -167,5 +169,15 @@ case $PKG in
 	*)
 		printf "unsupported package: '$PKG'\n"
 		fusage
+		;;
+	esac
+}
+
+case $ARG in
+	install)
+		install "$PKG"
+		;;
+	*)
+		printf "invalid command...\n"
 		;;
 esac
