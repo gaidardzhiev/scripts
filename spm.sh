@@ -186,9 +186,14 @@ fbuild(){
 		grep)
 			cd $SRC
 			wget https://ftp.gnu.org/gnu/grep/grep-$GREP.tar.gz
-			tar xf grep-$GREP.tar.xz
-			rm grep-$GREP.tar.xz
+			tar xf grep-$GREP.tar.gz
+			rm grep-$GREP.tar.gz
 			cd grep-$GREP
+			./configure
+			make
+			cp src/grep $BIN/grep-$TARGET
+			cp src/egrep $BIN/egrep-$TARGET
+			cp src/fgrep $BIN/fgrep-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
