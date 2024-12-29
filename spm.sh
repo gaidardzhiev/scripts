@@ -19,6 +19,7 @@ TCC=0.9.27
 MUSL=1.2.5
 BINUTILS=2.40
 GIT=2.9.5
+GREP=3.11
 
 fusage() {
 	printf "usage: $0 <build|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
@@ -181,6 +182,13 @@ fbuild(){
 			make
 			mv a.out awk
 			cp awk $BIN/awk-$TARGET
+			;;
+		grep)
+			cd $SRC
+			wget https://ftp.gnu.org/gnu/grep/grep-$GREP.tar.gz
+			tar xf grep-$GREP.tar.xf
+			rm grep-$GREP.tar.xf
+			cd grep-$GREP
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
