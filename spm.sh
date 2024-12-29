@@ -205,7 +205,7 @@ fdelete() {
 			printf "invalid response...\n"
 			printf "(yes/no)\n"
 			;;
-	esac			
+	esac
 }
 
 case $ARG in
