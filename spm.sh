@@ -187,5 +187,6 @@ case $ARG in
 		;;
 	*)
 		printf "unsupported command: '$ARG'\n"
+		fusage
 		;;
 esac
