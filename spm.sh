@@ -179,6 +179,7 @@ fbuild(){
 			git clone https://github.com/onetrueawk/awk
 			cd awk
 			make
+			mv a.out awk
 			cp awk $BIN/awk-$TARGET
 			;;
 		*)
