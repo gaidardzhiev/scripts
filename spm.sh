@@ -202,6 +202,10 @@ fbuild(){
 			tar xf busybox-snapshot.tar
 			rm busybox-snapshot.tar
 			cd busybox
+			make defconfig
+			make
+			cp busybox $BIN/busybox-$TARGET
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
