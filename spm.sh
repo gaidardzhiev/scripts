@@ -175,7 +175,22 @@ fbuild(){
 }
 
 fdelete() {
-	rm -r $SRC
+	printf "this will delete all the source in $SRC\n"
+	printf "are you sure? (yes/no)\n"
+	read -r RSP
+	case $RSP in
+		[y]* )
+			rm -r $SRC
+			printf "$SRC deleted...\n"
+			;;
+		[n]* )
+			printf "deletion canceld...\n"
+			;;
+		*)
+			printf "invalid response...\n"
+			printf "(yes/no)\n"
+			;;
+	esac			
 }
 
 case $ARG in
