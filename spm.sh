@@ -203,7 +203,7 @@ fbuild(){
 }
 
 fdelete() {
-	printf "this will delete all the source in $SRC\n"
+	printf "you will delete all the source in $SRC\n"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
 	case $RSP in
