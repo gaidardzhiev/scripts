@@ -195,6 +195,13 @@ fbuild(){
 			cp src/egrep $BIN/egrep-$TARGET
 			cp src/fgrep $BIN/fgrep-$TARGET
 			;;
+		busybox)
+			cd $SRC
+			wget https://busybox.net/downloads/busybox-snapshot.tar.bz2
+			bzip2 -d busybox-snapshot.tar.bz2
+			tar xf busybox-snapshot.tar
+			rm busybox-snapshot.tar
+			cd busybox
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
