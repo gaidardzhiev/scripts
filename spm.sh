@@ -167,6 +167,13 @@ fbuild(){
 			make $JOBS
 			cp git $SRC/git
 			;;
+		dash)
+			cd $SRC
+			git clone https://github.com/danishprakash/dash
+			cd dash
+			make
+			cp dash $BIN/dash-$TARGET
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
