@@ -22,7 +22,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
+	printf "usage: $0 <build|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
 	exit 1
 }
 
@@ -205,6 +205,13 @@ fbuild(){
 			make defconfig
 			make
 			cp busybox $BIN/busybox-$TARGET
+			;;
+		qbe)
+			cd $SRC
+			git clone https://github.com/8l/qbe
+			cd qbe
+			make
+			cp obj/qbe $BIN/qbe-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
