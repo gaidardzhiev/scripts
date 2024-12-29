@@ -106,7 +106,7 @@ fbuild(){
 			cd $SRC
 			git clone https://github.com/gaidardzhiev/toolbox
 			cd toolbox
-			sed -i 's|/home/src/1v4n/toolbox|/opt/toolbox/|g' toolbox.c
+			sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c
 			./build_toolchain.sh
 			make $JOBS
 			cp toolbox $BIN/toolbox-$TARGET
