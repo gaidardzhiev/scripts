@@ -178,6 +178,6 @@ case $ARG in
 		fbuild "$PKG"
 		;;
 	*)
-		printf "invalid command...\n"
+		printf "unsupported command: '$ARG'\n"
 		;;
 esac
