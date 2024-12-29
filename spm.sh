@@ -21,7 +21,7 @@ BINUTILS=2.40
 GIT=2.9.5
 
 fusage() {
-	printf "usage: $0 <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
+	printf "usage: $0 <install|delete> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
 	exit 1
 }
 
@@ -31,7 +31,7 @@ mkdir -p "$DIR" "$SRC" "$BIN" "$LIB"
 
 shift
 
-install(){
+fbuild(){
 	case $PKG in
 	make)
 		cd $SRC
@@ -175,7 +175,7 @@ install(){
 
 case $ARG in
 	install)
-		install "$PKG"
+		fbuild "$PKG"
 		;;
 	*)
 		printf "invalid command...\n"
