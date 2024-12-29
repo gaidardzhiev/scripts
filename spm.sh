@@ -208,7 +208,7 @@ fdelete() {
 	read -r RSP
 	case $RSP in
 		[y]* )
-			rm -r $SRC
+			rm -r $SRC/*
 			printf "$SRC deleted...\n"
 			;;
 		[n]* )
