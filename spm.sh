@@ -174,6 +174,13 @@ fbuild(){
 			make
 			cp dash $BIN/dash-$TARGET
 			;;
+		awk)
+			cd $SRC
+			git clone https://github.com/onetrueawk/awk
+			cd awk
+			make
+			cp awk $BIN/awk-$TARGET
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
