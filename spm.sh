@@ -186,8 +186,8 @@ fbuild(){
 		grep)
 			cd $SRC
 			wget https://ftp.gnu.org/gnu/grep/grep-$GREP.tar.gz
-			tar xf grep-$GREP.tar.xf
-			rm grep-$GREP.tar.xf
+			tar xf grep-$GREP.tar.xz
+			rm grep-$GREP.tar.xz
 			cd grep-$GREP
 			;;
 		*)
