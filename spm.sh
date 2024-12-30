@@ -138,7 +138,8 @@ fbuild(){
 			cd sed
 			./bootstrap
 			./configure \
-				--quiet\
+				--prefix=$DIR \
+				--quiet \
 				--disable-gcc-warnings
 			make $JOBS
 			cp sed $BIN/sed-$TARGET
