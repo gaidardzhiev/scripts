@@ -7,6 +7,9 @@ DIR=/opt/spm
 SRC=/opt/spm/src
 BIN=/opt/spm/bin
 LIB=/opt/spm/lib
+ETC=/opt/spm/etc
+SBIN=/opt/spm/sbin
+VAR=/opt/spm/var
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -26,7 +29,7 @@ fusage() {
 	exit 1
 }
 
-mkdir -p "$DIR" "$SRC" "$BIN" "$LIB"
+mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN"
 
 [ $# -lt 1 ] && fusage
 
@@ -228,6 +231,7 @@ fbuild(){
 			cd curl
 			autoreconf -fi >&2
 			automake --add-missing
+			./configure --with-openssl
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
