@@ -227,6 +227,7 @@ fbuild(){
 			git clone https://github.com/curl/curl.git
 			cd curl
 			autoreconf -fi >&2
+			automake --add-missing
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
