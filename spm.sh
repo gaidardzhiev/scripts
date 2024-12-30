@@ -44,7 +44,8 @@ fbuild(){
 			tar xf make-$MAKE.tar.gz
 			rm make-$MAKE.tar.gz
 			cd make-$MAKE
-			./configure
+			./configure \
+				--prefix=$DIR
 			./build.sh
 			cp make $BIN/make-$MAKE-$TARGET
 			;;
