@@ -75,6 +75,7 @@ fbuild(){
 			rm strongswan-$STRONGSWAN.tar
 			cd strongswan-$STRONGSWAN
 			./configure \
+				--prefix=$DIR \
 				--enable-systemd \
 				--enable-swanctl
 			make $JOBS
