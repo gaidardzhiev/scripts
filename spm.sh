@@ -220,6 +220,7 @@ fbuild(){
 			rm wget2-latest.tar.gz
 			cd wget*
 			./configure
+			make
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
