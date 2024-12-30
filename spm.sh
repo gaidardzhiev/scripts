@@ -181,14 +181,14 @@ fbuild(){
 			cd $SRC
 			git clone https://github.com/danishprakash/dash
 			cd dash
-			make
+			make $JOBS
 			cp dash $BIN/dash-$TARGET
 			;;
 		awk)
 			cd $SRC
 			git clone https://github.com/onetrueawk/awk
 			cd awk
-			make
+			make $JOBS
 			mv a.out awk
 			cp awk $BIN/awk-$TARGET
 			;;
@@ -200,7 +200,7 @@ fbuild(){
 			cd grep-$GREP
 			./configure \
 				--prefix=$DIR
-			make
+			make $JOBS
 			cp src/grep $BIN/grep-$TARGET
 			cp src/egrep $BIN/egrep-$TARGET
 			cp src/fgrep $BIN/fgrep-$TARGET
@@ -213,14 +213,14 @@ fbuild(){
 			rm busybox-snapshot.tar
 			cd busybox
 			make defconfig
-			make
+			make $JOBS
 			cp busybox $BIN/busybox-$TARGET
 			;;
 		qbe)
 			cd $SRC
 			git clone https://github.com/8l/qbe
 			cd qbe
-			make
+			make $JOBS
 			cp obj/qbe $BIN/qbe-$TARGET
 			;;
 		wget)
@@ -231,7 +231,7 @@ fbuild(){
 			cd wget*
 			./configure \
 				--prefix=$DIR
-			make
+			make $JOBS
 			;;
 		curl)
 			cd $SRC
@@ -244,7 +244,19 @@ fbuild(){
 				--prefix=$DIR \
 				--without-ssl \
 				--disable-shared
-			make
+			make $JOBS
+			;;
+		coreboot)
+			cd $SRC
+			git clone https://review.coreboot.org/coreboot
+			cd coreboot
+			make crossgcc-i386 CPUS=$(nproc)
+			make -C payloads/coreinfo olddefconfig
+			make -C payloads/coreinfo
+			make menuconfig
+			make savedefconfig
+			cat defconfig
+			make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
