@@ -173,7 +173,7 @@ fbuild(){
 			cd git-$GIT
 			make configure
 			./configure \
-				--prefix=/opt/spm
+				--prefix=$DIR
 			make $JOBS
 			cp git $SRC/git
 			;;
@@ -198,7 +198,8 @@ fbuild(){
 			tar xf grep-$GREP.tar.gz
 			rm grep-$GREP.tar.gz
 			cd grep-$GREP
-			./configure
+			./configure \
+				--prefix=$DIR
 			make
 			cp src/grep $BIN/grep-$TARGET
 			cp src/egrep $BIN/egrep-$TARGET
@@ -228,7 +229,8 @@ fbuild(){
 			tar xf wget2-latest.tar.gz
 			rm wget2-latest.tar.gz
 			cd wget*
-			./configure
+			./configure \
+				--prefix=$DIR
 			make
 			;;
 		curl)
@@ -239,6 +241,7 @@ fbuild(){
 			automake \
 				--add-missing
 			./configure \
+				--prefix=$DIR \
 				--without-ssl \
 				--disable-shared
 			make
