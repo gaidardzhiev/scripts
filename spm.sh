@@ -105,7 +105,8 @@ fbuild(){
 			tar xf tcc-$TCC.tar
 			rm tcc-$TCC.tar
 			cd tcc-$TCC
-			./configure
+			./configure \
+				--prefix=$DIR
 			make $JOBS
 			cp tcc $BIN/tcc-$TCC-$TARGET
 			;;
