@@ -56,6 +56,7 @@ fbuild(){
 			rm gcc-$GCC.tar.gz
 			cd gcc-$GCC
 			./configure \
+				--prefix=$DIR \
 				--target=$TARGET-elf \
 				--without-headers \
 				--with-newlib \
