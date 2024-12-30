@@ -222,6 +222,11 @@ fbuild(){
 			./configure
 			make
 			;;
+		curl)
+			cd $SRC
+			git clone https://github.com/curl/curl.git
+			cd curl
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
