@@ -213,6 +213,14 @@ fbuild(){
 			make
 			cp obj/qbe $BIN/qbe-$TARGET
 			;;
+		wget)
+			cd $SRC
+			curl https://ftp.gnu.org/gnu/wget/wget2-latest.tar.gz -o wget2-latest.tar.gz
+			tar xf wget2-latest.tar.gz
+			rm wget2-latest.tar.gz
+			cd wget*
+			./configure
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
