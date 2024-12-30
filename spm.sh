@@ -156,7 +156,7 @@ fbuild(){
 			cd $SRC
 			cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co dietlibc
 			cd dietlibc
-			make
+			make $JOBS
 			;;
 		dmenu)
 			cd $SRC
