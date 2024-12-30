@@ -226,6 +226,7 @@ fbuild(){
 			cd $SRC
 			git clone https://github.com/curl/curl.git
 			cd curl
+			autoreconf -fi >&2
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
