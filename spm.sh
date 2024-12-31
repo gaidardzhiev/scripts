@@ -305,16 +305,19 @@ fbin() {
 				x86_64)
 					cd $BIN
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-x86_64
+					chmod +x toybox-x86_64
 					./toybox-x86_64
 					;;
 				x86)
 					cd $BIN
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-i686
+					chmod +x toybox-i686
 					./toybox-i686
 					;;
 				mips)
 					cd $BIN
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-mips
+					chmod +x toybox-mips
 					./toybox-mips
 					;;
 				*)
@@ -337,7 +340,7 @@ case $ARG in
 		fdelete
 		;;
 	bin)
-		fbin $2
+		fbin $GET
 		;;
 	*)
 		printf "unsupported command: '$ARG'\n"
