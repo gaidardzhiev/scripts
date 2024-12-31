@@ -159,6 +159,7 @@ fbuild(){
 			cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co dietlibc
 			cd dietlibc
 			make $JOBS
+			install bin-$TARGET/diet /usr/local/bin
 			;;
 		dmenu)
 			cd $SRC
@@ -360,10 +361,10 @@ fbin() {
 					cd /x86_64-linux-musl-cross/bin
 					ls -l
 					printf "toochain currently built from:\n"
-					printf "	musl 1.2.5\n"
-					printf "	linux 6.8\n"
-					printf "	gcc 11.2.0\n"
-					printf "	binutils 2.33.1\n"
+					printf "musl 1.2.5\n"
+					printf "linux 6.8\n"
+					printf "gcc 11.2.0\n"
+					printf "binutils 2.33.1\n"
 					;;
 				*)
 					printf "unsupported CPU architecture...\n"
