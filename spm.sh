@@ -258,6 +258,14 @@ fbuild(){
 			cat defconfig
 			make $JOBS
 			;;
+		toybox)
+			cd $SRC
+			git clone https://github.com/landley/toybox
+			cd toybox
+			LDFLAGS="--static" \
+				make defconfig toybox
+			make $JOBS
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
