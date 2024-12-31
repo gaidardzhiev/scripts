@@ -320,6 +320,12 @@ fbin() {
 					chmod +x toybox-mips
 					./toybox-mips
 					;;
+				aarch64)
+					cd $BIN
+					wget https://landley.net/toybox/downloads/binaries/latest/toybox-aarch64
+					chmod +x toybox-aarch64
+					./toybox-aarch64
+					;;
 				*)
 					printf "unsupported CPU architecture...\n"
 					;;
