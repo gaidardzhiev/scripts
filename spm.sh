@@ -3,6 +3,7 @@
 
 ARG=$1
 PKG=$2
+GET=$2
 DIR=/opt/spm
 SRC=/opt/spm/src
 BIN=/opt/spm/bin
@@ -26,7 +27,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
+	printf "usage: $0 <build|bin|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom>\n"
 	exit 1
 }
 
@@ -291,12 +292,51 @@ fdelete() {
 	esac
 }
 
+fbin() {
+	case $GET in
+		toybox)
+			case $TARGET in
+				armv8l)
+					cd $BIN
+					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv7m
+					./toybox-armv7m
+					;;
+				x86_64)
+					cd $BIN
+					wget https://landley.net/toybox/downloads/binaries/latest/toybox-x86_64
+					./toybox-x86_64
+					;;
+				x86)
+					cd $BIN
+					wget https://landley.net/toybox/downloads/binaries/latest/toybox-i686
+					./toybox-i686
+					;;
+				mips)
+					cd $BIN
+					wget https://landley.net/toybox/downloads/binaries/latest/toybox-mips
+					./toybox-mips
+					;;
+				*)
+					printf "unsupported CPU architecture...\n"
+					;;
+			esac
+			;;
+		*)
+			printf "unsupported command: '$GET'\n"
+			fusage
+			;;
+	esac
+}
+
 case $ARG in
 	build)
 		fbuild $PKG
 		;;
 	delete-src)
 		fdelete
+		;;
+	bin)
+		fbin $2
 		;;
 	*)
 		printf "unsupported command: '$ARG'\n"
