@@ -262,8 +262,7 @@ fbuild(){
 			cd $SRC
 			git clone https://github.com/landley/toybox
 			cd toybox
-			LDFLAGS="--static" \
-				make defconfig toybox
+			make defconfig
 			make $JOBS
 			;;
 		*)
