@@ -299,6 +299,7 @@ fbin() {
 				armv8l)
 					cd $BIN
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv7m
+					chmod +x toybox-armv7m
 					./toybox-armv7m
 					;;
 				x86_64)
