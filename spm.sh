@@ -332,6 +332,12 @@ fbin() {
 					chmod +x toybox-armv4l
 					./toybox-armv4l
 					;;
+				armv5l)
+					cd $BIN
+					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv5l
+					chmod +x toybox-armv5l
+					./toybox-armv5l
+					;;
 				*)
 					printf "unsupported CPU architecture...\n"
 					;;
