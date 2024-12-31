@@ -12,6 +12,7 @@ ETC=/opt/spm/etc
 SBIN=/opt/spm/sbin
 VAR=/opt/spm/var
 INC=/opt/spm/include
+CROSS=/opt/spm/cross
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -31,7 +32,7 @@ fusage() {
 	exit 1
 }
 
-mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC"
+mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS"
 
 [ $# -lt 1 ] && fusage
 
@@ -343,6 +344,26 @@ fbin() {
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-powerpc
 					chmod +x toybox-powerpc
 					./toybox-powerpc
+					;;
+				*)
+					printf "unsupported CPU architecture...\n"
+					;;
+			esac
+			;;
+		cross)
+			case $TARGET in
+				x86_64)
+					cd $CROSS
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-cross.tar.xz
+					tar xf x86_64-linux-musl-cross.tar.xz
+					rm x86_64-linux-musl-cross.tar.xz
+					cd /x86_64-linux-musl-cross/bin
+					ls -l
+					printf "toochain currently built from:\n"
+					printf "	musl 1.2.5\n"
+					printf "	linux 6.8\n"
+					printf "	gcc 11.2.0\n"
+					printf "	binutils 2.33.1\n"
 					;;
 				*)
 					printf "unsupported CPU architecture...\n"
