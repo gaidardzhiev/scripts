@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build|bin|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross>\n"
+	printf "usage: $0 <build|bin|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc>\n"
 	exit 1
 }
 
@@ -271,7 +271,11 @@ fbuild(){
 		uclibc)
 			cd $SRC
 			wget wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz
-			tar xf uClibc-snapshot.tar.bz
+			tar xf uClibc-snapshot.tar.bz2
+			rm uClibc-snapshot.tar.bz2
+			cd uClibc
+			make defconfig
+			make
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
