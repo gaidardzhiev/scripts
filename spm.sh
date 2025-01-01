@@ -397,6 +397,11 @@ fbin() {
 					rm i686-linux-musl-cross.tar.xz
 					cd i686-linux-musl-cross/bin
 					ls -l
+					printf "toochain currently built from:\n"
+					printf "musl 1.2.5\n"
+					printf "linux 6.8\n"
+					printf "gcc 11.2.0\n"
+					printf "binutils 2.33.1\n"
 					;;
 				*)
 					printf "unsupported CPU architecture...\n"
