@@ -268,6 +268,11 @@ fbuild(){
 			make defconfig
 			make $JOBS
 			;;
+		uclibc)
+			cd $SRC
+			wget wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz
+			tar xf uClibc-snapshot.tar.bz
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
