@@ -390,6 +390,14 @@ fbin() {
 					printf "gcc 11.2.0\n"
 					printf "binutils 2.33.1\n"
 					;;
+				x86)
+					cd $CROSS
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-cross.tar.xz
+					tar xf i686-linux-musl-cross.tar.xz
+					rm i686-linux-musl-cross.tar.xz
+					cd i686-linux-musl-cross/bin
+					ls -l
+					;;
 				*)
 					printf "unsupported CPU architecture...\n"
 					;;
