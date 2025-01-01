@@ -270,7 +270,7 @@ fbuild(){
 			;;
 		uclibc)
 			cd $SRC
-			wget wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz
+			wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz
 			tar xf uClibc-snapshot.tar.bz2
 			rm uClibc-snapshot.tar.bz2
 			cd uClibc
