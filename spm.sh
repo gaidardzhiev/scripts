@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build|bin|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta>\n"
 	exit 1
 }
 
@@ -425,15 +425,37 @@ fbin() {
 	esac
 }
 
+fdelete_bin() {
+	printf "you will delete all the bin's in $BIN\n"
+	printf "are you sure? (yes/no)\n"
+	read -r RSP
+	case $RSP in
+		[y]* )
+			rm -r $BIN/*
+			printf "$BIN deleted...\n"
+			;;
+		[n]* )
+			printf "deletion canceld...\n"
+			;;
+		*)
+			printf "invalid response...\n"
+			printf "(yes/no)\n"
+			;;
+	esac
+}
+
 case $ARG in
-	build)
+	build-src)
 		fbuild_src $PKG
 		;;
 	delete-src)
 		fdelete_src
 		;;
-	bin)
+	get-bin)
 		fbin $GET
+		;;
+	delete-bin)
+		fdelete_bin
 		;;
 	*)
 		printf "unsupported command: '$ARG'\n"
