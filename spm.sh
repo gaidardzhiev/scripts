@@ -38,7 +38,7 @@ mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS"
 
 shift
 
-fbuild(){
+fbuild_src(){
 	case $PKG in
 		make)
 			cd $SRC
@@ -309,7 +309,7 @@ fbuild(){
 	esac
 }
 
-fdelete() {
+fdelete_src() {
 	printf "you will delete all the source code in $SRC\n"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
@@ -427,10 +427,10 @@ fbin() {
 
 case $ARG in
 	build)
-		fbuild $PKG
+		fbuild_src $PKG
 		;;
 	delete-src)
-		fdelete
+		fdelete_src
 		;;
 	bin)
 		fbin $GET
