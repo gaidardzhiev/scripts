@@ -330,7 +330,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/8l/scc
 			cd scc
-			make
+			make $JOBS && cp bin/scc $BIN/scc-$TARGET
+			cd tests && make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
