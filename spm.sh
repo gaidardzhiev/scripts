@@ -66,8 +66,7 @@ fbuild_src(){
 				--with-gnu-ld \
 				--enable-languages='c' \
 				--enable-frame-pointer=no
-			make $JOBS all-gcc
-			cp gcc $BIN/gcc-$GCC-$TARGET-elf
+			make $JOBS all-gcc && cp gcc $BIN/gcc-$GCC-$TARGET-elf
 			;;
 		strongswan)
 			cd $SRC
@@ -80,8 +79,7 @@ fbuild_src(){
 				--prefix=$DIR \
 				--enable-systemd \
 				--enable-swanctl
-			make $JOBS
-			cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
+			make $JOBS && cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
 			;;
 		mc)
 			cd $SRC
@@ -97,8 +95,7 @@ fbuild_src(){
 			CXX='g++ -static -static-libgcc -fno-exceptions' \
 			LDFLAGS='-Wl,-static -static -lc' \
 			LIBS='-lc' \
-			make $JOBS
-			cp src/mc $BIN/mc-$MC-$TARGET
+			make $JOBS && cp src/mc $BIN/mc-$MC-$TARGET
 			;;
 		tcc)
 			cd $SRC
@@ -109,8 +106,7 @@ fbuild_src(){
 			cd tcc-$TCC
 			./configure \
 				--prefix=$DIR
-			make $JOBS
-			cp tcc $BIN/tcc-$TCC-$TARGET
+			make $JOBS && cp tcc $BIN/tcc-$TCC-$TARGET
 			;;
 		toolbox)
 			cd $SRC
@@ -118,8 +114,7 @@ fbuild_src(){
 			cd toolbox
 			sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c
 			./build_toolchain.sh
-			make $JOBS
-			cp toolbox $BIN/toolbox-$TARGET
+			make $JOBS && cp toolbox $BIN/toolbox-$TARGET
 			;;
 		musl)
 			cd $SRC
@@ -131,8 +126,7 @@ fbuild_src(){
 				--exec-prefix=$BIN \
 				--syslibdir=$LIB \
 				--disable-shared
-			make $JOBS
-			cp bin/musl-gcc $BIN/musl-gcc-$TARGET
+			make $JOBS && cp bin/musl-gcc $BIN/musl-gcc-$TARGET
 			;;
 		sed)
 			cd $SRC
@@ -143,8 +137,7 @@ fbuild_src(){
 				--prefix=$DIR \
 				--quiet \
 				--disable-gcc-warnings
-			make $JOBS
-			cp sed $BIN/sed-$TARGET
+			make $JOBS && cp sed $BIN/sed-$TARGET
 			;;
 		binutils)
 			cd $SRC
@@ -158,15 +151,13 @@ fbuild_src(){
 			cd $SRC
 			cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co dietlibc
 			cd dietlibc
-			make $JOBS
-			install bin-$TARGET/diet /usr/local/bin
+			make $JOBS && install bin-$TARGET/diet /usr/local/bin
 			;;
 		dmenu)
 			cd $SRC
 			git clone git://git.suckless.org/dmenu
 			cd dmenu
-			make $JOBS
-			cp dmenu $BIN/dmenu-$TARGET
+			make $JOBS && cp dmenu $BIN/dmenu-$TARGET
 			;;
 		git)
 			cd $SRC
@@ -177,23 +168,19 @@ fbuild_src(){
 			make configure
 			./configure \
 				--prefix=$DIR
-			make $JOBS
-			cp git $SRC/git
+			make $JOBS && cp git $SRC/git
 			;;
 		dash)
 			cd $SRC
 			git clone https://github.com/danishprakash/dash
 			cd dash
-			make $JOBS
-			cp dash $BIN/dash-$TARGET
+			make $JOBS && cp dash $BIN/dash-$TARGET
 			;;
 		awk)
 			cd $SRC
 			git clone https://github.com/onetrueawk/awk
 			cd awk
-			make $JOBS
-			mv a.out awk
-			cp awk $BIN/awk-$TARGET
+			make $JOBS && mv a.out awk && cp awk $BIN/awk-$TARGET
 			;;
 		grep)
 			cd $SRC
@@ -216,15 +203,13 @@ fbuild_src(){
 			rm busybox-snapshot.tar
 			cd busybox
 			make defconfig
-			make $JOBS
-			cp busybox $BIN/busybox-$TARGET
+			make $JOBS && cp busybox $BIN/busybox-$TARGET
 			;;
 		qbe)
 			cd $SRC
 			git clone https://github.com/8l/qbe
 			cd qbe
-			make $JOBS
-			cp obj/qbe $BIN/qbe-$TARGET
+			make $JOBS && cp obj/qbe $BIN/qbe-$TARGET
 			;;
 		wget)
 			cd $SRC
