@@ -310,6 +310,7 @@ fbuild_src(){
 			./tmg.sh ../examples/hello_world.t
 			touch input
 			./a.out input
+			cp tmgl1 tmgl2 $BIN
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
