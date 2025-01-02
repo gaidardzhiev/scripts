@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build|bin|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap>\n"
+	printf "usage: $0 <build|bin|delete-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta>\n"
 	exit 1
 }
 
@@ -290,6 +290,16 @@ fbuild(){
 			cd nmap
 			./configure
 			make $JOBS
+			make
+			;;
+		lambda-delta)
+			cd $SRC
+			git clone https://github.com/dseagrav/ld
+			cd ld
+			aclocal && autoheader && autoconf
+			automake \
+				--add-missing
+			./configure || autoreconf -i
 			make
 			;;
 		*)
