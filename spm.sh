@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c>\n"
 	exit 1
 }
 
@@ -318,6 +318,13 @@ fbuild_src(){
 			make $JOBS && cp bin/scc $BIN/scc-$TARGET
 			cd tests && make $JOBS
 			;;
+		c)
+			[ "$TARGET" = x86_64 ] && {
+				cd $SRC && git clone https://github.com/andrewchambers/c && cd c && make $JOBS && make test && make selfhost
+			} || {
+			       printf "unsupported CPU architecture...\n"
+		       }
+		       ;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
