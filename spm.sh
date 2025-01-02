@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc>\n"
 	exit 1
 }
 
@@ -318,13 +318,19 @@ fbuild_src(){
 			cd SubC
 			./configure
 			cd src
-			make $JOBS && make scc && cp scc $BIN
+			make $JOBS && make scc && cp scc $BIN/subc-$TARGET
 			;;
 		cc500)
 			cd $SRC
 			git clone https://github.com/8l/cc500
 			cd cc500
 			tcc cc500.c -o cc500 && cp cc500 $BIN
+			;;
+		scc)
+			cd $SRC
+			git clone https://github.com/8l/scc
+			cd scc
+			make
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
