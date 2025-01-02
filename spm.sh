@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg>\n"
 	exit 1
 }
 
@@ -301,6 +301,15 @@ fbuild_src(){
 				--add-missing
 			./configure || autoreconf -i
 			make
+			;;
+		tmg)
+			cd $SRC
+			git clone https://github.com/amakukha/tmg
+			cd tmg
+			cd src && ./build.sh
+			./tmg.sh ../examples/hello_world.t
+			touch input
+			./a.out input
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
