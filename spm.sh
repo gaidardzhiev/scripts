@@ -28,7 +28,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc>\n"
 	exit 1
 }
 
@@ -300,7 +300,7 @@ fbuild_src(){
 			automake \
 				--add-missing
 			./configure || autoreconf -i
-			make
+			make $JOBS
 			;;
 		tmg)
 			cd $SRC
@@ -311,6 +311,16 @@ fbuild_src(){
 			touch input
 			./a.out input
 			cp tmgl1 tmgl2 $BIN
+			;;
+		subc)
+			cd $SRC
+			git clone https://github.com/DoctorWkt/SubC
+			cd SubC
+			./configure
+			cd src
+			make $JOBS
+			make scc
+			cp scc $BIN
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
