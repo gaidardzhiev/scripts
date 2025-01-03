@@ -125,8 +125,9 @@ fbuild_src(){
 			./configure \
 				--exec-prefix=$BIN \
 				--syslibdir=$LIB \
-				--disable-shared
-			make $JOBS && cp bin/musl-gcc $BIN/musl-gcc-$TARGET
+				--disable-shared \
+				--static
+			make $JOBS && make install
 			;;
 		sed)
 			cd $SRC
