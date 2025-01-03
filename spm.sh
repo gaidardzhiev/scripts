@@ -126,7 +126,6 @@ fbuild_src(){
 				--exec-prefix=$DIR \
 				--syslibdir=$LIB \
 				--disable-shared \
-				--static
 			make $JOBS && make install
 			;;
 		sed)
