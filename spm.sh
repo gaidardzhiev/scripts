@@ -123,7 +123,7 @@ fbuild_src(){
 			rm musl-$MUSL.tar.gz
 			cd musl-$MUSL
 			./configure \
-				--exec-prefix=$BIN \
+				--exec-prefix=$DIR \
 				--syslibdir=$LIB \
 				--disable-shared \
 				--static
