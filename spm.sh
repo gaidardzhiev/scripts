@@ -124,7 +124,7 @@ fbuild_src(){
 			cd musl-$MUSL
 			./configure \
 				--disable-shared
-			make $JOBS && make install
+			make $JOBS && make install && cp /usr/local/musl/bin/musl-gcc /usr/bin
 			;;
 		sed)
 			cd $SRC
