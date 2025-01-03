@@ -123,9 +123,7 @@ fbuild_src(){
 			rm musl-$MUSL.tar.gz
 			cd musl-$MUSL
 			./configure \
-				--exec-prefix=$DIR \
-				--syslibdir=$LIB \
-				--disable-shared \
+				--disable-shared
 			make $JOBS && make install
 			;;
 		sed)
