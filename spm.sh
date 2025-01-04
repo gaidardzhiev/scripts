@@ -437,6 +437,19 @@ fbin() {
 					printf "gcc 11.2.0\n"
 					printf "binutils 2.33.1\n"
 					;;
+				aarch64)
+					cd $CROSS
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-cross.tar.xz
+					tar xf aarch64-linux-musleabi-cross.tar.xz
+					rm aarch64-linux-musleabi-cross.tar.xz
+					cd aarch64-linux-musleabi-cross/bin
+					ls -l
+					printf "toochain currently built from:\n"
+					printf "musl 1.2.5\n"
+					printf "linux 6.8\n"
+					printf "gcc 11.2.0\n"
+					printf "binutils 2.33.1\n"
+					;;
 				*)
 					printf "unsupported CPU architecture...\n"
 					;;
