@@ -477,7 +477,7 @@ fupdate_src() {
 			cd $SRC/dash && git pull && make $JOBS && cp dash $BIN/dash-$TARGET
 			;;
 		*)
-			printf "unsupported package...\n"
+			printf "unsupported package $UPD...\n"
 			fusage
 			;;
 	esac
