@@ -4,6 +4,7 @@
 ARG=$1
 PKG=$2
 GET=$2
+UPD=$2
 DIR=/opt/spm
 SRC=/opt/spm/src
 BIN=/opt/spm/bin
@@ -28,7 +29,7 @@ GIT=2.9.5
 GREP=3.11
 
 fusage() {
-	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin|update-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc>\n"
 	exit 1
 }
 
@@ -467,6 +468,18 @@ fdelete_bin() {
 	esac
 }
 
+fupdate_src() {
+	case $UPD in 
+		toolbox)
+			cd $SRC/toolbox && git pull && ./build_toolchain.sh && sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c && make $JOBS && cp toolbox $BIN/toolbox-$TARGET
+			;;
+		*)
+			printf "unsupported package...\n"
+			fusage
+			;;
+	esac
+}
+
 case $ARG in
 	build-src)
 		fbuild_src $PKG
@@ -479,6 +492,9 @@ case $ARG in
 		;;
 	delete-bin)
 		fdelete_bin
+		;;
+	update-src)
+		fupdate_src $UPD
 		;;
 	*)
 		printf "unsupported command: '$ARG'\n"
