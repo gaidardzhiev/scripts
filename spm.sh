@@ -450,6 +450,19 @@ fbin() {
 					printf "gcc 11.2.0\n"
 					printf "binutils 2.33.1\n"
 					;;
+				armv7m)
+					cd $CROSS
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/armv7m-linux-musleabi-cross.tar.xz
+					tar xf armv7m-linux-musleabi-cross.tar.xz
+					rm armv7m-linux-musleabi-cross.tar.xz
+					cd armv7m-linux-musleabi-cross.tar/bin
+					ls -l
+					printf "toochain currently built from:\n"
+					printf "musl 1.2.5\n"
+					printf "linux 6.8\n"
+					printf "gcc 11.2.0\n"
+					printf "binutils 2.33.1\n"
+					;;
 				*)
 					printf "unsupported CPU architecture...\n"
 					;;
