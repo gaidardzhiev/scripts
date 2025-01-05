@@ -513,10 +513,33 @@ fdelete_bin() {
 fupdate_src() {
 	case $UPD in 
 		toolbox)
-			cd $SRC/toolbox && git pull && ./build_toolchain.sh && sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c && make $JOBS && cp toolbox $BIN/toolbox-$TARGET
+			cd $SRC/toolbox &&
+				git pull &&
+				./build_toolchain.sh &&
+				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c &&
+				make $JOBS &&
+				cp toolbox $BIN/toolbox-$TARGET
 			;;
 		dash)
-			cd $SRC/dash && git pull && make $JOBS && cp dash $BIN/dash-$TARGET
+			cd $SRC/dash &&
+				git pull &&
+				make $JOBS &&
+				cp dash $BIN/dash-$TARGET
+			;;
+		tinycc)
+			cd $SRC/tinycc &&
+				git pull &&
+				./configure \
+					--prefix=$DIR \
+					--bindir=$BIN \
+					--libdir=$LIB \
+					--includedir=$INC \
+					--source-path=$SRC/tinycc \
+					--cc=tcc \
+					--disable-static \
+					--enable-cross
+				make $JOBS &&
+				make install
 			;;
 		*)
 			printf "unsupported package $UPD...\n"
