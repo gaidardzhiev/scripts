@@ -326,6 +326,22 @@ fbuild_src(){
 			cd cproc
 			./configure && make $JOBS
 			;;
+		tinycc)
+			cd $SRC
+			git clone https://repo.or.cz/tinycc.git
+			cd tinycc
+			./configure \
+				--prefix=$DIR \
+				--bindir=$BIN \
+				--libdir=$LIB \
+				--includedir=$INC \
+				--source-path=$SRC/tinycc \
+				--cc=tcc \
+				--disable-static \
+				--enable-cross
+			make $JOBS
+			make install
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
