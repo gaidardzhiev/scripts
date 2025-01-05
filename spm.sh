@@ -515,7 +515,7 @@ fupdate_src() {
 		toolbox)
 			cd $SRC/toolbox &&
 				git pull &&
-				./build_toolchain.sh &&
+				./build_toolchain.sh
 				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c &&
 				make $JOBS &&
 				cp toolbox $BIN/toolbox-$TARGET
