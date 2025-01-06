@@ -514,6 +514,7 @@ fupdate_src() {
 	case $UPD in 
 		toolbox)
 			cd $SRC/toolbox &&
+				rm toolbox.c &&
 				git pull &&
 				./build_toolchain.sh
 				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c &&
