@@ -353,6 +353,7 @@ fbuild_src(){
 			cp basename/basename $BIN/basename-$P9
 			cp bc/bc $BIN/bc-$P9
 			cp cat/cat $BIN/cat-$P9
+			cp cmp/cmp $BIN/cmp-$P9
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
