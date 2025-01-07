@@ -348,6 +348,11 @@ fbuild_src(){
 			git clone https://git.suckless.org/9base
 			cd 9base
 			make $JOBS
+			cp ascii/ascii $BIN/ascii-$P9
+			cp awk/awk $BIN/awk-$P9
+			cp basename/basename $BIN/basename-$P9
+			cp bc/bc $BIN/bc-$P9
+			cp cat/cat $BIN/cat-$P9
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
