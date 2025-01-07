@@ -342,6 +342,11 @@ fbuild_src(){
 			make $JOBS
 			make install
 			;;
+		9base)
+			cd $SRC
+			git clone https://git.suckless.org/9base
+			cd 9base
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
