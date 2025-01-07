@@ -355,6 +355,7 @@ fbuild_src(){
 			cp cat/cat $BIN/cat-$P9
 			cp cmp/cmp $BIN/cmp-$P9
 			cp date/date $BIN/date-$P9
+			cp dd/dd $BIN/dd-$P9
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
