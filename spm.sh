@@ -356,9 +356,14 @@ fbuild_src(){
 			cp cmp/cmp $BIN/cmp-$P9
 			cp date/date $BIN/date-$P9
 			cp dd/dd $BIN/dd-$P9
-			cp diff/diff $BIN/diff-$P9
+			#cp diff/diff $BIN/diff-$P9
 			cp du/du $BIN/du-$P9
-			cp echo/echo $BIN/echo-$P9
+			#cp echo/echo $BIN/echo-$P9
+			;;
+		airgeddon)
+			cd $SRC
+			git clone https://github.com/v1s1t0r1sh3r3/airgeddon
+			cp airgeddon/airgeddon.sh $BIN
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
