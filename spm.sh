@@ -394,7 +394,6 @@ fbuild_src(){
 					printf "unsupported architecture: $TARGET\n"
 			esac
 			;;
-
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
