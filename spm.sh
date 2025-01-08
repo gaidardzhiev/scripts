@@ -388,7 +388,7 @@ fbuild_src(){
 					git clone https://github.com/8l/otcc
 					cd otcc
 					gcc -O2 otcc.c -o otcc -ldl gcc -O2 otccelf.c -o otccelf
-					/otccelf otccelf.c otccelf1
+					./otccelf otccelf.c otccelf1
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
