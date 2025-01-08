@@ -30,7 +30,7 @@ GREP=3.11
 P9=plan9
 
 fusage() {
-	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin|update-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan>\n"
+	printf "usage: $0 <build-src|get-bin|delete-src|delete-bin|update-src> <tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc>\n"
 	exit 1
 }
 
@@ -380,7 +380,21 @@ fbuild_src(){
 			./configure
 			make $JOBS
 			cp build/sbin/* $SBIN
-			;;	
+			;;
+		otcc)
+			case $TARGET in
+				x86)
+					cd $SRC
+					git clone https://github.com/8l/otcc
+					cd otcc
+					gcc -O2 otcc.c -o otcc -ldl gcc -O2 otccelf.c -o otccelf
+					/otccelf otccelf.c otccelf1
+					;;
+				*)
+					printf "unsupported architecture: $TARGET\n"
+			esac
+			;;
+
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
