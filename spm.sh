@@ -372,6 +372,15 @@ fbuild_src(){
 			make $JOBS
 			cp bin/masscan $BIN/masscan-$TARGET
 			;;
+		kexec)
+			cd $SRC
+			git clone https://github.com/horms/kexec-tools
+			cd kexec-tools
+			./bootstrap
+			./configure
+			make $JOBS
+			cp build/sbin/* $SBIN
+			;;	
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
