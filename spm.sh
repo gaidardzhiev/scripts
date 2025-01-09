@@ -546,7 +546,7 @@ fbin() {
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					export PATH=$PATH:/opt/xtensa-lx106-elf/bin
 					;;
-				x86)
+				i686)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					tar xf xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
