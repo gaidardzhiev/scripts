@@ -77,6 +77,7 @@ alias ip='ip --color=auto'
 alias tmux='tmux new-session \; \split-window -v \; \'
 alias clean='paccache -rk1'
 alias ego='cd /home/src/1v4n/ && find . -type f \( -name "*.c" -o -name "*.sh" -o -name "Makefile" \) | wc -l'
+alias manfzf='man -k . | fzf | awk '\''{print $1}'\'' | xargs man'
 export LESSOPEN="| /usr/bin/less.sh %s"
 export LESS=' -R '
 EOF
