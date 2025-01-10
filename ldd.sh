@@ -14,6 +14,7 @@ fcheck() {
 
 fldd() {
 	objdump -p "$1" | grep NEEDED
+	exit 0
 }
 
 if [ "$#" -ne 1 ]; then
