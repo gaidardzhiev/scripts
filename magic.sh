@@ -18,8 +18,12 @@ z() {
 	do
 		c="${x:i:1}"
 		case "$c" in
-			[[:print:]]) printf "%s" "$c" ;;
-			*) printf "." ;;
+			[[:print:]])
+				printf "%s" "$c"
+				;;
+			*)
+				printf "."
+				;;
 		esac
 		i=$((i + 1))
 	done
