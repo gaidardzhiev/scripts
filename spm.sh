@@ -571,6 +571,12 @@ fbin() {
 					;;
 			esac
 			;;
+		aboriginal)
+			cd $CROSS
+			wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
+			tar xf cross-compiler-armv6l.tar.gz
+			rm cross-compiler-armv6l.tar.gz
+			;;
 		*)
 			printf "unsupported command: '$GET'\n"
 			fusage
