@@ -578,18 +578,28 @@ fbin() {
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
 					tar xf cross-compiler-armv6l.tar.gz
 					rm cross-compiler-armv6l.tar.gz
+					ls -la cross-compiler-armv6l
 					;;
 				x86_64)
 					cd $CROSS
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-x86_64.tar.gz
 					tar xf cross-compiler-x86_64.tar.gz
 					rm cross-compiler-x86_64.tar.gz
+					ls -la cross-compiler-x86_64
 					;;
 				i686)
 					cd $CROSS
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-i686.tar.gz
 					tar xf cross-compiler-i686.tar.gz
 					rm cross-compiler-i686.tar.gz
+					ls -la cross-compiler-i686
+					;;
+				arm4tl)
+					cd $CROSS
+					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv4tl.tar.gz
+					tar xf cross-compiler-armv4tl.tar.gz
+					rm cross-compiler-armv4tl.tar.gz
+					ls -la cross-compiler-armv4tl
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
