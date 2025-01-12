@@ -572,10 +572,17 @@ fbin() {
 			esac
 			;;
 		aboriginal)
-			cd $CROSS
-			wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
-			tar xf cross-compiler-armv6l.tar.gz
-			rm cross-compiler-armv6l.tar.gz
+			case $TARGET in
+				armv6l)
+					cd $CROSS
+					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
+					tar xf cross-compiler-armv6l.tar.gz
+					rm cross-compiler-armv6l.tar.gz
+					;;
+				*)
+					printf "unsupported architecture: $TARGET\n"
+					;;
+			esac
 			;;
 		*)
 			printf "unsupported command: '$GET'\n"
