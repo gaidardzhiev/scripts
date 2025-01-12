@@ -585,6 +585,12 @@ fbin() {
 					tar xf cross-compiler-x86_64.tar.gz
 					rm cross-compiler-x86_64.tar.gz
 					;;
+				i686)
+					cd $CROSS
+					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-i686.tar.gz
+					tar xf cross-compiler-i686.tar.gz
+					rm cross-compiler-i686.tar.gz
+					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
 					;;
