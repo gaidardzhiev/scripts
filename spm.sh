@@ -579,6 +579,12 @@ fbin() {
 					tar xf cross-compiler-armv6l.tar.gz
 					rm cross-compiler-armv6l.tar.gz
 					;;
+				x86_64)
+					cd $CROSS
+					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-x86_64.tar.gz
+					tar xf cross-compiler-x86_64.tar.gz
+					rm cross-compiler-x86_64.tar.gz
+					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
 					;;
