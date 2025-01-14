@@ -416,6 +416,7 @@ fbuild_src(){
 			rm qemu-$QEMU.tar.xz
 			cd $SRC/qemu-$QEMU
 			./configure \
+				--prefix=$DIR
 				--target-list=aarch64_be-linux-user \
 				aarch64-linux-user alpha-linux-user \
 				armeb-linux-user arm-linux-user \
@@ -449,7 +450,8 @@ fbuild_src(){
 				--enable-kvm \
 				--enable-fuse \
 				--enable-libudev \
-				--enable-libssh
+				--enable-libssh \
+				--enable-debug
 			make $JOBS
 			;;
 		*)
