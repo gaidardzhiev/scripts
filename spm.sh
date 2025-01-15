@@ -454,6 +454,12 @@ fbuild_src(){
 				--enable-debug
 			make $JOBS
 			;;
+		esolangs)
+			cd $SRC
+			git clone https://github.com/gaidardzhiev/esolangs
+			cd esolangs && make $JOBS
+			cp brainf whitespace $BIN
+			;;	
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
