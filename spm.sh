@@ -716,6 +716,12 @@ fupdate_src() {
 				make $JOBS &&
 				make install
 			;;
+		esolangs)
+			cd $SRC/esolangs &&
+				git pull &&
+				make $JOBS &&
+				cp brainf whitespace $BIN
+			;;
 		*)
 			printf "unsupported package $UPD...\n"
 			fusage
