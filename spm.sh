@@ -458,7 +458,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/gaidardzhiev/esolangs
 			cd esolangs && make $JOBS
-			cp brainf whitespace $BIN
+			cp brainf $BIN/brainf-$TARGET
+			cp whitespace $BIN/whitespace-$TARGET
 			;;	
 		*)
 			printf "unsupported package: '$PKG'\n"
@@ -720,7 +721,8 @@ fupdate_src() {
 			cd $SRC/esolangs &&
 				git pull &&
 				make $JOBS &&
-				cp brainf whitespace $BIN
+				cp brainf $BIN/brainf-$TARGET
+				cp whitespace $BIN/whitespace-$TARGET
 			;;
 		*)
 			printf "unsupported package $UPD...\n"
