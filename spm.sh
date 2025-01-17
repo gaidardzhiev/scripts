@@ -29,6 +29,7 @@ GIT=2.9.5
 GREP=3.11
 QEMU=9.2.0
 P9=plan9
+CFG="configure config.ac Makefile.am"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -731,7 +732,14 @@ fupdate_src() {
 			;;
 		nmap)
 			cd $SRC/nmap &&
+				git diff --name-only HEAD origin/main -- $CFG > /tmp/before.txt &&
 				git pull &&
+				git diff --name-only HEAD@{1} HEAD -- $CFG > /tmp/after.txt
+				[ -s /tmp/config_changes_after.txt ] && {
+					printf "running ./configure...\n"
+					./configure
+				} || printf "no configuration changes detected...\n"
+				rm -f /tmp/before.txt /tmp/after.txt
 				make $JOBS &&
 				cp nmap $BIN/nmap-$TARGET
 			;;
