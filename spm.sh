@@ -724,6 +724,12 @@ fupdate_src() {
 				cp brainf $BIN/brainf-$TARGET
 				cp whitespace $BIN/whitespace-$TARGET
 			;;
+		dash)
+			cd $SRC/dash &&
+				git pull &&
+				make $JOBS &&
+				cp dash $BIN/dash-$TARGET
+			;;
 		*)
 			printf "unsupported package $UPD...\n"
 			fusage
