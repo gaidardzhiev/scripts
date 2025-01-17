@@ -280,7 +280,6 @@ fbuild_src(){
 			cd nmap
 			./configure
 			make $JOBS
-			make
 			;;
 		lambda-delta)
 			cd $SRC
@@ -729,6 +728,12 @@ fupdate_src() {
 				git pull &&
 				make $JOBS &&
 				cp dash $BIN/dash-$TARGET
+			;;
+		nmap)
+			cd $SRC/nmap &&
+				git pull &&
+				make $JOBS &&
+				cp nmap $BIN/nmap-$TARGET
 			;;
 		*)
 			printf "unsupported package $UPD...\n"
