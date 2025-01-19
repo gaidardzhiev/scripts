@@ -780,6 +780,10 @@ fupdate_src() {
 				make $JOBS &&
 				cp nmap $BIN/nmap-$TARGET
 			;;
+		kexec)
+			cd $SRC/kexec-tools
+			git pull && ./bootstrap && ./configure && make $JOBS && cp build/sbin/* $SBIN
+			;;
 		*)
 			printf "unsupported package $UPD...\n"
 			fusage
