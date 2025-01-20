@@ -796,6 +796,7 @@ fupdate_src() {
 			;;
 		interceptor)
 			cd $SRC/interceptor &&
+				git pull &&
 				make &&
 				cp intercept.so $LIB &&
 				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
