@@ -788,7 +788,17 @@ fupdate_src() {
 			;;
 		kexec)
 			cd $SRC/kexec-tools
-			git pull && ./bootstrap && ./configure && make $JOBS && cp build/sbin/* $SBIN
+			git pull &&
+				./bootstrap &&
+				./configure &&
+				make $JOBS &&
+				cp build/sbin/* $SBIN
+			;;
+		interceptor)
+			cd $SRC/interceptor &&
+				make &&
+				cp intercept.so $LIB &&
+				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
 			;;
 		*)
 			printf "unsupported package $UPD...\n"
