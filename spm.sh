@@ -38,7 +38,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor>\n"
 	exit 1
 }
 
@@ -497,7 +497,13 @@ fbuild_src(){
 			cd esolangs && make $JOBS
 			cp brainf $BIN/brainf-$TARGET
 			cp whitespace $BIN/whitespace-$TARGET
-			;;	
+			;;
+		interceptor)
+			cd $SRC
+			git clone https://github.com/gaidardzhiev/interceptor
+			cd interceptor && make && cp intercept.so $LIB
+			printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
