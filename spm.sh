@@ -514,7 +514,10 @@ fbuild_src(){
 			./configure \
 				--enable-directory-stack=yes \
 				--enable-strict-posix-default=yes \
-				--enable-static-link=yes
+				--enable-static-link=yes \
+				--enable-net-redirections=yes \
+				--enable-cond-command=yes \
+				--enable-cond-regexp=yes
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
