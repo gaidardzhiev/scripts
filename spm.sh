@@ -507,7 +507,10 @@ fbuild_src(){
 			;;
 		bash)
 			cd $SRC
-			wget wget https://fosszone.csd.auth.gr/gnu/bash/$BASH.tar.gz
+			wget wget https://fosszone.csd.auth.gr/gnu/bash/bash-$BASH.tar.gz
+			tar xfv bash-$BASH.tar.gz
+			rm bash-$BASH.tar.gz
+			cd bash-$BASH
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
