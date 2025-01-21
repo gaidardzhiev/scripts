@@ -513,7 +513,8 @@ fbuild_src(){
 			cd bash-$BASH
 			./configure \
 				--enable-directory-stack=yes \
-				--enable-strict-posix-default=yes
+				--enable-strict-posix-default=yes \
+				--enable-static-link=yes
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
