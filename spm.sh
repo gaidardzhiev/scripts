@@ -54,7 +54,7 @@ fbuild_src(){
 		make)
 			cd $SRC
 			wget https://ftp.gnu.org/gnu/make/make-$MAKE.tar.gz
-			tar xf make-$MAKE.tar.gz
+			tar xfv make-$MAKE.tar.gz
 			rm make-$MAKE.tar.gz
 			cd make-$MAKE
 			./configure \
@@ -83,7 +83,7 @@ fbuild_src(){
 			cd $SRC
 			wget https://download.strongswan.org/strongswan-$STRONGSWAN.tar.bz2
 			bzip2 -d strongswan-$STRONGSWAN.tar.bz2
-			tar xf strongswan-$STRONGSWAN.tar
+			tar xfv strongswan-$STRONGSWAN.tar
 			rm strongswan-$STRONGSWAN.tar
 			cd strongswan-$STRONGSWAN
 			./configure \
@@ -95,7 +95,7 @@ fbuild_src(){
 		mc)
 			cd $SRC
 			wget http://ftp.midnight-commander.org/mc-$MC.tar.xz
-			tar xf mc-$MC.tar.xz
+			tar xfv mc-$MC.tar.xz
 			rm mc-$MC.tar.xz
 			cd mc-$MC
 			./configure \
@@ -112,7 +112,7 @@ fbuild_src(){
 			cd $SRC
 			wget https://download.savannah.gnu.org/releases/tinycc/tcc-$TCC.tar.bz2
 			bzip2 -d tcc-$TCC.tar.bz2
-			tar xf tcc-$TCC.tar
+			tar xfv tcc-$TCC.tar
 			rm tcc-$TCC.tar
 			cd tcc-$TCC
 			./configure \
@@ -130,7 +130,7 @@ fbuild_src(){
 		musl)
 			cd $SRC
 			wget https://musl.libc.org/releases/musl-$MUSL.tar.gz
-			tar xf musl-$MUSL.tar.gz
+			tar xfv musl-$MUSL.tar.gz
 			rm musl-$MUSL.tar.gz
 			cd musl-$MUSL
 			./configure && make $JOBS && make install && cp /usr/local/musl/bin/musl-gcc /usr/bin
@@ -149,7 +149,7 @@ fbuild_src(){
 		binutils)
 			cd $SRC
 			wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
-			tar xf binutils-$BINUTILS.tar.gz
+			tar xfv binutils-$BINUTILS.tar.gz
 			rm binutils-$BINUTILS.tar.gz
 			cd binutils-$BINUTILS
 			make $JOBS
@@ -169,7 +169,7 @@ fbuild_src(){
 		git)
 			cd $SRC
 			wget https://www.kernel.org/pub/software/scm/git/git-$GIT.tar.gz
-			tar xf git-$GIT.tar.gz
+			tar xfv git-$GIT.tar.gz
 			rm git-$GIT.tar.gz
 			cd git-$GIT
 			make configure
@@ -192,7 +192,7 @@ fbuild_src(){
 		grep)
 			cd $SRC
 			wget https://ftp.gnu.org/gnu/grep/grep-$GREP.tar.gz
-			tar xf grep-$GREP.tar.gz
+			tar xfv grep-$GREP.tar.gz
 			rm grep-$GREP.tar.gz
 			cd grep-$GREP
 			./configure \
@@ -206,7 +206,7 @@ fbuild_src(){
 			cd $SRC
 			wget https://busybox.net/downloads/busybox-snapshot.tar.bz2
 			bzip2 -d busybox-snapshot.tar.bz2
-			tar xf busybox-snapshot.tar
+			tar xfv busybox-snapshot.tar
 			rm busybox-snapshot.tar
 			cd busybox
 			make defconfig
@@ -221,7 +221,7 @@ fbuild_src(){
 		wget)
 			cd $SRC
 			curl https://ftp.gnu.org/gnu/wget/wget2-latest.tar.gz -o wget2-latest.tar.gz
-			tar xf wget2-latest.tar.gz
+			tar xfv wget2-latest.tar.gz
 			rm wget2-latest.tar.gz
 			cd wget*
 			./configure \
@@ -263,7 +263,7 @@ fbuild_src(){
 		uclibc)
 			cd $SRC
 			wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz2
-			tar xf uClibc-snapshot.tar.bz2
+			tar xfv uClibc-snapshot.tar.bz2
 			rm uClibc-snapshot.tar.bz2
 			cd uClibc
 			make defconfig
@@ -518,6 +518,8 @@ fbuild_src(){
 				--enable-net-redirections=yes \
 				--enable-cond-command=yes \
 				--enable-cond-regexp=yes
+			make $JOBS
+			cp bash $BIN/bash-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
@@ -607,7 +609,7 @@ fbin() {
 				x86_64)
 					cd $CROSS
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-cross.tar.xz
-					tar xf x86_64-linux-musl-cross.tar.xz
+					tar xfv x86_64-linux-musl-cross.tar.xz
 					rm x86_64-linux-musl-cross.tar.xz
 					cd /x86_64-linux-musl-cross/bin
 					ls -l
@@ -620,7 +622,7 @@ fbin() {
 				x86)
 					cd $CROSS
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-cross.tar.xz
-					tar xf i686-linux-musl-cross.tar.xz
+					tar xfv i686-linux-musl-cross.tar.xz
 					rm i686-linux-musl-cross.tar.xz
 					cd i686-linux-musl-cross/bin
 					ls -l
@@ -633,7 +635,7 @@ fbin() {
 				aarch64)
 					cd $CROSS
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-cross.tar.xz
-					tar xf aarch64-linux-musleabi-cross.tar.xz
+					tar xfv aarch64-linux-musleabi-cross.tar.xz
 					rm aarch64-linux-musleabi-cross.tar.xz
 					cd aarch64-linux-musleabi-cross/bin
 					ls -l
@@ -646,7 +648,7 @@ fbin() {
 				armv7m)
 					cd $CROSS
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/armv7m-linux-musleabi-cross.tar.xz
-					tar xf armv7m-linux-musleabi-cross.tar.xz
+					tar xfv armv7m-linux-musleabi-cross.tar.xz
 					rm armv7m-linux-musleabi-cross.tar.xz
 					cd armv7m-linux-musleabi-cross.tar/bin
 					ls -l
@@ -666,14 +668,14 @@ fbin() {
 				x86_64)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
-					tar xf xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
+					tar xfv xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					export PATH=$PATH:/opt/xtensa-lx106-elf/bin
 					;;
 				i686)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
-					tar xf xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
+					tar xfv xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					export PATH=$PATH:/opt/xtensa-lx106-elf/bin
 					;;
@@ -687,28 +689,28 @@ fbin() {
 				armv6l)
 					cd $CROSS
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
-					tar xf cross-compiler-armv6l.tar.gz
+					tar xfv cross-compiler-armv6l.tar.gz
 					rm cross-compiler-armv6l.tar.gz
 					ls -la cross-compiler-armv6l
 					;;
 				x86_64)
 					cd $CROSS
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-x86_64.tar.gz
-					tar xf cross-compiler-x86_64.tar.gz
+					tar xfv cross-compiler-x86_64.tar.gz
 					rm cross-compiler-x86_64.tar.gz
 					ls -la cross-compiler-x86_64
 					;;
 				i686)
 					cd $CROSS
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-i686.tar.gz
-					tar xf cross-compiler-i686.tar.gz
+					tar xfv cross-compiler-i686.tar.gz
 					rm cross-compiler-i686.tar.gz
 					ls -la cross-compiler-i686
 					;;
 				arm4tl)
 					cd $CROSS
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv4tl.tar.gz
-					tar xf cross-compiler-armv4tl.tar.gz
+					tar xfv cross-compiler-armv4tl.tar.gz
 					rm cross-compiler-armv4tl.tar.gz
 					ls -la cross-compiler-armv4tl
 					;;
