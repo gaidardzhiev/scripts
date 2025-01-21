@@ -30,6 +30,7 @@ GREP=3.11
 QEMU=9.2.0
 P9=plan9
 CFG="configure config.ac Makefile.am"
+BASH="5.3-beta"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -503,6 +504,10 @@ fbuild_src(){
 			git clone https://github.com/gaidardzhiev/interceptor
 			cd interceptor && make && cp intercept.so $LIB
 			printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
+			;;
+		bash)
+			cd $SRC
+			wget wget https://fosszone.csd.auth.gr/gnu/bash/$BASH.tar.gz
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
