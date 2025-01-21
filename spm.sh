@@ -511,6 +511,9 @@ fbuild_src(){
 			tar xfv bash-$BASH.tar.gz
 			rm bash-$BASH.tar.gz
 			cd bash-$BASH
+			./configure \
+				--enable-directory-stack=yes \
+
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
