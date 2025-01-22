@@ -529,6 +529,11 @@ fbuild_src(){
 			tar xfv gnupg-$GNUPG.tar
 			rm gnupg-$GNUPG.tar
 			cd gnupg-$GNUPG
+			mkdir build
+			cd build
+			../configure
+			make
+			make check
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
