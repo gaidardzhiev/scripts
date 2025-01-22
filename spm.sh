@@ -526,6 +526,9 @@ fbuild_src(){
 			cd $SRC
 			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPG.tar.bz2
 			bzip2 -d https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPG.tar.bz2
+			tar xfv gnupg-$GNUPG.tar
+			rm gnupg-$GNUPG.tar
+			cd gnupg-$GNUPG
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
