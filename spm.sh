@@ -521,10 +521,6 @@ fbuild_src(){
 			make $JOBS
 			cp bash $BIN/bash-$TARGET
 			;;
-		scripts)
-			cd $SRC
-			git clone https://github.com/gaidardzhiev/scripts
-			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
