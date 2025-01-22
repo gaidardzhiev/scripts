@@ -31,6 +31,7 @@ QEMU=9.2.0
 P9=plan9
 CFG="configure config.ac Makefile.am"
 BASH="5.3-beta"
+GNUPG=2.4.7
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -523,7 +524,7 @@ fbuild_src(){
 			;;
 		gnupg)
 			cd $SRC
-			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.4.7.tar.bz2
+			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPG.tar.bz2
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
