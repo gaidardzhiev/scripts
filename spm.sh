@@ -540,6 +540,9 @@ fbuild_src(){
 			wget https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
 			tar xfv go1.4-bootstrap-20171003.tar.gz
 			rm go1.4-bootstrap-20171003.tar.gz
+			cd go/src
+			./make.bash
+			cp ../bin/* $BIN
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
