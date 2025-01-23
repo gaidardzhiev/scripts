@@ -32,6 +32,7 @@ P9=plan9
 CFG="configure config.ac Makefile.am"
 BASH="5.3-beta"
 GNUPG=2.4.7
+GO=1.4
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -40,7 +41,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go>\n"
 	exit 1
 }
 
@@ -537,12 +538,12 @@ fbuild_src(){
 			;;
 		go)
 			cd $SRC
-			wget https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
-			tar xfv go1.4-bootstrap-20171003.tar.gz
-			rm go1.4-bootstrap-20171003.tar.gz
+			wget https://dl.google.com/go/go$GO-bootstrap-20171003.tar.gz
+			tar xfv go$GO-bootstrap-20171003.tar.gz
+			rm go$GO-bootstrap-20171003.tar.gz
 			cd go/src
 			./make.bash
-			cp ../bin/* $BIN
+			cp ../bin/go $BIN/go-$GO-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
