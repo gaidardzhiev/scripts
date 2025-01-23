@@ -543,7 +543,8 @@ fbuild_src(){
 			rm go$GO-bootstrap-20171003.tar.gz
 			cd go/src
 			./make.bash
-			cp ../bin/go $BIN/go-$GO-$TARGET
+			cp ../bin/go $BIN/go-$GO
+			cp ../bin/gofmt $BIN/gofmt-$GO
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
