@@ -41,7 +41,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc>\n"
 	exit 1
 }
 
@@ -545,6 +545,11 @@ fbuild_src(){
 			./make.bash
 			cp ../bin/go $BIN/go-$GO
 			cp ../bin/gofmt $BIN/gofmt-$GO
+			;;
+		oyacc)
+			cd $SRC
+			git clone https://github.com/ibara/yacc oyacc
+			cd oyacc && ./configure && make && cp oyacc $BIN/oyacc-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
