@@ -553,7 +553,7 @@ fbuild_src(){
 			;;
 		libosmocore)
 			cd $SRC
-			https://gitea.osmocom.org/osmocom/libosmocore.git
+			git clone https://gitea.osmocom.org/osmocom/libosmocore.git
 			cd libosmocore
 			autoreconf -i
 			./configure \
