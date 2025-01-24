@@ -587,6 +587,8 @@ fbuild_src(){
 			git pull --rebase
 			cd src
 			make $JOBS -e CROSS_TOOL_PREFIX=arm-none-eabi-
+			cd host/osmocon
+			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/$PHONE_TYPE/$FIRMWARE.compalram.bin
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
