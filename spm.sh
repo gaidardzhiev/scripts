@@ -533,7 +533,7 @@ fbuild_src(){
 			mkdir build
 			cd build
 			../configure
-			make
+			make $JOBS
 			make check
 			;;
 		go)
@@ -549,7 +549,7 @@ fbuild_src(){
 		oyacc)
 			cd $SRC
 			git clone https://github.com/ibara/yacc oyacc
-			cd oyacc && ./configure && make && cp oyacc $BIN/oyacc-$TARGET
+			cd oyacc && ./configure && make $JOBS && cp oyacc $BIN/oyacc-$TARGET
 			;;
 		libosmocore)
 			cd $SRC
@@ -558,12 +558,17 @@ fbuild_src(){
 			autoreconf -i
 			./configure \
 				--disable-pcsc
-			make && make install
+			make $JOBS && make install
 			ldconfig -i
 			;;
 		libosmo-gprs)
 			cd $SRC
 			git clone https://gitea.osmocom.org/osmocom/libosmo-gprs.git
+			cd libosmo-gprs
+			autoreconf -i
+			./configure
+			make $JOBS && make install
+			ldconfig -i
 			;;
 		osmocom-bb)
 			cd $SRC
@@ -571,7 +576,7 @@ fbuild_src(){
 			cd osmocom-bb
 			git pull --rebase
 			cd src
-			make -e CROSS_TOOL_PREFIX=arm-none-eabi-
+			make $JOBS -e CROSS_TOOL_PREFIX=arm-none-eabi-
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
