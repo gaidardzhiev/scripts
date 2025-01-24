@@ -25,14 +25,16 @@ MC=4.7.5.6
 TCC=0.9.27
 MUSL=1.2.5
 BINUTILS=2.40
-GIT=2.9.5
-GREP=3.11
-QEMU=9.2.0
-P9=plan9
+GIT="2.9.5"
+GREP="3.11"
+QEMU="9.2.0"
+P9="plan9"
 CFG="configure config.ac Makefile.am"
 BASH="5.3-beta"
-GNUPG=2.4.7
-GO=1.4
+GNUPG="2.4.7"
+GO="1.4"
+PHONE="compal_e88"
+FIRMWARE="layer1.highram.bin"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -588,7 +590,7 @@ fbuild_src(){
 			cd src
 			make $JOBS -e CROSS_TOOL_PREFIX=arm-none-eabi-
 			cd host/osmocon
-			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/$PHONE_TYPE/$FIRMWARE.compalram.bin
+			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/$PHONE/$FIRMWARE.compalram.bin
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
