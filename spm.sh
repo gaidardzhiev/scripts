@@ -597,6 +597,7 @@ fbuild_src(){
 			cd $SRC
 			wget https://download.aircrack-ng.org/aircrack-ng-$AIR.tar.gz
 			tar -zxvf aircrack-ng-$AIR.tar.gz
+			rm aircrack-ng-$AIR.tar.gz
 			cd aircrack-ng-$AIR
 			autoreconf -i
 			./configure --with-experimental
