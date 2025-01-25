@@ -35,6 +35,7 @@ GNUPG="2.4.7"
 GO="1.4"
 PHONE="compal_e88"
 FIRMWARE="layer1"
+AIR="1.7"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -594,7 +595,13 @@ fbuild_src(){
 			;;
 		aircrack-ng)
 			cd $SRC
-			wget https://download.aircrack-ng.org/aircrack-ng-1.7.tar.gz
+			wget https://download.aircrack-ng.org/aircrack-ng-$AIR.tar.gz
+			tar -zxvf aircrack-ng-$AIR.tar.gz
+			cd aircrack-ng-$AIR
+			autoreconf -i
+			./configure --with-experimental
+			make $JOBS && make install
+			ldconfig
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
