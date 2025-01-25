@@ -43,7 +43,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng>\n"
 	exit 1
 }
 
@@ -591,6 +591,10 @@ fbuild_src(){
 			make $JOBS -e CROSS_TOOL_PREFIX=arm-none-eabi-
 			cd host/osmocon
 			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/$PHONE/$FIRMWARE.compalram.bin
+			;;
+		aircrack-ng)
+			cd $SRC
+			wget https://download.aircrack-ng.org/aircrack-ng-1.7.tar.gz
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
