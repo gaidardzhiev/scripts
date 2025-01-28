@@ -909,6 +909,13 @@ fupdate_src() {
 				cp intercept.so $LIB &&
 				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
 			;;
+		smartmontools)
+			cd $SRC/smartmontools &&
+				svn update &&
+				./autogen.sh
+			./configure
+			make $JOBS && make install
+			;;
 		*)
 			printf "unsupported package $UPD...\n"
 			fusage
