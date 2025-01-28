@@ -912,9 +912,10 @@ fupdate_src() {
 		smartmontools)
 			cd $SRC/smartmontools &&
 				svn update &&
-				./autogen.sh
-			./configure
-			make $JOBS && make install
+				./autogen.sh &&
+				./configure &&
+				make $JOBS &&
+				make install
 			;;
 		*)
 			printf "unsupported package $UPD...\n"
