@@ -83,6 +83,7 @@ fbuild_src(){
 				--enable-languages='c' \
 				--enable-frame-pointer=no
 			make $JOBS all-gcc && cp gcc $BIN/gcc-$GCC-$TARGET-elf
+			make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 			;;
 		strongswan)
 			cd $SRC
