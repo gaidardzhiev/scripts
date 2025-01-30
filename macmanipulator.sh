@@ -17,10 +17,11 @@ mac_addr_show() {
 change_mac_address() {
 	local new_mac
 	new_mac=$(rand_mac_address)
-	ip link set dev $DEVICE down
-	ip link set dev $DEVICE address "$new_mac"
-	ip link set dev $DEVICE up
-	echo "MAC address changed to: $new_mac"
+	ip link set dev $DEVICE down &&
+	ip link set dev $DEVICE address "$new_mac" &&
+	ip link set dev $DEVICE up &&
+	echo "MAC address changed to: $new_mac" ||
+	echo "MAC address change failed..."
 }
 
 echo "old MAC address: $(mac_addr_show)"
