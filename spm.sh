@@ -628,6 +628,7 @@ fbuild_src(){
 		zsh)
 			cd $SRC
 			wget https://www.zsh.org/pub/zsh-5.9.tar.xz
+			tar xfv zsh-5.9.tar.xz
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
