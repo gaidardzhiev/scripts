@@ -631,6 +631,8 @@ fbuild_src(){
 			tar xfv zsh-5.9.tar.xz
 			rm zsh-5.9.tar.xz
 			cd zsh-5.9
+			./configure \
+				--prefix=$DIR
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
