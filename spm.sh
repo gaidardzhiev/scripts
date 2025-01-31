@@ -625,6 +625,10 @@ fbuild_src(){
 				--disable-werror
 			make all-gdb
 			;;
+		zsh)
+			cd $SRC
+			wget https://www.zsh.org/pub/zsh-5.9.tar.xz
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
