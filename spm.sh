@@ -634,6 +634,7 @@ fbuild_src(){
 			cd zsh-5.9
 			./configure \
 				--prefix=$DIR
+			make $JOBS && make install
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
