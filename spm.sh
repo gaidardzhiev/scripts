@@ -557,7 +557,10 @@ fbuild_src(){
 		oyacc)
 			cd $SRC
 			git clone https://github.com/ibara/yacc oyacc
-			cd oyacc && ./configure && make $JOBS && cp oyacc $BIN/oyacc-$TARGET
+			cd oyacc && \
+				./configure && \
+				make $JOBS && \
+				cp oyacc $BIN/oyacc-$TARGET
 			;;
 		libosmocore)
 			cd $SRC
