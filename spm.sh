@@ -235,7 +235,8 @@ fbuild_src(){
 			rm busybox-snapshot.tar
 			cd busybox
 			make defconfig
-			make $JOBS && cp busybox $BIN/busybox-$TARGET
+			make $JOBS && \
+				cp busybox $BIN/busybox-$TARGET
 			;;
 		qbe)
 			cd $SRC
