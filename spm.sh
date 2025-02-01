@@ -203,7 +203,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/danishprakash/dash
 			cd dash
-			make $JOBS && cp dash $BIN/dash-$TARGET
+			make $JOBS && \
+				cp dash $BIN/dash-$TARGET
 			;;
 		awk)
 			cd $SRC
