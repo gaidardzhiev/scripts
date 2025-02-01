@@ -162,7 +162,8 @@ fbuild_src(){
 				--prefix=$DIR \
 				--quiet \
 				--disable-gcc-warnings
-			make $JOBS && cp sed $BIN/sed-$TARGET
+			make $JOBS && \
+				cp sed $BIN/sed-$TARGET
 			;;
 		binutils)
 			cd $SRC
