@@ -684,6 +684,13 @@ fbuild_src(){
 				--disable-shared
 			make $JOBS
 			;;
+		bc)
+			cd $SRC
+			git clone https://github.com/gavinhoward/bc
+			cd bc
+			./configure.sh -03
+			make
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
