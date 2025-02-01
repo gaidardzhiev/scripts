@@ -86,7 +86,8 @@ fbuild_src(){
 				--with-gnu-ld \
 				--enable-languages='c' \
 				--enable-frame-pointer=no
-			make $JOBS all-gcc && cp gcc $BIN/gcc-$GCC-$TARGET-elf
+			make $JOBS all-gcc && \
+				cp gcc $BIN/gcc-$GCC-$TARGET-elf
 			make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 			;;
 		strongswan)
@@ -100,7 +101,8 @@ fbuild_src(){
 				--prefix=$DIR \
 				--enable-systemd \
 				--enable-swanctl
-			make $JOBS && cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
+			make $JOBS && \
+				cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
 			;;
 		mc)
 			cd $SRC
@@ -127,7 +129,8 @@ fbuild_src(){
 			cd tcc-$TCC
 			./configure \
 				--prefix=$DIR
-			make $JOBS && cp tcc $BIN/tcc-$TCC-$TARGET
+			make $JOBS && \
+				cp tcc $BIN/tcc-$TCC-$TARGET
 			;;
 		toolbox)
 			cd $SRC
@@ -135,7 +138,8 @@ fbuild_src(){
 			cd toolbox
 			sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c
 			./build_toolchain.sh
-			make $JOBS && cp toolbox $BIN/toolbox-$TARGET
+			make $JOBS && \
+				cp toolbox $BIN/toolbox-$TARGET
 			;;
 		musl)
 			cd $SRC
@@ -143,7 +147,10 @@ fbuild_src(){
 			tar xfv musl-$MUSL.tar.gz
 			rm musl-$MUSL.tar.gz
 			cd musl-$MUSL
-			./configure && make $JOBS && make install && cp /usr/local/musl/bin/musl-gcc /usr/bin
+			./configure && \
+				make $JOBS && \
+				make install && \
+				cp /usr/local/musl/bin/musl-gcc /usr/bin
 			;;
 		sed)
 			cd $SRC
