@@ -39,6 +39,7 @@ FIRMWARE="layer1"
 AIR="1.7"
 GDB="12.1"
 ZSH="5.9"
+GZIP="1.13"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -47,7 +48,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip>\n"
 	exit 1
 }
 
@@ -655,6 +656,10 @@ fbuild_src(){
 				--with-openssl \
 				--disable-manpages
 			make $JOBS && make install
+			;;
+		gzip)
+			cd $SRC
+			wget https://ftp.gnu.org/gnu/gzip/gzip-$GZIP.tar.gz
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
