@@ -38,6 +38,7 @@ PHONE="compal_e88"
 FIRMWARE="layer1"
 AIR="1.7"
 GDB="12.1"
+ZSH="5.9"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -628,10 +629,10 @@ fbuild_src(){
 			;;
 		zsh)
 			cd $SRC
-			wget https://www.zsh.org/pub/zsh-5.9.tar.xz
-			tar xfv zsh-5.9.tar.xz
-			rm zsh-5.9.tar.xz
-			cd zsh-5.9
+			wget https://www.zsh.org/pub/zsh-$ZSH.tar.xz
+			tar xfv zsh-$ZSH.tar.xz
+			rm zsh-$ZSH.tar.xz
+			cd zsh-$ZSH
 			./configure \
 				--prefix=$DIR
 			make $JOBS && make install
