@@ -674,6 +674,11 @@ fbuild_src(){
 				--disable-md2man
 			make $JOBS && cp rsync $BIN/rsync-$TARGET
 			;;
+		xz)
+			cd $SRC
+			git clone https://github.com/tukaani-project/xz
+			cd xz
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
