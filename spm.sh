@@ -672,7 +672,7 @@ fbuild_src(){
 			cd rsync
 			./configure \
 				--disable-md2man
-			make $JOBS
+			make $JOBS && cp rsync $BIN/rsync-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
