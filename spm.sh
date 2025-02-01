@@ -242,7 +242,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/8l/qbe
 			cd qbe
-			make $JOBS && cp obj/qbe $BIN/qbe-$TARGET
+			make $JOBS && \
+				cp obj/qbe $BIN/qbe-$TARGET
 			;;
 		wget)
 			cd $SRC
