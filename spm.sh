@@ -670,7 +670,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/rsyncproject/rsync
 			cd rsync
-			./configure
+			./configure \
+				--disable-md2man
 			make $JOBS
 			;;
 		*)
