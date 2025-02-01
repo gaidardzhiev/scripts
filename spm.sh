@@ -47,7 +47,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod>\n"
 	exit 1
 }
 
@@ -636,6 +636,23 @@ fbuild_src(){
 			./configure \
 				--prefix=$DIR
 			make $JOBS && make install
+			;;
+		kmod)
+			cd $SRC
+			git clone
+			cd kmod
+			./autogen.sh
+			./configure \
+				CFLAGS='-g -O2' \
+				--prefix=/usr \
+				--sysconfdir=/etc \
+				--libdir=/usr/lib  \
+				--enable-debug \
+				--enable-gtk-doc \
+				--with-zstd \
+				--with-xz \
+				--with-zlib \
+				--with-openssl
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
