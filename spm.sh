@@ -118,7 +118,8 @@ fbuild_src(){
 			CXX='g++ -static -static-libgcc -fno-exceptions' \
 			LDFLAGS='-Wl,-static -static -lc' \
 			LIBS='-lc' \
-			make $JOBS && cp src/mc $BIN/mc-$MC-$TARGET
+			make $JOBS && \
+				cp src/mc $BIN/mc-$MC-$TARGET
 			;;
 		tcc)
 			cd $SRC
