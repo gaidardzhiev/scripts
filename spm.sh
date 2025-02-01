@@ -196,7 +196,8 @@ fbuild_src(){
 			make configure
 			./configure \
 				--prefix=$DIR
-			make $JOBS && cp git $SRC/git
+			make $JOBS && \
+				cp git $SRC/git
 			;;
 		dash)
 			cd $SRC
