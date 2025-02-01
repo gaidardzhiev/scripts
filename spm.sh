@@ -688,8 +688,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/gavinhoward/bc
 			cd bc
-			./configure.sh -03
-			make
+			./configure.sh
+			make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
