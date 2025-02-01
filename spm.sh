@@ -682,6 +682,7 @@ fbuild_src(){
 			./configure \
 				--enable-debug \
 				--disable-shared
+			make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
