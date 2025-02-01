@@ -639,7 +639,7 @@ fbuild_src(){
 			;;
 		kmod)
 			cd $SRC
-			git clone
+			git clone https://github.com/kmod-project/kmod
 			cd kmod
 			./autogen.sh
 			./configure \
@@ -653,6 +653,7 @@ fbuild_src(){
 				--with-xz \
 				--with-zlib \
 				--with-openssl
+			make $JOBS && make install
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
