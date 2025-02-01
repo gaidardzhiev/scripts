@@ -652,7 +652,8 @@ fbuild_src(){
 				--with-zstd \
 				--with-xz \
 				--with-zlib \
-				--with-openssl
+				--with-openssl \
+				--disable-manpages
 			make $JOBS && make install
 			;;
 		*)
