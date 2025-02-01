@@ -678,6 +678,10 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/tukaani-project/xz
 			cd xz
+			./autogen.sh
+			./configure \
+				--enable-debug \
+				--disable-shared
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
