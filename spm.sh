@@ -660,6 +660,11 @@ fbuild_src(){
 		gzip)
 			cd $SRC
 			wget https://ftp.gnu.org/gnu/gzip/gzip-$GZIP.tar.gz
+			tar xfv gzip-$GZIP.tar.gz
+			rm gzip-$GZIP.tar.gz
+			cd gzip-$GZIP
+			./configure
+			make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
