@@ -40,7 +40,6 @@ AIR="1.7"
 GDB="12.1"
 ZSH="5.9"
 
-
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
 	printf "\n"
