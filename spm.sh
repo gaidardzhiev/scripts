@@ -41,7 +41,6 @@ GDB="12.1"
 ZSH="5.9"
 GZIP="1.13"
 
-
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
 	printf "\n"
