@@ -725,6 +725,12 @@ fbuild_src(){
 			cd $SRC
 			git clone git://sourceware.org/git/elfutils.git
 			cd elfutils
+			autoreconf -i -f && \
+				./configure \
+					--enable-maintainer-mode && \
+				make && \
+				make check && \
+				make install
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
