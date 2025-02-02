@@ -355,7 +355,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/8l/scc
 			cd scc
-			make $JOBS && cp bin/scc $BIN/scc-$TARGET
+			make $JOBS && \
+				cp bin/scc $BIN/scc-$TARGET
 			cd tests && make $JOBS
 			;;
 		c)
