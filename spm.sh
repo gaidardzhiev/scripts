@@ -599,7 +599,8 @@ fbuild_src(){
 			autoreconf -i
 			./configure \
 				--disable-pcsc
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			ldconfig -i
 			;;
 		libosmo-gprs)
@@ -608,7 +609,8 @@ fbuild_src(){
 			cd libosmo-gprs
 			autoreconf -i
 			./configure
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			ldconfig -i
 			;;
 		gapk)
@@ -618,7 +620,8 @@ fbuild_src(){
 			autoreconf -i
 			./configure \
 				--enable-gsmhr
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			ldconfig
 			;;
 		osmocom-bb)
@@ -639,7 +642,8 @@ fbuild_src(){
 			cd aircrack-ng-$AIR
 			autoreconf -i
 			./configure --with-experimental
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			ldconfig
 			;;
 		smartmontools)
@@ -648,7 +652,8 @@ fbuild_src(){
 			cd smartmontools
 			./autogen.sh
 			./configure
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			;;
 		gdb)
 			cd $SRC
@@ -669,7 +674,8 @@ fbuild_src(){
 			cd zsh-$ZSH
 			./configure \
 				--prefix=$DIR
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			;;
 		kmod)
 			cd $SRC
@@ -688,7 +694,8 @@ fbuild_src(){
 				--with-zlib \
 				--with-openssl \
 				--disable-manpages
-			make $JOBS && make install
+			make $JOBS && \
+				make install
 			;;
 		gzip)
 			cd $SRC
@@ -697,7 +704,8 @@ fbuild_src(){
 			rm gzip-$GZIP.tar.gz
 			cd gzip-$GZIP
 			./configure
-			make $JOBS && cp gzip $BIN/gzip-$TARGET
+			make $JOBS && \
+				cp gzip $BIN/gzip-$TARGET
 			;;
 		rsync)
 			cd $SRC
@@ -705,7 +713,8 @@ fbuild_src(){
 			cd rsync
 			./configure \
 				--disable-md2man
-			make $JOBS && cp rsync $BIN/rsync-$TARGET
+			make $JOBS && \
+				cp rsync $BIN/rsync-$TARGET
 			;;
 		xz)
 			cd $SRC
@@ -722,7 +731,8 @@ fbuild_src(){
 			git clone https://github.com/gavinhoward/bc
 			cd bc
 			./configure.sh
-			make $JOBS && cp bin/bc $BIN/bc-$TARGET
+			make $JOBS && \
+				cp bin/bc $BIN/bc-$TARGET
 			;;
 		lzip)
 			cd $SRC
@@ -730,8 +740,8 @@ fbuild_src(){
 			tar xfv lzip-1.25.tar.gz
 			rm lzip-1.25.tar.gz
 			cd lzip-1.25
-			./configure &&
-				make check &&
+			./configure && \
+				make check && \
 				make install
 			;;
 		elfutils)
