@@ -327,7 +327,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/amakukha/tmg
 			cd tmg
-			cd src && ./build.sh
+			cd src && \
+				./build.sh
 			./tmg.sh ../examples/hello_world.t
 			touch input
 			./a.out input
