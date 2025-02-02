@@ -385,8 +385,8 @@ fbuild_src(){
 				--cc=tcc \
 				--disable-static \
 				--enable-cross
-			make $JOBS
-			make install
+			make $JOBS && \
+				make install
 			;;
 		9base)
 			cd $SRC
