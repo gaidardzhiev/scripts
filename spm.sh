@@ -728,7 +728,7 @@ fbuild_src(){
 			autoreconf -i -f && \
 				./configure \
 					--enable-maintainer-mode && \
-				make && \
+				make $JOBS && \
 				make check && \
 				make install
 			;;
