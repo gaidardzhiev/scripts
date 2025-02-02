@@ -348,7 +348,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/8l/cc500
 			cd cc500
-			tcc cc500.c -o cc500 && cp cc500 $BIN
+			tcc cc500.c -o cc500 && \
+				cp cc500 $BIN
 			;;
 		scc)
 			cd $SRC
