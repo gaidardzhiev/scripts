@@ -532,15 +532,17 @@ fbuild_src(){
 		esolangs)
 			cd $SRC
 			git clone https://github.com/gaidardzhiev/esolangs
-			cd esolangs \
-				&& make $JOBS
+			cd esolangs && \
+				make $JOBS
 			cp brainf $BIN/brainf-$TARGET
 			cp whitespace $BIN/whitespace-$TARGET
 			;;
 		interceptor)
 			cd $SRC
 			git clone https://github.com/gaidardzhiev/interceptor
-			cd interceptor && make && cp intercept.so $LIB
+			cd interceptor && \
+				make && \
+				cp intercept.so $LIB
 			printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
 			;;
 		bash)
