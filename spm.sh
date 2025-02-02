@@ -750,6 +750,10 @@ fbuild_src(){
 		bzip2)
 			cd $SRC
 			git clone https://gitlab.com/bzip2/bzip2
+			cd bzip2
+			mkdir build && \
+				cd build && \
+				cmake ..
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
