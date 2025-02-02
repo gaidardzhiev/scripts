@@ -357,7 +357,8 @@ fbuild_src(){
 			cd scc
 			make $JOBS && \
 				cp bin/scc $BIN/scc-$TARGET
-			cd tests && make $JOBS
+			cd tests && \
+				make $JOBS
 			;;
 		c)
 			[ "$TARGET" = x86_64 ] && {
