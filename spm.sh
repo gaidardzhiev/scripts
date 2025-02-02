@@ -369,7 +369,8 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/michaelforney/cproc
 			cd cproc
-			./configure && make $JOBS
+			./configure && \
+				make $JOBS
 			;;
 		tinycc)
 			cd $SRC
