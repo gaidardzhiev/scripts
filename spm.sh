@@ -721,6 +721,11 @@ fbuild_src(){
 				make check &&
 				make install
 			;;
+		elfutils)
+			cd $SRC
+			git clone git://sourceware.org/git/elfutils.git
+			cd elfutils
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
