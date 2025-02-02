@@ -314,10 +314,13 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/dseagrav/ld
 			cd ld
-			aclocal && autoheader && autoconf
+			aclocal && \
+				autoheader && \
+				autoconf
 			automake \
 				--add-missing
-			./configure || autoreconf -i
+			./configure || \
+				autoreconf -i
 			make $JOBS
 			;;
 		tmg)
