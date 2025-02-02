@@ -340,7 +340,8 @@ fbuild_src(){
 			cd SubC
 			./configure
 			cd src
-			make $JOBS && make scc && cp scc $BIN/subc-$TARGET
+			make $JOBS && \
+				make scc && cp scc $BIN/subc-$TARGET
 			;;
 		cc500)
 			cd $SRC
