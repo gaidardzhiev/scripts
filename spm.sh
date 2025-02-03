@@ -787,7 +787,7 @@ fbuild_src(){
 			cd linux-$LINUX
 			make tinyconfig
 			sed -i 's/^# CONFIG_VT is not set/CONFIG_VT=y/' .config
-			sed -i 's/^# CONFIG_PRINTK is not set/CONFIG_PRINTK=y/' .config
+			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
 			grep CONFIG_VT .config
 			grep CONFIG_PRINTK .config
 			grep "=y" .config | wc -l
