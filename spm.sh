@@ -788,8 +788,8 @@ fbuild_src(){
 			make tinyconfig
 			sed -i 's/^# CONFIG_VT is not set/CONFIG_VT=y/' .config
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
-			grep CONFIG_VT .config
-			grep CONFIG_PRINTK .config
+			grep CONFIG_VT .config || exit 1
+			grep CONFIG_PRINTK .config || exit 1
 			grep "=y" .config | wc -l
 			grep "=m" .config | wc -l
 			time make $JOBS
