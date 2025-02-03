@@ -780,7 +780,7 @@ fbuild_src(){
 			;;
 		linux-kernel)
 			cd $SRC
-			git clone git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+			wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.13.1.tar.xz
 			cd staging
 			make tinyconfig
 			grep "=y" .config | wc -l
