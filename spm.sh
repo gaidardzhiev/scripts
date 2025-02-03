@@ -786,6 +786,10 @@ fbuild_src(){
 			rm linux-$LINUX.tar.xz
 			cd linux-$LINUX
 			make tinyconfig
+			sed -i 's/^# CONFIG_VT is not set/CONFIG_VT=y/' .config
+			sed -i 's/^# CONFIG_PRINTK is not set/CONFIG_PRINTK=y/' .config
+			grep CONFIG_VT .config
+			grep CONFIG_PRINTK .config
 			grep "=y" .config | wc -l
 			grep "=m" .config | wc -l
 			time make $JOBS
