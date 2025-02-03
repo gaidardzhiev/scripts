@@ -48,7 +48,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2>\n"
 	exit 1
 }
 
@@ -777,6 +777,15 @@ fbuild_src(){
 			mkdir build && \
 				cd build && \
 				cmake ..
+			;;
+		linux-kernel)
+			cd $SRC
+			git clone git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+			cd staging
+			make tinyconfig
+			grep "=y" .config | wc -l
+			grep "=m" .config | wc -l
+			time make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
