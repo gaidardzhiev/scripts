@@ -786,8 +786,8 @@ fbuild_src(){
 			rm linux-$LINUX.tar.xz
 			cd linux-$LINUX
 			make tinyconfig
-			sed -i 's/^# CONFIG_VT is not set/CONFIG_TTY=y/' .config
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
+			sed -i 's/^# CONFIG_PRINTK is not set/CONFIG_PRINTK=y/' .config
 			sed -i 's/^# CONFIG_BINFMT_ELF is not set/CONFIG_BINFMT_ELF=y/' .config
 			sed -i 's/^# CONFIG_KERNEL_GZIP is not set/CONFIG_KERNEL_GZIP=y/' .config
 			sed -i 's/^# CONFIG_BLK_DEV_INITRD is not set/CONFIG_BLK_DEV_INITRD=y/' .config
