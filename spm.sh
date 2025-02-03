@@ -789,9 +789,11 @@ fbuild_src(){
 			sed -i 's/^# CONFIG_VT is not set/CONFIG_VT=y/' .config
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
 			sed -i 's/^# CONFIG_KERNEL_GZIP is not set/CONFIG_KERNEL_GZIP=y/' .config
+			sed -i 's/^# CONFIG_INITRAMFS_PRESERVE_MTIME is not set/CONFIG_INITRAMFS_PRESERVE_MTIME=y/' .config
 			grep "CONFIG_VT=y" .config || exit 1
 			grep "CONFIG_PRINTK=y" .config || exit 1
 			grep "CONFIG_KERNEL_GZIP=y" .config || exit 1
+			grep "CONFIG_INITRAMFS_PRESERVE_MTIME=y" .config || exit 1
 			grep "=y" .config | wc -l
 			grep "=m" .config | wc -l
 			time make $JOBS
