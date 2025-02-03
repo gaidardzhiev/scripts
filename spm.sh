@@ -40,7 +40,7 @@ AIR="1.7"
 GDB="12.1"
 ZSH="5.9"
 GZIP="1.13"
-LINUX=
+LINUX="6.13.1"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -781,10 +781,10 @@ fbuild_src(){
 			;;
 		linux-kernel)
 			cd $SRC
-			wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.13.1.tar.xz
-			tar xfv linux-6.13.1.tar.xz
-			rm linux-6.13.1.tar.xz
-			cd linux-6.13.1
+			wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-$LINUX.tar.xz
+			tar xfv linux-$LINUX.tar.xz
+			rm linux-$LINUX.tar.xz
+			cd linux-$LINUX
 			make tinyconfig
 			grep "=y" .config | wc -l
 			grep "=m" .config | wc -l
