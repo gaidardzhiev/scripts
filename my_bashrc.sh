@@ -62,7 +62,8 @@ else
 	PS1+='\u@\h \w \$ '
 fi
 
-for sh in /etc/bash/bashrc.d/* ; do
+for sh in /etc/bash/bashrc.d/*
+do
 	[[ -r ${sh} ]] && source "${sh}"
 done
 

@@ -17,7 +17,8 @@ check_language_is_known() {
 	echo $lang
 }
 
-for source in "$@"; do
+for source in "$@"
+do
 	case $source in
 		*ChangeLog|*changelog)
 			source-highlight --failsafe -f esc --lang-def=changelog.lang --style-file=esc.style -i "$source" ;;
