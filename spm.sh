@@ -819,7 +819,7 @@ fbuild_src(){
 			cd initramfs/dev
 			mknod sda b 8 0
 			mknod console c 5 1
-			cd ../
+			cd ../initramfs/
 			touch init
 			chmod +x init
 			echo "#!/bin/sh" > init
