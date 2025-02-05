@@ -827,8 +827,7 @@ fbuild_src(){
 			echo "mount -t proc none /proc" >> init
 			echo "mount -t sysfs none /sys" >> init
 			echo "exec /bin/sh" >> init
-			find . -print0 | cpio --null -ov --format=newc > initramfs.cpio
-			gzip ./initramfs.cpio || \
+			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz &&
 				printf "h4ppy k3rnel h4cking...\n"
 			;;
 		*)
