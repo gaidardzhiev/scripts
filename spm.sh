@@ -812,22 +812,24 @@ fbuild_src(){
 			cd busybox-1.26.2
 			make defconfig
 			make menuconfig
-			make $JOBS
-			make CONFIG_PREFIX=rootfs install
-			mkdir -p initramfs/bin initramfs/dev initramfs/etc initramfs/home initramfs/mnt initramfs/proc initramfs/sys initramfs/usr
-			cp rootfs/* initramfs/
-			cd initramfs/dev
-			mknod sda b 8 0
-			mknod console c 5 1
-			cd ../
+			make $JOBS && \
+				file busybox && \
+				make install && \
+				cd _install && \
+				mkdir dev proc sys && \
+				cd dev && \
+				mknod sda b 8 0 && \
+				mknod console c 5 1
 			touch init
 			chmod +x init
 			echo "#!/bin/sh" > init
+			echo "mount -t devtmpfs none /dev" >> init
 			echo "mount -t proc none /proc" >> init
 			echo "mount -t sysfs none /sys" >> init
 			echo "exec /bin/sh" >> init
 			find . -print0 | cpio --null -ov --format=newc > initramfs.cpio
-			gzip ./initramfs.cpio
+			gzip ./initramfs.cpio || \
+				printf "h4ppy k3rnel h4cking...\n"
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
