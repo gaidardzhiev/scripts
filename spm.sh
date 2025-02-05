@@ -823,13 +823,12 @@ fbuild_src(){
 				cd ../
 			touch init
 			chmod +x init
-			echo "#!/bin/sh" > init
-			echo "mount -t devtmpfs none /dev" >> init
-			echo "mount -t proc none /proc" >> init
-			echo "mount -t sysfs none /sys" >> init
-			echo "exec /bin/sh" >> init
-			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz &&
-				printf "h4ppy k3rnel h4cking...\n"
+			printf "#!/bin/sh\n" > init
+			printf "mount -t devtmpfs none /dev\n" >> init
+			printf "mount -t proc none /proc\n" >> init
+			printf "mount -t sysfs none /sys\n" >> init
+			printf "exec /bin/sh\n" >> init
+			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
