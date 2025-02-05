@@ -804,6 +804,15 @@ fbuild_src(){
 			grep "=m" .config | wc -l
 			time make $JOBS
 			;;
+		initramfs)
+			cd $SRC
+			wget https://busybox.net/downloads/busybox-1.26.2.tar.bz2
+			tar -xvf busybox-1.26.2.tar.bz2
+			rm busybox-1.26.2.tar.bz2
+			cd busybox-1.26.2
+			make defconfig
+			make menuconfig
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
