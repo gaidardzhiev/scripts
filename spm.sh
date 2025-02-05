@@ -812,14 +812,14 @@ fbuild_src(){
 			cd busybox-1.26.2
 			make defconfig
 			make menuconfig
-			make
-			make CONFIG_PREFIX=./../busybox_rootfs install
-			mkdir -p initramfs/{bin,dev,etc,home,mnt,proc,sys,usr}
-			cp ../busybox_rootfs/* initramfs/
+			make $JOBS
+			make CONFIG_PREFIX=rootfs install
+			mkdir -p initramfs/bin initramfs/dev initramfs/etc initramfs/home initramfs/mnt initramfs/proc initramfs/sys initramfs/usr
+			cp rootfs/* initramfs/
 			cd initramfs/dev
 			mknod sda b 8 0
 			mknod console c 5 1
-			cd ../initramfs/
+			cd ../
 			touch init
 			chmod +x init
 			echo "#!/bin/sh" > init
