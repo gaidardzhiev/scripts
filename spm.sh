@@ -827,7 +827,7 @@ fbuild_src(){
 			echo "mount -t sysfs none /sys" >> init
 			echo "exec /bin/sh" >> init
 			find . -print0 | cpio --null -ov --format=newc > initramfs.cpio
-gzip ./initramfs.cpio
+			gzip ./initramfs.cpio
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
