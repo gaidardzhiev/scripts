@@ -816,10 +816,11 @@ fbuild_src(){
 				file busybox && \
 				make install && \
 				cd _install && \
-				mkdir --parents /usr/src/initramfs/{bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys,run} && \
+				mkdir --parents {bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys,run} && \
 				cd dev && \
 				mknod sda b 8 0 && \
-				mknod console c 5 1
+				mknod console c 5 1 && \
+				cd ../
 			touch init
 			chmod +x init
 			echo "#!/bin/sh" > init
