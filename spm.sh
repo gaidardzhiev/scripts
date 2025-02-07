@@ -49,7 +49,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2|initramfs>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2|initramfs|vim>\n"
 	exit 1
 }
 
@@ -829,6 +829,10 @@ fbuild_src(){
 			printf "mount -t sysfs none /sys\n" >> init
 			printf "exec /bin/sh\n" >> init
 			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz
+			;;
+		vim)
+			wget https://ftp.nluug.nl/pub/vim/unix/vim-9.0.tar.bz2
+			cd vim90
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
