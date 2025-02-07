@@ -833,6 +833,22 @@ fbuild_src(){
 		vim)
 			wget https://ftp.nluug.nl/pub/vim/unix/vim-9.0.tar.bz2
 			cd vim90
+			./configure \
+				--prefix=$SPM \
+				--disable-darwin \
+				--disable-smack \
+				--disable-selinux \
+				--disable-xsmp \
+				--disable-xsmp-interact \
+				--disable-gtktest \
+				--disable-icon-cache-update \
+				--disable-desktop-database-update \
+				--disable-largefile \
+				--disable-canberra \
+				--disable-libsodium \
+				--disable-acl \
+				--disable-sysmouse \
+				--disable-nls
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
