@@ -849,6 +849,7 @@ fbuild_src(){
 				--disable-acl \
 				--disable-sysmouse \
 				--disable-nls
+			(make || (cd $SRC/vim90/src && make)) && make install
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
