@@ -16,6 +16,7 @@ INC="/opt/spm/include"
 CROSS="/opt/spm/cross"
 SHR="/opt/spm/share"
 NATIVE="/opt/spm/native"
+MNT="/opt/spm/mnt"
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -54,7 +55,7 @@ fusage() {
 	exit 1
 }
 
-mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NATIVE"
+mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NATIVE" "$MNT"
 
 [ $# -lt 1 ] && fusage
 
