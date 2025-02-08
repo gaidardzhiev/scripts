@@ -1074,6 +1074,7 @@ fbin() {
 					unsquashfs armv7l-linux-musleabihf-native.sqf
 					rm armv7l-linux-musleabihf-native.sqf
 					mv squashfs-root/* . && rm -r squashfs-root
+					cd bin && ./gcc -v
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
