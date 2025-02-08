@@ -1057,7 +1057,7 @@ fbin() {
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-native.sqf
 					;;
 				*)
-					printf "unsupported architecture: $TARGER\n"
+					printf "unsupported architecture: $TARGET\n"
 					;;
 			esac
 			;;
