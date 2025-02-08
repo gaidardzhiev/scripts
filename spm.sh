@@ -15,6 +15,7 @@ VAR="/opt/spm/var"
 INC="/opt/spm/include"
 CROSS="/opt/spm/cross"
 SHR="/opt/spm/share"
+NATIVE="/opt/spm/native"
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -49,11 +50,11 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2|initramfs|vim>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross-compiler|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2|initramfs|vim|native-compiler>\n"
 	exit 1
 }
 
-mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR"
+mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NATIVE"
 
 [ $# -lt 1 ] && fusage
 
@@ -1046,6 +1047,17 @@ fbin() {
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
+					;;
+			esac
+			;;
+		native)
+			case $TARGET in
+				i686)
+					cd $NATIVE
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-native.sqf
+					;;
+				*)
+					printf "unsupported architecture: $TARGER\n"
 					;;
 			esac
 			;;
