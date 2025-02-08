@@ -1061,6 +1061,13 @@ fbin() {
 					rm i686-linux-musl-native.sqf
 					mv squashfs-root/* . && rm -r squashfs-root
 					;;
+				x86_64)
+					cd $NATIVE
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-native.sqf
+					unsquashfs x86_64-linux-musl-native.sqf
+					rm x86_64-linux-musl-native.sqf
+					mv sqashfs-root/* . && rm -r squashfs-root
+					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
 					;;
