@@ -936,7 +936,7 @@ fbin() {
 					;;
 			esac
 			;;
-		cross)
+		cross-compiler)
 			case $TARGET in
 				x86_64)
 					cd $CROSS
@@ -1051,7 +1051,7 @@ fbin() {
 					;;
 			esac
 			;;
-		native)
+		native-compiler)
 			case $TARGET in
 				i686)
 					cd $NATIVE
