@@ -1060,6 +1060,7 @@ fbin() {
 					unsquashfs i686-linux-musl-native.sqf
 					rm i686-linux-musl-native.sqf
 					mv squashfs-root/* . && rm -r squashfs-root
+					cd bin && ./gcc -v
 					;;
 				x86_64)
 					cd $NATIVE
@@ -1067,6 +1068,7 @@ fbin() {
 					unsquashfs x86_64-linux-musl-native.sqf
 					rm x86_64-linux-musl-native.sqf
 					mv sqashfs-root/* . && rm -r squashfs-root
+					cd bin && ./gcc -v
 					;;
 				armv8l)
 					cd $NATIVE
