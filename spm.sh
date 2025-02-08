@@ -1059,6 +1059,7 @@ fbin() {
 					#mount -t squashfs -o loop i686-linux-musl-native.sqf $MNT
 					unsquashfs i686-linux-musl-native.sqf
 					rm i686-linux-musl-native.sqf
+					mv squashfs-root/* . && rm -r squashfs-root
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
