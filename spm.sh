@@ -1056,7 +1056,9 @@ fbin() {
 				i686)
 					cd $NATIVE
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-native.sqf
-					mount -t squashfs -o loop i686-linux-musl-native.sqf $MNT
+					#mount -t squashfs -o loop i686-linux-musl-native.sqf $MNT
+					unsquashfs i686-linux-musl-native.sqf
+					rm i686-linux-musl-native.sqf
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
