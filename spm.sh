@@ -1093,13 +1093,17 @@ fbin() {
 }
 
 fdelete_bin() {
-	printf "you will delete all the bin's in $BIN\n"
+	printf "you will delete all the bin's in $BIN $CROSS $NATIVE\n"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
 	case $RSP in
 		[y]* )
 			rm -r $BIN/*
 			printf "$BIN deleted...\n"
+			rm -r $CROSS/*
+			printf "$CROSS deleted...\n"
+			rm -r $NATIVE/*
+			printf "$NATIVE deleted...\n"
 			;;
 		[n]* )
 			printf "deletion canceld...\n"
