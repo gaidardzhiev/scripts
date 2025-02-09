@@ -1069,7 +1069,7 @@ fbin() {
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-native.sqf
 					unsquashfs x86_64-linux-musl-native.sqf
 					rm x86_64-linux-musl-native.sqf
-					mv sqashfs-root/* . && rm -r squashfs-root
+					mv squashfs-root/* . && rm -r squashfs-root
 					cd bin && ./gcc -v
 					;;
 				armv8l)
