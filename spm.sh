@@ -793,6 +793,7 @@ fbuild_src(){
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
 			sed -i 's/^# CONFIG_PRINTK is not set/CONFIG_PRINTK=y/' .config
 			sed -i 's/^# CONFIG_PROC_FS is not set/CONFIG_PROC_FS=y/' .config
+			sed -i 's/^# CONFIG_DEVTMPFS is not set/CONFIG_DEVTMPFS=y/' .config
 			sed -i 's/^# CONFIG_BINFMT_ELF is not set/CONFIG_BINFMT_ELF=y/' .config
 			sed -i 's/^# CONFIG_KERNEL_GZIP is not set/CONFIG_KERNEL_GZIP=y/' .config
 			sed -i 's/^# CONFIG_BLK_DEV_INITRD is not set/CONFIG_BLK_DEV_INITRD=y/' .config
@@ -800,6 +801,7 @@ fbuild_src(){
 			grep "CONFIG_TTY=y" .config || exit 1
 			grep "CONFIG_PRINTK=y" .config || exit 1
 			grep "CONFIG_PROC_FS=y" .config || exit 1
+			grep "CONFIG_DEVTMPFS=y" .config || exit 1
 			grep "CONFIG_BINFMT_ELF=y" .config || exit 1
 			grep "CONFIG_KERNEL_GZIP=y" .config || exit 1
 			grep "CONFIG_BLK_DEV_INITRD=y" .config || exit 1
