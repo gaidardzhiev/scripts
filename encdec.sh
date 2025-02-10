@@ -31,7 +31,7 @@ case "$ARG" in
 		d
 		;;
 	*)
-		echo "error: invalid argument '$ARG'"
+		printf "error: invalid argument '$ARG'\n"
 		fusage
 		;;
 esac
