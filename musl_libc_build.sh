@@ -58,5 +58,4 @@ EOF
 	fi
 }
 
-
 get && build && try || { printf "something's wrong in here somewhere...\n"; exit 1}
