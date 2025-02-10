@@ -19,6 +19,7 @@ CROSS="/opt/spm/cross"
 SHR="/opt/spm/share"
 NATIVE="/opt/spm/native"
 MNT="/opt/spm/mnt"
+USR="/opt/spm/usr"
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -57,7 +58,7 @@ fusage() {
 	exit 1
 }
 
-mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NATIVE" "$MNT"
+mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NATIVE" "$MNT" "$USR"
 
 [ $# -lt 1 ] && fusage
 
@@ -1086,6 +1087,14 @@ fbin() {
 					printf "unsupported architecture: $TARGET\n"
 					;;
 			esac
+			;;
+		mkroot)
+			cd $USR
+			wget https://landley.net/toybox/downloads/binaries/mkroot/latest/$TARGET.tgz && \
+				tar xfv $TARGET.tgz && \
+				rm $TARGET.tgz && \
+				cat $TARGET/docs/README || \
+				printf "unsupported architecture: '$TARGET'\n"
 			;;
 		*)
 			printf "unsupported command: '$GET'\n"
