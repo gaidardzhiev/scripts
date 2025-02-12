@@ -838,6 +838,7 @@ fbuild_src(){
 			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz
 			;;
 		vim)
+			cd $SRC
 			wget https://ftp.nluug.nl/pub/vim/unix/vim-9.0.tar.bz2
 			cd vim90
 			./configure \
@@ -857,6 +858,27 @@ fbuild_src(){
 				--disable-sysmouse \
 				--disable-nls
 			(make || (cd $SRC/vim90/src && make)) && make install
+			;;
+		avr-binutils)
+			cd $SRC
+			wget https://ftp.gnu.org/gnu/binutils/binutils-2.44.tar.gz
+			tar xfv binutils-2.44.tar.gz
+			rm binutils-2.44.tar.gz
+			cd binutils-2.44
+			PREFIX=$SPM
+			export PREFIX
+			PATH=$PATH:$PREFIX/bin
+			export PATH
+			cd build && \
+				mkdir binutils-2.44-avr && \
+				cd binutils-2.44-avr && \
+				 ../../source/binutils-2.44/configure \
+				 	--prefix=$PREFIX \
+					--target=avr \
+					--disable-nls \
+					--disable-sim \
+					--disable-gdb \
+					--disable-werror
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
