@@ -879,8 +879,7 @@ fbuild_src(){
 					--disable-gdb \
 					--disable-werror && \
 					make $JOBS && \
-					make install || \
-					printf "\n"
+					make install
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
@@ -961,7 +960,7 @@ fbin() {
 					./toybox-powerpc
 					;;
 				*)
-					printf "unsupported CPU architecture...\n"
+					printf "unsupported $TARGET CPU architecture...\n"
 					;;
 			esac
 			;;
@@ -1020,7 +1019,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				*)
-					printf "unsupported CPU architecture...\n"
+					printf "unsupported $TARGET CPU architecture...\n"
 					;;
 			esac
 			;;
