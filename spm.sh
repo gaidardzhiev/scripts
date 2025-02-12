@@ -877,7 +877,10 @@ fbuild_src(){
 					--disable-nls \
 					--disable-sim \
 					--disable-gdb \
-					--disable-werror
+					--disable-werror && \
+					make $JOBS && \
+					make install || \
+					printf "\n"
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
