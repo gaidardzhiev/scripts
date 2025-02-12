@@ -869,10 +869,9 @@ fbuild_src(){
 			export PREFIX
 			PATH=$PATH:$PREFIX/bin
 			export PATH
-			cd build && \
-				mkdir binutils-2.44-avr && \
+			mkdir binutils-2.44-avr && \
 				cd binutils-2.44-avr && \
-				 ../../source/binutils-2.44/configure \
+				 ../configure \
 				 	--prefix=$PREFIX \
 					--target=avr \
 					--disable-nls \
