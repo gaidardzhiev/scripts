@@ -904,7 +904,21 @@ fbuild_src(){
 					make $JOBS && \
 					make install-strip
 			}
-			binutils && gcc || exit 1
+			avr-libc() {
+				cd $SRC/avr
+				git clone https://github.com/avrdudes/avr-libc
+				cd avr-libc
+				./bootstrap
+				mkdir avr-libc-2.2.0
+				cd avr-libc-2.2.0
+				./configure \
+					--prefix=$PREFIX \
+					--build=$TARGET-pc-linux-gnu \
+					--host=avr && \
+					make $JOBS && \
+					make install
+			}
+			binutils && gcc && avr-libc || exit 1
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
