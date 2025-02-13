@@ -54,7 +54,7 @@ fusage() {
 	printf "		<build-src|get-bin|delete-src|delete-bin|update-src>\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross-compiler|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2|initramfs|vim|native-compiler|mkroot|avr-binutils>\n"
+	printf "		<tcc|gcc|make|musl|glibc|mc|git|strongswan|dietlibc|zsh|bash|dash|ash|linux-kernel|awk|grep|sed|toolbox|busybox|toybox|qbe|curl|wget|tmux|qemu|i3wm|dmenu|grub2|coreboot|flashrom|cross-compiler|uclibc|john|nmap|lambda-delta|tmg|subc|cc500|scc|c|cproc|9base|airgeddon|masscan|kexec|otcc|hping|esp|aboriginal|qemu|interceptor|gnupg|go|oyacc|libosmocore|libosmo-gprs|gapk|osmocom-bb|aircrack-ng|smartmontools|gdb|kmod|gzip|rsync|xz|bc|lzip|pahole|tar|bzip2|initramfs|vim|native-compiler|mkroot|avr-toolchain>\n"
 	exit 1
 }
 
@@ -859,27 +859,36 @@ fbuild_src(){
 				--disable-nls
 			(make || (cd $SRC/vim90/src && make)) && make install
 			;;
-		avr-binutils)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/binutils/binutils-2.44.tar.gz
-			tar xfv binutils-2.44.tar.gz
-			rm binutils-2.44.tar.gz
-			cd binutils-2.44
+		avr-toolchain)
 			PREFIX=$SPM
 			export PREFIX
 			PATH=$PATH:$PREFIX/bin
 			export PATH
-			mkdir binutils-2.44-avr && \
-				cd binutils-2.44-avr && \
-				 ../configure \
-				 	--prefix=$PREFIX \
-					--target=avr \
-					--disable-nls \
-					--disable-sim \
-					--disable-gdb \
-					--disable-werror && \
-					make $JOBS && \
-					make install
+			mkdir $SRC/avr && cd $SRC/avr
+			binutils() {
+				wget https://ftp.gnu.org/gnu/binutils/binutils-2.44.tar.gz
+				tar xfv binutils-2.44.tar.gz
+				rm binutils-2.44.tar.gz
+				cd binutils-2.44
+				mkdir binutils-2.44-avr && \
+					cd binutils-2.44-avr && \
+					../configure \
+				 		--prefix=$PREFIX \
+						--target=avr \
+						--disable-nls \
+						--disable-sim \
+						--disable-gdb \
+						--disable-werror && \
+						make $JOBS && \
+						make install
+			}
+			gcc() {
+				cd $SRC/avr
+				wget https://ftp.cc.uoc.gr/mirrors/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.gz
+				tar xfv gcc-14.2.0.tar.gz
+				rm gcc-14.2.0.tar.gz
+				cd gcc-14.2.0.0
+			}
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
