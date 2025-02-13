@@ -904,6 +904,7 @@ fbuild_src(){
 					make $JOBS && \
 					make install-strip
 			}
+			binutils && gcc || exit 1
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
