@@ -870,24 +870,39 @@ fbuild_src(){
 				tar xfv binutils-2.44.tar.gz
 				rm binutils-2.44.tar.gz
 				cd binutils-2.44
-				mkdir binutils-2.44-avr && \
-					cd binutils-2.44-avr && \
-					../configure \
-				 		--prefix=$PREFIX \
-						--target=avr \
-						--disable-nls \
-						--disable-sim \
-						--disable-gdb \
-						--disable-werror && \
-						make $JOBS && \
-						make install
+				mkdir binutils-2.44-avr
+				cd binutils-2.44-avr
+				../configure \
+				 	--prefix=$PREFIX \
+					--target=avr \
+					--disable-nls \
+					--disable-sim \
+					--disable-gdb \
+					--disable-werror && \
+					make $JOBS && \
+					make install
 			}
 			gcc() {
 				cd $SRC/avr
 				wget https://ftp.cc.uoc.gr/mirrors/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.gz
 				tar xfv gcc-14.2.0.tar.gz
 				rm gcc-14.2.0.tar.gz
-				cd gcc-14.2.0.0
+				cd gcc-14.2.0
+				./contrib/download_prerequisites
+				mkdir gcc-14.2.0-avr
+				cd gcc-14.2.0
+				../configure \
+					--prefix=$PREFIX \
+					--target=avr \
+					--enable-languages=c \
+					--disable-nls \
+					--disable-libssp \
+					--disable-libcc1 \
+					--with-gnu-as \
+					--with-gnu-ld \
+					--with-dwarf2 && \
+					make $JOBS && \
+					make install-strip
 			}
 			;;
 		*)
