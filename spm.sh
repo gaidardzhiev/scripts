@@ -1167,6 +1167,7 @@ fbin() {
 					unsquashfs mips-linux-musl-native.sqf
 					rm mips-linux-musl-native.sqf
 					mv squashfs-root/* . && rm -r squashfs-root
+					cd bin && ./gcc -v
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
