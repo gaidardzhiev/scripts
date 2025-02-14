@@ -1129,6 +1129,8 @@ fbin() {
 					mv squashfs-root/* . && rm -r squashfs-root
 					cd bin && ./gcc -v
 					;;
+				i486)
+					;;
 				x86_64)
 					cd $NATIVE
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-native.sqf
