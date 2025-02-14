@@ -1153,6 +1153,14 @@ fbin() {
 					mv squashfs-root/* . && rm -r squashfs-root
 					cd bin && ./gcc -v
 					;;
+				aarch64)
+					cd $NATIVE
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-native.sqf
+					unsquashfs aarch64-linux-musleabi-native.sqf
+					rm aarch64-linux-musleabi-native.sqf
+					mv squashfs-root/* . && rm -r squashfs-root
+					cd bin && ./gcc -v
+					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
 					;;
