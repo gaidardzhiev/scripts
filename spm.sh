@@ -1131,6 +1131,7 @@ fbin() {
 					;;
 				i486)
 					cd $NATIVE
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i486-linux-musl-native.sqf
 					;;
 				x86_64)
 					cd $NATIVE
