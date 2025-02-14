@@ -1161,6 +1161,10 @@ fbin() {
 					mv squashfs-root/* . && rm -r squashfs-root
 					cd bin && ./gcc -v
 					;;
+				mips)
+					cd $NATIVE
+					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/mips-linux-musl-native.sqf
+					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
 					;;
