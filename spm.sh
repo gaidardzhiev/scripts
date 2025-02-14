@@ -1164,6 +1164,7 @@ fbin() {
 				mips)
 					cd $NATIVE
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/mips-linux-musl-native.sqf
+					unsquashfs mips-linux-musl-native.sqf
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
