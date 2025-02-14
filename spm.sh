@@ -1130,6 +1130,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				i486)
+					cd $NATIVE
 					;;
 				x86_64)
 					cd $NATIVE
