@@ -1166,6 +1166,7 @@ fbin() {
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/mips-linux-musl-native.sqf
 					unsquashfs mips-linux-musl-native.sqf
 					rm mips-linux-musl-native.sqf
+					mv squashfs-root/* . && rm -r squashfs-root
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
