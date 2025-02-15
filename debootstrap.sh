@@ -1,5 +1,5 @@
 #!/bin/sh
-#the script creates an ARM debian filesystem image on an x86_64 arch Linux host
+#the script creates an ARM debian filesystem image on an x86_64 arch Linux host and croots in it
 
 create_image() {
 	export DIR="/home/mnt"
