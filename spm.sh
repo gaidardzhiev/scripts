@@ -928,6 +928,7 @@ fbuild_src(){
 			cd diffutils-3.11
 			./configure \
 				--prefix=$SPM \
+				--host=$TARGET \
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
