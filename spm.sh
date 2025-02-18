@@ -926,6 +926,8 @@ fbuild_src(){
 			tar xfv diffutils-3.11.tar.xz
 			rm diffutils-3.11.tar.xz
 			cd diffutils-3.11
+			./configure \
+				--prefix=$SPM \
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
