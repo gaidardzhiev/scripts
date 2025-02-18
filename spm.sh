@@ -930,7 +930,9 @@ fbuild_src(){
 				--prefix=$SPM \
 				--host=$TARGET \
 				--enable-threads=isoc+posix \
-
+				--disable-threads && \
+				make $JOBS && \
+				make install
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
