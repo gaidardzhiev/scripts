@@ -929,6 +929,8 @@ fbuild_src(){
 			./configure \
 				--prefix=$SPM \
 				--host=$TARGET \
+				--enable-threads=isoc+posix \
+
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
