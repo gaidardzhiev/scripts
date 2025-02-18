@@ -46,6 +46,7 @@ GDB="12.1"
 ZSH="5.9"
 GZIP="1.13"
 LINUX="6.13.1"
+DIFF="3.11"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -922,10 +923,10 @@ fbuild_src(){
 			;;
 		diff)
 			cd $SRC
-			wget https://ftp.gnu.org/gnu/diffutils/diffutils-3.11.tar.xz
-			tar xfv diffutils-3.11.tar.xz
-			rm diffutils-3.11.tar.xz
-			cd diffutils-3.11
+			wget https://ftp.gnu.org/gnu/diffutils/diffutils-$DIFF.tar.xz
+			tar xfv diffutils-$DIFF.tar.xz
+			rm diffutils-$DIFF.tar.xz
+			cd diffutils-$DIFF
 			./configure \
 				--prefix=$SPM \
 				--host=$TARGET \
