@@ -932,7 +932,7 @@ fbuild_src(){
 				--enable-threads=isoc+posix \
 				--disable-threads && \
 				make $JOBS && \
-				make install
+				cp src/diff $BIN/diff-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
