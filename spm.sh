@@ -935,6 +935,14 @@ fbuild_src(){
 				make $JOBS && \
 				cp src/diff $BIN/diff-$TARGET
 			;;
+		tcsh)
+			printf "tcsh is not POSIX compliant...\n"
+			cd $SRC
+			wget https://astron.com/pub/tcsh/tcsh-6.24.15.tar.gz
+			tar xfv tcsh-6.24.15.tar.gz
+			rm tcsh-6.24.15.tar.gz
+			cd tcsh-6.24.15
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
