@@ -278,7 +278,7 @@ fbuild_src(){
 			;;
 		coreboot)
 			cd $SRC
-			git clone https://review.coreboot.org/coreboot
+			git clone --depth=1 https://review.coreboot.org/coreboot
 			cd coreboot
 			make crossgcc-i386 CPUS=$(nproc)
 			make -C payloads/coreinfo olddefconfig
