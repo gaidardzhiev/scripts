@@ -420,7 +420,7 @@ fbuild_src(){
 			;;
 		masscan)
 			cd $SRC
-			git clone https://github.com/robertdavidgraham/masscan
+			git clone --depth=1 https://github.com/robertdavidgraham/masscan
 			cd masscan
 			make $JOBS
 			cp bin/masscan $BIN/masscan-$TARGET
