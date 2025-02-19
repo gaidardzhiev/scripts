@@ -313,7 +313,7 @@ fbuild_src(){
 			;;
 		nmap)
 			cd $SRC
-			git clone https://github.com/nmap/nmap
+			git clone --depth=1 https://github.com/nmap/nmap
 			cd nmap
 			./configure
 			make $JOBS
