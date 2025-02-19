@@ -613,7 +613,7 @@ fbuild_src(){
 			;;
 		libosmo-gprs)
 			cd $SRC
-			git clone https://gitea.osmocom.org/osmocom/libosmo-gprs.git
+			git clone --depth=1 https://gitea.osmocom.org/osmocom/libosmo-gprs.git
 			cd libosmo-gprs
 			autoreconf -i
 			./configure
