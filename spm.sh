@@ -306,7 +306,7 @@ fbuild_src(){
 			;;
 		john)
 			cd $SRC
-			git clone https://github.com/openwall/john
+			git clone --depth=1 https://github.com/openwall/john
 			cd john
 			./configure
 			make $JOBS
