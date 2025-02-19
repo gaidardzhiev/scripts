@@ -450,7 +450,7 @@ fbuild_src(){
 			;;
 		hping)
 			cd $SRC
-			git clone https://github.com/antirez/hping
+			git clone --depth=1 https://github.com/antirez/hping
 			cd hping
 			./configure
 			make $JOBS
