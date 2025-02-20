@@ -717,7 +717,7 @@ fbuild_src(){
 			;;
 		rsync)
 			cd $SRC
-			git clone https://github.com/rsyncproject/rsync
+			git clone --depth=1 https://github.com/rsyncproject/rsync
 			cd rsync
 			./configure \
 				--disable-md2man
