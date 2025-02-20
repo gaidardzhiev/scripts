@@ -754,7 +754,7 @@ fbuild_src(){
 			;;
 		elfutils)
 			cd $SRC
-			git clone git://sourceware.org/git/elfutils.git
+			git clone --depth=1 git://sourceware.org/git/elfutils.git
 			cd elfutils
 			autoreconf -i -f && \
 				./configure \
