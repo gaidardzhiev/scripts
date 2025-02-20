@@ -726,7 +726,7 @@ fbuild_src(){
 			;;
 		xz)
 			cd $SRC
-			git clone https://github.com/tukaani-project/xz
+			git clone --depth=1 https://github.com/tukaani-project/xz
 			cd xz
 			./autogen.sh
 			./configure \
