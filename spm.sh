@@ -736,7 +736,7 @@ fbuild_src(){
 			;;
 		bc)
 			cd $SRC
-			git clone https://github.com/gavinhoward/bc
+			git clone --depth=1 https://github.com/gavinhoward/bc
 			cd bc
 			./configure.sh
 			make $JOBS && \
