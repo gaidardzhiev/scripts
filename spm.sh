@@ -623,7 +623,7 @@ fbuild_src(){
 			;;
 		gapk)
 			cd $SRC
-			git clone https://gitea.osmocom.org/osmocom/gapk
+			git clone --depth=1 https://gitea.osmocom.org/osmocom/gapk
 			cd gapk
 			autoreconf -i
 			./configure \
