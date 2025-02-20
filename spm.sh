@@ -634,7 +634,7 @@ fbuild_src(){
 			;;
 		osmocom-bb)
 			cd $SRC
-			git clone https://gitea.osmocom.org/phone-side/osmocom-bb.git
+			git clone --depth=1 https://gitea.osmocom.org/phone-side/osmocom-bb.git
 			cd osmocom-bb
 			git pull --rebase
 			cd src
