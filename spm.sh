@@ -780,7 +780,7 @@ fbuild_src(){
 			;;
 		bzip2)
 			cd $SRC
-			git clone https://gitlab.com/bzip2/bzip2
+			git clone --depth=1 https://gitlab.com/bzip2/bzip2
 			cd bzip2
 			mkdir build && \
 				cd build && \
