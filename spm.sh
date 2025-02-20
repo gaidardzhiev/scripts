@@ -774,7 +774,7 @@ fbuild_src(){
 			;;
 		tar)
 			cd $SRC
-			git clone https://git.savannah.gnu.org/git/tar.git
+			git clone --depth=1 https://git.savannah.gnu.org/git/tar.git
 			cd tar
 			./bootstrap
 			;;
