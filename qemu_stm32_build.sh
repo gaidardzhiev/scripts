@@ -1,8 +1,6 @@
 #!/bin/sh
 #the script builds the qemu emulator for stm32
 
-set -x
-
 export DIR=/opt/qemu_stm32
 export NUMCPUS='grep -c '^processor' /proc/cpuinfo'
 export JOBS='-j '$NUMCPUS''
@@ -24,6 +22,4 @@ cd qemu_stm32
 	--extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
 	--extra-cflags=-DDEBUG_GIC \
 	--python=/usr/bin/python2.7
-make $JOBS
-make install
-rm -r $DIR
+make $JOBS && make install || exit 1
