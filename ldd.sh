@@ -21,5 +21,4 @@ if [ "$#" -ne 1 ]; then
 	fusage
 fi
 
-fcheck "$1"
-fldd "$1"
+fcheck "$1" && fldd "$1"
