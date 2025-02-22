@@ -321,7 +321,7 @@ fbuild_src(){
 			;;
 		lambda-delta)
 			cd $SRC
-			git clone https://github.com/dseagrav/ld
+			git clone --depth=1 https://github.com/dseagrav/ld
 			cd ld
 			aclocal && \
 				autoheader && \
