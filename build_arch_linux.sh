@@ -5,7 +5,6 @@ export DIR=/root/arch
 export HASH=/root/hash
 export USER_HASH=/root/user_hash
 
-set -x
 mkdir $DIR
 pacman -S archiso openssl
 cp -r /usr/share/archiso/configs/releng/* $DIR
