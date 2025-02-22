@@ -290,10 +290,11 @@ fbuild_src(){
 			;;
 		toybox)
 			cd $SRC
-			git clone https://github.com/landley/toybox
+			git clone --depth=1 https://github.com/landley/toybox
 			cd toybox
 			make defconfig
-			make $JOBS
+			make $JOBS && \
+				cp toybox $BIN/toybox
 			;;
 		uclibc)
 			cd $SRC
