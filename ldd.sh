@@ -7,7 +7,7 @@ fusage() {
 
 fcheck() {
 	if [ ! -f "$1" ]; then
-		echo "error: file '$1' does not exist or is not a regular file..."
+		printf "error: file '$1' does not exist or is not a regular file...\n"
 		exit 2
 	fi
 }
