@@ -22,6 +22,8 @@ mount -t sysfs sysfs none /sys
 exec /bin/toybox sh
 eof
 chmod +x $DIR/init
+mknod $DIR/dev/sda b 8 0
+mknod $DIR/dev/console c 5 1
 find $DIR | cpio -H newc -o | gzip > $INIT
 rm -rf $DIR
 printf "initramfs created successfully: $INIT\n"
