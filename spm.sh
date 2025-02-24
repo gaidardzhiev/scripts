@@ -948,6 +948,13 @@ fbuild_src(){
 				cp tcsh $BIN/tcsh-$TARGET && \
 				printf "tcsh is not POSIX compliant...\n"
 			;;
+		jfsutils)
+			cd $SRC
+			git clone https://github.com/cwuensch/jfsutils
+			cd jfsutils
+			./configure && \
+				make $JOBS
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
