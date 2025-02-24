@@ -1,4 +1,5 @@
 #!/bin/sh
+#the script creates a minimal initramfs based on toybox
 
 INIT="initramfs.cpio.gz"
 DIR=$(mktemp -d)
