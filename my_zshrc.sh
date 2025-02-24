@@ -34,10 +34,12 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+
 bindkey -s '^o' 'lfcd\n'
+
 dircolors --print-database >! /root/.cache/zsh/dircolors.default
+
 alias battery="echo \"$(acpi -b 2> /dev/null | grep -P -o '[0-9]+(?=%)' | sed 's/ 0//g' | head --lines=1)%\""
-alias btw='clear && neofetch'
 alias ls='ls --color=auto'
 alias cat='ccat'
 alias grep='grep --color=auto'
