@@ -11,6 +11,13 @@ mkdir -p $DIR/dev
 mkdir -p $DIR/etc
 mkdir -p $DIR/proc
 mkdir -p $DIR/sys
+mkdir -p $DIR/lib
+mkdir -p $DIR/lib64
+mkdir -p $DIR/mnt/root
+mkdir -p $DIR/root
+mkdir -p $DIR/sbin
+mkdir -p $DIR/run
+mkdir -p $DIR/usr
 wget https://landley.net/toybox/downloads/binaries/latest/toybox-$ARCH
 chmod +x toybox-$ARCH
 mv toybox-$ARCH $DIR/bin/toybox
