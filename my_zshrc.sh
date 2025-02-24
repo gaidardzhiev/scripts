@@ -36,6 +36,7 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 dircolors --print-database >! /root/.cache/zsh/dircolors.default
+alias btw='clear && neofetch'
 alias ls='ls --color=auto'
 alias cat='ccat'
 alias grep='grep --color=auto'
