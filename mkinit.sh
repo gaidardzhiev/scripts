@@ -20,7 +20,7 @@ cat << eof > $DIR/init
 mount -t devtmpfs none /dev
 mount -t proc proc none /proc
 mount -t sysfs sysfs none /sys
-exec /bin/toybox sh
+exec /bin/toybox toysh
 eof
 chmod +x $DIR/init
 mknod $DIR/dev/sda b 8 0
