@@ -69,6 +69,7 @@ done
 
 unset use_color sh
 
+alias btw='clear && neofetch'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
