@@ -4,7 +4,7 @@
 INIT="initramfs.cpio.gz"
 DIR=$(mktemp -d)
 TARGET=$(uname -m)
-ARCH="armv7m" && [ "$TARGET" = "armv8l" ] || ARCH="$ARCH"
+ARCH="armv7m" && [ "$TARGET" = "armv8l" ] || ARCH="$TARGET"
 
 mkdir -p $DIR/bin
 mkdir -p $DIR/dev
