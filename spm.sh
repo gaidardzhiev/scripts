@@ -215,7 +215,7 @@ fbuild_src(){
 			;;
 		awk)
 			cd $SRC
-			git clone https://github.com/onetrueawk/awk
+			git clone --depth=1 https://github.com/onetrueawk/awk
 			cd awk
 			make $JOBS && \
 				mv a.out awk && \
