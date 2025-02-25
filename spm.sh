@@ -958,7 +958,10 @@ fbuild_src(){
 		squashfs-tools)
 			cd $SRC
 			git clone --depth=1 https://github.com/plougher/squashfs-tools
-			cd squashfs-tools
+			cd squashfs-tools/squashfs-tools
+			make $JOBS &&
+				cp mksquashfs $BIN/mksquashfs-$TARGET &&
+				cp unsquashfs $BIN/unsquashfs-$TARGET
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
