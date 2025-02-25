@@ -955,6 +955,11 @@ fbuild_src(){
 			./configure && \
 				make $JOBS
 			;;
+		squashfs-tools)
+			cd $SRC
+			git clone https://github.com/plougher/squashfs-tools
+			cd squashfs-tools
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
