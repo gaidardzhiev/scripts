@@ -968,6 +968,9 @@ fbuild_src(){
 			git clone --depth=1 https://git.netfilter.org/iptables
 			cd iptables
 			autoreconf -fi
+			./configure \
+				--enable-static
+			make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
