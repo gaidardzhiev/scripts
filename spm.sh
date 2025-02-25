@@ -162,7 +162,7 @@ fbuild_src(){
 			;;
 		sed)
 			cd $SRC
-			git clone git://git.sv.gnu.org/sed
+			git clone --depth=1 git://git.sv.gnu.org/sed
 			cd sed
 			./bootstrap
 			./configure \
