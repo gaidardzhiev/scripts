@@ -967,6 +967,7 @@ fbuild_src(){
 			cd $SRC
 			git clone --depth=1 https://git.netfilter.org/iptables
 			cd iptables
+			autoreconf -fi
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
