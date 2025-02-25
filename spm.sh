@@ -963,6 +963,11 @@ fbuild_src(){
 				cp mksquashfs $BIN/mksquashfs-$TARGET &&
 				cp unsquashfs $BIN/unsquashfs-$TARGET
 			;;
+		iptables)
+			cd $SRC
+			git clone --depth=1 https://git.netfilter.org/iptables
+			cd iptables
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
