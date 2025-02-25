@@ -208,7 +208,7 @@ fbuild_src(){
 			;;
 		dash)
 			cd $SRC
-			git clone https://github.com/danishprakash/dash
+			git clone --depth=1 https://github.com/danishprakash/dash
 			cd dash
 			make $JOBS && \
 				cp dash $BIN/dash-$TARGET
