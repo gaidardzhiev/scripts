@@ -189,7 +189,7 @@ fbuild_src(){
 			;;
 		dmenu)
 			cd $SRC
-			git clone git://git.suckless.org/dmenu
+			git clone --depth=1 git://git.suckless.org/dmenu
 			cd dmenu
 			make $JOBS && \
 				cp dmenu $BIN/dmenu-$TARGET
