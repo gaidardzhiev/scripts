@@ -1003,7 +1003,8 @@ fbuild_src(){
 			git clone https://github.com/retroprom/pcmciautils
 			cd pcmciautils 
 			make && \
-				cp pccardctl $BIN/pccardctl-$TARGET && \
+				cp pccardctl $BIN/pccardctl && \
+				cp pcmcia-check-broken-cis $BIN/pcmcia-check-broken-cis && \
 				cp
 			;;
 		*)
