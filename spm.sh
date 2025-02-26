@@ -975,6 +975,9 @@ fbuild_src(){
 		grub)
 			cd $SRC
 			git clone --depth=1 https://git.savannah.gnu.org/git/grub.git
+			autoreconf -fi
+			./configure
+			make $JOBS
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
