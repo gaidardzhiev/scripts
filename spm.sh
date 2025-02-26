@@ -1005,7 +1005,7 @@ fbuild_src(){
 			make && \
 				cp pccardctl $BIN/pccardctl && \
 				cp pcmcia-check-broken-cis $BIN/pcmcia-check-broken-cis && \
-				cp
+				cp pcmcia-socket-startup $BIN/pcmcia-socket-startup
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
