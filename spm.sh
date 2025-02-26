@@ -977,7 +977,7 @@ fbuild_src(){
 			git clone --depth=1 https://git.savannah.gnu.org/git/grub.git
 			autoreconf -if
 			./configure \
-				--build=sparc64-freebsd \
+				--build=x86_64-linux-gnu \
 				--host=x86_64-linux-gnu \
 				--target=arm-linux-gnueabihf \
 				--with-platform=efi \
