@@ -975,8 +975,25 @@ fbuild_src(){
 		grub)
 			cd $SRC
 			git clone --depth=1 https://git.savannah.gnu.org/git/grub.git
-			autoreconf -fi
-			./configure
+			autoreconf -if
+			./configure \
+				--build=sparc64-freebsd \
+				--host=x86_64-linux-gnu \
+				--target=arm-linux-gnueabihf \
+				--with-platform=efi \
+				BUILD_CC=gcc \
+				BUILD_PKG_CONFIG=pkg-config \
+				HOST_CC=x86_64-linux-gnu-gcc \
+				HOST_CFLAGS='-g -O2' \
+				PKG_CONFIG=x86_64-linux-gnu-pkg-config \
+				TARGET_CC=arm-linux-gnueabihf-gcc \
+				TARGET_CFLAGS='-Os -march=armv8.3-a' \
+				TARGET_CCASFLAGS='-march=armv8.3-a' \
+				TARGET_OBJCOPY=arm-linux-gnueabihf-objcopy \
+				TARGET_STRIP=arm-linux-gnueabihf-strip \
+				TARGET_NM=arm-linux-gnueabihf-nm \
+				TARGET_RANLIB=arm-linux-gnueabihf-ranlib \
+				LEX=flex
 			make $JOBS
 			;;
 		*)
