@@ -969,7 +969,8 @@ fbuild_src(){
 			cd iptables
 			autoreconf -fi
 			./configure \
-				--enable-static
+				--enable-static \
+				--disable-shared
 			make $JOBS
 			;;
 		grub)
