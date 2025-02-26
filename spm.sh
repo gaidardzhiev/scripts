@@ -997,6 +997,11 @@ fbuild_src(){
 				LEX=flex
 			make $JOBS
 			;;
+		pcmciautils)
+			cd $SRC
+			git clone https://github.com/retroprom/pcmciautils
+			make
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
