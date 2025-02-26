@@ -976,6 +976,7 @@ fbuild_src(){
 		grub)
 			cd $SRC
 			git clone --depth=1 https://git.savannah.gnu.org/git/grub.git
+			cd grub
 			autoreconf -if
 			./configure \
 				--build=x86_64-linux-gnu \
@@ -1000,7 +1001,10 @@ fbuild_src(){
 		pcmciautils)
 			cd $SRC
 			git clone https://github.com/retroprom/pcmciautils
-			make
+			cd pcmciautils 
+			make && \
+				cp pccardctl $BIN/pccardctl-$TARGET && \
+				cp
 			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
