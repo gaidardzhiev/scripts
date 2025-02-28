@@ -23,7 +23,7 @@ chmod +x toybox-$ARCH
 mv toybox-$ARCH $DIR/bin/toybox
 $DIR/bin/toybox
 cat << eof > $DIR/sbin/init
-#!/bin/sh
+#!/bin/toybox
 mount -t devtmpfs none /dev
 mount -t proc proc none /proc
 mount -t sysfs sysfs none /sys
