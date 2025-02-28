@@ -22,14 +22,14 @@ wget https://landley.net/toybox/downloads/binaries/latest/toybox-$ARCH
 chmod +x toybox-$ARCH
 mv toybox-$ARCH $DIR/bin/toybox
 $DIR/bin/toybox
-cat << eof > $DIR/sbin/init
+cat << eof > $DIR/init
 #!/bin/toybox
 mount -t devtmpfs none /dev
 mount -t proc proc none /proc
 mount -t sysfs sysfs none /sys
 exec /bin/toybox toysh
 eof
-chmod +x $DIR/sbin/init
+chmod +x $DIR/init
 mknod $DIR/dev/sda b 8 0
 mknod $DIR/dev/console c 5 1
 find $DIR | cpio -H newc -o | gzip > $INIT
