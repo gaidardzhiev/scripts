@@ -22,15 +22,18 @@ wget https://landley.net/toybox/downloads/binaries/latest/toybox-$ARCH
 chmod +x toybox-$ARCH
 mv toybox-$ARCH $DIR/bin/toybox
 $DIR/bin/toybox
+for cmd in $($DIR/bin/toybox); do
+	ln -s /bin/toybox "$DIR/bin/$cmd"
+done
 cat << eof > $DIR/init
 #!/bin/sh
-mount -t devtmpfs none /dev
+mount -t devtmpfs devtmpfs /dev
 mount -t proc proc none /proc
 mount -t sysfs sysfs none /sys
 exec /bin/toybox toysh
 eof
 chmod +x $DIR/init
-ln -s $DIR/toybox $DIR/bin/sh
+#ln -s $DIR/toybox $DIR/bin/sh
 #cp /bin/toybox /bin/sh
 #chmod 0755 /bin/sh
 ldconfig
