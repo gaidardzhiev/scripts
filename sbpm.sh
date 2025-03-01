@@ -802,8 +802,8 @@ fbuild_src(){
 			sed -i 's/^# CONFIG_KERNEL_GZIP is not set/CONFIG_KERNEL_GZIP=y/' .config
 			sed -i 's/^# CONFIG_BLK_DEV_INITRD is not set/CONFIG_BLK_DEV_INITRD=y/' .config
 			sed -i 's/^# CONFIG_INITRAMFS_PRESERVE_MTIME is not set/CONFIG_INITRAMFS_PRESERVE_MTIME=y/' .config
-			sed -i 's/^CONFIG_RANDOMIZE_BASE= is not set/CONFIG_RANDOMIZE_BASE=y/' .config
-			sed -i 's/^CONFIG_RANDOMIZE_KASLR=is not set/CONFIG_RANDOMIZE_KASLR=y/' .config
+			sed -i 's/^CONFIG_RANDOMIZE_BASE is not set/CONFIG_RANDOMIZE_BASE=y/' .config
+			sed -i 's/^CONFIG_RANDOMIZE_KASLR is not set/CONFIG_RANDOMIZE_KASLR=y/' .config
 			grep "CONFIG_TTY=y" .config || exit 1
 			grep "CONFIG_PRINTK=y" .config || exit 1
 			grep "CONFIG_PROC_FS=y" .config || exit 1
