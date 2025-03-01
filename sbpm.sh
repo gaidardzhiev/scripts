@@ -795,7 +795,7 @@ fbuild_src(){
 			cd linux-$LINUX
 			make tinyconfig
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
-			sed -i 's/^# CONFIG_64BIT is not set/CONFIG_64BIT=y' .config
+			sed -i 's/^# CONFIG_64BIT is not set/CONFIG_64BIT=y/' .config
 			sed -i 's/^# CONFIG_PRINTK is not set/CONFIG_PRINTK=y/' .config
 			sed -i 's/^# CONFIG_PROC_FS is not set/CONFIG_PROC_FS=y/' .config
 			sed -i 's/^# CONFIG_DEVTMPFS is not set/CONFIG_DEVTMPFS=y/' .config
