@@ -31,6 +31,9 @@ exec /bin/toybox toysh
 eof
 chmod +x $DIR/init
 ln -s $DIR/toybox $DIR/sh
+#cp /bin/toybox /bin/sh
+#chmod 0755 /bin/sh
+ldconfig
 mknod $DIR/dev/sda b 8 0
 mknod $DIR/dev/console c 5 1
 find $DIR | cpio -H newc -o | gzip > $INIT
