@@ -40,6 +40,6 @@ chmod +x $DIR/init
 #ldconfig
 mknod $DIR/dev/sda b 8 0
 mknod $DIR/dev/console c 5 1
-find $DIR | cpio -H newc -o | gzip > $INIT
+find $DIR | cpio -H newc -o | gzip -9 > $INIT
 rm -rf $DIR
 printf "\n\ninitramfs for $ARCH created successfully: $INIT\n"
