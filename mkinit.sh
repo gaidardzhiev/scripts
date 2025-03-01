@@ -43,3 +43,6 @@ mknod $DIR/dev/console c 5 1
 find $DIR | cpio -H newc -o | gzip -9 > $INIT
 rm -rf $DIR
 printf "\n\ninitramfs for $ARCH created successfully: $INIT\n"
+
+
+#qemu-system-x86_64 -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
