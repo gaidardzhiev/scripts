@@ -30,7 +30,7 @@ mount -t sysfs sysfs none /sys
 exec /bin/toybox toysh
 eof
 chmod +x $DIR/init
-ln -s $DIR/toybox $DIR/sh
+ln -s $DIR/toybox $DIR/bin/sh
 #cp /bin/toybox /bin/sh
 #chmod 0755 /bin/sh
 ldconfig
