@@ -30,13 +30,14 @@ cat << eof > $DIR/init
 mount -t devtmpfs devtmpfs /dev
 mount -t proc proc none /proc
 mount -t sysfs sysfs none /sys
-exec /bin/toybox toysh
+#exec /bin/toybox toysh
+exec /bin/sh
 eof
 chmod +x $DIR/init
 #ln -s $DIR/toybox $DIR/bin/sh
 #cp /bin/toybox /bin/sh
 #chmod 0755 /bin/sh
-ldconfig
+#ldconfig
 mknod $DIR/dev/sda b 8 0
 mknod $DIR/dev/console c 5 1
 find $DIR | cpio -H newc -o | gzip > $INIT
