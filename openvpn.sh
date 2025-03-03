@@ -1,6 +1,5 @@
 #!/bin/sh
 #openssl enc -aes-256-cbc -in <in> -out <out> -pass pass:<?> -pbkdf2
-#FILE=$(find "$DIR" -type f | shuf -n 1)
 
 CRED="/root/.openvpncred"
 DIR="/home/openvpn"
@@ -28,7 +27,6 @@ esac
 
 printf "enter the password to access the credentials:\n"
 read -s DEC
-
 [ -f "$CRED" ] && {
 	USERNAME=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | head -n 1) || exit -1
 	PASSWORD=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | tail -n 1) || exit -2
