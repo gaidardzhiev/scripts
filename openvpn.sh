@@ -38,4 +38,4 @@ read -s DEC
 }
 
 printf "starting openvpn with configuration: $FILE\n"
-echo "$PASSWORD" | openvpn --config "$FILE" --auth-user-pass <(echo -e "$USERNAME\n$PASSWORD")
+openvpn --config "$FILE" --auth-user-pass <(echo -e "$USERNAME\n$PASSWORD")
