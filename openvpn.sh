@@ -3,6 +3,7 @@
 DIR="/home/openvpn/"
 CRED="/root/.openvpncred"
 FILE=$(find "$DIR" -type f | shuf -n 1)
+#FILE=$(find "$DIR" -type f | awk 'BEGIN {srand()} {if (rand() < 1/++count) file=$0} END {print file}')
 
 printf "enter the password to access credentials:\n"
 read -s DEC
