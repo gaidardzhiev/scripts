@@ -6,7 +6,6 @@ LIST=("$DIR"/*)
 NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
 FILE="${LIST[$PRAND]}"
-printf "selected file: $FILE\n"
 
 #FILE=$(find "$DIR" -type f | shuf -n 1)
 #FILE=$(find "$DIR" -type f | awk 'BEGIN {srand()} {if (rand() < 1/++count) file=$0} END {print file}')
