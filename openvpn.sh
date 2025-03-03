@@ -14,7 +14,8 @@ printf "(yes/no)\n"
 read -r RSP
 case $RSP in
 	[y]* )
-		FILE=$(ls $DIR | fzf)
+#		FILE=$(ls $DIR | fzf)
+		FILE=$(find "$DIR" -type f | fzf)
 		printf "$FILE configuration file choosed manualy...\n"
 		;;
 	[n]* )
