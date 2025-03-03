@@ -8,9 +8,8 @@ DIR="/home/openvpn"
 LIST=("$DIR"/*)
 NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
-#FILE="${LIST[$PRAND]}"
 
-printf "do you want to manualy choose a file:\n"
+printf "do you want to manualy choose the configuration file:\n"
 printf "(yes/no)\n"
 read -r RSP
 case $RSP in
