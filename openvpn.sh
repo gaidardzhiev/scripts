@@ -10,7 +10,7 @@ NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
 FILE="${LIST[$PRAND]}"
 
-printf "enter the password to access credentials:\n"
+printf "enter the password to access the credentials:\n"
 read -s DEC
 
 [ -f "$CRED" ] && {
