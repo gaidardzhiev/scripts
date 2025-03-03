@@ -8,7 +8,23 @@ DIR="/home/openvpn"
 LIST=("$DIR"/*)
 NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
-FILE="${LIST[$PRAND]}"
+#FILE="${LIST[$PRAND]}"
+
+printf "do you want to manualy choose a file:\n"
+printf "(yes/no)\n"
+read -r RSP
+case $RSP in
+	[y]* )
+		FILE=$(ls $DIR | fzf)
+		;;
+	[n]* )
+		FILE="${LIST[$PRAND]}"
+		;;
+	*)
+		printf "invalid response...\n"
+		printf "please choose (yes/no)\n"
+		;;
+esac
 
 printf "enter the password to access the credentials:\n"
 read -s DEC
