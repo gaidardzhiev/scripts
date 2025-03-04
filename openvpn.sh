@@ -11,11 +11,11 @@ printf "do you want to manualy choose the openvpn configuration file:\n"
 printf "(yes/no)\n"
 read -r RSP
 case $RSP in
-	[y]* )
+	[yes]* )
 		FILE=$(find "$DIR" -type f | fzf)
 		printf "$FILE configuration file choosed manualy...\n"
 		;;
-	[n]* )
+	[no]* )
 		FILE="${LIST[$PRAND]}"
 		printf "$FILE configuration file choosed pseudo randomly...\n"
 		;;
