@@ -1,5 +1,5 @@
 #!/bin/sh
-#openssl enc -aes-256-cbc -in <in> -out <out> -pass pass:<?> -pbkdf2
+#openssl enc -aes-256-cbc -in <in> -out /root/.openvpncred -pass pass:<?> -pbkdf2
 
 CRED="/root/.openvpncred"
 DIR="/home/openvpn"
@@ -31,7 +31,9 @@ read -s DEC
 	USER=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | head -n 1) || exit -1
 	PASS=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | tail -n 1) || exit -2
 } || {
-	printf "credentials file not found...\n" && sed -n '2s/^.\(.*\)/\1/p' "$0" && exit 1
+	printf "credentials file not found...\n" && \
+	printf "create them with: \n" && \
+	sed -n '2s/^.\(.*\)/\1/p' "$0" && exit 1
 }
 
 printf "starting openvpn with configuration: $FILE\n"
