@@ -31,9 +31,10 @@ z() {
 	exec 3<&-
 }
 
-if [ $# -ne 1 ]; then
-echo "usage: $0 <file>" >&2
-exit 1
-fi
+#if [ $# -ne 1 ]; then
+#echo "usage: $0 <file>" >&2
+#exit 1
+#fi
+[ $# -ne 1 ] && { printf "usage: $0 <file>\n" >&2; exit 1; }
 
 z "$1"
