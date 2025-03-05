@@ -7,7 +7,6 @@ LIST=("$DIR"/*)
 NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
 
-
 printf "do you want to manualy choose the openvpn configuration file:\n"
 printf "(yes/no)\n"
 read -r RSP
