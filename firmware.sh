@@ -35,9 +35,7 @@ usage() {
 	exit 1
 }
 
-if [ $# -ne 2 ]; then
-	usage
-fi
+[ $# -ne 2 ] && usage
 
 case "$1" in
 	unpack)
