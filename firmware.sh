@@ -31,8 +31,7 @@ pack() {
 }
 
 usage() {
-	echo "usage: $0 <pack|unpack> <file>"
-	exit 1
+	echo "usage: $0 <pack|unpack> <file>" && exit 1
 }
 
 [ $# -ne 2 ] && usage
