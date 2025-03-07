@@ -1,5 +1,5 @@
 #!/bin/sh
-#unpack/pack firmware
+#unpack and pack firmware
 
 unpack() {
 	exec 3< "$1"
