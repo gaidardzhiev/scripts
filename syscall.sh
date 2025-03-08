@@ -76,8 +76,3 @@ fi
 }
 
 uname -r | grep -q '$SUFFIX' || before && after
-
-#if ! uname -r | grep -q '$SUFFIX'; then
-#        before
-#        after
-#fi
