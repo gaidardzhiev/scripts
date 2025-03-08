@@ -18,9 +18,7 @@ fusage() {
 	exit 1
 }
 
-if [ $# -lt 1 ]; then
-	fusage
-fi
+[ $# -lt 1 ] && fusage
 
 shift
 
