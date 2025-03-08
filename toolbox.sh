@@ -4,7 +4,7 @@ DIR=/home/src/1v4n/toolbox
 REPO=https://github.com/gaidardzhiev/toolbox
 CMD=$1
 
-dir() {
+fdir() {
 	[ ! -d "$DIR" ] && \
 		cd /home/src/1v4n/ && \
 		git clone $REPO && \
@@ -18,9 +18,7 @@ fusage() {
 	exit 1
 }
 
-dir
-
-[ $# -lt 1 ] && fusage
+[ $# -lt 1 ] && fusage; fdir
 
 shift
 
