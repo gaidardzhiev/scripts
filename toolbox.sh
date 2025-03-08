@@ -18,7 +18,6 @@ fusage() {
 	exit 1
 }
 
-#[ $# -lt 1 ] && fusage; fdir
 { [ $# -lt 1 ] && fusage; fdir; }
 
 shift
