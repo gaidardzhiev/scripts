@@ -4,19 +4,21 @@ DIR=/home/src/1v4n/toolbox
 REPO=https://github.com/gaidardzhiev/toolbox
 CMD=$1
 
-if [ ! -d "$DIR" ]; then
-	cd /home/src/1v4n/
-	git clone $REPO
-	cd tools
-	make
-else
-	printf "\n" > /dev/null
-fi
+dir() {
+	[ ! -d "$DIR" ] && \
+		cd /home/src/1v4n/ && \
+		git clone $REPO && \
+		cd tools && \
+		make || \
+		printf "\n" > /dev/null
+}
 
 fusage() {
 	echo "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem> <options>"
 	exit 1
 }
+
+dir
 
 [ $# -lt 1 ] && fusage
 
