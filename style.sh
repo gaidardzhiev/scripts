@@ -2,7 +2,7 @@
 
 fdepcheck() {
 	command -v "$1" >/dev/null 2>&1 || {
-		echo >&2 "error: $1 is not installed..."
+		printf >&2 "error: $1 is not installed...\n"
 		exit 1
 	}
 }
