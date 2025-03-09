@@ -10,7 +10,7 @@ fdepcheck() {
 fastyle() {
 	astyle --style=linux -T8 *.c && \
 		printf "formatting completed successfully\n" || \
-		echo "astyle encountered an issue while formatting" && \
+		printf "astyle encountered an issue while formatting\n" && \
 		exit 1
 }
 
