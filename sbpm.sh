@@ -47,6 +47,7 @@ ZSH="5.9"
 GZIP="1.13"
 LINUX="6.13.1"
 DIFF="3.11"
+TCSH="6.24.15"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -942,10 +943,10 @@ fbuild_src(){
 			;;
 		tcsh)
 			cd $SRC
-			wget https://astron.com/pub/tcsh/tcsh-6.24.15.tar.gz
-			tar xfv tcsh-6.24.15.tar.gz
-			rm tcsh-6.24.15.tar.gz
-			cd tcsh-6.24.15
+			wget https://astron.com/pub/tcsh/tcsh-$TCSH.tar.gz
+			tar xfv tcsh-$TCSH.tar.gz
+			rm tcsh-$TCSH.tar.gz
+			cd tcsh-$TCSH
 			./configure && \
 				make && \
 				cp tcsh $BIN/tcsh-$TARGET && \
