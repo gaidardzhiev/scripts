@@ -7,11 +7,11 @@ fdepcheck() {
 	}
 }
 
-fdepcheck astyle
+fastyle() {
+	astyle --style=linux -T8 *.c && \
+		echo "formatting completed successfully" || \
+		echo "astyle encountered an issue while formatting" && \
+		exit 1
+}
 
-if astyle --style=linux -T8 *.c; then
-	echo "formatting completed successfully"
-else
-	echo "astyle encountered an issue while formatting"
-	exit 1
-fi
+fdepcheck astyle && fastyle
