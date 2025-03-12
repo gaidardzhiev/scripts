@@ -18,10 +18,7 @@ rm data.tar.xz
 mv usr/bin/linux.uml .
 mv usr/lib/uml/modules .
 rm -r usr
-if ! [ -f "$SLIRP" ]
-then
-        echo "redir tcp 2222 22" > $SLIRP
-fi
+[ ! -f "$SLIRP" ] && echo "redir tcp 2222 22" > $SLIRP
 wget -O debian.img https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.raw
 truncate -s 8G debian.img
 ./linux.uml \
