@@ -5,10 +5,7 @@ SLIRP=~/.slirprc
 DIR=$HOME/src/uml
 export TMPDIR=/tmp
 
-if ! [ -f "$SSH" ]
-then
-    ssh-keygen -t ed25519 -N "$1" -f $SSH
-fi
+[ ! -f "$SSH" ] && ssh-keygen -t ed25519 -N "$1" -f $SSH
 mkdir -p $DIR
 cd $DIR
 wget https://deb.debian.org/debian/pool/main/u/user-mode-linux/user-mode-linux_5.10um3+b1_amd64.deb
