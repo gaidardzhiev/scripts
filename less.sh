@@ -1,5 +1,7 @@
 #!/bin/sh
 #colorizing less
+#the script has to live in:
+#/usr/share/source-highlight/src-hilite-lesspipe.sh
 
 set -eu
 
