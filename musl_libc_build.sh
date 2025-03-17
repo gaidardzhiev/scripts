@@ -8,7 +8,7 @@ export JOBS='-j '$GETNUMCPUS''
 export MUSL=musl-1.2.5
 export DIR=/home/src/
 
-[ -d "$PREFIX" ] && { printf "$PREFIX exist...\n"; exit 0; }
+[ -d "$PREFIX" ] && { printf "$PREFIX exists...\n"; exit 0; }
 
 get() {
 	if cd $DIR; then
