@@ -1307,11 +1307,11 @@ fupdate_src() {
 	case $UPD in 
 		toolbox)
 			cd $SRC/toolbox && \
-				sed -i 's|/opt/spm/src/toolbox|/home/src/1v4n/toolbox|g' toolbox.c &&
-				git pull &&
+				sed -i 's|/opt/spm/src/toolbox|/home/src/1v4n/toolbox|g' toolbox.c && \
+				git pull && \
 				./build_toolchain.sh
-				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c &&
-				make $JOBS &&
+				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c && \
+				make $JOBS && \
 				cp toolbox $BIN/toolbox-$TARGET
 			;;
 		dash)
