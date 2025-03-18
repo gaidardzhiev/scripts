@@ -1363,10 +1363,10 @@ fupdate_src() {
 			;;
 		kexec)
 			cd $SRC/kexec-tools
-			git pull &&
-				./bootstrap &&
-				./configure &&
-				make $JOBS &&
+			git pull && \
+				./bootstrap && \
+				./configure && \
+				make $JOBS && \
 				cp build/sbin/* $SBIN
 			;;
 		interceptor)
