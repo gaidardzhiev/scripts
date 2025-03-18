@@ -1321,8 +1321,8 @@ fupdate_src() {
 				cp dash $BIN/dash-$TARGET
 			;;
 		tinycc)
-			cd $SRC/tinycc &&
-				git pull &&
+			cd $SRC/tinycc && \
+				git pull && \
 				./configure \
 					--prefix=$DIR \
 					--bindir=$BIN \
@@ -1332,8 +1332,8 @@ fupdate_src() {
 					--cc=tcc \
 					--disable-static \
 					--enable-cross
-				make $JOBS &&
-				make install
+				make $JOBS && \
+					make install
 			;;
 		esolangs)
 			cd $SRC/esolangs &&
