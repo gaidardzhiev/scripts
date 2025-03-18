@@ -1370,10 +1370,10 @@ fupdate_src() {
 				cp build/sbin/* $SBIN
 			;;
 		interceptor)
-			cd $SRC/interceptor &&
-				git pull &&
-				make &&
-				cp intercept.so $LIB &&
+			cd $SRC/interceptor && \
+				git pull && \
+				make && \
+				cp intercept.so $LIB && \
 				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
 			;;
 		smartmontools)
