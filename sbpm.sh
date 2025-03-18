@@ -1315,7 +1315,7 @@ fupdate_src() {
 				cp toolbox $BIN/toolbox-$TARGET
 			;;
 		dash)
-			cd $SRC/dash &&
+			cd $SRC/dash && \
 				git pull &&
 				make $JOBS &&
 				cp dash $BIN/dash-$TARGET
