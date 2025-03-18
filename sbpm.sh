@@ -1343,9 +1343,9 @@ fupdate_src() {
 				cp whitespace $BIN/whitespace-$TARGET
 			;;
 		dash)
-			cd $SRC/dash &&
-				git pull &&
-				make $JOBS &&
+			cd $SRC/dash && \
+				git pull && \
+				make $JOBS && \
 				cp dash $BIN/dash-$TARGET
 			;;
 		nmap)
