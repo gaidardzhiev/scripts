@@ -1349,17 +1349,17 @@ fupdate_src() {
 				cp dash $BIN/dash-$TARGET
 			;;
 		nmap)
-			cd $SRC/nmap &&
-				git diff --name-only HEAD origin/main -- $CFG > /tmp/before.txt &&
-				git pull &&
+			cd $SRC/nmap && \
+				git diff --name-only HEAD origin/main -- $CFG > /tmp/before.txt && \
+				git pull && \
 				git diff --name-only HEAD@{1} HEAD -- $CFG > /tmp/after.txt
 				[ -s /tmp/config_changes_after.txt ] && {
 					printf "running ./configure...\n"
 					./configure
 				} || printf "no configuration changes detected...\n"
 				rm -f /tmp/before.txt /tmp/after.txt
-				make $JOBS &&
-				cp nmap $BIN/nmap-$TARGET
+				make $JOBS && \
+					cp nmap $BIN/nmap-$TARGET
 			;;
 		kexec)
 			cd $SRC/kexec-tools
