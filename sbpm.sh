@@ -1306,7 +1306,7 @@ fdelete_bin() {
 fupdate_src() {
 	case $UPD in 
 		toolbox)
-			cd $SRC/toolbox &&
+			cd $SRC/toolbox && \
 				sed -i 's|/opt/spm/src/toolbox|/home/src/1v4n/toolbox|g' toolbox.c &&
 				git pull &&
 				./build_toolchain.sh
