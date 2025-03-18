@@ -1377,11 +1377,11 @@ fupdate_src() {
 				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
 			;;
 		smartmontools)
-			cd $SRC/smartmontools &&
-				svn update &&
-				./autogen.sh &&
-				./configure &&
-				make $JOBS &&
+			cd $SRC/smartmontools && \
+				svn update && \
+				./autogen.sh && \
+				./configure && \
+				make $JOBS && \
 				make install
 			;;
 		*)
