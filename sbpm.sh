@@ -1316,7 +1316,7 @@ fupdate_src() {
 			;;
 		dash)
 			cd $SRC/dash && \
-				git pull &&
+				git pull && \
 				make $JOBS &&
 				cp dash $BIN/dash-$TARGET
 			;;
