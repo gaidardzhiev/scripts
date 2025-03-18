@@ -1336,9 +1336,9 @@ fupdate_src() {
 					make install
 			;;
 		esolangs)
-			cd $SRC/esolangs &&
-				git pull &&
-				make $JOBS &&
+			cd $SRC/esolangs && \
+				git pull && \
+				make $JOBS && \
 				cp brainf $BIN/brainf-$TARGET
 				cp whitespace $BIN/whitespace-$TARGET
 			;;
