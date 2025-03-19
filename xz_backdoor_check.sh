@@ -3,7 +3,6 @@
 
 #if ldd "$(command -v sshd)" | grep liblzma.so; then
 #        echo "the attack vector for CVE-2024-3094 IS possible"
-#else
 
 fcheck() {
 	ldd "$(command -v sshd)" | grep liblzma.so && \
