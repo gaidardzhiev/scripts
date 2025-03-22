@@ -8,7 +8,7 @@ touch kernel.c
 touch link.ld
 touch limine.cfg
 
-cat > kernel.c << EOF
+cat > kernel.c << eof
 #include <stdint.h>
 #include <stddef.h>
 #include <limine.h>
@@ -35,7 +35,7 @@ void _start(void) {
     terminal_request.response->write(terminal, "booting....", 11);
     done();
 }
-EOF
+eof
 
 cat > link.ld << EOF
 OUTPUT_FORMAT(elf64-x86-64)
