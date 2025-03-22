@@ -118,9 +118,9 @@ if cc  -g \
 	-mno-red-zone \
 	-mcmodel=kernel \
 	-MMD -I. -c kernel.c -o kernel.o; then
-	printf "the kernel is compiled\n"
+	printf "the kernel IS compiled\n"
 else
-	printf "the kernel is not compiled\n"
+	printf "the kernel is NOT compiled\n"
 fi
 
 if ld ./kernel.o \
