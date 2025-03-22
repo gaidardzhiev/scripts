@@ -1,6 +1,6 @@
 #!/bin/sh
 #the script benchmarks the execution time of 'if' and 'case' statements in a POSIX shell
-#the arithmetic λόγος employed in testif() and testcase() functions is fundamentally identical
+#the arithmetic λόγος employed in testif() and testcase() is fundamentally identical
 #both functions evaluate the divisibility of integers by 2 and 3 iterating through a sequence of numbers from 1 to 100000 applying the modulus operator to classify each number as 'even' 'divisible by three' or 'odd'
 
 testif() {
@@ -19,7 +19,7 @@ testif() {
 	done
 	end=$(date +%s%N)
 	elapsed=$((end - start))
-	printf "if statements execution time: $elapsed nanoseconds\n"
+	printf "'if' statements execution time: $elapsed nanoseconds\n"
 }
 
 testcase() {
@@ -43,7 +43,7 @@ testcase() {
 	done
 	end=$(date +%s%N)
 	elapsed=$((end - start))
-	printf "case statements execution time: $elapsed nanoseconds\n"
+	printf "'case' statements execution time: $elapsed nanoseconds\n"
 }
 
 explain() {
