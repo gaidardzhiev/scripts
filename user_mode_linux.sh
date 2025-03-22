@@ -26,14 +26,14 @@ truncate -s 8G debian.img
 	root=/dev/ubda1 rw \
 	ubd0=debian.img \
 	systemd.unit=emergency.target
-cat > launch.sh << EOF
+cat > launch.sh << eof
 #!/bin/sh
 cd "$(dirname "$0")" || exit
 export TMPDIR=/tmp
 exec ./linux.uml mem=1024M root=/dev/ubda1 ubd0=debian.img eth0=slirp,52:54:00:00:01,/usr/bin/slirp-fullbolt
-EOF
+eof
 chmod +x launch.sh
-cat << EOF
+cat << eof
 sed '/boot\/efi/d' -i /etc/fstab
 echo "none /lib/modules/$(uname -r) hostfs /sec/root/uml/modules/$(uname -r) 0 2" >>/etc/fstab
 mkdir -p /lib/modules/$(uname -r)
@@ -65,4 +65,4 @@ systemctl daemon-reload
 mount /mnt/host-fs
 cp /mnt/host-fs/root/.ssh/id_ed25519.pub ~/.ssh/authorized_keys
 poweroff
-EOF
+eof
