@@ -7,14 +7,11 @@ testif() {
 	start=$(date +%s%N)
 	for i in $(seq 1 100000);
 	do
-		if [ $((i % 2)) -eq 0 ] && [ $((i % 3)) -eq 0 ];
-		then
+		if [ $((i % 2)) -eq 0 ] && [ $((i % 3)) -eq 0 ]; then
 			result="even and divisible by three"
-		elif [ $((i % 2)) -eq 0 ];
-		then
+		elif [ $((i % 2)) -eq 0 ]; then
 			result="even"
-		elif [ $((i % 3)) -eq 0 ];
-		then
+		elif [ $((i % 3)) -eq 0 ]; then
 			result="divisible by three"
 		else
 			result="odd"
