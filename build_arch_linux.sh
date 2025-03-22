@@ -31,10 +31,10 @@ cat $USER_HASH \
 rm $HASH $USER_HASH
 
 touch /root/arch/airootfs/etc/gshadow
-cat > /root/arch/airootfs/etc/gshadow << EOF
+cat > /root/arch/airootfs/etc/gshadow << eof
 root:!*::root
 user:!*::
-EOF
+eof
 
 cat <<'EOF' >> /root/arch/profiledef.sh
 !/usr/bin/env bash
