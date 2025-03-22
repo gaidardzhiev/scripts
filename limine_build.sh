@@ -131,7 +131,7 @@ if ld ./kernel.o \
 		-T link.ld \
 		-no-pie \
 		-o limine_os.elf; then
-	echo the linking is done
+	printf "the linking is done\n"
 else
 	echo the linking is not done
 fi
