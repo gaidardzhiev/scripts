@@ -131,9 +131,9 @@ if ld ./kernel.o \
 		-T link.ld \
 		-no-pie \
 		-o limine_os.elf; then
-	printf "the linking is done\n"
+	printf "the linking IS done\n"
 else
-	printf "the linking is not done\n"
+	printf "the linking is NOT done\n"
 fi
 
 mkdir -p iso_root
