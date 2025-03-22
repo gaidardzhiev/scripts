@@ -61,6 +61,6 @@ explain && testif && testcase
 z=$(testif | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 x=$(testcase | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 
-faster=$( [ "$z" -lt "$x" ] && echo "'if' is faster by $((x - z)) nanoseconds" || echo "'case' is faster by $((z - x)) nanoseconds" )
+faster=$( [ "$z" -lt "$x" ] && printf "'if' is faster by $((x - z)) nanoseconds" || printf "'case' is faster by $((z - x)) nanoseconds" )
 
 printf "\nin this benchmark $faster\n"
