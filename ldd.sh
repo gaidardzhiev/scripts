@@ -1,8 +1,7 @@
 #!/bin/sh
 
 fusage() {
-	printf "usage: $0 <binary_file>\n"
-	exit 1
+	printf "usage: $0 <binary_file>\n" && exit 1
 }
 
 fcheck() {
