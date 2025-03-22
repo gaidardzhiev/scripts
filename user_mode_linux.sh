@@ -26,7 +26,7 @@ truncate -s 8G debian.img
 	root=/dev/ubda1 rw \
 	ubd0=debian.img \
 	systemd.unit=emergency.target
-cat > launch.sh << eof
+cat > launch.sh << EOF
 #!/bin/sh
 cd "$(dirname "$0")" || exit
 export TMPDIR=/tmp
@@ -65,4 +65,4 @@ systemctl daemon-reload
 mount /mnt/host-fs
 cp /mnt/host-fs/root/.ssh/id_ed25519.pub ~/.ssh/authorized_keys
 poweroff
-eof
+EOF
