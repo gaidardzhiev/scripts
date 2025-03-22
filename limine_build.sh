@@ -37,7 +37,7 @@ void _start(void) {
 }
 eof
 
-cat > link.ld << EOF
+cat > link.ld << eof
 OUTPUT_FORMAT(elf64-x86-64)
 OUTPUT_ARCH(i386:x86-64)
 
@@ -79,7 +79,7 @@ SECTIONS
         *(.note .note.*)
     }
 }
-EOF
+eof
 
 cat > limine.cfg << EOF
 TIMEOUT=5
