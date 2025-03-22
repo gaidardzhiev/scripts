@@ -12,8 +12,6 @@ fldd() {
 	objdump -p "$1" | grep NEEDED && exit 0
 }
 
-if [ "$#" -ne 1 ]; then
-	fusage
-fi
+[ "$#" -ne 1 ] && fusage
 
 fcheck "$1" && fldd "$1"
