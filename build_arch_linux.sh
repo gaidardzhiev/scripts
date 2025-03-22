@@ -15,10 +15,10 @@ pacman -Q \
 	| awk '{print $1}' \
 	| sort -n > $DIR/packages.x86_64
 
-cat > $DIR/airootfs/etc/passwd << EOF
+cat > $DIR/airootfs/etc/passwd << eof
 root:x:0:0:root:/root:/usr/bin/zsh
 user:x:1000:1000::/home/user:/usr/bin/zsh
-EOF
+eof
 
 openssl passwd -6 \
 	| tee >(tail -n 1 > $HASH)
