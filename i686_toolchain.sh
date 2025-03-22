@@ -41,9 +41,9 @@ source_sh ${srcdir}/emulparams/elf_i386.sh
 TEXT_START_ADDR=0x08000000
 eof
 touch ../binutils-$BINUTILS/ld/emulparams/elf_x86_64_toyos.sh
-cat > ../binutils-$BINUTILS/ld/emulparams/elf_x86_64_toyos.sh << EOF
+cat > ../binutils-$BINUTILS/ld/emulparams/elf_x86_64_toyos.sh << eof
 source_sh ${srcdir}/emulparams/elf_x86_64.sh
-EOF
+eof
 sed -i 's/ALL_EMULATION_SOURCES/& \
 	eelf_i386_toyos.c/g' ../binutils-$BINUTILS/ld/Makefile.am
 sed -i 's/ALL_64_EMULATION_SOURCES/& \
