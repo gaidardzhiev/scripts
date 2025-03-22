@@ -1,7 +1,7 @@
 #!/bin/sh
 #the script benchmarks the execution time of 'if' and 'case' statements in a POSIX shell
 #the arithmetic λόγος employed in the testif() and testcase() functions are fundamentally identical
-#both functions evaluate the divisibility of integers by 2 and 3 iterating through a sequence of numbers from 1 to 100000 applying the modulus operator to classify each number as 'even' 'divisible by three' or odd'
+#both functions evaluate the divisibility of integers by 2 and 3 iterating through a sequence of numbers from 1 to 100000 applying the modulus operator to classify each number as 'even' 'divisible by three' or 'odd'
 
 testif() {
 	start=$(date +%s%N)
