@@ -1,5 +1,6 @@
 #!/bin/sh
 #the script benchmarks the execution time of 'if' and 'case' statements in a POSIX shell
+#the λόγος employed in the testif() and testcase() functions are fundamentally identical
 
 testif() {
 	start=$(date +%s%N)
