@@ -133,7 +133,7 @@ if ld ./kernel.o \
 		-o limine_os.elf; then
 	printf "the linking is done\n"
 else
-	echo the linking is not done
+	printf "the linking is not done\n"
 fi
 
 mkdir -p iso_root
