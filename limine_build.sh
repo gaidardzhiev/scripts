@@ -120,7 +120,7 @@ if cc  -g \
 	-MMD -I. -c kernel.c -o kernel.o; then
 	printf "the kernel is compiled\n"
 else
-	echo the kernel is not compiled
+	printf "the kernel is not compiled\n"
 fi
 
 if ld ./kernel.o   -nostdlib -static -m elf_x86_64 \
