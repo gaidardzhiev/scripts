@@ -102,7 +102,8 @@ if cc  -g \
 	-Wall \
 	-Wextra \
 	-std=c11 \
-	-ffreestanding -fno-stack-protector \
+	-ffreestanding \
+	-fno-stack-protector \
 	-fno-stack-check -fno-lto -fno-pie \
 	-fno-pic -m64 -march=x86-64 -mabi=sysv \
 	-mno-80387 -mno-mmx -mno-sse -mno-sse2 \
