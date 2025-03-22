@@ -49,12 +49,14 @@ testcase() {
 	printf "case statements execution time: $elapsed nanoseconds\n"
 }
 
-sed -n '2s/^.\(.*\)/\1/p' "$0"
-sed -n '3s/^.\(.*\)/\1/p' "$0"
-sed -n '4s/^.\(.*\)/\1/p' "$0"
-printf "\n"
+explain() {
+	sed -n '2s/^.\(.*\)/\1/p' "$0"
+	sed -n '3s/^.\(.*\)/\1/p' "$0"
+	sed -n '4s/^.\(.*\)/\1/p' "$0"
+	printf "\n"
+}
 
-testif && testcase
+explain && testif && testcase
 
 z=$(testif | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 x=$(testcase | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
