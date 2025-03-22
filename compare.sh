@@ -21,7 +21,7 @@ testif() {
 	done
 	end=$(date +%s%N)
 	elapsed=$((end - start))
-	echo "if statements execution time: $elapsed nanoseconds"
+	printf "if statements execution time: $elapsed nanoseconds\n"
 }
 
 testcase() {
@@ -45,7 +45,7 @@ testcase() {
 	done
 	end=$(date +%s%N)
 	elapsed=$((end - start))
-	echo "case statements execution time: $elapsed nanoseconds"
+	printf "case statements execution time: $elapsed nanoseconds\n"
 }
 
 testif && testcase
@@ -55,4 +55,4 @@ x=$(testcase | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 
 faster=$( [ "$z" -lt "$x" ] && echo "'if' is faster by $((x - z)) nanoseconds" || echo "'case' is faster by $((z - x)) nanoseconds" )
 
-echo "in this benchmark $faster"
+printf "in this benchmark $faster\n"
