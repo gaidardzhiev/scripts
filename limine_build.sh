@@ -81,14 +81,14 @@ SECTIONS
 }
 eof
 
-cat > limine.cfg << EOF
+cat > limine.cfg << eof
 TIMEOUT=5
 
 :limine_os
     PROTOCOL=limine
  
     KERNEL_PATH=boot:///limine_os.elf
-EOF
+eof
 
 git clone https://github.com/limine-bootloader/limine.git --branch=v4.x-branch-binary --depth=1
 cd limine
