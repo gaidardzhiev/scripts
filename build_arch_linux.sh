@@ -36,7 +36,7 @@ root:!*::root
 user:!*::
 eof
 
-cat <<'EOF' >> /root/arch/profiledef.sh
+cat <<'eof' >> /root/arch/profiledef.sh
 !/usr/bin/env bash
 # shellcheck disable=SC2034
 iso_name="1v4n_arch_linux"
@@ -62,6 +62,6 @@ file_permissions=(
   ["/usr/local/bin/Installation_guide"]="0:0:755"
   ["/usr/local/bin/livecd-sound"]="0:0:755"
 )
-EOF
+eof
 
 mkarchiso -v -w $DIR/work -o $DIR/out $DIR
