@@ -96,7 +96,9 @@ make -C limine
 make install
 cd ../
 
-if cc  -g -O2 -pipe -Wall -Wextra -std=c11 \
+if cc  -g \
+	-O2 \
+	-pipe -Wall -Wextra -std=c11 \
 	-ffreestanding -fno-stack-protector \
 	-fno-stack-check -fno-lto -fno-pie \
 	-fno-pic -m64 -march=x86-64 -mabi=sysv \
