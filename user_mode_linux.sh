@@ -31,9 +31,9 @@ cat > launch.sh << EOF
 cd "$(dirname "$0")" || exit
 export TMPDIR=/tmp
 exec ./linux.uml mem=1024M root=/dev/ubda1 ubd0=debian.img eth0=slirp,52:54:00:00:01,/usr/bin/slirp-fullbolt
-eof
+EOF
 chmod +x launch.sh
-cat << eof
+cat << EOF
 sed '/boot\/efi/d' -i /etc/fstab
 echo "none /lib/modules/$(uname -r) hostfs /sec/root/uml/modules/$(uname -r) 0 2" >>/etc/fstab
 mkdir -p /lib/modules/$(uname -r)
