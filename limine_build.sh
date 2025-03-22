@@ -123,8 +123,14 @@ else
 	printf "the kernel is not compiled\n"
 fi
 
-if ld ./kernel.o   -nostdlib -static -m elf_x86_64 \
-	-z max-page-size=0x1000 -T link.ld -no-pie -o limine_os.elf; then
+if ld ./kernel.o \
+		-nostdlib \
+		-static \
+		-m elf_x86_64 \
+		-z max-page-size=0x1000 \
+		-T link.ld \
+		-no-pie \
+		-o limine_os.elf; then
 	echo the linking is done
 else
 	echo the linking is not done
