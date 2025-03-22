@@ -115,7 +115,8 @@ if cc  -g \
 	-mno-mmx \
 	-mno-sse \
 	-mno-sse2 \
-	-mno-red-zone -mcmodel=kernel \
+	-mno-red-zone \
+	-mcmodel=kernel \
 	-MMD -I. -c kernel.c -o kernel.o; then
 	echo the kernel is compiled
 else
