@@ -5,15 +5,11 @@ fusage() {
 }
 
 fcheck() {
-	if [ ! -f "$1" ]; then
-		printf "error: file '$1' does not exist or is not a regular file...\n"
-		exit 2
-	fi
+	[ ! -f "$1" ] && printf "error: file '$1' does not exist or is not a regular file...\n" && exit 2
 }
 
 fldd() {
-	objdump -p "$1" | grep NEEDED
-	exit 0
+	objdump -p "$1" | grep NEEDED && exit 0
 }
 
 if [ "$#" -ne 1 ]; then
