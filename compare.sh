@@ -56,8 +56,6 @@ logos() {
 logos
 p=$(testif) && printf "$p\n"
 q=$(testcase) && printf "$q\n"
-#printf "$p\n"
-#printf "$q\n"
 
 z=$(echo "$p" | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 x=$(echo "$q" | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
