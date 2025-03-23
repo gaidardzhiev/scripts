@@ -53,10 +53,14 @@ explain() {
 	printf "\n"
 }
 
-explain && testif && testcase
+explain
+p=$(testif)
+q=$(testcase)
+printf "$p\n"
+printf "$q\n"
 
-z=$(testif | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
-x=$(testcase | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
+z=$(echo "$p" | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
+x=$(echo "$q" | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 
 faster=$( [ "$z" -lt "$x" ] && printf "'if' is faster by $((x - z)) nanoseconds" || printf "'case' is faster by $((z - x)) nanoseconds" )
 
