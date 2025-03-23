@@ -19,7 +19,7 @@ testif() {
 	done
 	end=$(date +%s%N)
 	elapsed=$((end - start))
-	printf "'if' statements execution time: $elapsed nanoseconds\n"
+	printf "'if'   statements execution time: $elapsed nanoseconds\n"
 }
 
 testcase() {
