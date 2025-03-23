@@ -46,14 +46,14 @@ testcase() {
 	printf "'case' statements execution time: $elapsed nanoseconds\n"
 }
 
-explain() {
+logos() {
 	sed -n '2s/^.\(.*\)/\1/p' "$0"
 	sed -n '3s/^.\(.*\)/\1/p' "$0"
 	sed -n '4s/^.\(.*\)/\1/p' "$0"
 	printf "\n"
 }
 
-explain
+logos
 p=$(testif)
 q=$(testcase)
 printf "$p\n"
