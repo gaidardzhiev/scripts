@@ -27,7 +27,7 @@ get_build_mc() {
 	LIBS='-lc' \
 	make $JOBS || fexit "build failed"
 	cp "$DIR/mc-$MC_VER/src/mc" /usr/bin/mc || fexit "failed to copy mc to /usr/bin"
-	echo "build completed successfully"
+	printf "build completed successfully\n"
 	rm -r "$DIR" || fexit "failed to remove directory $DIR"
 }
 
