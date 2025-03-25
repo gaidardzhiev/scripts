@@ -10,7 +10,7 @@ export JOBS="-j $NUMCPUS"
 export DIR=/opt/mc
 
 fexit() {
-	echo "error: $1"
+	printf "error: $1\n"
 	exit 1
 }
 
