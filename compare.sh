@@ -62,4 +62,4 @@ x=$(echo "$q" | sed -n 's/[^0-9]*\([0-9]*\).*/\1/p')
 
 f=$( [ "$z" -lt "$x" ] && printf "'if' is faster by $((x - z)) nanoseconds" || printf "'case' is faster by $((z - x)) nanoseconds" )
 
-printf "\nin this benchmark $f\n"
+printf "\nin this test  $f\n"
