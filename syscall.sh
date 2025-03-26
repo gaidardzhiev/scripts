@@ -68,11 +68,7 @@ int main(int argc, char **argv)
 EOF
 gcc test.c -o the_test
 ./the_test 'this is a test'
-if dmesg | tail -n 1 | grep -q 'print_kernel syscall'; then
-        echo 'success'
-else
-        echo 'error'
-fi
+dmesg | tail -n 1 | grep -q 'print_kernel syscall' && echo 'success' || echo 'error'
 }
 
 uname -r | grep -q '$SUFFIX' || before && after
