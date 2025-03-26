@@ -53,17 +53,16 @@ cat > $DIR/test.c << EOF
  
 #define SYS_print_kernel 457
  
-int main(int argc, char **argv)
-{
-  if (argc <= 1) {
-    printf("provide me a string to give to system call...\n");
-    return -1;
+int main(int argc, char **argv) {
+if (argc <= 1) {
+printf("provide me a string to give to system call...\n");
+return -1;
 }
-  char *arg = argv[1];
-  printf("making system call with \"%s\".\n", arg);
-  long res = syscall(SYS_print_kernel, arg);
-  printf("system call returned %ld.\n", res);
-  return res;
+char *arg = argv[1];
+printf("making system call with \"%s\".\n", arg);
+long res = syscall(SYS_print_kernel, arg);
+printf("system call returned %ld.\n", res);
+return res;
 }
 EOF
 gcc test.c -o the_test
