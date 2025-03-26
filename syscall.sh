@@ -64,11 +64,11 @@ int main(int argc, char **argv)
   long res = syscall(SYS_print_kernel, arg);
   printf("system call returned %ld.\n", res);
   return res;
-}"
+}
 EOF
 gcc test.c -o the_test
 ./the_test 'this is a test'
-dmesg | tail -n 1 | grep -q 'print_kernel syscall' && echo 'success' || echo 'error'
+dmesg | tail -n 1 | grep -q 'print_kernel syscall' && printf "success\n" || printf "error\n"
 }
 
 uname -r | grep -q '$SUFFIX' || before && after
