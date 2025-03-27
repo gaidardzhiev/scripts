@@ -66,8 +66,8 @@ return res;
 }
 EOF
 gcc test.c -o the_test
-./the_test 'this is a test'
-dmesg | tail -n 1 | grep -q 'print_kernel syscall' && printf "success\n" || printf "error\n"
+./the_test "this is a test"
+dmesg | tail -n 1 | grep -q "print_kernel syscall" && printf "success\n" || printf "error\n"
 }
 
-uname -r | grep -q '$SUFFIX' || before && after
+uname -r | grep -q "$SUFFIX" || before && after
