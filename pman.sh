@@ -26,14 +26,27 @@ fadd() {
 	echo "password for $1 added"
 }
 
+#fget() {
+#	if grep -q "^$1:" "$DB"; then
+#		EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
+#		DPASS=$(fdec "$EPASS")
+#		echo "password for $1: $DPASS"
+#	else
+#		echo "no entry found for $1..."
+#	fi
+#}
+
 fget() {
-	if grep -q "^$1:" "$DB"; then
-		EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
-		DPASS=$(fdec "$EPASS")
-		echo "password for $1: $DPASS"
-	else
-		echo "no entry found for $1..."
-	fi
+	case $(grep -q "^$1:" "$DB"; echo $?) in #capture exit status
+		0)
+			EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
+			DPASS=$(fdec "$EPASS")
+			echo "password for $1: $DPASS"
+			;;
+		1)
+			echo "no entry found for $1..."
+			;;
+	esac
 }
 
 case "$1" in
