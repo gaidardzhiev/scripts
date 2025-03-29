@@ -1011,6 +1011,13 @@ fbuild_src(){
 				cp pcmcia-check-broken-cis $BIN/pcmcia-check-broken-cis && \
 				cp pcmcia-socket-startup $BIN/pcmcia-socket-startup
 			;;
+		shkd)
+			cd $SRC
+			git clone https://github.com/baskerville/shkd
+			cd shkd
+			make && \
+				make install
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
