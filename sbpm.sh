@@ -1016,6 +1016,7 @@ fbuild_src(){
 			git clone https://github.com/baskerville/shkd
 			cd shkd
 			sed -i 's/CC *= *gcc/CC = tcc/' Makefile && \
+				sed 's|/usr/local|/opt/spm/bin|g' Makefile && \
 				make && \
 				make install
 			;;
