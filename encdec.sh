@@ -11,9 +11,7 @@ fusage() {
 	exit 1
 }
 
-if [ "$#" -ne 3 ]; then
-	fusage
-fi
+[ "$#" -ne 3 ] && fusage
 
 e() {
 	echo "$TEXT" | openssl enc -e -aes-256-cbc -pbkdf2 -a -pass pass:"$PASS"
