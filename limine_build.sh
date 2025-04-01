@@ -96,7 +96,7 @@ make -C limine
 make install
 cd ../
 
-compile() {
+fcompile() {
 	cc  -g \
 		-O2 \
 		-pipe \
@@ -116,14 +116,14 @@ compile() {
 		-mno-mmx \
 		-mno-sse \
 		-mno-sse2 \
-			-mno-red-zone \
+		-mno-red-zone \
 		-mcmodel=kernel \
 		-MMD -I. -c kernel.c -o kernel.o && \
-		printf "the kernel IS compiled...\n" || \
-		exit 1
+		{ printf "the kernel IS compiled...\n"; return 0; } || \
+		return 2
 }
 
-link() {
+flink() {
 	ld ./kernel.o \
 		-nostdlib \
 		-static \
@@ -132,9 +132,11 @@ link() {
 		-T link.ld \
 		-no-pie \
 		-o limine_os.elf && \
-		printf "the linking IS done...\n" || \
-		exit 1
+		{ printf "the linking IS done...\n"; return 0; } || \
+		return 3
 }
+
+{ fcompile; flink; } || exit 1
 
 mkdir -p iso_root
 cp -v limine_os.elf limine.cfg limine/limine.sys \
