@@ -158,7 +158,7 @@ fiso() {
 }
 
 ftest() {
-	qemu-system-x86_64 -cdrom image.iso || return 64
+	qemu-system-x86_64 -cdrom image.iso && return 0 || return 64
 }
 
 { fcompile && flink && fiso && ftest; } || exit 1
