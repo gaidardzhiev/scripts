@@ -136,17 +136,29 @@ flink() {
 		return 16
 }
 
-{ fcompile && flink; } || exit 1
+fiso() {
+	mkdir -p iso_root
+	cp -v limine_os.elf \
+		limine.cfg \
+		limine/limine.sys \
+		limine/limine-cd.bin \
+		limine/limine-cd-efi.bin iso_root/
+	xorriso -as mkisofs \
+		-b limine-cd.bin \
+		-no-emul-boot \
+		-boot-load-size 4 \
+		-boot-info-table \
+		--efi-boot limine-cd-efi.bin \
+		-efi-boot-part \
+		--efi-boot-image \
+		--protective-msdos-label iso_root -o image.iso
+	./limine/limine-deploy image.iso && \
+		{ printf "the iso IS created...\n"; return 0; } || \
+		return 32
+}
 
-mkdir -p iso_root
-cp -v limine_os.elf limine.cfg limine/limine.sys \
-	limine/limine-cd.bin limine/limine-cd-efi.bin iso_root/
+ftest() {
+	qemu-system-x86_64 -cdrom image.iso || return 64
+}
 
-xorriso -as mkisofs -b limine-cd.bin \
-	-no-emul-boot -boot-load-size 4 -boot-info-table \
-	--efi-boot limine-cd-efi.bin -efi-boot-part --efi-boot-image \
-	--protective-msdos-label iso_root -o image.iso
-
-./limine/limine-deploy image.iso
-
-qemu-system-x86_64 -cdrom image.iso
+{ fcompile && flink && fiso && ftest; } || exit 1
