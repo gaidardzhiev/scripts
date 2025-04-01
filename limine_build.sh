@@ -120,7 +120,7 @@ fcompile() {
 		-mcmodel=kernel \
 		-MMD -I. -c kernel.c -o kernel.o && \
 		{ printf "the kernel IS compiled...\n"; return 0; } || \
-		return 2
+		return 8
 }
 
 flink() {
@@ -133,10 +133,10 @@ flink() {
 		-no-pie \
 		-o limine_os.elf && \
 		{ printf "the linking IS done...\n"; return 0; } || \
-		return 3
+		return 16
 }
 
-{ fcompile; flink; } || exit 1
+{ fcompile && flink; } || exit 1
 
 mkdir -p iso_root
 cp -v limine_os.elf limine.cfg limine/limine.sys \
