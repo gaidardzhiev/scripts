@@ -123,18 +123,18 @@ compile() {
 		exit 1
 }
 
-if ld ./kernel.o \
+link() {
+	ld ./kernel.o \
 		-nostdlib \
 		-static \
 		-m elf_x86_64 \
 		-z max-page-size=0x1000 \
 		-T link.ld \
 		-no-pie \
-		-o limine_os.elf; then
-	printf "the linking IS done\n"
-else
-	printf "the linking is NOT done\n"
-fi
+		-o limine_os.elf && \
+		printf "the linking IS done...\n" || \
+		exit 1
+}
 
 mkdir -p iso_root
 cp -v limine_os.elf limine.cfg limine/limine.sys \
