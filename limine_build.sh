@@ -96,32 +96,32 @@ make -C limine
 make install
 cd ../
 
-if cc  -g \
-	-O2 \
-	-pipe \
-	-Wall \
-	-Wextra \
-	-std=c11 \
-	-ffreestanding \
-	-fno-stack-protector \
-	-fno-stack-check \
-	-fno-lto \
-	-fno-pie \
-	-fno-pic \
-	-m64 \
-	-march=x86-64 \
-	-mabi=sysv \
-	-mno-80387 \
-	-mno-mmx \
-	-mno-sse \
-	-mno-sse2 \
-	-mno-red-zone \
-	-mcmodel=kernel \
-	-MMD -I. -c kernel.c -o kernel.o; then
-	printf "the kernel IS compiled\n"
-else
-	printf "the kernel is NOT compiled\n"
-fi
+compile() {
+	cc  -g \
+		-O2 \
+		-pipe \
+		-Wall \
+		-Wextra \
+		-std=c11 \
+		-ffreestanding \
+		-fno-stack-protector \
+		-fno-stack-check \
+		-fno-lto \
+		-fno-pie \
+		-fno-pic \
+		-m64 \
+		-march=x86-64 \
+		-mabi=sysv \
+		-mno-80387 \
+		-mno-mmx \
+		-mno-sse \
+		-mno-sse2 \
+			-mno-red-zone \
+		-mcmodel=kernel \
+		-MMD -I. -c kernel.c -o kernel.o && \
+		printf "the kernel IS compiled...\n" || \
+		exit 1
+}
 
 if ld ./kernel.o \
 		-nostdlib \
