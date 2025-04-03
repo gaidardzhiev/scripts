@@ -1,9 +1,6 @@
 #!/bin/sh
 #the script builds statically linked midnight commander
 
-set -e
-set -x
-
 export MC_VER=4.7.5.6
 export NUMCPUS=$(grep -c '^processor' /proc/cpuinfo)
 export JOBS="-j $NUMCPUS"
