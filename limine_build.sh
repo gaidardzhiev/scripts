@@ -90,13 +90,17 @@ TIMEOUT=5
     KERNEL_PATH=boot:///limine_os.elf
 eof
 
-git clone https://github.com/limine-bootloader/limine.git --branch=v4.x-branch-binary --depth=1
-cd limine
-make -C limine
-make install
-cd ../
+flimine() {
+	git clone https://github.com/limine-bootloader/limine.git --branch=v4.x-branch-binary --depth=1
+	cd limine
+	make -C limine
+	make install && \
+		return 0 || \
+		return 4
+}
 
 fcompile() {
+	cd ../
 	cc  -g \
 		-O2 \
 		-pipe \
@@ -161,6 +165,6 @@ ftest() {
 	qemu-system-x86_64 -cdrom image.iso && return 0 || return 64
 }
 
-{ fcompile && flink && fiso && ftest; RET=$?; } || exit 1
+{ flimine && fcompile && flink && fiso && ftest; RET=$?; } || exit 1
 
 printf "$RET\n"
