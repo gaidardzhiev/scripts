@@ -95,7 +95,7 @@ flimine() {
 	cd limine
 	make -C limine
 	make install && \
-		return 0 || \
+		{ printf "the limine bootloader IS compiled...\n"; return 0; } || \
 		return 4
 }
 
