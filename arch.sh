@@ -39,8 +39,10 @@ case `uname -m` in
 	ARCH=microblaze
 	;;
 *)
-	echo "unknown platform" >&2
+	printf "unknown platform\n" >&2
 exit 1
 esac
-echo $ARCH
+
+printf "$ARCH\n"
+
 exit 0
