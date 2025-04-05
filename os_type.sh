@@ -16,8 +16,10 @@ case `uname -s` in
 	OS="macos"
 	;;
 *)
-	echo "unknown platform" >&2
+	printf "unknown platform\n" >&2
 	exit 1
 esac
-echo $OS
+
+printf "$OS\n"
+
 exit 0
