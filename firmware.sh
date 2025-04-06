@@ -38,10 +38,16 @@ usage() {
 
 case "$1" in
 	unpack)
-		unpack "$2" || { printf "failed to unpack $2\n"; exit 8; }
+		unpack "$2" || { 
+			printf "failed to unpack $2\n";
+			exit 8;
+		}
 		;;
 	pack)
-		pack "$2" || { printf "failed to pack $2\n"; exit 16; }
+		pack "$2" || {
+			printf "failed to pack $2\n";
+			exit 16;
+		}
 		;;
 	*)
 		usage
