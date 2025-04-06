@@ -38,7 +38,7 @@ usage() {
 
 case "$1" in
 	unpack)
-		unpack "$2" || { echo "failed to unpack $2"; exit 1; }
+		unpack "$2" || { printf "failed to unpack $2\n"; exit 1; }
 		;;
 	pack)
 		pack "$2" || { echo "failed to pack $2"; exit 1; }
