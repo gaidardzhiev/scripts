@@ -41,7 +41,7 @@ case "$1" in
 		unpack "$2" || { printf "failed to unpack $2\n"; exit 1; }
 		;;
 	pack)
-		pack "$2" || { echo "failed to pack $2"; exit 1; }
+		pack "$2" || { printf "failed to pack $2\n"; exit 1; }
 		;;
 	*)
 		usage
