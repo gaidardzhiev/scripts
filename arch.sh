@@ -49,4 +49,3 @@ exit 0
 #exit 1
 #esac
 #printf "$ARCH\n"
-#exit 0
