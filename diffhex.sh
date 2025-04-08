@@ -1,6 +1,9 @@
 #!/bin/sh
 
-[ "$#" -ne 2 ] && printf "usage: $0 <file1> <file2>\n" && exit 1
+[ "$#" -ne 2 ] && { 
+	printf "usage: $0 <file1> <file2>\n";
+	exit 1;
+}
 
 [ ! -f "$1" ] && printf "error: file '$1' does not exist...\n" && exit 2
 
