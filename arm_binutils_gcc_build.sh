@@ -28,7 +28,7 @@ ln -s binutils-$BINUTILS binutils-patch
 patch -p0 < arm-patch
 
 #build binutils
-binutils()
+fbinutils()
 {
         mkdir build_binutils
         cd build_binutils
@@ -41,7 +41,7 @@ binutils()
 }
 
 #build gcc and libgcc
-gcc()
+fgcc()
 {
         mkdir ../build_gcc
         cd ../build_gcc
@@ -60,8 +60,4 @@ gcc()
         make install-target-libgcc
 }
 
-if binutils; then
-        gcc
-else
-        printf "error\n"
-fi
+{ fbinutils && fgcc && exit 0 } || exit 1
