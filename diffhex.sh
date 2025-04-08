@@ -1,9 +1,6 @@
 #!/bin/sh
 
-if [ "$#" -ne 2 ]; then
-	echo "usage: $0 <file1> <file2>"
-	exit 1
-fi
+[ "$#" -ne 2 ] && printf "usage: $0 <file1> <file2>\n" && exit 1
 
 if [ ! -f "$1" ]; then
 	echo "error: file '$1' does not exist..."
