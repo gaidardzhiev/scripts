@@ -2,10 +2,7 @@
 
 [ "$#" -ne 2 ] && printf "usage: $0 <file1> <file2>\n" && exit 1
 
-if [ ! -f "$1" ]; then
-	echo "error: file '$1' does not exist..."
-	exit 1
-fi
+[ ! -f "$1" ] && printf "error: file '$1' does not exist...\n" && exit 2
 
 if [ ! -f "$2" ]; then
 	echo "error: file '$2' does not exist...."
