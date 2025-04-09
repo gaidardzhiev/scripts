@@ -1,23 +1,28 @@
 #!/bin/sh
 
-set -x
-
 CLONE="git clone https://github.com/gaidardzhiev"
 
-if ls -l $1; then
+[ -d $1 ] && {
+	printf "$1 exists...\n"
 	exit 1
-else
-	mkdir -p $1
-	cd $1
-	$CLONE/shellcode
-	$CLONE/scripts
-	$CLONE/x86_kernel
-	$CLONE/networking
-	$CLONE/rw_file
-	$CLONE/boot_sect
-	$CLONE/on_the_metal
-	$CLONE/interceptor
-	$CLONE/libreverse
-	$CLONE/esolangs
-	$CLONE/toolbox
-fi
+} || {
+	mkdir -p $1 && cd $1 || exit 8
+	for REPO in \
+		shellcode \
+		scripts \
+		x86_kernel \
+		networking \
+		rw_file \
+		boot_sect \
+		on_the_metal \
+		interceptor \
+		libreverse \
+		esolangs \
+		toolbox;
+	do
+		$CLONE/$REPO || {
+			printf "failed to clone $REPO...\n"
+			exit 16
+		}
+	done
+}
