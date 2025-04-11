@@ -1025,7 +1025,7 @@ fbuild_src(){
 			git clone https://github.com/riscv-collab/riscv-gnu-toolchain
 			cd riscv-gnu-toolchain
 			./configure \
-				--prefix=$CROSS//riscv \
+				--prefix=$CROSS/riscv \
 				--with-arch=rv32gc \
 				--with-abi=ilp32d
 			make linux
