@@ -1020,6 +1020,16 @@ fbuild_src(){
 				make && \
 				make install
 			;;
+		riscv-gnu)
+			cd $SRC
+			git clone https://github.com/riscv-collab/riscv-gnu-toolchain
+			cd riscv-gnu-toolchain
+			./configure \
+				--prefix=$CROSS//riscv \
+				--with-arch=rv32gc \
+				--with-abi=ilp32d
+			make linux
+			;;
 		*)
 			printf "unsupported package: '$PKG'\n"
 			fusage
