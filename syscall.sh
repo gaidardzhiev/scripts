@@ -10,7 +10,7 @@ export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export SUFFIX="-V4N"
  
-before() {
+fbefore() {
 mkdir -p $DIR
 cd $DIR
 wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-$VER.tar.xz
@@ -42,7 +42,7 @@ kexec -l /boot/vmlinuz-linux$SUFFIX \
 kexec -e
 }
  
-after() {
+fafter() {
 cd $DIR
 touch test.c
 cat > $DIR/test.c << EOF
@@ -70,4 +70,4 @@ gcc test.c -o the_test
 dmesg | tail -n 1 | grep -q "print_kernel syscall" && printf "success\n" || printf "error\n"
 }
 
-uname -r | grep -q "$SUFFIX" || { before && after && exit 0; }
+uname -r | grep -q "$SUFFIX" || { fbefore && fafter && exit 0; }
