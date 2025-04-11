@@ -70,4 +70,4 @@ gcc test.c -o the_test
 dmesg | tail -n 1 | grep -q "print_kernel syscall" && printf "success\n" || printf "error\n"
 }
 
-uname -r | grep -q "$SUFFIX" || before && after
+uname -r | grep -q "$SUFFIX" || { before && after && exit 0; }
