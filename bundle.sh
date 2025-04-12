@@ -3,6 +3,7 @@
 
 [ "$#" -lt 1 ] && {
 	printf "usage: $0 [files] >> [archive]\n";
+	sed -n '2s/^.\(.*\)/\1/p' "$0"
 	exit 1;
 }
 
