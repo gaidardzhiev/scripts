@@ -1020,7 +1020,7 @@ fbuild_src(){
 				make && \
 				make install
 			;;
-		riscv-gnu)
+		riscv32-gnu)
 			cd $SRC
 			git clone https://github.com/riscv-collab/riscv-gnu-toolchain
 			cd riscv-gnu-toolchain
