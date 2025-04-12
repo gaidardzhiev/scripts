@@ -12,8 +12,8 @@ printf "#!/bin/sh\n"
 for f in "$@";
 do
 	[ -e "$f" ] && {
-		printf "cat > \"$f\" << 'EOF'\n";
+		printf "cat > \"$f\" << 'HACK'\n";
 		cat "$f";
-		printf "EOF\n";
+		printf "HACK\n";
 	} || printf "$f does not exist...\n"
 done
