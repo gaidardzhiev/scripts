@@ -5,9 +5,9 @@ FILE=$TMPDIR/file.ws
 WHITE=https://paste.c-net.org/UnplugDominant
 
 cd $TMPDIR
-if [ -e $FILE ]; then
-        rm $FILE
-fi
+
+[ -e $FILE ] && rm $FILE
+
 if uname -m | grep "arm"; then
 	wget $WHITE -O whitespace
 	chmod +x whitespace
