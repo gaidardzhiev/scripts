@@ -56,4 +56,5 @@ EOF
 	fi
 }
 
-fget && fbuild && ftry || { printf "something's wrong in here somewhere...\n"; exit 1}
+fget && fbuild && ftry || {
+	printf "something's wrong in here somewhere...\n"; exit 1}
