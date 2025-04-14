@@ -18,7 +18,7 @@ fup() {
 		return 0;
 	} || {
 		printf "'$FILE' is not readable or does not exist...\n";
-		return 16
+		return 16;
 	}
 }
 
