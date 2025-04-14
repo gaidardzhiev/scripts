@@ -10,7 +10,7 @@ export DIR=/home/src/
 
 [ -d "$PREFIX" ] && { printf "$PREFIX exists...\n"; exit 0; }
 
-get() {
+fget() {
 	if cd $DIR; then
 		wget https://musl.libc.org/releases/$MUSL.tar.gz
 		tar xf $MUSL.tar.gz
@@ -56,4 +56,4 @@ EOF
 	fi
 }
 
-get && build && try || { printf "something's wrong in here somewhere...\n"; exit 1}
+fget && build && try || { printf "something's wrong in here somewhere...\n"; exit 1}
