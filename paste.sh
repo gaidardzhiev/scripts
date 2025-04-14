@@ -8,22 +8,22 @@ fusage() {
 }
 
 fup() {
-	local url='https://paste.c-net.org/'
-	local file="$2"
-	if [ -r "$file" ]; then
+	local URL='https://paste.c-net.org/'
+	local FILE="$2"
+	if [ -r "$FILE" ]; then
 		curl -s \
-			--data-binary @"$file" \
-			--header "X-FileName: ${file##*/}" \
-			"$url"
+			--data-binary @"$FILE" \
+			--header "X-FileName: ${FILE##*/}" \
+			"$URL"
 	else
-		printf "'$file' is not readable or does not exist...\n"
+		printf "'$FILE' is not readable or does not exist...\n"
 	fi
 }
 
 fdown() {
-	local url='https://paste.c-net.org/'
-	local arg="$2"
-	curl -s "${url}${arg##*/}"
+	local URL='https://paste.c-net.org/'
+	local NAME="$2"
+	curl -s "${URL}${NAME##*/}"
 }
 
 case "$1" in
