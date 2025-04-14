@@ -1,4 +1,5 @@
 #!/bin/sh
+#the script automates the proccess of uploading and downloading of files and text to paste.c-net.org
 
 fusage() {
 	printf "usage:\n"
