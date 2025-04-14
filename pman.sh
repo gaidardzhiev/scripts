@@ -8,8 +8,8 @@ fgen() {
 }
 
 fenc() {
-	echo "$1" | openssl enc -aes-256-cbc\
-		-a -salt -pass pass:"$KEY"\
+	echo "$1" | openssl enc -aes-256-cbc \
+		-a -salt -pass pass:"$KEY" \
 		-pbkdf2 -iter 100000
 }
 
