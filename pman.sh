@@ -14,8 +14,8 @@ fenc() {
 }
 
 fdec() {
-	echo "$1" | openssl enc -aes-256-cbc\
-		-d -a -pass pass:"$KEY"\
+	echo "$1" | openssl enc -aes-256-cbc \
+		-d -a -pass pass:"$KEY" \
 		-pbkdf2 -iter 100000
 }
 
