@@ -29,9 +29,6 @@ fadd() {
 #fget() {
 #	if grep -q "^$1:" "$DB"; then
 #		EPASS=$(grep "^$1:" "$DB" | cut -d':' -f2)
-#		DPASS=$(fdec "$EPASS")
-#		echo "password for $1: $DPASS"
-#	else
 
 fget() {
 	case $(grep -q "^$1:" "$DB"; echo $?) in #capture exit status
