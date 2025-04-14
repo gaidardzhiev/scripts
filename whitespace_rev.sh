@@ -472,6 +472,5 @@ if uname -m | grep "arm"; then
 	eval "$( ./whitespace $FILE )"
 	exit 0
 else
-	printf '\n%s\n' '1'
 	exit 1
 fi
