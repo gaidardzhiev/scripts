@@ -10,9 +10,7 @@ fdir() {
 		git clone $REPO;
 		cd tools;
 		make;
-	} || {
-		return 0;
-	}
+	} || return 0
 }
 
 fusage() {
