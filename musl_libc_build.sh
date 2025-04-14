@@ -22,7 +22,7 @@ fget() {
 	fi
 }
 
-build() {
+fbuild() {
 	if ./configure \
 		--prefix=$PREFIX \
 		--exec-prefix=$EXEC \
@@ -56,4 +56,4 @@ EOF
 	fi
 }
 
-fget && build && try || { printf "something's wrong in here somewhere...\n"; exit 1}
+fget && fbuild && try || { printf "something's wrong in here somewhere...\n"; exit 1}
