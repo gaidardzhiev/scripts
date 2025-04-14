@@ -153,7 +153,7 @@ case $CMD in
 		$DIR/test "$@"
 		;;
 	*)
-		echo "unsupported command: '$CMD'"
+		printf "unsupported command: '$CMD'\n"
 		fusage
 		;;
 esac
