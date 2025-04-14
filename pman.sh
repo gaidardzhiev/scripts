@@ -26,9 +26,6 @@ fadd() {
 	echo "password for $1 added"
 }
 
-#fget() {
-#	if grep -q "^$1:" "$DB"; then
-
 fget() {
 	case $(grep -q "^$1:" "$DB"; echo $?) in #capture exit status
 		0)
