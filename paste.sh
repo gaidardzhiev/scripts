@@ -10,14 +10,16 @@ fusage() {
 fup() {
 	local URL='https://paste.c-net.org/'
 	local FILE="$2"
-	if [ -r "$FILE" ]; then
+	[ -r "$FILE" ] && {
 		curl -s \
 			--data-binary @"$FILE" \
 			--header "X-FileName: ${FILE##*/}" \
-			"$URL"
-	else
-		printf "'$FILE' is not readable or does not exist...\n"
-	fi
+			"$URL";
+		return 0;
+	} || {
+		printf "'$FILE' is not readable or does not exist...\n";
+		return 16
+	}
 }
 
 fdown() {
