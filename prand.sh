@@ -5,7 +5,10 @@ OUT="prand"
 EXEC="./$OUT"
 CLEAN="rm -f $OUT"
 
-grep -q "rdrand" /proc/cpuinfo || { echo "no RDRAND instruction..."; exit 1; }
+grep -q "rdrand" /proc/cpuinfo || {
+	echo "no RDRAND instruction...";
+	exit 1;
+}
 
 gcc -x c -march=native -o "$OUT" - <<eof
 #include <stdio.h>
@@ -32,4 +35,7 @@ printf("%s\n",r);
 return 0;}
 eof
 
-eval $EXEC && { eval $CLEAN; exit 0; }
+eval $EXEC && {
+	eval $CLEAN;
+	exit 0;
+}
