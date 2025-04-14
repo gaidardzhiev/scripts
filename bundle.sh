@@ -1,5 +1,5 @@
 #!/bin/sh
-#the script writes on its standard output a POSIX shell script archive of files which when executed will recreate the original files
+#the script outputs a POSIX shell script archive, when it is executed it reconstructs the original files from the archive
 
 [ "$#" -lt 1 ] && {
 	printf "usage: $0 [files] >> [archive]\n";
