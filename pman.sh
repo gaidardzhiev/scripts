@@ -34,7 +34,6 @@ fadd() {
 #	else
 #		echo "no entry found for $1..."
 #	fi
-#}
 
 fget() {
 	case $(grep -q "^$1:" "$DB"; echo $?) in #capture exit status
