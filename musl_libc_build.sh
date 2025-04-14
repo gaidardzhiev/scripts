@@ -37,7 +37,7 @@ fbuild() {
 	fi
 }
 
-try() {
+ftry() {
 	if cd $TMP; then
 		cat > hello.c << EOF
 #include <stdio.h>
@@ -56,4 +56,4 @@ EOF
 	fi
 }
 
-fget && fbuild && try || { printf "something's wrong in here somewhere...\n"; exit 1}
+fget && fbuild && ftry || { printf "something's wrong in here somewhere...\n"; exit 1}
