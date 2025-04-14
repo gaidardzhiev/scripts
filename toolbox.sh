@@ -5,12 +5,14 @@ REPO=https://github.com/gaidardzhiev/toolbox
 CMD=$1
 
 fdir() {
-	[ ! -d "$DIR" ] && \
-		cd /home/src/1v4n/ && \
-		git clone $REPO && \
-		cd tools && \
-		make || \
-		printf "\n" > /dev/null
+	[ ! -d "$DIR" ] && {
+		cd /home/src/1v4n/;
+		git clone $REPO;
+		cd tools;
+		make;
+	} || {
+		return 0;
+	}
 }
 
 fusage() {
