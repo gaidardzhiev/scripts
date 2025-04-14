@@ -2,7 +2,10 @@
 
 FILE="scan.gnmap"
 
-[ -z "$1" ] && { printf "usage: $0 <target>\n"; exit 1; }
+[ -z "$1" ] && {
+	printf "usage: $0 <target>\n";
+	exit 1;
+}
 
 scan() {
 	nmap -sS -sV $1 -vv -n -oA $FILE
