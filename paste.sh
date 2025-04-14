@@ -2,6 +2,7 @@
 #the script automates the proccess of uploading and downloading of files and text to paste.c-net.org
 
 fusage() {
+	sed -n '2s/^.\(.*\)/\1/p' "$0";
 	printf "usage:\n"
 	printf "        $0 <up>    <file>\n"
 	printf "        $0 <down>  <name>\n"
