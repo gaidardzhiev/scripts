@@ -35,7 +35,7 @@ fusage() {
 	return 4
 }
 
-[ $# -ne 2 ] && usage
+[ $# -ne 2 ] && fusage
 
 case "$1" in
 	unpack)
