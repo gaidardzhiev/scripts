@@ -564,10 +564,11 @@ fbuild_src(){
 		interceptor)
 			cd $SRC
 			git clone https://github.com/gaidardzhiev/interceptor
-			cd interceptor && \
-				make && \
-				cp intercept.so $LIB
-			printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
+			cd interceptor && {
+				make;
+				cp intercept.so $LIB;
+				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n";
+			}
 			;;
 		bash)
 			cd $SRC
