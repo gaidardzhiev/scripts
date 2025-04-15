@@ -595,9 +595,10 @@ fbuild_src(){
 			cd gnupg-$GNUPG
 			mkdir build
 			cd build
-			../configure && \
-				make $JOBS && \
-				make check
+			../configure && {
+				make $JOBS;
+				make check;
+			}
 			;;
 		go)
 			cd $SRC
