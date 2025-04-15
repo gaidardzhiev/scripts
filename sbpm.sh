@@ -232,10 +232,11 @@ fbuild_src(){
 			cd grep-$GREP
 			./configure \
 				--prefix=$DIR
-			make $JOBS
-			cp src/grep $BIN/grep-$TARGET
-			cp src/egrep $BIN/egrep-$TARGET
-			cp src/fgrep $BIN/fgrep-$TARGET
+			make $JOBS && {
+				cp src/grep $BIN/grep-$TARGET;
+				cp src/egrep $BIN/egrep-$TARGET;
+				cp src/fgrep $BIN/fgrep-$TARGET;
+			}
 			;;
 		busybox)
 			cd $SRC
