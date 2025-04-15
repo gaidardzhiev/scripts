@@ -156,10 +156,11 @@ fbuild_src(){
 			tar xfv musl-$MUSL.tar.gz
 			rm musl-$MUSL.tar.gz
 			cd musl-$MUSL
-			./configure && \
-				make $JOBS && \
-				make install && \
-				cp /usr/local/musl/bin/musl-gcc /usr/bin
+			./configure && {
+				make $JOBS;
+				make install;
+				cp /usr/local/musl/bin/musl-gcc /usr/bin;
+			}
 			;;
 		sed)
 			cd $SRC
