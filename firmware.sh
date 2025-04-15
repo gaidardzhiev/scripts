@@ -35,7 +35,10 @@ fusage() {
 	return 4
 }
 
-[ $# -ne 2 ] && fusage
+[ $# -ne 2 ] && {
+	fusage;
+	exit 1;
+}
 
 case "$1" in
 	unpack)
@@ -52,6 +55,5 @@ case "$1" in
 		;;
 	*)
 		fusage
-		exit 1
 		;;
 esac
