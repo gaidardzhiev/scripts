@@ -219,9 +219,10 @@ fbuild_src(){
 			cd $SRC
 			git clone --depth=1 https://github.com/onetrueawk/awk
 			cd awk
-			make $JOBS && \
-				mv a.out awk && \
-				cp awk $BIN/awk-$TARGET
+			make $JOBS && {
+				mv a.out awk;
+				cp awk $BIN/awk-$TARGET;
+			}
 			;;
 		grep)
 			cd $SRC
