@@ -31,7 +31,8 @@ fpack() {
 }
 
 fusage() {
-	printf "usage: $0 <pack|unpack> <file>\n"
+	printf "usage:\n"
+	printf "	$0 <pack|unpack> <file>\n"
 	return 4
 }
 
