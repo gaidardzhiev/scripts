@@ -1,7 +1,7 @@
 #!/bin/sh
 #unpack and pack firmware
 
-unpack() {
+funpack() {
 	exec 3< "$1"
 	for part in "uimage_header:0:64" "uimage_kernel:64:2097152" "squashfs_1:2097152:350000" "squashfs_2:550040:65536" "jffs2:5f0040:11075648"
 	do
@@ -14,7 +14,7 @@ unpack() {
 	exec 3<&-
 }
 
-pack() {
+fpack() {
 	exec 3> "$1"
 	for part in "uimage_kernel" "squashfs_1" "squashfs_2" "jffs2"
 	do
@@ -30,26 +30,28 @@ pack() {
 	exec 3>&-
 }
 
-usage() {
-	printf "usage: $0 <pack|unpack> <file>\n" && exit 1
+fusage() {
+	printf "usage: $0 <pack|unpack> <file>\n"
+	return 4
 }
 
 [ $# -ne 2 ] && usage
 
 case "$1" in
 	unpack)
-		unpack "$2" || { 
+		funpack "$2" || { 
 			printf "failed to unpack $2\n";
 			exit 8;
 		}
 		;;
 	pack)
-		pack "$2" || {
+		fpack "$2" || {
 			printf "failed to pack $2\n";
 			exit 16;
 		}
 		;;
 	*)
-		usage
+		fusage
+		exit 1
 		;;
 esac
