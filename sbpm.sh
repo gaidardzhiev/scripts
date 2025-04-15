@@ -377,8 +377,16 @@ fbuild_src(){
 			;;
 		c)
 			[ "$TARGET" = x86_64 ] && {
-				cd $SRC && git clone https://github.com/andrewchambers/c && cd c && make $JOBS && make test && make selfhost
-			} || printf "unsupported CPU architecture...\n"
+				cd $SRC;
+				git clone https://github.com/andrewchambers/c;
+				cd c;
+				make $JOBS;
+				make test;
+				make selfhost;
+			} || {
+				printf "unsupported CPU architecture...\n";
+				exit 1;
+			}
 			;;
 		cproc)
 			cd $SRC
