@@ -33,7 +33,6 @@ fpack() {
 fusage() {
 	printf "usage:\n"
 	printf "	$0 <pack|unpack> <file>\n"
-	return 4
 }
 
 [ $# -ne 2 ] && {
