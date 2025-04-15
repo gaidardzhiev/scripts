@@ -460,6 +460,7 @@ fbuild_src(){
 					;;
 				*)
 					printf "unsupported architecture: $TARGET\n"
+					exit 1
 					;;
 			esac
 			;;
