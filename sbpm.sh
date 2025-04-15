@@ -767,9 +767,10 @@ fbuild_src(){
 			tar xfv lzip-1.25.tar.gz
 			rm lzip-1.25.tar.gz
 			cd lzip-1.25
-			./configure && \
-				make check && \
-				make install
+			./configure && {
+				make check;
+				make install;
+			}
 			;;
 		elfutils)
 			cd $SRC
