@@ -804,9 +804,10 @@ fbuild_src(){
 			cd $SRC
 			git clone --depth=1 https://gitlab.com/bzip2/bzip2
 			cd bzip2
-			mkdir build && \
-				cd build && \
-				cmake ..
+			mkdir build && {
+				cd build;
+				cmake ..;
+			}
 			;;
 		linux-kernel)
 			cd $SRC
