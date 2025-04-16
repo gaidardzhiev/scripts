@@ -959,9 +959,10 @@ fbuild_src(){
 				--prefix=$SPM \
 				--host=$TARGET \
 				--enable-threads=isoc+posix \
-				--disable-threads && \
-				make $JOBS && \
-				cp src/diff $BIN/diff-$TARGET
+				--disable-threads && {
+					make $JOBS;
+					cp src/diff $BIN/diff-$TARGET;
+				}
 			;;
 		tcsh)
 			cd $SRC
