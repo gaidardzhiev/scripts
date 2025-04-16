@@ -788,10 +788,11 @@ fbuild_src(){
 			cd $SRC
 			git clone --depth=1 https://github.com/acmel/dwarves
 			cd dwarves
-			mkdir build && \
-				cd build && \
-				cmake .. && \
-				make install
+			mkdir build && {
+				cd build;
+				cmake ..;
+				make install;
+			}
 			;;
 		tar)
 			cd $SRC
