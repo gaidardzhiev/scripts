@@ -163,8 +163,10 @@ fiso() {
 		--efi-boot-image \
 		--protective-msdos-label iso_root -o image.iso
 	./limine/limine-deploy image.iso && \
-		{ printf "the iso IS created...\n"; return 0; } || \
-		return 32
+		{
+			printf "the iso IS created...\n";
+			return 0;
+		} || return 32
 }
 
 ftest() {
