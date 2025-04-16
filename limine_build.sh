@@ -140,8 +140,10 @@ flink() {
 		-T link.ld \
 		-no-pie \
 		-o limine_os.elf && \
-		{ printf "the linking IS done...\n"; return 0; } || \
-		return 16
+		{
+			printf "the linking IS done...\n";
+			return 0;
+		} || return 16
 }
 
 fiso() {
