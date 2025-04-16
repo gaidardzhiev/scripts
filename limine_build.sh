@@ -129,7 +129,8 @@ fcompile() {
 		{
 			printf "the kernel IS compiled...\n";
 			return 0;
-		} || return 8
+		} || \
+			return 8
 }
 
 flink() {
