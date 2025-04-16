@@ -98,7 +98,8 @@ flimine() {
 		{
 			printf "the limine bootloader IS compiled...\n";
 			return 0;
-		} || return 4
+		} || \
+			return 4
 }
 
 fcompile() {
