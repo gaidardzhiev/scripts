@@ -145,7 +145,8 @@ flink() {
 		{
 			printf "the linking IS done...\n";
 			return 0;
-		} || return 16
+		} || \
+			return 16
 }
 
 fiso() {
