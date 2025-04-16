@@ -847,15 +847,16 @@ fbuild_src(){
 			cd busybox-1.26.2
 			make defconfig
 			make menuconfig
-			make $JOBS && \
-				file busybox && \
-				make install && \
-				cd _install && \
-				mkdir -p {bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys,run} && \
-				cd dev && \
-				mknod sda b 8 0 && \
-				mknod console c 5 1 && \
-				cd ../
+			make $JOBS && {
+				file busybox;
+				make install;
+				cd _install;
+				mkdir -p {bin,dev,etc,lib,lib64,mnt/root,proc,root,sbin,sys,run};
+				cd dev;
+				mknod sda b 8 0;
+				mknod console c 5 1;
+				cd ../;
+			}
 			touch init
 			chmod +x init
 			printf "#!/bin/sh\n" > init
