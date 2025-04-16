@@ -970,10 +970,11 @@ fbuild_src(){
 			tar xfv tcsh-$TCSH.tar.gz
 			rm tcsh-$TCSH.tar.gz
 			cd tcsh-$TCSH
-			./configure && \
-				make && \
-				cp tcsh $BIN/tcsh-$TARGET && \
-				printf "tcsh is not POSIX compliant...\n"
+			./configure && {
+				make;
+				cp tcsh $BIN/tcsh-$TARGET;
+				printf "tcsh is not POSIX compliant...\n";
+			}
 			;;
 		jfsutils)
 			cd $SRC
