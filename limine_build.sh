@@ -123,8 +123,10 @@ fcompile() {
 		-mno-red-zone \
 		-mcmodel=kernel \
 		-MMD -I. -c kernel.c -o kernel.o && \
-		{ printf "the kernel IS compiled...\n"; return 0; } || \
-		return 8
+		{
+			printf "the kernel IS compiled...\n";
+			return 0;
+		} || return 8
 }
 
 flink() {
