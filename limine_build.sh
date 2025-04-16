@@ -169,7 +169,8 @@ fiso() {
 		{
 			printf "the iso IS created...\n";
 			return 0;
-		} || return 32
+		} || \
+			return 32
 }
 
 ftest() {
