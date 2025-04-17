@@ -929,9 +929,10 @@ fbuild_src(){
 					--disable-libcc1 \
 					--with-gnu-as \
 					--with-gnu-ld \
-					--with-dwarf2 && \
-					make $JOBS && \
-					make install-strip
+					--with-dwarf2 && {
+						make $JOBS;
+						make install-strip;
+					}
 			}
 			avr-libc() {
 				cd $SRC/avr
