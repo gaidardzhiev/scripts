@@ -1031,10 +1031,11 @@ fbuild_src(){
 			cd $SRC
 			git clone https://github.com/retroprom/pcmciautils
 			cd pcmciautils 
-			make && \
-				cp pccardctl $BIN/pccardctl && \
-				cp pcmcia-check-broken-cis $BIN/pcmcia-check-broken-cis && \
-				cp pcmcia-socket-startup $BIN/pcmcia-socket-startup
+			make && {
+				cp pccardctl $BIN/pccardctl;
+				cp pcmcia-check-broken-cis $BIN/pcmcia-check-broken-cis;
+				cp pcmcia-socket-startup $BIN/pcmcia-socket-startup;
+			}
 			;;
 		shkd)
 			cd $SRC
