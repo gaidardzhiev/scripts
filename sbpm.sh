@@ -1374,8 +1374,8 @@ fupdate_src() {
 			}
 			;;
 		tinycc)
-			cd $SRC/tinycc && \
-				git pull && \
+			cd $SRC/tinycc && {
+				git pull;
 				./configure \
 					--prefix=$DIR \
 					--bindir=$BIN \
@@ -1384,9 +1384,10 @@ fupdate_src() {
 					--source-path=$SRC/tinycc \
 					--cc=tcc \
 					--disable-static \
-					--enable-cross
-				make $JOBS && \
-					make install
+					--enable-cross;
+				make $JOBS;
+				make install;
+			}
 			;;
 		esolangs)
 			cd $SRC/esolangs && \
