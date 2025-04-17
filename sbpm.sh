@@ -1398,10 +1398,11 @@ fupdate_src() {
 			}
 			;;
 		dash)
-			cd $SRC/dash && \
-				git pull && \
-				make $JOBS && \
-				cp dash $BIN/dash-$TARGET
+			cd $SRC/dash && {
+				git pull;
+				make $JOBS;
+				cp dash $BIN/dash-$TARGET;
+			}
 			;;
 		nmap)
 			cd $SRC/nmap && \
