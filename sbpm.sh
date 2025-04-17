@@ -907,9 +907,10 @@ fbuild_src(){
 					--disable-nls \
 					--disable-sim \
 					--disable-gdb \
-					--disable-werror && \
-					make $JOBS && \
-					make install
+					--disable-werror && {
+						make $JOBS;
+						make install;
+					}
 			}
 			gcc() {
 				cd $SRC/avr
