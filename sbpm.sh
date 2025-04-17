@@ -943,9 +943,10 @@ fbuild_src(){
 				./configure \
 					--prefix=$PREFIX \
 					--build=$TARGET-pc-linux-gnu \
-					--host=avr && \
-					make $JOBS && \
-					make install
+					--host=avr && {
+						make $JOBS;
+						make install;
+					}
 			}
 			binutils && gcc && avr-libc || exit 1
 			;;
