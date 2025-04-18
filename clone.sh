@@ -18,7 +18,8 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		interceptor \
 		libreverse \
 		esolangs \
-		toolbox;
+		toolbox \
+		syscall;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
