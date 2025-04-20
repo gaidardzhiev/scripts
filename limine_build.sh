@@ -179,4 +179,4 @@ ftest() {
 
 { flimine && fcompile && flink && fiso && ftest; RET=$?; } || exit 1
 
-printf "$RET\n"
+[ "$RET" -ne 0 ] && printf "%d\n" "$RET"
