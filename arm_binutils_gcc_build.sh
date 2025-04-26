@@ -1,7 +1,6 @@
 #!/bin/sh
 #the script builds binutils and gcc cross compiler for arm_v5 target
 
-#set vars
 export TARGET=arm-none-eabi
 export PREFIX=/opt/arm_gcc_binutils
 export PATH=$PATH:$PREFIX/bin
@@ -11,25 +10,18 @@ export GCC=12.2.0
 export BINUTILS=2.40
 export DIR=/home/src/compilers/arm_gcc_binutils
 
-#create and go to work directory
-mkdir -p $DIR
-cd $DIR
+fprep() {
+	mkdir -p $DIR
+	cd $DIR
+	wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
+	wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
+	tar xf binutils-$BINUTILS.tar.gz
+	tar xf gcc-$GCC.tar.gz
+	ln -s binutils-$BINUTILS binutils-patch
+	patch -p0 < arm-patch && return 0 || return 2
+}
 
-#get archives
-wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
-wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
-
-#extract archives
-tar xf binutils-$BINUTILS.tar.gz
-tar xf gcc-$GCC.tar.gz
-
-#patch
-ln -s binutils-$BINUTILS binutils-patch
-patch -p0 < arm-patch
-
-#build binutils
-fbinutils()
-{
+fbinutils() {
         mkdir build_binutils
         cd build_binutils
         ../binutils-$BINUTILS/configure \
@@ -37,12 +29,10 @@ fbinutils()
                 --prefix=$PREFIX
         echo "MAKEINFO = :" >> Makefile
         make $JOBS all
-        make install
+        make install && return 0 || return 3
 }
 
-#build gcc and libgcc
-fgcc()
-{
+fgcc() {
         mkdir ../build_gcc
         cd ../build_gcc
         ../gcc-$GCC/configure \
@@ -57,7 +47,7 @@ fgcc()
         make $JOBS all-gcc
         make install-gcc
         make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
-        make install-target-libgcc
+        make install-target-libgcc && return 0 || return 3
 }
 
-{ fbinutils && fgcc && exit 0 } || exit 1
+{ fprep && fbinutils && fgcc && exit 0 } || exit 1
