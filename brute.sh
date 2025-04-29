@@ -18,4 +18,4 @@ spray() {
 		--threads 5 --hosts 5
 }
 
-scan && spray || printf "something's wrong in here somewhere...\n" 
+scan && spray && exit 0 || printf "something's wrong in here somewhere...\n" 
