@@ -40,7 +40,9 @@ fchroot() {
 	chroot "$DIR" bash
 }
 
-{ fimg && fdep && fstrap && fchroot } || { 
+{ fimg && fdep && fstrap && fchroot; RET="$?" } || { 
 	printf "something's wrong in here somewhere...\n";
 	exit 1;
 }
+
+[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
