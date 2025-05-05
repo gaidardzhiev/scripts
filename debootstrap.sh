@@ -37,7 +37,7 @@ fstrap() {
 
 fchroot() {
 	printf "welcome to the chroot...\n"
-	chroot "$DIR" bash
+	chroot "$DIR" bash && return 0 || return 5
 }
 
 { fimg && fdep && fstrap && fchroot; RET="$?" } || { 
