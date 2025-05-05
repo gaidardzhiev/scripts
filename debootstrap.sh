@@ -1,7 +1,6 @@
 #!/bin/sh
 #the script creates an ARM debian filesystem image on an x86_64 arch Linux host and croots in it
 
-
 fimg() {
 	export DIR="/home/mnt"
 	export VER="sid"
