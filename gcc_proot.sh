@@ -49,7 +49,7 @@ gcc() {
         make $JOBS all-gcc
         make install-gcc
         make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
-        make install-target-libgcc
+        make install-target-libgcc && return 0 || return 3
 }
 
 { binutils && gcc } || printf "something is wrong in here somewhere...\n"
