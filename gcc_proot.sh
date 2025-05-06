@@ -23,7 +23,7 @@ binutils() {
                 --target=$TARGET \
                 --prefix=$PREFIX
         make $JOBS all
-        make install
+        make install && return 0 || return 2
 }
 
 gcc() {
