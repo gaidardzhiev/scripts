@@ -52,4 +52,8 @@ gcc() {
         make install-target-libgcc && return 0 || return 3
 }
 
-{ binutils && gcc } || { printf "something is wrong in here somewhere...\n" && exit 1 }
+{ binutils && gcc; RET="$?" } || { 
+	printf "something is wrong in here somewhere...\n";
+	exit 1; }
+
+[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
