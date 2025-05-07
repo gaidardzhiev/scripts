@@ -11,7 +11,7 @@ export BINUTILS=2.42
 export GCC=13.2.0
 
 
-binutils() {
+fbinutils() {
         mkdir -p $DIR
         mkdir -p $PREFIX
         cd $DIR
@@ -26,7 +26,7 @@ binutils() {
         make install && return 0 || return 2
 }
 
-gcc() {
+fgcc() {
         cd $DIR
         wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
         tar -xf gcc-$GCC.tar.gz
@@ -52,7 +52,7 @@ gcc() {
         make install-target-libgcc && return 0 || return 3
 }
 
-{ binutils && gcc; RET="$?" } || { 
+{ fbinutils && fgcc; RET="$?" } || { 
 	printf "something is wrong in here somewhere...\n";
 	exit 1; }
 
