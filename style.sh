@@ -3,18 +3,18 @@
 fdepcheck() {
 	command -v "$1" >/dev/null 2>&1 || {
 		printf >&2 "error: $1 is not installed...\n";
-		exit 2;
+		return 2;
 	}
 }
 
 fastyle() {
 	astyle --style=linux -T8 *.c && {
 		printf "formatting completed successfully\n";
-		exit 0;
+		return 0;
 	} || {
-		printf "astyle encountered an issue while formatting\n";	
-		exit 1;
+		printf "astyle encountered an issue while formatting...\n";	
+		return 3;
 	}
 }
 
-fdepcheck astyle && fastyle
+{ fdepcheck astyle && fastyle && exit 0 } || exit 1
