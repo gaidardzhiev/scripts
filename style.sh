@@ -9,7 +9,7 @@ fdepcheck() {
 
 fastyle() {
 	astyle --style=linux -T8 *.c && {
-		printf "formatting completed successfully\n";
+		printf "formatting completed successfully...\n";
 		return 0;
 	} || {
 		printf "astyle encountered an issue while formatting...\n";	
@@ -18,3 +18,5 @@ fastyle() {
 }
 
 { fdepcheck astyle && fastyle; RET="$?" } || exit 1
+
+[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
