@@ -1,17 +1,14 @@
 #!/bin/sh
 
 fusage() {
-	printf "usage: $0 <binary_file>\n" && exit 1
-}
-
-fcheck() {
-	[ ! -f "$1" ] && printf "error: file '$1' does not exist or is not a regular file...\n" && exit 2
+	printf "usage: $0 <binary_file>\n";
+	exit 1;
 }
 
 fldd() {
-	objdump -p "$1" | grep NEEDED && exit 0
+	objdump -p "$1" | grep NEEDED
 }
 
 [ "$#" -ne 1 ] && fusage
 
-fcheck "$1" && fldd "$1"
+{ fldd "$1" && exit 0; }
