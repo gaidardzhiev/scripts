@@ -17,4 +17,4 @@ fastyle() {
 	}
 }
 
-{ fdepcheck astyle && fastyle && exit 0 } || exit 1
+{ fdepcheck astyle && fastyle; RET="$?" } || exit 1
