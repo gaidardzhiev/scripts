@@ -6,7 +6,10 @@ fusage() {
 }
 
 fldd() {
-	objdump -p "$1" | grep NEEDED
+	i=$(objdump -p "$1" | grep NEEDED)
+	[ -z "$i" ] && \
+		printf "not a dynamic executable\n" || \
+		printf "%s\n" "$i" 
 }
 
 [ "$#" -ne 1 ] && fusage
