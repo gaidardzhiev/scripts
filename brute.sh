@@ -7,15 +7,20 @@ FILE="scan.gnmap"
 	exit 1;
 }
 
-scan() {
+fscan() {
 	nmap -sS -sV $1 -vv -n -oA $FILE
 }
 
-spray() {
-	brutespray --file scan.gnmap \
-		-U /usr/share/brutespray/wordlist/user.txt \
-		-P /usr/share/brutespray/wordlist/pass.txt \
-		--threads 5 --hosts 5
+fspray() {
+	USR="/usr/share/brutespray/wordlist/user.txt"
+	PASS="/usr/share/brutespray/wordlist/
+pass.txt"
+	brutespray \
+		--file "$FILE" \
+		-U "$USR" \
+		-P "$PASS" \
+		--threads 5 \
+		--hosts 5
 }
 
-{ scan && spray && exit 0; } || printf "something's wrong in here somewhere...\n" 
+{ fscan && fspray && exit 0; } || printf "something's wrong in here somewhere...\n" 
