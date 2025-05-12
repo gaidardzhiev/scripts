@@ -7,7 +7,7 @@ x() {
 
 y() {
 	Y=$(head -c 32 /dev/urandom | md5sum | awk '{print $1}')
-	echo $Y
+	printf "%s\n" "$Y" && return 0 || return 3
 }
 
 z() {
