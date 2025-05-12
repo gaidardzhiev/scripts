@@ -2,7 +2,7 @@
 
 x() {
 	X=$(tr -dc '[:graph:]' < /dev/urandom | head -c 32)
-	echo $X
+	printf "%s\n" "$X" && return 0 || return 2
 }
 
 y() {
@@ -15,4 +15,4 @@ z() {
 	echo $Z
 }
 
-x || y || z
+{ x || y || z; } && exit 0 || exit 1
