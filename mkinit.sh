@@ -17,7 +17,7 @@ mv toybox-"$ARCH" "$DIR"/bin/toybox
 "$DIR"/bin/toybox
 
 for cmd in $($DIR/bin/toybox); do
-	ln -s "$DIR"/bin/toybox "$DIR/bin/$cmd"
+	ln -sr "$DIR"/bin/toybox "$DIR/bin/$cmd"
 done
 
 cat << eof > "$DIR"/init
