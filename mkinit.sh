@@ -17,10 +17,10 @@ mv toybox-"$ARCH" "$DIR"/bin/toybox
 "$DIR"/bin/toybox
 
 for cmd in $($DIR/bin/toybox); do
-	ln -s /bin/toybox "$DIR/bin/$cmd"
+	ln -s "$DIR"/bin/toybox "$DIR/bin/$cmd"
 done
 
-cat << eof > $DIR/init
+cat << eof > "$DIR"/init
 #!/bin/sh
 mount -t devtmpfs devtmpfs /dev
 mount -t proc proc none /proc
@@ -29,20 +29,20 @@ mount -t sysfs sysfs none /sys
 exec /bin/sh
 eof
 
-chmod +x $DIR/init
+chmod +x "$DIR"/init
 
 #ln -s $DIR/toybox $DIR/bin/sh
 #cp /bin/toybox /bin/sh
 #chmod 0755 /bin/sh
 
-mknod $DIR/dev/sda b 8 0
+mknod "$DIR"/dev/sda b 8 0
 
-mknod $DIR/dev/console c 5 1
+mknod "$DIR"/dev/console c 5 1
 
-find $DIR | cpio -H newc -o | gzip -9 > $INIT
+find "$DIR" | cpio -H newc -o | gzip -9 > "$INIT"
 
-rm -rf $DIR
+rm -rf "$DIR"
 
 printf "\n\ninitramfs for "$ARCH" created successfully: "$INIT"\n"
 
-qemu-system-"$ARCH" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
+#qemu-system-"$ARCH" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
