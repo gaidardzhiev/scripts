@@ -6,15 +6,15 @@ DIR=$(mktemp -d)
 TARGET=$(uname -m)
 ARCH="armv7m" && [ "$TARGET" = "armv8l" ] || ARCH="$TARGET"
 
-mkdir -p $DIR/{bin,dev,etc,proc,sys,lib,lib64,mnt/root,root,sbin,run,usr}
+mkdir -p "$DIR"/{bin,dev,etc,proc,sys,lib,lib64,mnt/root,root,sbin,run,usr}
 
-wget https://landley.net/toybox/downloads/binaries/latest/toybox-$ARCH
+wget https://landley.net/toybox/downloads/binaries/latest/toybox-"$ARCH"
 
-chmod +x toybox-$ARCH
+chmod +x toybox-"$ARCH"
 
-mv toybox-$ARCH $DIR/bin/toybox
+mv toybox-"$ARCH" "$DIR"/bin/toybox
 
-$DIR/bin/toybox
+"$DIR"/bin/toybox
 
 for cmd in $($DIR/bin/toybox); do
 	ln -s /bin/toybox "$DIR/bin/$cmd"
@@ -43,6 +43,6 @@ find $DIR | cpio -H newc -o | gzip -9 > $INIT
 
 rm -rf $DIR
 
-printf "\n\ninitramfs for $ARCH created successfully: $INIT\n"
+printf "\n\ninitramfs for "$ARCH" created successfully: "$INIT"\n"
 
-#qemu-system-x86_64 -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
+qemu-system-"$ARCH" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
