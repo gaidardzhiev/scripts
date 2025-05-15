@@ -19,7 +19,8 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		libreverse \
 		esolangs \
 		toolbox \
-		syscall;
+		syscall \
+		crt0trust;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
