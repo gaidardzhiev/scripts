@@ -33,7 +33,7 @@ fbuild() {
 		cp $EXEC/bin/musl-gcc /usr/bin/
 		return 0
 	else
-		return 1
+		return 16
 	fi
 }
 
