@@ -18,7 +18,7 @@ fget() {
 		cd $MUSL
 		return 0
 	else
-		return 1
+		return 8
 	fi
 }
 
