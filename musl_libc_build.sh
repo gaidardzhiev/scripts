@@ -56,7 +56,7 @@ EOF
 	fi
 }
 
-{ fget && fbuild && ftry; RET=$? } || {
+{ fget && fbuild && ftry; RET=$?; } || {
 	printf "something's wrong in here somewhere...\n";
 	exit 1;
 }
