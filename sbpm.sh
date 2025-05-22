@@ -935,7 +935,7 @@ fbuild_src(){
 						make install-strip;
 					}
 			}
-			avr-libc() {
+			avr_libc() {
 				cd $SRC/avr
 				git clone https://github.com/avrdudes/avr-libc
 				cd avr-libc
@@ -950,7 +950,7 @@ fbuild_src(){
 						make install;
 					}
 			}
-			binutils && gcc && avr-libc || exit 1
+			{ binutils && gcc && avr_libc; } || exit 1
 			;;
 		diff)
 			cd $SRC
