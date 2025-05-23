@@ -434,11 +434,11 @@ fbuild_src(){
 			cp airgeddon/airgeddon.sh "$BIN"
 			;;
 		masscan)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/robertdavidgraham/masscan
 			cd masscan
-			make $JOBS
-			cp bin/masscan $BIN/masscan-$TARGET
+			make "$JOBS"
+			cp bin/masscan "$BIN"/masscan-"$TARGET"
 			;;
 		kexec)
 			cd $SRC
