@@ -310,11 +310,11 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		john)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/openwall/john
 			cd john
 			./configure
-			make $JOBS
+			make "$JOBS"
 			;;
 		nmap)
 			cd $SRC
