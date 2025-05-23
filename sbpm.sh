@@ -349,14 +349,14 @@ fbuild_src(){
 			cp tmgl1 tmgl2 "$BIN"
 			;;
 		subc)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/DoctorWkt/SubC
 			cd SubC
 			./configure
 			cd src
-			make $JOBS && {
+			make "$JOBS" && {
 				make scc;
-				cp scc $BIN/subc-$TARGET;
+				cp scc "$BIN"/subc-"$TARGET";
 			}
 			;;
 		cc500)
