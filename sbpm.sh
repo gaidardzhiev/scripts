@@ -429,9 +429,9 @@ fbuild_src(){
 			#cp echo/echo "$BIN"/echo-"$P9"
 			;;
 		airgeddon)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/v1s1t0r1sh3r3/airgeddon
-			cp airgeddon/airgeddon.sh $BIN
+			cp airgeddon/airgeddon.sh "$BIN"
 			;;
 		masscan)
 			cd $SRC
