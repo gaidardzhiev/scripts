@@ -175,12 +175,12 @@ fbuild_src(){
 				cp sed "$BIN"/sed-"$TARGET"
 			;;
 		binutils)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
-			tar xfv binutils-$BINUTILS.tar.gz
-			rm binutils-$BINUTILS.tar.gz
-			cd binutils-$BINUTILS
-			make $JOBS
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/binutils/binutils-"$BINUTILS".tar.gz
+			tar xfv binutils-"$BINUTILS".tar.gz
+			rm binutils-"$BINUTILS".tar.gz
+			cd binutils-"$BINUTILS"
+			make "$JOBS"
 			;;
 		dietlibc)
 			cd $SRC
