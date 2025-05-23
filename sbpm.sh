@@ -209,11 +209,11 @@ fbuild_src(){
 				cp git "$SRC"/git
 			;;
 		dash)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/danishprakash/dash
 			cd dash
-			make $JOBS && \
-				cp dash $BIN/dash-$TARGET
+			make "$JOBS" && \
+				cp dash "$BIN"/dash-"$TARGET"
 			;;
 		awk)
 			cd $SRC
