@@ -113,11 +113,11 @@ fbuild_src(){
 				cp strongswan "$BIN"/strongswan-"$STRONGSWAN"-"$TARGET"
 			;;
 		mc)
-			cd $SRC
-			wget http://ftp.midnight-commander.org/mc-$MC.tar.xz
-			tar xfv mc-$MC.tar.xz
-			rm mc-$MC.tar.xz
-			cd mc-$MC
+			cd "$SRC"
+			wget http://ftp.midnight-commander.org/mc-"$MC".tar.xz
+			tar xfv mc-"$MC".tar.xz
+			rm mc-"$MC".tar.xz
+			cd mc-"$MC"
 			./configure \
 				--without-x \
 				--disable-shared \
@@ -126,8 +126,8 @@ fbuild_src(){
 			CXX='g++ -static -static-libgcc -fno-exceptions' \
 			LDFLAGS='-Wl,-static -static -lc' \
 			LIBS='-lc' \
-			make $JOBS && \
-				cp src/mc $BIN/mc-$MC-$TARGET
+			make "$JOBS" && \
+				cp src/mc "$BIN"/mc-"$MC"-"$TARGET"
 			;;
 		tcc)
 			cd $SRC
