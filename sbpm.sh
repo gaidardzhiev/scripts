@@ -80,23 +80,23 @@ fbuild_src(){
 			cp make "$BIN"/make-"$MAKE"-"$TARGET"
 			;;
 		gcc)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
-			tar xf gcc-$GCC.tar.gz
-			rm gcc-$GCC.tar.gz
-			cd gcc-$GCC
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/gcc/gcc-"$GCC"/gcc-"$GCC".tar.gz
+			tar xf gcc-"$GCC".tar.gz
+			rm gcc-"$GCC".tar.gz
+			cd gcc-"$GCC"
 			./configure \
-				--prefix=$DIR \
-				--target=$TARGET-elf \
+				--prefix="$DIR" \
+				--target="$TARGET"-elf \
 				--without-headers \
 				--with-newlib \
 				--with-gnu-as \
 				--with-gnu-ld \
 				--enable-languages='c' \
 				--enable-frame-pointer=no
-			make $JOBS all-gcc && \
-				cp gcc $BIN/gcc-$GCC-$TARGET-elf
-			make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
+			make "$JOBS" all-gcc && \
+				cp gcc "$BIN"/gcc-"$GCC"-"$TARGET"-elf
+			make "$JOBS" all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 			;;
 		strongswan)
 			cd $SRC
