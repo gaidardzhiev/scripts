@@ -257,14 +257,14 @@ fbuild_src(){
 				cp obj/qbe "$BIN"/qbe-"$TARGET"
 			;;
 		wget)
-			cd $SRC
+			cd "$SRC"
 			curl https://ftp.gnu.org/gnu/wget/wget2-latest.tar.gz -o wget2-latest.tar.gz
 			tar xfv wget2-latest.tar.gz
 			rm wget2-latest.tar.gz
 			cd wget*
 			./configure \
-				--prefix=$DIR
-			make $JOBS
+				--prefix="$DIR"
+			make "$JOBS"
 			;;
 		curl)
 			cd $SRC
