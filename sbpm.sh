@@ -216,12 +216,12 @@ fbuild_src(){
 				cp dash "$BIN"/dash-"$TARGET"
 			;;
 		awk)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/onetrueawk/awk
 			cd awk
-			make $JOBS && {
+			make "$JOBS" && {
 				mv a.out awk;
-				cp awk $BIN/awk-$TARGET;
+				cp awk "$BIN"/awk-"$TARGET";
 			}
 			;;
 		grep)
