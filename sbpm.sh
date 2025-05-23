@@ -142,13 +142,13 @@ fbuild_src(){
 				cp tcc "$BIN"/tcc-"$TCC"-"$TARGET"
 			;;
 		toolbox)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/gaidardzhiev/toolbox
 			cd toolbox
 			sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c
 			./build_toolchain.sh
-			make $JOBS && \
-				cp toolbox $BIN/toolbox-$TARGET
+			make "$JOBS" && \
+				cp toolbox "$BIN"/toolbox-"$TARGET"
 			;;
 		musl)
 			cd $SRC
