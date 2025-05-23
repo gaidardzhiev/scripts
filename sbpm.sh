@@ -239,15 +239,15 @@ fbuild_src(){
 			}
 			;;
 		busybox)
-			cd $SRC
+			cd "$SRC"
 			wget https://busybox.net/downloads/busybox-snapshot.tar.bz2
 			bzip2 -d busybox-snapshot.tar.bz2
 			tar xfv busybox-snapshot.tar
 			rm busybox-snapshot.tar
 			cd busybox
 			make defconfig
-			make $JOBS && \
-				cp busybox $BIN/busybox-$TARGET
+			make "$JOBS" && \
+				cp busybox "$BIN"/busybox-"$TARGET"
 			;;
 		qbe)
 			cd $SRC
