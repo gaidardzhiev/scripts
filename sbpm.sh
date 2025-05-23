@@ -396,19 +396,19 @@ fbuild_src(){
 				make "$JOBS"
 			;;
 		tinycc)
-			cd $SRC
+			cd "$SRC"
 			git clone https://repo.or.cz/tinycc.git
 			cd tinycc
 			./configure \
-				--prefix=$DIR \
-				--bindir=$BIN \
-				--libdir=$LIB \
-				--includedir=$INC \
-				--source-path=$SRC/tinycc \
+				--prefix="$DIR" \
+				--bindir="$BIN" \
+				--libdir="$LIB" \
+				--includedir="$INC" \
+				--source-path="$SRC"/tinycc \
 				--cc=tcc \
 				--disable-static \
 				--enable-cross
-			make $JOBS && \
+			make "$JOBS" && \
 				make install
 			;;
 		9base)
