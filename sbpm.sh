@@ -267,18 +267,18 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		curl)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/curl/curl.git
 			cd curl
 			autoreconf -fi >&2
 			automake \
 				--add-missing
 			./configure \
-				--prefix=$DIR \
+				--prefix="$DIR" \
 				--without-ssl \
 				--disable-shared
-			make $JOBS && \
-				cp src/curl $BIN/curl-$TARGET
+			make "$JOBS" && \
+				cp src/curl "$BIN"/curl-"$TARGET"
 			;;
 		coreboot)
 			cd $SRC
