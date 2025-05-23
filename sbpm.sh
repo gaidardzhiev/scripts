@@ -301,13 +301,13 @@ fbuild_src(){
 				cp toybox "$BIN"/toybox
 			;;
 		uclibc)
-			cd $SRC
+			cd "$SRC"
 			wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz2
 			tar xfv uClibc-snapshot.tar.bz2
 			rm uClibc-snapshot.tar.bz2
 			cd uClibc
 			make defconfig
-			make $JOBS
+			make "$JOBS"
 			;;
 		john)
 			cd $SRC
