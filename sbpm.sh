@@ -197,16 +197,16 @@ fbuild_src(){
 				cp dmenu "$BIN"/dmenu-"$TARGET"
 			;;
 		git)
-			cd $SRC
-			wget https://www.kernel.org/pub/software/scm/git/git-$GIT.tar.gz
-			tar xfv git-$GIT.tar.gz
-			rm git-$GIT.tar.gz
-			cd git-$GIT
+			cd "$SRC"
+			wget https://www.kernel.org/pub/software/scm/git/git-"$GIT".tar.gz
+			tar xfv git-"$GIT".tar.gz
+			rm git-"$GIT".tar.gz
+			cd git-"$GIT"
 			make configure
 			./configure \
-				--prefix=$DIR
-			make $JOBS && \
-				cp git $SRC/git
+				--prefix="$DIR"
+			make "$JOBS" && \
+				cp git "$SRC"/git
 			;;
 		dash)
 			cd $SRC
