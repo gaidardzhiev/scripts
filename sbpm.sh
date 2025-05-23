@@ -99,18 +99,18 @@ fbuild_src(){
 			make "$JOBS" all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 			;;
 		strongswan)
-			cd $SRC
-			wget https://download.strongswan.org/strongswan-$STRONGSWAN.tar.bz2
-			bzip2 -d strongswan-$STRONGSWAN.tar.bz2
-			tar xfv strongswan-$STRONGSWAN.tar
-			rm strongswan-$STRONGSWAN.tar
-			cd strongswan-$STRONGSWAN
+			cd "$SRC"
+			wget https://download.strongswan.org/strongswan-"$STRONGSWAN".tar.bz2
+			bzip2 -d strongswan-"$STRONGSWAN".tar.bz2
+			tar xfv strongswan-"$STRONGSWAN".tar
+			rm strongswan-"$STRONGSWAN".tar
+			cd strongswan-"$STRONGSWAN"
 			./configure \
-				--prefix=$DIR \
+				--prefix="$DIR" \
 				--enable-systemd \
 				--enable-swanctl
-			make $JOBS && \
-				cp strongswan $BIN/strongswan-$STRONGSWAN-$TARGET
+			make "$JOBS" && \
+				cp strongswan "$BIN"/strongswan-"$STRONGSWAN"-"$TARGET"
 			;;
 		mc)
 			cd $SRC
