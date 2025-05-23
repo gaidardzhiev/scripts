@@ -377,10 +377,10 @@ fbuild_src(){
 			;;
 		c)
 			[ "$TARGET" = x86_64 ] && {
-				cd $SRC;
+				cd "$SRC";
 				git clone https://github.com/andrewchambers/c;
 				cd c;
-				make $JOBS;
+				make "$JOBS";
 				make test;
 				make selfhost;
 			} || {
