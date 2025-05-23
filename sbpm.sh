@@ -190,11 +190,11 @@ fbuild_src(){
 				install bin-"$TARGET"/diet /usr/local/bin
 			;;
 		dmenu)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 git://git.suckless.org/dmenu
 			cd dmenu
-			make $JOBS && \
-				cp dmenu $BIN/dmenu-$TARGET
+			make "$JOBS" && \
+				cp dmenu "$BIN"/dmenu-"$TARGET"
 			;;
 		git)
 			cd $SRC
