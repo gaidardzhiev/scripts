@@ -225,17 +225,17 @@ fbuild_src(){
 			}
 			;;
 		grep)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/grep/grep-$GREP.tar.gz
-			tar xfv grep-$GREP.tar.gz
-			rm grep-$GREP.tar.gz
-			cd grep-$GREP
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/grep/grep-"$GREP".tar.gz
+			tar xfv grep-"$GREP".tar.gz
+			rm grep-"$GREP".tar.gz
+			cd grep-"$GREP"
 			./configure \
-				--prefix=$DIR
-			make $JOBS && {
-				cp src/grep $BIN/grep-$TARGET;
-				cp src/egrep $BIN/egrep-$TARGET;
-				cp src/fgrep $BIN/fgrep-$TARGET;
+				--prefix="$DIR"
+			make "$JOBS" && {
+				cp src/grep "$BIN"/grep-"$TARGET";
+				cp src/egrep "$BIN"/egrep-"$TARGET";
+				cp src/fgrep "$BIN"/fgrep-"$TARGET";
 			}
 			;;
 		busybox)
