@@ -183,11 +183,11 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		dietlibc)
-			cd $SRC
+			cd "$SRC"
 			cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co dietlibc
 			cd dietlibc
-			make $JOBS && \
-				install bin-$TARGET/diet /usr/local/bin
+			make "$JOBS" && \
+				install bin-"$TARGET"/diet /usr/local/bin
 			;;
 		dmenu)
 			cd $SRC
