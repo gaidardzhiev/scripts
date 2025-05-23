@@ -130,16 +130,16 @@ fbuild_src(){
 				cp src/mc "$BIN"/mc-"$MC"-"$TARGET"
 			;;
 		tcc)
-			cd $SRC
-			wget https://download.savannah.gnu.org/releases/tinycc/tcc-$TCC.tar.bz2
-			bzip2 -d tcc-$TCC.tar.bz2
-			tar xfv tcc-$TCC.tar
-			rm tcc-$TCC.tar
-			cd tcc-$TCC
+			cd "$SRC"
+			wget https://download.savannah.gnu.org/releases/tinycc/tcc-"$TCC".tar.bz2
+			bzip2 -d tcc-"$TCC".tar.bz2
+			tar xfv tcc-"$TCC".tar
+			rm tcc-"$TCC".tar
+			cd tcc-"$TCC"
 			./configure \
-				--prefix=$DIR
-			make $JOBS && \
-				cp tcc $BIN/tcc-$TCC-$TARGET
+				--prefix="$DIR"
+			make "$JOBS" && \
+				cp tcc "$BIN"/tcc-"$TCC"-"$TARGET"
 			;;
 		toolbox)
 			cd $SRC
