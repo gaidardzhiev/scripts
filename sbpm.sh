@@ -367,13 +367,13 @@ fbuild_src(){
 				cp cc500 "$BIN"
 			;;
 		scc)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/8l/scc
 			cd scc
-			make $JOBS && \
-				cp bin/scc $BIN/scc-$TARGET
+			make "$JOBS" && \
+				cp bin/scc "$BIN"/scc-"$TARGET"
 			cd tests && \
-				make $JOBS
+				make "$JOBS"
 			;;
 		c)
 			[ "$TARGET" = x86_64 ] && {
