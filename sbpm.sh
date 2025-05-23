@@ -412,21 +412,21 @@ fbuild_src(){
 				make install
 			;;
 		9base)
-			cd $SRC
+			cd "$SRC"
 			git clone https://git.suckless.org/9base
 			cd 9base
-			make $JOBS
-			cp ascii/ascii $BIN/ascii-$P9
-			cp awk/awk $BIN/awk-$P9
-			cp basename/basename $BIN/basename-$P9
-			cp bc/bc $BIN/bc-$P9
-			cp cat/cat $BIN/cat-$P9
-			cp cmp/cmp $BIN/cmp-$P9
-			cp date/date $BIN/date-$P9
-			cp dd/dd $BIN/dd-$P9
-			#cp diff/diff $BIN/diff-$P9
-			cp du/du $BIN/du-$P9
-			#cp echo/echo $BIN/echo-$P9
+			make "$JOBS"
+			cp ascii/ascii "$BIN"/ascii-"$P9"
+			cp awk/awk "$BIN"/awk-"$P9"
+			cp basename/basename "$BIN"/basename-"$P9"
+			cp bc/bc "$BIN"/bc-"$P9"
+			cp cat/cat "$BIN"/cat-"$P9"
+			cp cmp/cmp "$BIN"/cmp-"$P9"
+			cp date/date "$BIN"/date-"$P9"
+			cp dd/dd "$BIN"/dd-"$P9"
+			#cp diff/diff "$BIN"/diff-"$P9"
+			cp du/du "$BIN"/du-"$P9"
+			#cp echo/echo "$BIN"/echo-"$P9"
 			;;
 		airgeddon)
 			cd $SRC
