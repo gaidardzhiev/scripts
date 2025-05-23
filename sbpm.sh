@@ -1087,59 +1087,59 @@ fdelete_src() {
 }
 
 fbin() {
-	case $GET in
+	case "$GET" in
 		toybox)
-			case $TARGET in
+			case "$TARGET" in
 				armv8l)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv7m
 					chmod +x toybox-armv7m
 					./toybox
 					;;
 				x86_64)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-x86_64
 					chmod +x toybox-x86_64
 					./toybox-x86_64
 					;;
 				x86)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-i686
 					chmod +x toybox-i686
 					./toybox-i686
 					;;
 				mips)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-mips
 					chmod +x toybox-mips
 					./toybox-mips
 					;;
 				aarch64)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-aarch64
 					chmod +x toybox-aarch64
 					./toybox-aarch64
 					;;
 				armv4l)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv4l
 					chmod +x toybox-armv4l
 					./toybox-armv4l
 					;;
 				armv5l)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv5l
 					chmod +x toybox-armv5l
 					./toybox-armv5l
 					;;
 				powerpc)
-					cd $BIN
+					cd "$BIN"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-powerpc
 					chmod +x toybox-powerpc
 					./toybox-powerpc
 					;;
 				*)
-					printf "unsupported $TARGET CPU architecture...\n"
+					printf "unsupported "$TARGET" CPU architecture...\n"
 					;;
 			esac
 			;;
