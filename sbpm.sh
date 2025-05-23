@@ -151,13 +151,13 @@ fbuild_src(){
 				cp toolbox "$BIN"/toolbox-"$TARGET"
 			;;
 		musl)
-			cd $SRC
-			wget https://musl.libc.org/releases/musl-$MUSL.tar.gz
-			tar xfv musl-$MUSL.tar.gz
-			rm musl-$MUSL.tar.gz
-			cd musl-$MUSL
+			cd "$SRC"
+			wget https://musl.libc.org/releases/musl-"$MUSL".tar.gz
+			tar xfv musl-"$MUSL".tar.gz
+			rm musl-"$MUSL".tar.gz
+			cd musl-"$MUSL"
 			./configure && {
-				make $JOBS;
+				make "$JOBS";
 				make install;
 				cp /usr/local/musl/bin/musl-gcc /usr/bin;
 			}
