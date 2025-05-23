@@ -324,7 +324,7 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		lambda-delta)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/dseagrav/ld
 			cd ld
 			aclocal && {
@@ -335,7 +335,7 @@ fbuild_src(){
 				--add-missing
 			./configure || \
 				autoreconf -i
-			make $JOBS
+			make "$JOBS"
 			;;
 		tmg)
 			cd $SRC
