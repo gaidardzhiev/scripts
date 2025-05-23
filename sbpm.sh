@@ -338,7 +338,7 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		tmg)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/amakukha/tmg
 			cd tmg
 			cd src && \
@@ -346,7 +346,7 @@ fbuild_src(){
 			./tmg.sh ../examples/hello_world.t
 			touch input
 			./a.out input
-			cp tmgl1 tmgl2 $BIN
+			cp tmgl1 tmgl2 "$BIN"
 			;;
 		subc)
 			cd $SRC
