@@ -317,11 +317,11 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		nmap)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/nmap/nmap
 			cd nmap
 			./configure
-			make $JOBS
+			make "$JOBS"
 			;;
 		lambda-delta)
 			cd $SRC
