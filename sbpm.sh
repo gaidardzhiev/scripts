@@ -67,17 +67,17 @@ mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NAT
 shift
 
 fbuild_src(){
-	case $PKG in
+	case "$PKG" in
 		make)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/make/make-$MAKE.tar.gz
-			tar xfv make-$MAKE.tar.gz
-			rm make-$MAKE.tar.gz
-			cd make-$MAKE
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/make/make-"$MAKE".tar.gz
+			tar xfv make-"$MAKE".tar.gz
+			rm make-"$MAKE".tar.gz
+			cd make-"$MAKE"
 			./configure \
-				--prefix=$DIR
+				--prefix="$DIR"
 			./build.sh
-			cp make $BIN/make-$MAKE-$TARGET
+			cp make "$BIN"/make-"$MAKE"-"$TARGET"
 			;;
 		gcc)
 			cd $SRC
