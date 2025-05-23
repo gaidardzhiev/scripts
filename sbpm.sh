@@ -163,16 +163,16 @@ fbuild_src(){
 			}
 			;;
 		sed)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 git://git.sv.gnu.org/sed
 			cd sed
 			./bootstrap
 			./configure \
-				--prefix=$DIR \
+				--prefix="$DIR" \
 				--quiet \
 				--disable-gcc-warnings
-			make $JOBS && \
-				cp sed $BIN/sed-$TARGET
+			make "$JOBS" && \
+				cp sed "$BIN"/sed-"$TARGET"
 			;;
 		binutils)
 			cd $SRC
