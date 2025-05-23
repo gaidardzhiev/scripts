@@ -281,7 +281,7 @@ fbuild_src(){
 				cp src/curl "$BIN"/curl-"$TARGET"
 			;;
 		coreboot)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://review.coreboot.org/coreboot
 			cd coreboot
 			make crossgcc-i386 CPUS=$(nproc)
@@ -290,7 +290,7 @@ fbuild_src(){
 			make menuconfig
 			make savedefconfig
 			cat defconfig
-			make $JOBS
+			make "$JOBS"
 			;;
 		toybox)
 			cd $SRC
