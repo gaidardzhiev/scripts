@@ -441,13 +441,13 @@ fbuild_src(){
 			cp bin/masscan "$BIN"/masscan-"$TARGET"
 			;;
 		kexec)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/horms/kexec-tools
 			cd kexec-tools
 			./bootstrap
 			./configure
-			make $JOBS
-			cp build/sbin/* $SBIN
+			make "$JOBS"
+			cp build/sbin/* "$SBIN"
 			;;
 		otcc)
 			case $TARGET in
