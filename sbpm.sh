@@ -620,13 +620,13 @@ fbuild_src(){
 			}
 			;;
 		libosmocore)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://gitea.osmocom.org/osmocom/libosmocore.git
 			cd libosmocore
 			autoreconf -i
 			./configure \
 				--disable-pcsc
-			make $JOBS && \
+			make "$JOBS" && \
 				make install
 			ldconfig -i
 			;;
