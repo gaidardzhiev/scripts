@@ -587,16 +587,16 @@ fbuild_src(){
 			cp bash "$BIN"/bash-"$TARGET"
 			;;
 		gnupg)
-			cd $SRC
-			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPG.tar.bz2
-			bzip2 -d https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPG.tar.bz2
-			tar xfv gnupg-$GNUPG.tar
-			rm gnupg-$GNUPG.tar
-			cd gnupg-$GNUPG
+			cd "$SRC"
+			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-"$GNUPG".tar.bz2
+			bzip2 -d https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-"$GNUPG".tar.bz2
+			tar xfv gnupg-"$GNUPG".tar
+			rm gnupg-"$GNUPG".tar
+			cd gnupg-"$GNUPG"
 			mkdir build
 			cd build
 			../configure && {
-				make $JOBS;
+				make "$JOBS";
 				make check;
 			}
 			;;
