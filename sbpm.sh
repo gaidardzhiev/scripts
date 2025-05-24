@@ -683,13 +683,13 @@ fbuild_src(){
 				make install
 			;;
 		gdb)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/gdb/gdb-$GDB.tar.gz
-			tar xfv gdb-$GDB.tar.gz
-			rm gdb-$GDB.tar.gz
-			cd gdb-$GDB
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/gdb/gdb-"$GDB".tar.gz
+			tar xfv gdb-"$GDB".tar.gz
+			rm gdb-"$GDB".tar.gz
+			cd gdb-"$GDB"
 			./configure \
-				--target=$TARGET \
+				--target="$TARGET" \
 				--disable-werror
 			make all-gdb
 			;;
