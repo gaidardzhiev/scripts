@@ -641,13 +641,13 @@ fbuild_src(){
 			ldconfig -i
 			;;
 		gapk)
-			cd "$SRC"
+			cd $SRC
 			git clone --depth=1 https://gitea.osmocom.org/osmocom/gapk
 			cd gapk
 			autoreconf -i
 			./configure \
 				--enable-gsmhr
-			make "$JOBS" && \
+			make $JOBS && \
 				make install
 			ldconfig
 			;;
