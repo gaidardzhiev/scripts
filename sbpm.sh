@@ -674,12 +674,12 @@ fbuild_src(){
 			ldconfig
 			;;
 		smartmontools)
-			cd $SRC
+			cd "$SRC"
 			svn co https://svn.code.sf.net/p/smartmontools/code/trunk/smartmontools smartmontools
 			cd smartmontools
 			./autogen.sh
 			./configure
-			make $JOBS && \
+			make "$JOBS" && \
 				make install
 			;;
 		gdb)
