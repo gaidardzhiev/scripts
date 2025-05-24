@@ -652,14 +652,14 @@ fbuild_src(){
 			ldconfig
 			;;
 		osmocom-bb)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://gitea.osmocom.org/phone-side/osmocom-bb.git
 			cd osmocom-bb
 			git pull --rebase
 			cd src
-			make $JOBS -e CROSS_TOOL_PREFIX=arm-none-eabi-
+			make "$JOBS" -e CROSS_TOOL_PREFIX=arm-none-eabi-
 			cd host/osmocon
-			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/$PHONE/$FIRMWARE.compalram.bin
+			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/"$PHONE"/"$FIRMWARE".compalram.bin
 			;;
 		aircrack-ng)
 			cd $SRC
