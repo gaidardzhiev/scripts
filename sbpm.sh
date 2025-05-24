@@ -554,12 +554,12 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		esolangs)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/gaidardzhiev/esolangs
 			cd esolangs && \
-				make $JOBS
-			cp brainf $BIN/brainf-$TARGET
-			cp whitespace $BIN/whitespace-$TARGET
+				make "$JOBS"
+			cp brainf "$BIN"/brainf-"$TARGET"
+			cp whitespace "$BIN"/whitespace-"$TARGET"
 			;;
 		interceptor)
 			cd $SRC
