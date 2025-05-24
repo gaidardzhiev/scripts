@@ -562,12 +562,12 @@ fbuild_src(){
 			cp whitespace "$BIN"/whitespace-"$TARGET"
 			;;
 		interceptor)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/gaidardzhiev/interceptor
 			cd interceptor && {
 				make;
-				cp intercept.so $LIB;
-				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n";
+				cp intercept.so "$LIB";
+				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "$LIB";
 			}
 			;;
 		bash)
