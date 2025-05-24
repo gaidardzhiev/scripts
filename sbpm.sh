@@ -611,12 +611,12 @@ fbuild_src(){
 			cp ../bin/gofmt "$BIN"/gofmt-"$GO"
 			;;
 		oyacc)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/ibara/yacc oyacc
 			cd oyacc && {
 				./configure;
-				make $JOBS;
-				cp oyacc $BIN/oyacc-$TARGET;
+				make "$JOBS";
+				cp oyacc "$BIN"/oyacc-"$TARGET";
 			}
 			;;
 		libosmocore)
