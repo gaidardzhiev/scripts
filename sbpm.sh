@@ -472,13 +472,13 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		qemu)
-			cd $SRC
-			wget https://download.qemu.org/qemu-$QEMU.tar.xz
-			tar xf qemu-$QEMU.tar.xz
-			rm qemu-$QEMU.tar.xz
-			cd $SRC/qemu-$QEMU
+			cd "$SRC"
+			wget https://download.qemu.org/qemu-"$QEMU".tar.xz
+			tar xf qemu-"$QEMU".tar.xz
+			rm qemu-"$QEMU".tar.xz
+			cd "$SRC"/qemu-"$QEMU"
 			./configure \
-				--prefix=$DIR
+				--prefix="$DIR"
 				--target-list=aarch64_be-linux-user \
 				aarch64-linux-user \
 				alpha-linux-user \
@@ -551,7 +551,7 @@ fbuild_src(){
 				--enable-libudev \
 				--enable-libssh \
 				--enable-debug
-			make $JOBS
+			make "$JOBS"
 			;;
 		esolangs)
 			cd $SRC
