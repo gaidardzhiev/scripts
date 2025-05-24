@@ -571,11 +571,11 @@ fbuild_src(){
 			}
 			;;
 		bash)
-			cd $SRC
-			wget wget https://fosszone.csd.auth.gr/gnu/bash/bash-$BASH.tar.gz
-			tar xfv bash-$BASH.tar.gz
-			rm bash-$BASH.tar.gz
-			cd bash-$BASH
+			cd "$SRC"
+			wget wget https://fosszone.csd.auth.gr/gnu/bash/bash-"$BASH".tar.gz
+			tar xfv bash-"$BASH".tar.gz
+			rm bash-"$BASH".tar.gz
+			cd bash-"$BASH"
 			./configure \
 				--enable-directory-stack=yes \
 				--enable-strict-posix-default=yes \
@@ -583,8 +583,8 @@ fbuild_src(){
 				--enable-net-redirections=yes \
 				--enable-cond-command=yes \
 				--enable-cond-regexp=yes
-			make $JOBS
-			cp bash $BIN/bash-$TARGET
+			make "$JOBS"
+			cp bash "$BIN"/bash-"$TARGET"
 			;;
 		gnupg)
 			cd $SRC
