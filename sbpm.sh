@@ -465,11 +465,11 @@ fbuild_src(){
 			esac
 			;;
 		hping)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/antirez/hping
 			cd hping
 			./configure
-			make $JOBS
+			make "$JOBS"
 			;;
 		qemu)
 			cd $SRC
