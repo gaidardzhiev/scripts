@@ -601,14 +601,14 @@ fbuild_src(){
 			}
 			;;
 		go)
-			cd $SRC
-			wget https://dl.google.com/go/go$GO-bootstrap-20171003.tar.gz
-			tar xfv go$GO-bootstrap-20171003.tar.gz
-			rm go$GO-bootstrap-20171003.tar.gz
+			cd "$SRC"
+			wget https://dl.google.com/go/go"$GO"-bootstrap-20171003.tar.gz
+			tar xfv go"$GO"-bootstrap-20171003.tar.gz
+			rm go"$GO"-bootstrap-20171003.tar.gz
 			cd go/src
 			./make.bash
-			cp ../bin/go $BIN/go-$GO
-			cp ../bin/gofmt $BIN/gofmt-$GO
+			cp ../bin/go "$BIN"/go-"$GO"
+			cp ../bin/gofmt "$BIN"/gofmt-"$GO"
 			;;
 		oyacc)
 			cd $SRC
