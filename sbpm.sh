@@ -450,16 +450,16 @@ fbuild_src(){
 			cp build/sbin/* "$SBIN"
 			;;
 		otcc)
-			case $TARGET in
+			case "$TARGET" in
 				x86)
-					cd $SRC
+					cd "$SRC"
 					git clone https://github.com/8l/otcc
 					cd otcc
 					gcc -O2 otcc.c -o otcc -ldl gcc -O2 otccelf.c -o otccelf
 					./otccelf otccelf.c otccelf1
 					;;
 				*)
-					printf "unsupported architecture: $TARGET\n"
+					printf "unsupported architecture: %s\n" "$TARGET"
 					exit 1
 					;;
 			esac
