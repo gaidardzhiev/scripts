@@ -662,14 +662,14 @@ fbuild_src(){
 			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/"$PHONE"/"$FIRMWARE".compalram.bin
 			;;
 		aircrack-ng)
-			cd $SRC
+			cd "$SRC"
 			wget https://download.aircrack-ng.org/aircrack-ng-$AIR.tar.gz
-			tar -zxvf aircrack-ng-$AIR.tar.gz
-			rm aircrack-ng-$AIR.tar.gz
-			cd aircrack-ng-$AIR
+			tar -zxvf aircrack-ng-"$AIR".tar.gz
+			rm aircrack-ng-"$AIR".tar.gz
+			cd aircrack-ng-"$AIR"
 			autoreconf -i
 			./configure --with-experimental
-			make $JOBS && \
+			make "$JOBS" && \
 				make install
 			ldconfig
 			;;
