@@ -754,12 +754,12 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		bc)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/gavinhoward/bc
 			cd bc
 			./configure.sh
-			make $JOBS && \
-				cp bin/bc $BIN/bc-$TARGET
+			make "$JOBS" && \
+				cp bin/bc "$BIN"/bc-"$TARGET"
 			;;
 		lzip)
 			cd $SRC
