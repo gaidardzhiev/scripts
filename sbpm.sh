@@ -840,14 +840,14 @@ fbuild_src(){
 			time make "$JOBS"
 			;;
 		initramfs)
-			cd $SRC
+			cd "$SRC"
 			wget https://busybox.net/downloads/busybox-1.26.2.tar.bz2
 			tar -xvf busybox-1.26.2.tar.bz2
 			rm busybox-1.26.2.tar.bz2
 			cd busybox-1.26.2
 			make defconfig
 			make menuconfig
-			make $JOBS && {
+			make "$JOBS" && {
 				file busybox;
 				make install;
 				cd _install;
