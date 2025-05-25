@@ -801,7 +801,7 @@ fbuild_src(){
 			./bootstrap
 			;;
 		bzip2)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://gitlab.com/bzip2/bzip2
 			cd bzip2
 			mkdir build && {
