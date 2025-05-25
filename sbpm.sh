@@ -725,14 +725,14 @@ fbuild_src(){
 				make install
 			;;
 		gzip)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/gzip/gzip-$GZIP.tar.gz
-			tar xfv gzip-$GZIP.tar.gz
-			rm gzip-$GZIP.tar.gz
-			cd gzip-$GZIP
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/gzip/gzip-"$GZIP".tar.gz
+			tar xfv gzip-"$GZIP".tar.gz
+			rm gzip-"$GZIP".tar.gz
+			cd gzip-"$GZIP"
 			./configure
-			make $JOBS && \
-				cp gzip $BIN/gzip-$TARGET
+			make "$JOBS" && \
+				cp gzip "$BIN"/gzip-"$TARGET"
 			;;
 		rsync)
 			cd $SRC
