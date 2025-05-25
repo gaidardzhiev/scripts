@@ -867,11 +867,11 @@ fbuild_src(){
 			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz
 			;;
 		vim)
-			cd $SRC
+			cd "$SRC"
 			wget https://ftp.nluug.nl/pub/vim/unix/vim-9.0.tar.bz2
 			cd vim90
 			./configure \
-				--prefix=$SPM \
+				--prefix="$SPM" \
 				--disable-darwin \
 				--disable-smack \
 				--disable-selinux \
@@ -886,14 +886,14 @@ fbuild_src(){
 				--disable-acl \
 				--disable-sysmouse \
 				--disable-nls
-			(make || (cd $SRC/vim90/src && make)) && make install
+			(make || (cd "$SRC"/vim90/src && make)) && make install
 			;;
 		avr-toolchain)
-			PREFIX=$SPM
+			PREFIX="$SPM"
 			export PREFIX
-			PATH=$PATH:$PREFIX/bin
-			export PATH
-			mkdir $SRC/avr && cd $SRC/avr
+			PATH="$PATH":"$PREFIX"/bin
+			export "$PATH"
+			mkdir "$SRC"/avr && cd "$SRC"/avr
 			binutils() {
 				wget https://ftp.gnu.org/gnu/binutils/binutils-2.44.tar.gz
 				tar xfv binutils-2.44.tar.gz
@@ -902,18 +902,18 @@ fbuild_src(){
 				mkdir binutils-2.44-avr
 				cd binutils-2.44-avr
 				../configure \
-				 	--prefix=$PREFIX \
+				 	--prefix="$PREFIX" \
 					--target=avr \
 					--disable-nls \
 					--disable-sim \
 					--disable-gdb \
 					--disable-werror && {
-						make $JOBS;
+						make "$JOBS";
 						make install;
 					}
 			}
 			gcc() {
-				cd $SRC/avr
+				cd "$SRC"/avr
 				wget https://ftp.cc.uoc.gr/mirrors/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.gz
 				tar xfv gcc-14.2.0.tar.gz
 				rm gcc-14.2.0.tar.gz
@@ -922,7 +922,7 @@ fbuild_src(){
 				mkdir gcc-14.2.0-avr
 				cd gcc-14.2.0
 				../configure \
-					--prefix=$PREFIX \
+					--prefix="$PREFIX" \
 					--target=avr \
 					--enable-languages=c \
 					--disable-nls \
@@ -931,22 +931,22 @@ fbuild_src(){
 					--with-gnu-as \
 					--with-gnu-ld \
 					--with-dwarf2 && {
-						make $JOBS;
+						make "$JOBS";
 						make install-strip;
 					}
 			}
 			avr_libc() {
-				cd $SRC/avr
+				cd "$SRC"/avr
 				git clone https://github.com/avrdudes/avr-libc
 				cd avr-libc
 				./bootstrap
 				mkdir avr-libc-2.2.0
 				cd avr-libc-2.2.0
 				./configure \
-					--prefix=$PREFIX \
-					--build=$TARGET-pc-linux-gnu \
+					--prefix="$PREFIX" \
+					--build="$TARGET"-pc-linux-gnu \
 					--host=avr && {
-						make $JOBS;
+						make "$JOBS";
 						make install;
 					}
 			}
