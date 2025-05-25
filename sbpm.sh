@@ -785,7 +785,7 @@ fbuild_src(){
 			}
 			;;
 		pahole)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/acmel/dwarves
 			cd dwarves
 			mkdir build && {
