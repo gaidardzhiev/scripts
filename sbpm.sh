@@ -953,18 +953,18 @@ fbuild_src(){
 			{ binutils && gcc && avr_libc; } || exit 1
 			;;
 		diff)
-			cd $SRC
-			wget https://ftp.gnu.org/gnu/diffutils/diffutils-$DIFF.tar.xz
-			tar xfv diffutils-$DIFF.tar.xz
-			rm diffutils-$DIFF.tar.xz
-			cd diffutils-$DIFF
+			cd "$SRC"
+			wget https://ftp.gnu.org/gnu/diffutils/diffutils-"$DIFF".tar.xz
+			tar xfv diffutils-"$DIFF".tar.xz
+			rm diffutils-"$DIFF".tar.xz
+			cd diffutils-"$DIFF"
 			./configure \
-				--prefix=$SPM \
-				--host=$TARGET \
+				--prefix="$SPM" \
+				--host="$TARGET" \
 				--enable-threads=isoc+posix \
 				--disable-threads && {
-					make $JOBS;
-					cp src/diff $BIN/diff-$TARGET;
+					make "$JOBS";
+					cp src/diff "$BIN"/diff-"$TARGET";
 				}
 			;;
 		tcsh)
