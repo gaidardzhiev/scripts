@@ -694,14 +694,14 @@ fbuild_src(){
 			make all-gdb
 			;;
 		zsh)
-			cd $SRC
+			cd "$SRC"
 			wget https://www.zsh.org/pub/zsh-$ZSH.tar.xz
-			tar xfv zsh-$ZSH.tar.xz
-			rm zsh-$ZSH.tar.xz
-			cd zsh-$ZSH
+			tar xfv zsh-"$ZSH".tar.xz
+			rm zsh-"$ZSH".tar.xz
+			cd zsh-"$ZSH"
 			./configure \
-				--prefix=$DIR
-			make $JOBS && \
+				--prefix="$DIR"
+			make "$JOBS" && \
 				make install
 			;;
 		kmod)
