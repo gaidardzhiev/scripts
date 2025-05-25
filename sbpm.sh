@@ -735,13 +735,13 @@ fbuild_src(){
 				cp gzip "$BIN"/gzip-"$TARGET"
 			;;
 		rsync)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/rsyncproject/rsync
 			cd rsync
 			./configure \
 				--disable-md2man
-			make $JOBS && \
-				cp rsync $BIN/rsync-$TARGET
+			make "$JOBS" && \
+				cp rsync "$BIN"/rsync-"$TARGET"
 			;;
 		xz)
 			cd $SRC
