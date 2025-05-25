@@ -744,14 +744,14 @@ fbuild_src(){
 				cp rsync "$BIN"/rsync-"$TARGET"
 			;;
 		xz)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/tukaani-project/xz
 			cd xz
 			./autogen.sh
 			./configure \
 				--enable-debug \
 				--disable-shared
-			make $JOBS
+			make "$JOBS"
 			;;
 		bc)
 			cd $SRC
