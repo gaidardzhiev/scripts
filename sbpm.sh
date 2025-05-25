@@ -810,11 +810,11 @@ fbuild_src(){
 			}
 			;;
 		linux-kernel)
-			cd $SRC
+			cd "$SRC"
 			wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-$LINUX.tar.xz
-			tar xfv linux-$LINUX.tar.xz
-			rm linux-$LINUX.tar.xz
-			cd linux-$LINUX
+			tar xfv linux-"$LINUX".tar.xz
+			rm linux-"$LINUX".tar.xz
+			cd linux-"$LINUX"
 			make tinyconfig
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
 			sed -i 's/^# CONFIG_64BIT is not set/CONFIG_64BIT=y/' .config
@@ -837,7 +837,7 @@ fbuild_src(){
 			grep "CONFIG_INITRAMFS_PRESERVE_MTIME=y" .config || exit 1
 			grep "=y" .config | wc -l
 			grep "=m" .config | wc -l
-			time make $JOBS
+			time make "$JOBS"
 			;;
 		initramfs)
 			cd $SRC
