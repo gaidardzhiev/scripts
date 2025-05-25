@@ -762,7 +762,7 @@ fbuild_src(){
 				cp bin/bc "$BIN"/bc-"$TARGET"
 			;;
 		lzip)
-			cd $SRC
+			cd "$SRC"
 			wget https://download.savannah.gnu.org/releases/lzip/lzip-1.25.tar.gz
 			tar xfv lzip-1.25.tar.gz
 			rm lzip-1.25.tar.gz
