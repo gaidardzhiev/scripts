@@ -705,7 +705,7 @@ fbuild_src(){
 				make install
 			;;
 		kmod)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/kmod-project/kmod
 			cd kmod
 			./autogen.sh
@@ -721,7 +721,7 @@ fbuild_src(){
 				--with-zlib \
 				--with-openssl \
 				--disable-manpages
-			make $JOBS && \
+			make "$JOBS" && \
 				make install
 			;;
 		gzip)
