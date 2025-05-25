@@ -773,13 +773,13 @@ fbuild_src(){
 			}
 			;;
 		elfutils)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 git://sourceware.org/git/elfutils.git
 			cd elfutils
 			autoreconf -i -f && {
 				./configure \
 					--enable-maintainer-mode;
-				make $JOBS;
+				make "$JOBS";
 				make check;
 				make install;
 			}
