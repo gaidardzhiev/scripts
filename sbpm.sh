@@ -980,11 +980,11 @@ fbuild_src(){
 			}
 			;;
 		jfsutils)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/cwuensch/jfsutils
 			cd jfsutils
 			./configure && \
-				make $JOBS
+				make "$JOBS"
 			;;
 		squashfs-tools)
 			cd $SRC
