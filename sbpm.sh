@@ -987,12 +987,12 @@ fbuild_src(){
 				make "$JOBS"
 			;;
 		squashfs-tools)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://github.com/plougher/squashfs-tools
 			cd squashfs-tools/squashfs-tools
-			make $JOBS && {
-				cp mksquashfs $BIN/mksquashfs-$TARGET;
-				cp unsquashfs $BIN/unsquashfs-$TARGET;
+			make "$JOBS" && {
+				cp mksquashfs "$BIN"/mksquashfs-"$TARGET";
+				cp unsquashfs "$BIN"/unsquashfs-"$TARGET";
 			}
 			;;
 		iptables)
