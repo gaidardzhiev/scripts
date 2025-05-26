@@ -968,14 +968,14 @@ fbuild_src(){
 				}
 			;;
 		tcsh)
-			cd $SRC
-			wget https://astron.com/pub/tcsh/tcsh-$TCSH.tar.gz
-			tar xfv tcsh-$TCSH.tar.gz
-			rm tcsh-$TCSH.tar.gz
-			cd tcsh-$TCSH
+			cd "$SRC"
+			wget https://astron.com/pub/tcsh/tcsh-"$TCSH".tar.gz
+			tar xfv tcsh-"$TCSH".tar.gz
+			rm tcsh-"$TCSH".tar.gz
+			cd tcsh-"$TCSH"
 			./configure && {
 				make;
-				cp tcsh $BIN/tcsh-$TARGET;
+				cp tcsh "$BIN"/tcsh-"$TARGET";
 				printf "tcsh is not POSIX compliant...\n";
 			}
 			;;
