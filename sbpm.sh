@@ -996,14 +996,14 @@ fbuild_src(){
 			}
 			;;
 		iptables)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://git.netfilter.org/iptables
 			cd iptables
 			autoreconf -fi
 			./configure \
 				--enable-static \
 				--disable-shared
-			make $JOBS
+			make "$JOBS"
 			;;
 		grub)
 			cd $SRC
