@@ -1006,7 +1006,7 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		grub)
-			cd $SRC
+			cd "$SRC"
 			git clone --depth=1 https://git.savannah.gnu.org/git/grub.git
 			cd grub
 			autoreconf -if
@@ -1028,7 +1028,7 @@ fbuild_src(){
 				TARGET_NM=arm-linux-gnueabihf-nm \
 				TARGET_RANLIB=arm-linux-gnueabihf-ranlib \
 				LEX=flex
-			make $JOBS
+			make "$JOBS"
 			;;
 		pcmciautils)
 			cd $SRC
