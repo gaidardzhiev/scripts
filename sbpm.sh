@@ -1031,13 +1031,13 @@ fbuild_src(){
 			make "$JOBS"
 			;;
 		pcmciautils)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/retroprom/pcmciautils
 			cd pcmciautils 
 			make && {
-				cp pccardctl $BIN/pccardctl;
-				cp pcmcia-check-broken-cis $BIN/pcmcia-check-broken-cis;
-				cp pcmcia-socket-startup $BIN/pcmcia-socket-startup;
+				cp pccardctl "$BIN"/pccardctl;
+				cp pcmcia-check-broken-cis "$BIN"/pcmcia-check-broken-cis;
+				cp pcmcia-socket-startup "$BIN"/pcmcia-socket-startup;
 			}
 			;;
 		shkd)
