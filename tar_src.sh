@@ -1,9 +1,11 @@
 #!/bin/bash
 
 DATE=$(date +"%Y%m%d_%H")
-DIR=/home/src/1v4n/
-FILE=$DIR/src_$DATE.tar.gz
+DIR="$1"
+OUT="/home/src_$DATE.tar.gz"
 
-[ ! -f "$FILE" ] && echo $? || rm "$FILE"
+[ "$#" -lt 1 ] && {
+	printf "usage: $0 <dir>\n";
+	exit 1;                                                        }
 
-tar -czvf "$FILE" "$DIR"
+tar -czvf "$OUT" "$DIR" && exit 0
