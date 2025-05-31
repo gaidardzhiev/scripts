@@ -1041,7 +1041,7 @@ fbuild_src(){
 			}
 			;;
 		shkd)
-			cd $SRC
+			cd "$SRC"
 			git clone https://github.com/baskerville/shkd
 			cd shkd
 			sed -i 's/CC *= *gcc/CC = tcc/' Makefile && {
