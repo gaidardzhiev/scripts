@@ -1061,7 +1061,7 @@ fbuild_src(){
 			make linux
 			;;
 		*)
-			printf "unsupported package: %s\n" $PKG
+			printf "unsupported package: %s\n\n" $PKG
 			fusage
 			;;
 	esac
