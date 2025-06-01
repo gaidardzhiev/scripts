@@ -1068,13 +1068,13 @@ fbuild_src(){
 }
 
 fdelete_src() {
-	printf "you will delete all the source code in $SRC\n"
+	printf "you will delete all the source code in %s \n" "$SRC"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
-	case $RSP in
+	case "$RSP" in
 		[y]* )
-			rm -r $SRC/*
-			printf "$SRC deleted...\n"
+			rm -r "$SRC"/*
+			printf "%s deleted...\n" "$SRC"
 			;;
 		[n]* )
 			printf "deletion canceld...\n"
