@@ -1144,7 +1144,7 @@ fbin() {
 			esac
 			;;
 		cross-compiler)
-			case $TARGET in
+			case "$TARGET" in
 				x86_64)
 					cd $CROSS
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-cross.tar.xz
