@@ -1146,7 +1146,7 @@ fbin() {
 		cross-compiler)
 			case "$TARGET" in
 				x86_64)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-cross.tar.xz
 					tar xfv x86_64-linux-musl-cross.tar.xz
 					rm x86_64-linux-musl-cross.tar.xz
