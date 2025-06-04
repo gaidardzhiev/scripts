@@ -1,14 +1,14 @@
 #!/bin/sh
 
-DIR=/home/src/1v4n/toolbox
-REPO=https://github.com/gaidardzhiev/toolbox
+DIR=/home/src/1v4n/oldbox
+REPO=https://github.com/gaidardzhiev/oldbox
 CMD=$1
 
 fdir() {
 	[ ! -d "$DIR" ] && {
 		cd /home/src/1v4n/;
 		git clone $REPO;
-		cd tools;
+		cd oldbox;
 		make;
 	} || return 0
 }
