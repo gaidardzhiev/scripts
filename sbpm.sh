@@ -1172,7 +1172,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				aarch64)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-cross.tar.xz
 					tar xfv aarch64-linux-musleabi-cross.tar.xz
 					rm aarch64-linux-musleabi-cross.tar.xz
