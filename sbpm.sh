@@ -1185,7 +1185,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				armv7m)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/armv7m-linux-musleabi-cross.tar.xz
 					tar xfv armv7m-linux-musleabi-cross.tar.xz
 					rm armv7m-linux-musleabi-cross.tar.xz
