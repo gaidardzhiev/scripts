@@ -1198,7 +1198,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				*)
-					printf "unsupported $TARGET CPU architecture...\n"
+					printf "unsupported %s CPU architecture...\n" "$TARGET"
 					;;
 			esac
 			;;
