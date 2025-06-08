@@ -1203,7 +1203,7 @@ fbin() {
 			esac
 			;;
 		esp)
-			case $TARGET in
+			case "$TARGET" in
 				x86_64)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
