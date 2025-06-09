@@ -1209,17 +1209,17 @@ fbin() {
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					tar xfv xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
-					export PATH=$PATH:/opt/xtensa-lx106-elf/bin
+					export PATH="$PATH":/opt/xtensa-lx106-elf/bin
 					;;
 				i686)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					tar xfv xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
-					export PATH=$PATH:/opt/xtensa-lx106-elf/bin
+					export PATH="$PATH":/opt/xtensa-lx106-elf/bin
 					;;
 				*)
-					printf "unsupported architecture: $TARGET\n"
+					printf "unsupported architecture: %s\n" $TARGET
 					;;
 			esac
 			;;
