@@ -1226,7 +1226,7 @@ fbin() {
 		aboriginal)
 			case "$TARGET" in
 				armv6l)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
 					tar xfv cross-compiler-armv6l.tar.gz
 					rm cross-compiler-armv6l.tar.gz
