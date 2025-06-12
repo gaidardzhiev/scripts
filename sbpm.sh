@@ -1240,7 +1240,7 @@ fbin() {
 					ls -la cross-compiler-x86_64
 					;;
 				i686)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-i686.tar.gz
 					tar xfv cross-compiler-i686.tar.gz
 					rm cross-compiler-i686.tar.gz
