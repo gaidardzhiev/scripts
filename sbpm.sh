@@ -1233,7 +1233,7 @@ fbin() {
 					ls -la cross-compiler-armv6l
 					;;
 				x86_64)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-x86_64.tar.gz
 					tar xfv cross-compiler-x86_64.tar.gz
 					rm cross-compiler-x86_64.tar.gz
