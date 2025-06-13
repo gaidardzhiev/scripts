@@ -1247,7 +1247,7 @@ fbin() {
 					ls -la cross-compiler-i686
 					;;
 				arm4tl)
-					cd $CROSS
+					cd "$CROSS"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv4tl.tar.gz
 					tar xfv cross-compiler-armv4tl.tar.gz
 					rm cross-compiler-armv4tl.tar.gz
