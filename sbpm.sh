@@ -1254,12 +1254,12 @@ fbin() {
 					ls -la cross-compiler-armv4tl
 					;;
 				*)
-					printf "unsupported architecture: $TARGET\n"
+					printf "unsupported architecture: %s\n" "$TARGET"
 					;;
 			esac
 			;;
 		native-compiler)
-			case $TARGET in
+			case "$TARGET" in
 				i686)
 					cd $NATIVE
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-native.sqf
