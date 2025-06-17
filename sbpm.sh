@@ -1270,7 +1270,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				i486)
-					cd $NATIVE
+					cd "$NATIVE"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i486-linux-musl-native.sqf
 					unsquashfs i486-linux-musl-native.sqf
 					rm i486-linux-musl-native.sqf
