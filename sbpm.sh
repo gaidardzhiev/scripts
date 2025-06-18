@@ -1278,7 +1278,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				x86_64)
-					cd $NATIVE
+					cd "$NATIVE"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-native.sqf
 					unsquashfs x86_64-linux-musl-native.sqf
 					rm x86_64-linux-musl-native.sqf
