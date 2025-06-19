@@ -1286,7 +1286,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				armv8l)
-					cd $NATIVE
+					cd "$NATIVE"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/armv7l-linux-musleabihf-native.sqf
 					unsquashfs armv7l-linux-musleabihf-native.sqf
 					rm armv7l-linux-musleabihf-native.sqf
