@@ -1294,7 +1294,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				aarch64)
-					cd $NATIVE
+					cd "$NATIVE"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-native.sqf
 					unsquashfs aarch64-linux-musleabi-native.sqf
 					rm aarch64-linux-musleabi-native.sqf
