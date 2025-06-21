@@ -1302,7 +1302,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				mips)
-					cd $NATIVE
+					cd "$NATIVE"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/mips-linux-musl-native.sqf
 					unsquashfs mips-linux-musl-native.sqf
 					rm mips-linux-musl-native.sqf
