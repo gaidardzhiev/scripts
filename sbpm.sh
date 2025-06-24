@@ -1315,8 +1315,8 @@ fbin() {
 			esac
 			;;
 		mkroot)
-			cd $USR
-			wget https://landley.net/toybox/downloads/binaries/mkroot/latest/$TARGET.tgz && {
+			cd "$USR"
+			wget https://landley.net/toybox/downloads/binaries/mkroot/latest/"$TARGET".tgz && {
 					tar xfv $TARGET.tgz;
 					rm $TARGET.tgz;
 					cat $TARGET/docs/README;
