@@ -1326,7 +1326,7 @@ fbin() {
 				}
 			;;
 		*)
-			printf "unsupported command: %s\n" "$GET"
+			printf "unsupported package: %s\n" "$GET"
 			fusage
 			;;
 	esac
