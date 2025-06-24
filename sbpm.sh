@@ -1317,16 +1317,16 @@ fbin() {
 		mkroot)
 			cd "$USR"
 			wget https://landley.net/toybox/downloads/binaries/mkroot/latest/"$TARGET".tgz && {
-					tar xfv $TARGET.tgz;
-					rm $TARGET.tgz;
-					cat $TARGET/docs/README;
+					tar xfv "$TARGET".tgz;
+					rm "$TARGET".tgz;
+					cat "$TARGET"/docs/README;
 				} || {
 					printf "unsupported architecture: '$TARGET'\n";
 					exit 1;
 				}
 			;;
 		*)
-			printf "unsupported command: '$GET'\n"
+			printf "unsupported command: %s\n" "$GET"
 			fusage
 			;;
 	esac
