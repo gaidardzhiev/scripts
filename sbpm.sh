@@ -1336,7 +1336,7 @@ fdelete_bin() {
 	printf "you will delete all the bin's in $BIN $CROSS $NATIVE\n"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
-	case $RSP in
+	case "$RSP" in
 		[y]* )
 			rm -r $BIN/*
 			printf "$BIN deleted...\n"
