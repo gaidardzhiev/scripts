@@ -1338,7 +1338,7 @@ fdelete_bin() {
 	read -r RSP
 	case "$RSP" in
 		[y]* )
-			rm -r $BIN/*
+			rm -r "$BIN"/*
 			printf "$BIN deleted...\n"
 			rm -r $CROSS/*
 			printf "$CROSS deleted...\n"
