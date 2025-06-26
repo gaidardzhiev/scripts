@@ -1339,7 +1339,7 @@ fdelete_bin() {
 	case "$RSP" in
 		[y]* )
 			rm -r "$BIN"/*
-			printf "$BIN deleted...\n"
+			printf "%s deleted...\n" "$BIN"
 			rm -r $CROSS/*
 			printf "$CROSS deleted...\n"
 			rm -r $NATIVE/*
