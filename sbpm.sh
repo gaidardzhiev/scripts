@@ -1341,7 +1341,7 @@ fdelete_bin() {
 			rm -r "$BIN"/*
 			printf "%s deleted...\n" "$BIN"
 			rm -r "$CROSS"/*
-			printf "$CROSS deleted...\n"
+			printf "%s deleted...\n" "$CROSS"
 			rm -r $NATIVE/*
 			printf "$NATIVE deleted...\n"
 			;;
