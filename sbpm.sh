@@ -1340,7 +1340,7 @@ fdelete_bin() {
 		[y]* )
 			rm -r "$BIN"/*
 			printf "%s deleted...\n" "$BIN"
-			rm -r $CROSS/*
+			rm -r "$CROSS"/*
 			printf "$CROSS deleted...\n"
 			rm -r $NATIVE/*
 			printf "$NATIVE deleted...\n"
