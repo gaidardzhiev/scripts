@@ -1358,7 +1358,7 @@ fdelete_bin() {
 fupdate_src() {
 	case "$UPD" in 
 		toolbox)
-			cd $SRC/toolbox && {
+			cd "$SRC"/toolbox && {
 				sed -i 's|/opt/spm/src/toolbox|/home/src/1v4n/toolbox|g' toolbox.c;
 				git pull;
 				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c;
