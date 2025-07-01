@@ -1378,7 +1378,7 @@ fupdate_src() {
 				git pull;
 				./configure \
 					--prefix="$DIR" \
-					--bindir=$BIN \
+					--bindir="$BIN" \
 					--libdir=$LIB \
 					--includedir=$INC \
 					--source-path=$SRC/tinycc \
