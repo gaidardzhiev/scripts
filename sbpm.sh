@@ -1374,10 +1374,10 @@ fupdate_src() {
 			}
 			;;
 		tinycc)
-			cd $SRC/tinycc && {
+			cd "$SRC"/tinycc && {
 				git pull;
 				./configure \
-					--prefix=$DIR \
+					--prefix="$DIR" \
 					--bindir=$BIN \
 					--libdir=$LIB \
 					--includedir=$INC \
