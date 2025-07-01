@@ -1379,7 +1379,7 @@ fupdate_src() {
 				./configure \
 					--prefix="$DIR" \
 					--bindir="$BIN" \
-					--libdir=$LIB \
+					--libdir="$LIB" \
 					--includedir=$INC \
 					--source-path=$SRC/tinycc \
 					--cc=tcc \
