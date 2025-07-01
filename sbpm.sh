@@ -1381,7 +1381,7 @@ fupdate_src() {
 					--bindir="$BIN" \
 					--libdir="$LIB" \
 					--includedir="$INC" \
-					--source-path=$SRC/tinycc \
+					--source-path="$SRC"/tinycc \
 					--cc=tcc \
 					--disable-static \
 					--enable-cross;
