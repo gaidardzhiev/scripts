@@ -1380,7 +1380,7 @@ fupdate_src() {
 					--prefix="$DIR" \
 					--bindir="$BIN" \
 					--libdir="$LIB" \
-					--includedir=$INC \
+					--includedir="$INC" \
 					--source-path=$SRC/tinycc \
 					--cc=tcc \
 					--disable-static \
