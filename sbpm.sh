@@ -1385,7 +1385,7 @@ fupdate_src() {
 					--cc=tcc \
 					--disable-static \
 					--enable-cross;
-				make $JOBS;
+				make "$JOBS";
 				make install;
 			}
 			;;
