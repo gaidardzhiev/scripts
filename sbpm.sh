@@ -1393,7 +1393,7 @@ fupdate_src() {
 			cd "$SRC"/esolangs && {
 				git pull;
 				make "$JOBS";
-				cp brainf $BIN/brainf-$TARGET;
+				cp brainf "$BIN"/brainf-$TARGET;
 				cp whitespace $BIN/whitespace-$TARGET;
 			}
 			;;
