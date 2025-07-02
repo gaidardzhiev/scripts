@@ -1394,7 +1394,7 @@ fupdate_src() {
 				git pull;
 				make "$JOBS";
 				cp brainf "$BIN"/brainf-"$TARGET";
-				cp whitespace "$BIN"/whitespace-$TARGET;
+				cp whitespace "$BIN"/whitespace-"$TARGET";
 			}
 			;;
 		dash)
