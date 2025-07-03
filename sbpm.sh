@@ -1401,7 +1401,7 @@ fupdate_src() {
 			cd "$SRC"/dash && {
 				git pull;
 				make "$JOBS";
-				cp dash $BIN/dash-$TARGET;
+				cp dash "$BIN"/dash-$TARGET;
 			}
 			;;
 		nmap)
