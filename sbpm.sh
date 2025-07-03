@@ -1400,7 +1400,7 @@ fupdate_src() {
 		dash)
 			cd "$SRC"/dash && {
 				git pull;
-				make $JOBS;
+				make "$JOBS";
 				cp dash $BIN/dash-$TARGET;
 			}
 			;;
