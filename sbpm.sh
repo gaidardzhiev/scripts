@@ -1405,7 +1405,7 @@ fupdate_src() {
 			}
 			;;
 		nmap)
-			cd $SRC/nmap && \
+			cd "$SRC"/nmap && \
 				git diff --name-only HEAD origin/main -- $CFG > /tmp/before.txt && \
 				git pull && \
 				git diff --name-only HEAD@{1} HEAD -- $CFG > /tmp/after.txt
