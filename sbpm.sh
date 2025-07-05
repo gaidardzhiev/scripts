@@ -1418,12 +1418,12 @@ fupdate_src() {
 					cp nmap "$BIN"/nmap-"$TARGET"
 			;;
 		kexec)
-			cd $SRC/kexec-tools
+			cd "$SRC"/kexec-tools
 			git pull && \
 				./bootstrap && \
 				./configure && \
-				make $JOBS && \
-				cp build/sbin/* $SBIN
+				make "$JOBS" && \
+				cp build/sbin/* "$SBIN"
 			;;
 		interceptor)
 			cd $SRC/interceptor && \
