@@ -1430,7 +1430,7 @@ fupdate_src() {
 				git pull && \
 				make && \
 				cp intercept.so "$LIB" && \
-				printf "usage: LD_PRELOAD=$LIB/intercept.so /bin/brave\n"
+				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "$LIB"
 			;;
 		smartmontools)
 			cd $SRC/smartmontools && \
