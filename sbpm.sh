@@ -1426,7 +1426,7 @@ fupdate_src() {
 				cp build/sbin/* "$SBIN"
 			;;
 		interceptor)
-			cd $SRC/interceptor && \
+			cd "$SRC"/interceptor && \
 				git pull && \
 				make && \
 				cp intercept.so $LIB && \
