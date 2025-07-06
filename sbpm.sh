@@ -1433,15 +1433,15 @@ fupdate_src() {
 				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "$LIB"
 			;;
 		smartmontools)
-			cd $SRC/smartmontools && \
+			cd "$SRC"/smartmontools && \
 				svn update && \
 				./autogen.sh && \
 				./configure && \
-				make $JOBS && \
+				make "$JOBS" && \
 				make install
 			;;
 		*)
-			printf "unsupported package $UPD...\n"
+			printf "unsupported package %s...\n" "$UPD"
 			fusage
 			;;
 	esac
