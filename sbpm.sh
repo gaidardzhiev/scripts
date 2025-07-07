@@ -5,19 +5,19 @@ ARG=$1
 PKG=$2
 GET=$2
 UPD=$2
-DIR="/opt/spm"
-SRC="/opt/spm/src"
-BIN="/opt/spm/bin"
-LIB="/opt/spm/lib"
-ETC="/opt/spm/etc"
-SBIN="/opt/spm/sbin"
-VAR="/opt/spm/var"
-INC="/opt/spm/include"
-CROSS="/opt/spm/cross"
-SHR="/opt/spm/share"
-NATIVE="/opt/spm/native"
-MNT="/opt/spm/mnt"
-USR="/opt/spm/usr"
+DIR="/opt/sbpm"
+SRC="/opt/sbpm/src"
+BIN="/opt/sbpm/bin"
+LIB="/opt/sbpm/lib"
+ETC="/opt/sbpm/etc"
+SBIN="/opt/sbpm/sbin"
+VAR="/opt/sbpm/var"
+INC="/opt/sbpm/include"
+CROSS="/opt/sbpm/cross"
+SHR="/opt/sbpm/share"
+NATIVE="/opt/sbpm/native"
+MNT="/opt/sbpm/mnt"
+USR="/opt/sbpm/usr"
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 JOBS='-j '$GETNUMCPUS''
@@ -139,14 +139,14 @@ fbuild_src(){
 			make "$JOBS" && \
 				cp tcc "$BIN"/tcc-"$TCC"-"$TARGET"
 			;;
-		toolbox)
+		oldbox)
 			cd "$SRC"
-			git clone https://github.com/gaidardzhiev/toolbox
-			cd toolbox
-			sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c
+			git clone https://github.com/gaidardzhiev/oldbox
+			cd oldbox
+			sed -i 's|/home/src/1v4n/oldbox|/opt/sbpm/src/oldbox|g' oldbox.c
 			./build_toolchain.sh
 			make "$JOBS" && \
-				cp toolbox "$BIN"/toolbox-"$TARGET"
+				cp oldbox "$BIN"/oldbox-"$TARGET"
 			;;
 		musl)
 			cd "$SRC"
@@ -1043,7 +1043,7 @@ fbuild_src(){
 			git clone https://github.com/baskerville/shkd
 			cd shkd
 			sed -i 's/CC *= *gcc/CC = tcc/' Makefile && {
-				sed 's|/usr/local|/opt/spm/bin|g' Makefile;
+				sed 's|/usr/local|/opt/sbpm/bin|g' Makefile;
 				make;
 				make install;
 			}
@@ -1355,13 +1355,13 @@ fdelete_bin() {
 
 fupdate_src() {
 	case "$UPD" in 
-		toolbox)
-			cd "$SRC"/toolbox && {
-				sed -i 's|/opt/spm/src/toolbox|/home/src/1v4n/toolbox|g' toolbox.c;
+		oldbox)
+			cd "$SRC"/oldbox && {
+				sed -i 's|/opt/sbpm/src/oldbox|/home/src/1v4n/oldbox|g' oldbox.c;
 				git pull;
-				sed -i 's|/home/src/1v4n/toolbox|/opt/spm/src/toolbox|g' toolbox.c;
+				sed -i 's|/home/src/1v4n/oldbbox|/opt/sbpm/src/oldbox|g' oldbox.c;
 				make "$JOBS";
-				cp toolbox "$BIN"/toolbox-"$TARGET";
+				cp oldbox "$BIN"/oldbox-"$TARGET";
 			}
 			;;
 		dash)
