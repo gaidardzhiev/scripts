@@ -1449,7 +1449,7 @@ fupdate_src() {
 
 case "$ARG" in
 	build-src)
-		fbuild_src $PKG
+		fbuild_src "$PKG"
 		;;
 	delete-src)
 		fdelete_src
