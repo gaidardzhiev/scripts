@@ -1,7 +1,5 @@
 #!/bin/sh
-#very crude source based package manager
-#boasting only two essential dependencies:
-#POSIX compliant shell and wget
+#very crude source based package manager boasting only two essential dependencies a POSIX compliant shell and wget
 
 ARG=$1
 PKG=$2
