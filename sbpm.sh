@@ -1461,7 +1461,7 @@ case "$ARG" in
 		fdelete_bin
 		;;
 	update-src)
-		fupdate_src $UPD
+		fupdate_src "$UPD"
 		;;
 	*)
 		printf "unsupported command: '$ARG'\n"
