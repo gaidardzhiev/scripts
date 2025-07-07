@@ -1058,6 +1058,15 @@ fbuild_src(){
 				--with-abi=ilp32d
 			make linux
 			;;
+		toolbox)
+			cd "$SRC"
+			git clone https://github.com/gaidardzhiev/toolbox
+			cd toolbox
+			make && \
+				make strip && \
+				make install && \
+				cp toolbox "$BIN"/toolbox-"$TARGET"
+			;;
 		*)
 			printf "unsupported package: %s\n\n" $PKG
 			fusage
