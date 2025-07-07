@@ -1447,7 +1447,7 @@ fupdate_src() {
 	esac
 }
 
-case $ARG in
+case "$ARG" in
 	build-src)
 		fbuild_src $PKG
 		;;
