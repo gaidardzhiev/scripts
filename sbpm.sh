@@ -1455,7 +1455,7 @@ case "$ARG" in
 		fdelete_src
 		;;
 	get-bin)
-		fbin $GET
+		fbin "$GET"
 		;;
 	delete-bin)
 		fdelete_bin
