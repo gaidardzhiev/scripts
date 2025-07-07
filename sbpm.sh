@@ -1464,7 +1464,7 @@ case "$ARG" in
 		fupdate_src "$UPD"
 		;;
 	*)
-		printf "unsupported command: '$ARG'\n"
+		printf "unsupported command: %s\n" "$ARG"
 		fusage
 		;;
 esac
