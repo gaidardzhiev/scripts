@@ -4,7 +4,7 @@
 FILE=$TMPDIR/file.ws
 WHITE=https://paste.c-net.org/UnplugDominant
 
-cd $TMPDIR
+cd "$TMPDIR"
 
 [ -e $FILE ] && rm $FILE
 
