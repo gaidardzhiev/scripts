@@ -11,7 +11,7 @@ cd "$TMPDIR"
 if uname -m | grep "arm"; then
 	wget "$WHITE" -O whitespace
 	chmod +x whitespace
-	touch $FILE
+	touch "$FILE"
 	printf "   		 	  	
 	
      		  		 
