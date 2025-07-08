@@ -20,7 +20,13 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		esolangs \
 		toolbox \
 		syscall \
-		crt0trust;
+		crt0trust \
+		terminax \
+		brainfunk \
+		sbpm \
+		latex \
+		ocr \
+		oldbox;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
