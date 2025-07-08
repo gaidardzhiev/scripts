@@ -9,7 +9,7 @@ cd "$TMPDIR"
 [ -e "$FILE" ] && rm "$FILE"
 
 if uname -m | grep "arm"; then
-	wget $WHITE -O whitespace
+	wget "$WHITE" -O whitespace
 	chmod +x whitespace
 	touch $FILE
 	printf "   		 	  	
