@@ -468,7 +468,7 @@ if uname -m | grep "arm"; then
 
 
 
-" > $FILE
+" > "$FILE"
 	eval "$( ./whitespace $FILE )"
 	exit 0
 else
