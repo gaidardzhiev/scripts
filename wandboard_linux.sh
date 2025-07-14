@@ -9,8 +9,8 @@ export DISK=/dev/mmcblk0
 export TARGET=arm
 
 #create and go to work directory
-mkdir $DIR
-cd $DIR
+mkdir "$DIR"
+cd "$DIR"
 
 #get and test the Linaro ARM GCC cross compiler
 wget -c https://releases.linaro.org/components/toolchain/binaries/6.5-2018.12/arm-linux-gnueabihf/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf.tar.xz
