@@ -72,4 +72,4 @@ dmesg | grep brcm
 /sbin/ifconfig -a
 sync
 sudo umount /media/rootfs
-echo "done..."
+printf "done...\n"
