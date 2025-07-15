@@ -7,7 +7,7 @@ export TMPDIR=/tmp
 
 [ ! -f "$SSH" ] && ssh-keygen -t ed25519 -N "$1" -f "$SSH"
 
-mkdir -p $DIR
+mkdir -p "$DIR"
 
 cd $DIR
 
