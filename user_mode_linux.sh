@@ -29,7 +29,7 @@ mv usr/lib/uml/modules .
 
 rm -r usr
 
-[ ! -f "$SLIRP" ] && echo "redir tcp 2222 22" > $SLIRP
+[ ! -f "$SLIRP" ] && echo "redir tcp 2222 22" > "$SLIRP"
 
 wget -O debian.img https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.raw
 
