@@ -9,7 +9,7 @@ export TMPDIR=/tmp
 
 mkdir -p "$DIR"
 
-cd $DIR
+cd "$DIR"
 
 wget https://deb.debian.org/debian/pool/main/u/user-mode-linux/user-mode-linux_5.10um3+b1_amd64.deb
 
