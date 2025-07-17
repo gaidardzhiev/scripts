@@ -19,7 +19,7 @@ change_mac_address() {
 	new_mac=$(rand_mac_address)
 	ip link set dev "$DEVICE" down &&
 	ip link set dev "$DEVICE" address "$new_mac" &&
-	ip link set dev $DEVICE up &&
+	ip link set dev "$DEVICE" up &&
 	echo "MAC address changed to: $new_mac" ||
 	echo "MAC address change failed..."
 }
