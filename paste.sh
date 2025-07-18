@@ -4,8 +4,8 @@
 fusage() {
 	sed -n '2s/^.\(.*\)/\1/p' "$0";
 	printf "usage:\n"
-	printf "        $0 <up>    <file>\n"
-	printf "        $0 <down>  <name>\n"
+	printf "        $0 up     <file>\n"
+	printf "        $0 down   <name>\n"
 	return 32
 }
 
@@ -19,7 +19,7 @@ fup() {
 			"$URL";
 		return 0;
 	} || {
-		printf "'$FILE' is not readable or does not exist...\n";
+		printf "%s is not readable or does not exist...\n" "$FILE";
 		return 16;
 	}
 }
@@ -33,9 +33,11 @@ fdown() {
 case "$1" in
 	up)
 		fup "$@"
+		exit 0
 		;;
 	down)
 		fdown "$@"
+		exit 0
 		;;
 	*)
 		fusage
