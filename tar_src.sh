@@ -6,6 +6,6 @@ OUT="/home/src_$DATE.tar.gz"
 
 [ "$#" -lt 1 ] && {
 	printf "usage: $0 <dir>\n";
-	exit 1;                                                        }
+	exit 1;                                                 }
 
-tar -czvf "$OUT" "$DIR" && exit 0
+tar -czvf "$OUT" "$DIR" && exit 0 || exit 1
