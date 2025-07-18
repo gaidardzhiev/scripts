@@ -27,7 +27,8 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		latex \
 		ocr \
 		oldbox \
-		isol8r;
+		isol8r \
+		tmdv;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
