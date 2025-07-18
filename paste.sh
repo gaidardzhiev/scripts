@@ -32,8 +32,8 @@ fdown() {
 
 case "$1" in
 	up)
-		fup "$@"
-		exit 0
+		{ fup "$@"; RET=$?; }
+		[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
 		;;
 	down)
 		fdown "$@"
