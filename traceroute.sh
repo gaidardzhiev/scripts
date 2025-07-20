@@ -1,6 +1,10 @@
 #!/bin/sh
 
-for i in `curl -s https://ipv4.icanhazip.com`
+command -v curl >/dev/null 2>&1 || { printf "curl is not installed...\n"; exit 1; }
+
+command -v traceroute >/dev/null 2>&1 || { printf "traceroute is not installed...\n"; exit 1; }
+
+for ip in `curl -s https://ipv4.icanhazip.com`
 do
-	traceroute "$i"
+	traceroute "$ip"
 done
