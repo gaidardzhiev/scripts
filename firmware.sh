@@ -42,13 +42,13 @@ fusage() {
 case "$1" in
 	unpack)
 		funpack "$2" || { 
-			printf "failed to unpack '$2'\n";
+			printf "failed to unpack '$2'...\n";
 			exit 8;
 		}
 		;;
 	pack)
 		fpack "$2" || {
-			printf "failed to pack '$2'\n";
+			printf "failed to pack '$2'...\n";
 			exit 16;
 		}
 		;;
