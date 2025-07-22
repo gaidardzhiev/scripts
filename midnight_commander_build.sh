@@ -11,7 +11,7 @@ fexit() {
 	exit 1
 }
 
-get_build_mc() {
+fmc() {
 	mkdir -p "$DIR" || fexit "failed to create directory $DIR"
 	cd "$DIR" || fexit "failed to change directory to $DIR"
 	wget "http://ftp.midnight-commander.org/mc-$MC_VER.tar.xz" || fexit "failed to download"
@@ -28,4 +28,4 @@ get_build_mc() {
 	rm -r "$DIR" || fexit "failed to remove directory $DIR"
 }
 
-get_build_mc
+fmc && exit 0 || exit 1
