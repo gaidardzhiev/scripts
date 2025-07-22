@@ -3,6 +3,7 @@
 
 ferror() {
 	echo "error: $1"
+	sed -n '2s/^.\(.*\)/\1/p' "$0"
 	exit 1
 }
 
