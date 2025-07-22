@@ -8,8 +8,11 @@ NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
 
 printf "do you want to manualy choose the openvpn configuration file:\n"
+
 printf "(yes/no)\n"
+
 read -r RSP
+
 case $RSP in
 	[y]* )
 		FILE=$(find "$DIR" -type f | fzf)
@@ -26,7 +29,9 @@ case $RSP in
 esac
 
 printf "enter the password to access the credentials:\n"
+
 read -s DEC
+
 [ -f "$CRED" ] && {
 	USER=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | head -n 1) || exit -1
 	PASS=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | tail -n 1) || exit -2
@@ -38,4 +43,5 @@ read -s DEC
 }
 
 printf "starting openvpn with configuration: $FILE\n"
+
 openvpn --config "$FILE" --auth-user-pass <(echo -e "$USER\n$PASS")
