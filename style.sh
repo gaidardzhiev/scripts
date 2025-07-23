@@ -3,7 +3,7 @@
 fdepcheck() {
 	command -v "$1" >/dev/null 2>&1 || {
 		printf >&2 "error: $1 is not installed...\n";
-		return 2;
+		return 16;
 	}
 }
 
@@ -13,7 +13,7 @@ fastyle() {
 		return 0;
 	} || {
 		printf "astyle encountered an issue while formatting...\n";	
-		return 3;
+		return 32;
 	}
 }
 
