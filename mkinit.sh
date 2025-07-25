@@ -46,4 +46,3 @@ rm -rf "$DIR"
 printf "\n\ninitramfs for "$ARCH" created successfully: "$INIT"\n"
 
 qemu-system-"$ARCH" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
-
