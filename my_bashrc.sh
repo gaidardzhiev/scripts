@@ -2,7 +2,7 @@
 
 RC=/etc/bash.bashrc
 
-if [ -e $RC ]; then
+if [ -e "$RC" ]; then
 	printf "/etc/bash.bashrc exists...\n"
 	exit 1
 else
