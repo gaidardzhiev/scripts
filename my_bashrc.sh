@@ -7,7 +7,7 @@ if [ -e "$RC" ]; then
 	exit 1
 else
 	touch "$RC"
-	cat <<'EOF' >> $RC
+	cat <<'EOF' >> "$RC"
 # /etc/bash.bashrc
 if [[ $- != *i* ]] ; then
 	return
