@@ -25,4 +25,4 @@ fspray() {
 	return 0
 }
 
-{ fscan && fspray && exit 0; } || printf "something's wrong in here somewhere...\n" 
+{ fscan && fspray && exit 0; } || { printf "something's wrong in here somewhere...\n" && exit 1; }
