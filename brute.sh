@@ -6,7 +6,7 @@ export PASS="/usr/share/brutespray/wordlist/pass.txt"
 
 
 [ -z "$1" ] && {
-	printf "usage: $0 <target>\n";
+	printf "usage: "$0" <target>\n";
 	exit 1;
 }
 
