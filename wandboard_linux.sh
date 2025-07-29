@@ -4,9 +4,9 @@
 set -x
 
 #set vars
-export DIR=/home/src/wandboard
-export DISK=/dev/mmcblk0
-export TARGET=arm
+export DIR="/home/src/wandboard"
+export DISK="/dev/mmcblk0"
+export TARGET="arm"
 
 #create and go to work directory
 mkdir "$DIR"
