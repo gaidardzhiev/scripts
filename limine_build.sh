@@ -1,6 +1,6 @@
 #! /bin/sh
 
-export DIR=limine_build
+export DIR="limine_build"
 
 mkdir $DIR
 cd $DIR
