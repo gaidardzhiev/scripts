@@ -2,7 +2,7 @@
 
 export DIR="limine_build"
 
-mkdir $DIR
+mkdir "$DIR"
 cd $DIR
 touch kernel.c
 touch link.ld
