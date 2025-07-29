@@ -3,7 +3,7 @@
 export DIR="limine_build"
 
 mkdir "$DIR"
-cd $DIR
+cd "$DIR"
 touch kernel.c
 touch link.ld
 touch limine.cfg
