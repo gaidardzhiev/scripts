@@ -6,12 +6,12 @@
 }
 
 [ ! -f "$1" ] && {
-	printf "error: file '$1' does not exist...\n";
+	printf "error: file %s does not exist...\n" "$1";
 	exit 2;
 }
 
 [ ! -f "$2" ] && {
-	printf "error: file '$2' does not exist....\n";
+	printf "error: file %s does not exist....\n" "$2";
 	exit 3;
 }
 
