@@ -7,7 +7,7 @@ symref=$(mktemp) || { rm -f "$symdef"; exit 1; }
 trap 'rm -f "$symdef" "$symref"; exit' INT TERM HUP EXIT
 
 [ "$#" -eq 0 ] && {
-	echo "usage: $0 file ..."
+	echo "usage: $0 <object>"
 	exit 1
 }
 
