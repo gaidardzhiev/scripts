@@ -4,7 +4,7 @@
 export FILE="$TMPDIR/+++++"
 export BRAIN="https://paste.c-net.org/DisobeyPajama"
 
-cd $TMPDIR
+cd "$TMPDIR"
 
 [ -e $FILE ] && rm $FILE
 
