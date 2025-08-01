@@ -6,7 +6,7 @@ export BRAIN="https://paste.c-net.org/DisobeyPajama"
 
 cd "$TMPDIR"
 
-[ -e $FILE ] && rm $FILE
+[ -e "$FILE" ] && rm $FILE
 
 if uname -m | grep "arm"; then
 	wget $BRAIN -O brainfuck
