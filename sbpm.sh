@@ -1333,11 +1333,12 @@ fbin() {
 				}
 			;;
 		shellcheck)
-			cd $BIN
+			cd "$BIN"
 			wget https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux."$TARGET".tar.xz
 			tar xfv shellcheck-v0.10.0.linux."$TARGET".tar.xz
 			rm shellcheck-v0.10.0.linux."$TARGET".tar.xz
 			mv shellcheck-v0.10.0/shellcheck "$BIN"/shellcheck-"$TARGET"
+			rm -r shellcheck-v0.10.0
 			;;
 		*)
 			printf "unsupported package: %s\n" "$GET"
