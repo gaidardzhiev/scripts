@@ -1335,10 +1335,12 @@ fbin() {
 			;;
 		shellcheck)
 			cd "$BIN"
-			wget https://github.com/koalaman/shellcheck/releases/download/v"$SHELLCHECK"/shellcheck-v"$SHELLCHECK".linux."$TARGET".tar.xz
-			tar xfv shellcheck-v"$SHELLCHECK".linux."$TARGET".tar.xz
-			rm shellcheck-v"$SHELLCHECK".linux."$TARGET".tar.xz
-			mv shellcheck-v"$SHELLCHECK"/shellcheck "$BIN"/shellcheck-"$TARGET"
+			ARCH="$TARGET"
+			[ "$TARGET" = "armv8l" ] && ARCH="armv6hf"
+			wget https://github.com/koalaman/shellcheck/releases/download/v"$SHELLCHECK"/shellcheck-v"$SHELLCHECK".linux."$ARCH".tar.xz
+			tar xfv shellcheck-v"$SHELLCHECK".linux."$ARCH".tar.xz
+			rm shellcheck-v"$SHELLCHECK".linux."$ARCH".tar.xz
+			mv shellcheck-v"$SHELLCHECK"/shellcheck "$BIN"/shellcheck-"$ARCH"
 			rm -r shellcheck-v"$SHELLCHECK"
 			;;
 		*)
