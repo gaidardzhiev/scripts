@@ -46,6 +46,7 @@ GZIP="1.13"
 LINUX="6.13.1"
 DIFF="3.11"
 TCSH="6.24.15"
+SHELLCHECK="0.10.0"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -1334,11 +1335,11 @@ fbin() {
 			;;
 		shellcheck)
 			cd "$BIN"
-			wget https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux."$TARGET".tar.xz
-			tar xfv shellcheck-v0.10.0.linux."$TARGET".tar.xz
-			rm shellcheck-v0.10.0.linux."$TARGET".tar.xz
-			mv shellcheck-v0.10.0/shellcheck "$BIN"/shellcheck-"$TARGET"
-			rm -r shellcheck-v0.10.0
+			wget https://github.com/koalaman/shellcheck/releases/download/v"$SHELLCHECK"/shellcheck-v"$SHELLCHECK".linux."$TARGET".tar.xz
+			tar xfv shellcheck-v"$SHELLCHECK".linux."$TARGET".tar.xz
+			rm shellcheck-v"$SHELLCHECK".linux."$TARGET".tar.xz
+			mv shellcheck-v"$SHELLCHECK"/shellcheck "$BIN"/shellcheck-"$TARGET"
+			rm -r shellcheck-v"$SHELLCHECK"
 			;;
 		*)
 			printf "unsupported package: %s\n" "$GET"
