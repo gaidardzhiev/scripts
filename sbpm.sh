@@ -1329,7 +1329,7 @@ fbin() {
 					rm "$TARGET".tgz;
 					cat "$TARGET"/docs/README;
 				} || {
-					printf "unsupported architecture: '$TARGET'\n";
+					printf "unsupported architecture: %s\n" "$TARGET";
 					exit 1;
 				}
 			;;
