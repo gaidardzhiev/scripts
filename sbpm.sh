@@ -54,7 +54,7 @@ fusage() {
 	printf "		< build-src | get-bin | delete-src | delete-bin | update-src >\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		< tcc | gcc | make | musl | glibc | mc | git | strongswan | dietlibc | zsh | bash | dash | ash | linux-kernel | awk | grep | sed | oldbox | busybox | toybox | qbe | curl | wget | tmux | qemu | i3wm | dmenu | grub | coreboot | flashrom | cross-compiler | uclibc | john | nmap | lambda-delta | tmg | subc | cc500 | scc | c | cproc | 9base | airgeddon | masscan | kexec | otcc | hping | esp-toolchain | aboriginal | interceptor | gnupg | go | oyacc | libosmocore | libosmo-gprs | gapk | osmocom-bb | aircrack-ng | smartmontools | gdb | kmod | gzip | rsync | xz | bc | lzip | pahole | tar | bzip2 | initramfs | vim | native-compiler | mkroot | avr-toolchain | diff | tcsh | jfsutils | squashfs-tools | iptables | pcmciautils | shkd | toolbox >\n"
+	printf "		< tcc | gcc | make | musl | glibc | mc | git | strongswan | dietlibc | zsh | bash | dash | ash | linux-kernel | awk | grep | sed | oldbox | busybox | toybox | qbe | curl | wget | tmux | qemu | i3wm | dmenu | grub | coreboot | flashrom | cross-compiler | uclibc | john | nmap | lambda-delta | tmg | subc | cc500 | scc | c | cproc | 9base | airgeddon | masscan | kexec | otcc | hping | esp-toolchain | aboriginal | interceptor | gnupg | go | oyacc | libosmocore | libosmo-gprs | gapk | osmocom-bb | aircrack-ng | smartmontools | gdb | kmod | gzip | rsync | xz | bc | lzip | pahole | tar | bzip2 | initramfs | vim | native-compiler | mkroot | avr-toolchain | diff | tcsh | jfsutils | squashfs-tools | iptables | pcmciautils | shkd | toolbox | shellcheck >\n"
 	exit 1
 }
 
@@ -1331,6 +1331,13 @@ fbin() {
 					printf "unsupported architecture: '$TARGET'\n";
 					exit 1;
 				}
+			;;
+		shellcheck)
+			cd $BIN
+			wget https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux."$TARGET".tar.xz
+			tar xfv shellcheck-v0.10.0.linux."$TARGET".tar.xz
+			rm shellcheck-v0.10.0.linux."$TARGET".tar.xz
+			mv shellcheck-v0.10.0/shellcheck "$BIN"/shellcheck-"$TARGET"
 			;;
 		*)
 			printf "unsupported package: %s\n" "$GET"
