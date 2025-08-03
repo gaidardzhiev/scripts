@@ -947,7 +947,7 @@ fbuild_src(){
 					--host=avr && {
 						make "$JOBS";
 						make install;
-					}
+				}
 			}
 			{ binutils && gcc && avr_libc; } || exit 1
 			;;
