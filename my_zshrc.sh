@@ -7,7 +7,7 @@ export SRC="/home/src/1v4n/"
 
 touch "$RC"
 mkdir "$HISTDIR"
-touch $HISTFILE
+touch "$HISTFILE"
 
 cat <<'EOF' >> $RC
 autoload -U colors && colors
