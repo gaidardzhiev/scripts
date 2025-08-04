@@ -5,7 +5,7 @@ export HISTDIR="/root/.cache/zsh"
 export HISTFILE="/root/.cache/zsh/history"
 export SRC="/home/src/1v4n/"
 
-touch $RC
+touch "$RC"
 mkdir $HISTDIR
 touch $HISTFILE
 
