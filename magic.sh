@@ -6,7 +6,7 @@ z() {
 	read -n 16 -u 3 x
 	echo -n "magic signature bytes: "
 	i=0
-	while [ $i -lt 16 ];
+	while [ "$i" -lt 16 ];
 	do
 		printf "%02X " "'${x:i:1}"
 		i=$((i + 1))
@@ -31,6 +31,6 @@ z() {
 	exec 3<&-
 }
 
-[ $# -ne 1 ] && { printf "usage: $0 <file>\n" >&2; exit 1; }
+[ "$#" -ne 1 ] && { printf "usage: $0 <file>\n" >&2; exit 1; }
 
 z "$1"
