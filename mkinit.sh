@@ -43,6 +43,6 @@ find "$DIR" | cpio -H newc -o | gzip -9 > "$INIT"
 
 rm -rf "$DIR"
 
-printf "\n\ninitramfs for "$ARCH" created successfully: "$INIT"\n"
+printf "\n\ninitramfs for %s created successfully: %s\n" "$ARCH" "$INIT"
 
 qemu-system-"$ARCH" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
