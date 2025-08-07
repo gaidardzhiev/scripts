@@ -28,7 +28,8 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		ocr \
 		oldbox \
 		isol8r \
-		tmdv;
+		tmdv \
+		getprand;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
