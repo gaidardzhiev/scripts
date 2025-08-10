@@ -177,6 +177,6 @@ ftest() {
 	qemu-system-x86_64 -cdrom image.iso && return 0 || return 64
 }
 
-{ flimine && fcompile && flink && fiso && ftest; RET=$?; } || exit 1
+{ flimine && fcompile && flink && fiso && ftest; RET="$?"; } || exit 1
 
 [ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
