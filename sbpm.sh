@@ -1159,7 +1159,7 @@ fbin() {
 					./toybox-powerpc
 					;;
 				*)
-					printf "unsupported "$TARGET" CPU architecture...\n"
+					printf "unsupported %s CPU architecture...\n" "$TARGET"
 					;;
 			esac
 			;;
