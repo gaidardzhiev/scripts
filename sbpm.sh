@@ -1068,6 +1068,18 @@ fbuild_src(){
 				make install && \
 				cp toolbox "$BIN"/toolbox-"$TARGET"
 			;;
+		getprand)
+			[ "$TARGET" = armv8l ] && {
+				cd "$SRC"
+				git clone https://github.com/gaidardzhiev/getprand
+				cd getprand
+				make
+				make install;
+			} || {
+				printf "unsupported %s CPU architecture...\n" "$TARGET";
+				exit 1;
+			}
+			;;
 		*)
 			printf "unsupported package: %s\n\n" "$PKG"
 			fusage
