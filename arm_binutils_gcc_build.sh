@@ -50,4 +50,4 @@ fgcc() {
         make install-target-libgcc && return 0 || return 3
 }
 
-{ fprep && fbinutils && fgcc && exit 0 } || exit 1
+{ fprep && fbinutils && fgcc && exit 0; } || exit 1
