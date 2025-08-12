@@ -12,7 +12,7 @@ export DIR="/home/src/compilers/arm_gcc_binutils"
 
 fprep() {
 	mkdir -p "$DIR"
-	cd $DIR
+	cd "$DIR"
 	wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
 	wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC/gcc-$GCC.tar.gz
 	tar xf binutils-$BINUTILS.tar.gz
