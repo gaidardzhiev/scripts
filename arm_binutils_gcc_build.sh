@@ -2,7 +2,7 @@
 #the script builds binutils and gcc cross compiler for arm_v5 target
 
 export TARGET="arm-none-eabi"
-export PREFIX=/opt/arm_gcc_binutils
+export PREFIX="/opt/arm_gcc_binutils"
 export PATH=$PATH:$PREFIX/bin
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
