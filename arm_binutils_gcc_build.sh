@@ -35,7 +35,7 @@ fbinutils() {
 fgcc() {
         mkdir ../build_gcc
         cd ../build_gcc
-        ../gcc-$GCC/configure \
+        ../gcc-"$GCC"/configure \
                 --target=$TARGET \
                 --prefix=$PREFIX \
                 --without-headers \
