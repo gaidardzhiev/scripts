@@ -8,7 +8,7 @@ export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export GCC="12.2.0"
 export BINUTILS="2.40"
-export DIR=/home/src/compilers/arm_gcc_binutils
+export DIR="/home/src/compilers/arm_gcc_binutils"
 
 fprep() {
 	mkdir -p $DIR
