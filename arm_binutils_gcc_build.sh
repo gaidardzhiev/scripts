@@ -37,7 +37,7 @@ fgcc() {
         cd ../build_gcc
         ../gcc-"$GCC"/configure \
                 --target="$TARGET" \
-                --prefix=$PREFIX \
+                --prefix="$PREFIX" \
                 --without-headers \
                 --with-newlib  \
                 --with-gnu-as \
