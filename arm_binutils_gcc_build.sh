@@ -26,7 +26,7 @@ fbinutils() {
         cd build_binutils
         ../binutils-"$BINUTILS"/configure \
                 --targer="$TARGET" \
-                --prefix=$PREFIX
+                --prefix="$PREFIX"
         echo "MAKEINFO = :" >> Makefile
         make $JOBS all
         make install && return 0 || return 3
