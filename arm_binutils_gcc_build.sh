@@ -28,7 +28,7 @@ fbinutils() {
                 --targer="$TARGET" \
                 --prefix="$PREFIX"
         echo "MAKEINFO = :" >> Makefile
-        make $JOBS all
+        make "$JOBS" all
         make install && return 0 || return 3
 }
 
