@@ -17,7 +17,7 @@ fprep() {
 	wget https://ftp.gnu.org/gnu/gcc/gcc-"$GCC"/gcc-"$GCC".tar.gz
 	tar xf binutils-"$BINUTILS".tar.gz
 	tar xf gcc-"$GCC".tar.gz
-	ln -s binutils-$BINUTILS binutils-patch
+	ln -s binutils-"$BINUTILS" binutils-patch
 	patch -p0 < arm-patch && return 0 || return 2
 }
 
