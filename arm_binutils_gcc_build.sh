@@ -3,7 +3,7 @@
 
 export TARGET="arm-none-eabi"
 export PREFIX="/opt/arm_gcc_binutils"
-export PATH=$PATH:$PREFIX/bin
+export PATH="$PATH:$PREFIX/bin"
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export GCC=12.2.0
