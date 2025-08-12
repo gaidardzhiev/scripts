@@ -24,7 +24,7 @@ fprep() {
 fbinutils() {
         mkdir build_binutils
         cd build_binutils
-        ../binutils-$BINUTILS/configure \
+        ../binutils-"$BINUTILS"/configure \
                 --targer=$TARGET \
                 --prefix=$PREFIX
         echo "MAKEINFO = :" >> Makefile
