@@ -44,7 +44,7 @@ fgcc() {
                 --with-gnu-ld \
                 --enable-languages='c' \
                 --enable-frame-pointer=no
-        make $JOBS all-gcc
+        make "$JOBS" all-gcc
         make install-gcc
         make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
         make install-target-libgcc && return 0 || return 3
