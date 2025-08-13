@@ -9,7 +9,7 @@ CYAN="\033[36m"
 RESET="\033[0m"
 
 print_info() {
-	printf "${CYAN}%-15s${RESET} : ${GREEN}%s\\n" "$1" "$2"
+	printf "${CYAN}%-15s${RESET} : ${GREEN}%s\n" "$1" "$2"
 }
 
 hostname=$(hostname) && print_info "hostname" "$hostname" || print_info "hostname" "unknown"
@@ -229,10 +229,15 @@ print_info "terminal" "${TERM:-Unknown}"
 case "$os_name" in
 	Linux)
 		kernel_stats=$(head -20 /proc/stat 2>/dev/null | grep -v '^btime' | grep -v '^intr' | grep -v '^ctxt')
-		[ -n "$kernel_stats" ] && print_info "kernel stats" "see below"
-		echo "$kernel_stats" | while IFS= read -r line; do
-			printf "\t%s\n" "$line"
-		done
+		[ -n "$kernel_stats" ] && {
+			print_info "kernel stats" "see below"
+			printf "\t%-8s %-7s %-5s %-6s %-5s %-7s %-4s %-7s %-6s %-5s %-10s\n" label user nice system idle iowait irq softirq steal guest guest_nice
+			echo "$kernel_stats" | while read -r line; do
+				label=$(echo "$line" | awk '{print $1}')
+				values=$(echo "$line" | cut -d' ' -f2-)
+				printf "\t%-8s %7s %5s %6s %5s %7s %4s %7s %6s %5s %10s\n" "$label" $values
+			done
+		}
 		load_avg=$(cat /proc/loadavg 2>/dev/null)
 		[ -n "$load_avg" ] && print_info "load average" "$load_avg" || print_info "load average" "unavailable"
 
