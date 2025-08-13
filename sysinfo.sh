@@ -53,7 +53,9 @@ case "$distro" in
 		pkg_manager="apt"
 		;;
 	*Fedora*|*CentOS*|*Red*Hat*)
-		command -v dnf >/dev/null 2>&1 && pkg_manager="dnf" || pkg_manager="yum"
+		command -v dnf >/dev/null 2>&1 && \
+			pkg_manager="dnf" || \
+			pkg_manager="yum"
 		;;
 	*Arch*)
 		pkg_manager="pacman"
@@ -230,44 +232,57 @@ case "$os_name" in
 		[ -n "$kernel_stats" ] && {
 			print_info "kernel stats" "see below"
 			printf "\t%-8s %-7s %-5s %-6s %-5s %-7s %-4s %-7s %-6s %-5s %-10s\n" label user nice system idle iowait irq softirq steal guest guest_nice
-			echo "$kernel_stats" | while read -r line; do
-				label=$(echo "$line" | awk '{print $1}')
-				values=$(echo "$line" | cut -d' ' -f2-)
-				printf "\t%-8s %7s %5s %6s %5s %7s %4s %7s %6s %5s %10s\n" "$label" $values
-			done
+			echo "$kernel_stats" | \
+				while read -r line; do
+					label=$(echo "$line" | awk '{print $1}')
+					values=$(echo "$line" | cut -d' ' -f2-)
+					printf "\t%-8s %7s %5s %6s %5s %7s %4s %7s %6s %5s %10s\n" "$label" $values
+				done
 		}
 		load_avg=$(cat /proc/loadavg 2>/dev/null)
-		[ -n "$load_avg" ] && print_info "load average" "$load_avg" || print_info "load average" "unavailable"
-
+		[ -n "$load_avg" ] && \
+			print_info "load average" "$load_avg" || \
+			print_info "load average" "unavailable"
 		lsblk_out=$(lsblk 2>/dev/null)
-		[ -n "$lsblk_out" ] && print_info "block devices" "see below"
-		echo "$lsblk_out" | while IFS= read -r line; do
-			printf "\t%s\n" "$line"
-		done
+		[ -n "$lsblk_out" ] && \
+			print_info "block devices" "see below"
+		echo "$lsblk_out" | \
+			while IFS= read -r line; do
+				printf "\t%s\n" "$line"
+			done
 		interrupts=$(head -20 /proc/interrupts 2>/dev/null)
-		[ -n "$interrupts" ] && print_info "interrupts" "see below"
-		echo "$interrupts" | while IFS= read -r line; do
-			printf "\t%s\n" "$line"
-		done
+		[ -n "$interrupts" ] && \
+			print_info "interrupts" "see below"
+		echo "$interrupts" | \
+			while IFS= read -r line; do
+				printf "\t%s\n" "$line"
+			done
 		pci_devices=$(lspci 2>/dev/null)
-		[ -n "$pci_devices" ] && print_info "PCI devices" "see below"
-		echo "$pci_devices" | while IFS= read -r line; do
-			printf "\t%s\n" "$line"
-		done
+		[ -n "$pci_devices" ] && \
+			print_info "PCI devices" "see below"
+		echo "$pci_devices" | \
+			while IFS= read -r line; do
+				printf "\t%s\n" "$line"
+			done
 		;;
 	FreeBSD|OpenBSD)
 		sysctl kern | head -20 | while IFS= read -r line; do
 			print_info "kernel stat" "$line"
 		done
 		load_avg=$(sysctl vm.loadavg 2>/dev/null | awk -F'=' '{print $2}' | sed 's/^[[:space:]]*//')
-		[ -n "$load_avg" ] && print_info "load average" "$load_avg" || print_info "load average" "unavailable"
+		[ -n "$load_avg" ] && \
+			print_info "load average" "$load_avg" || \
+			print_info "load average" "unavailable"
 		geom_disk=$(geom disk list 2>/dev/null)
-		[ -n "$geom_disk" ] && print_info "geom disks" "see below"
-		echo "$geom_disk" | while IFS= read -r line; do
-			printf "\t%s\n" "$line"
-		done
+		[ -n "$geom_disk" ] && \
+			print_info "geom disks" "see below"
+		echo "$geom_disk" | \
+			while IFS= read -r line; do
+				printf "\t%s\n" "$line"
+			done
 		interrupts=$(sysctl kern.intr 2>/dev/null)
-		[ -n "$interrupts" ] && print_info "interrupts" "$interrupts"
+		[ -n "$interrupts" ] && \
+			print_info "interrupts" "$interrupts"
 		;;
 	Plan9)
 		print_info "kernel stats" "not supported"
