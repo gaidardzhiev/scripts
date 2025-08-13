@@ -2,14 +2,10 @@
 
 RED="\033[31m"
 GREEN="\033[32m"
-YELLOW="\033[33m"
-BLUE="\033[34m"
-MAGENTA="\033[35m"
-CYAN="\033[36m"
 RESET="\033[0m"
 
 print_info() {
-	printf "${CYAN}%-15s${RESET} : ${GREEN}%s\n" "$1" "$2"
+	printf "${RED}%-15s${RESET} : ${GREEN}%s\n" "$1" "$2"
 }
 
 hostname=$(hostname) && print_info "hostname" "$hostname" || print_info "hostname" "unknown"
