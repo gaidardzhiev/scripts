@@ -226,7 +226,7 @@ case "$os_name" in
 	Linux)
 		kernel_stats=$(head -20 /proc/stat 2>/dev/null | grep -v '^btime' | grep -v '^intr' | grep -v '^ctxt')
 		[ -n "$kernel_stats" ] && {
-			print_info "kernel stats" "see below"
+			print_info "kernel stats"
 			printf "\t%-8s %-7s %-5s %-6s %-5s %-7s %-4s %-7s %-6s %-5s %-10s\n" label user nice system idle iowait irq softirq steal guest guest_nice
 			echo "$kernel_stats" | \
 				while read -r line; do
