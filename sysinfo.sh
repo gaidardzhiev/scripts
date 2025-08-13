@@ -140,12 +140,10 @@ esac
 
 print_info "uptime" "$uptime_info"
 
-if [ -n "$uptime_seconds" ]; then
-	uptime_minutes=$((uptime_seconds / 60))
-	print_info "uptime (min)" "$uptime_minutes"
-else
-	print_info "uptime (min)" "N/A"
-fi
+[ -n "$uptime_seconds" ] && {
+	uptime_minutes=$((uptime_seconds / 60));
+	print_info "uptime (min)" "$uptime_minutes";
+} || print_info "uptime (min)" "N/A"
 
 cpu_model=""
 
