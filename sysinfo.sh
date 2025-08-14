@@ -258,18 +258,23 @@ print_kernel_info() {
 }
 
 main() {
-	get_hostname
-	get_os_info
-	get_pkg_manager
-	print_package_count
-	get_uptime
-	get_cpu_info
-	get_memory_info
-	get_disk_usage
-	get_shell_info
-	get_users_info
-	get_terminal_info
-	print_kernel_info
+	errors=""
+	run() {
+		"$1" || errors="$errors $1=$?"
+	}
+	run get_hostname
+	run get_os_info
+	run get_pkg_manager
+	run print_package_count
+	run get_uptime
+	run get_cpu_info
+	run get_memory_info
+	run get_disk_usage
+	run get_shell_info
+	run get_users_info
+	run get_terminal_info
+	run print_kernel_info
+	[ -z "$errors" ] || printf "${RED}function %s failed${RESET}\n" "$errors"
 }
 
 main
