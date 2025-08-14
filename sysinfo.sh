@@ -155,10 +155,10 @@ case "$os_name" in
 		[ -z "$cpu_model" ] && cpu_model=$(uname -p)
 		;;
 	Plan9)
-		cpu_model="Unavailable"
+		cpu_model="unavailable"
 		;;
 	*)
-		cpu_model="Unknown"
+		cpu_model="unknown"
 		;;
 esac
 
@@ -281,9 +281,9 @@ case "$os_name" in
 			print_info "interrupts" "$interrupts"
 		;;
 	Plan9)
-		print_info "kernel stats" "not supported"
-		print_info "load average" "not supported"
-		print_info "device info" "limited support"
+		print_info "kernel stats" "not supported yet"
+		print_info "load average" "not supported yet"
+		print_info "device info" "not supported yet"
 		;;
 	*)
 		print_info "kernel stats" "unknown OS"
