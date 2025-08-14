@@ -155,7 +155,7 @@ case "$os_name" in
 		[ -z "$cpu_model" ] && cpu_model=$(uname -p)
 		;;
 	Plan9)
-		cpu_model="unavailable"
+		cpu_model="$cputype"
 		;;
 	*)
 		cpu_model="unknown"
