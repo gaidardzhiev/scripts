@@ -274,7 +274,7 @@ main() {
 	run get_users_info
 	run get_terminal_info
 	run print_kernel_info
-	[ -z "$errors" ] || printf "${RED}function %s failed${RESET}\n" "$errors"
+	[ -z "$errors" ] || printf "${RED}function ${GREEN}%s${RESET} ${RED}failed${RESET}\n" "$errors"
 }
 
 main
