@@ -1084,8 +1084,17 @@ fbuild_src(){
 			cd "$SRC"
 			git clone https://github.com/ggml-org/llama.cpp
 			cd llama.cpp
-			cmake -B build
-			cmake --build build --config Release "$JOBS"
+			case in "$TARGET"
+				armv8l)
+					git checkout b1616
+					cmake --build build -j8
+					cmake --build build "$JOBS"
+					;;
+				*)
+					cmake -B build
+					cmake --build build --config Release "$JOBS"
+					;;
+			esac
 			;;
 		*)
 			printf "unsupported package: %s\n\n" "$PKG"
