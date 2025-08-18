@@ -55,7 +55,7 @@ fusage() {
 	printf "		 build-src | get-bin | delete-src | delete-bin | update-src\n"
 	printf "\n"
 	printf "packages:\n"
-	printf "		 tcc | gcc | make | musl | glibc | mc | git | strongswan | dietlibc | zsh | bash | dash | ash | linux-kernel | awk | grep | sed | oldbox | busybox | toybox | qbe | curl | wget | tmux | qemu | i3wm | dmenu | grub | coreboot | flashrom | cross-compiler | uclibc | john | nmap | lambda-delta | tmg | subc | cc500 | scc | c | cproc | 9base | airgeddon | masscan | kexec | otcc | hping | esp-toolchain | aboriginal | interceptor | gnupg | go | oyacc | libosmocore | libosmo-gprs | gapk | osmocom-bb | aircrack-ng | smartmontools | gdb | kmod | gzip | rsync | xz | bc | lzip | pahole | tar | bzip2 | initramfs | vim | native-compiler | mkroot | avr-toolchain | diff | tcsh | jfsutils | squashfs-tools | iptables | pcmciautils | shkd | toolbox | shellcheck | getprand\n"
+	printf "		 tcc | gcc | make | musl | glibc | mc | git | strongswan | dietlibc | zsh | bash | dash | ash | linux-kernel | awk | grep | sed | oldbox | busybox | toybox | qbe | curl | wget | tmux | qemu | i3wm | dmenu | grub | coreboot | flashrom | cross-compiler | uclibc | john | nmap | lambda-delta | tmg | subc | cc500 | scc | c | cproc | 9base | airgeddon | masscan | kexec | otcc | hping | esp-toolchain | aboriginal | interceptor | gnupg | go | oyacc | libosmocore | libosmo-gprs | gapk | osmocom-bb | aircrack-ng | smartmontools | gdb | kmod | gzip | rsync | xz | bc | lzip | pahole | tar | bzip2 | initramfs | vim | native-compiler | mkroot | avr-toolchain | diff | tcsh | jfsutils | squashfs-tools | iptables | pcmciautils | shkd | toolbox | shellcheck | getprand | lamma_cpp\n"
 	exit 1
 }
 
@@ -1079,6 +1079,13 @@ fbuild_src(){
 				printf "unsupported %s CPU architecture...\n" "$TARGET";
 				exit 1;
 			}
+			;;
+		llama_cpp)
+			cd "$SRC"
+			git clone https://github.com/ggml-org/llama.cpp
+			cd llama.cpp
+			cmake -B build
+			cmake --build build --config Release "$JOBS"
 			;;
 		*)
 			printf "unsupported package: %s\n\n" "$PKG"
