@@ -1082,9 +1082,9 @@ fbuild_src(){
 			;;
 		llama_cpp)
 			cd "$SRC"
-			git clone https://github.com/ggml-org/llama.cpp
+			git clone --depth=1 https://github.com/ggml-org/llama.cpp
 			cd llama.cpp
-			case in "$TARGET"
+			case "$TARGET" in
 				armv8l)
 					git checkout b1616
 					cmake --build build -j8
@@ -1095,6 +1095,15 @@ fbuild_src(){
 					cmake --build build --config Release "$JOBS"
 					;;
 			esac
+			;;
+		tmux)
+			cd "$SRC"
+			git clone --depth=1 https://github.com/tmux/tmux
+			cd tmux
+			./autogen.sh && \
+				./configure && \
+				make "$JOBS" && \
+				cp tmux "$BIN"/tmux-"$TARGET"
 			;;
 		*)
 			printf "unsupported package: %s\n\n" "$PKG"
