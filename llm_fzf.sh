@@ -1,8 +1,10 @@
 #!/bin/sh
 
 SERVER_DIR="/home/src/llm/llama.cpp/build/bin"
-MODEL_DIR="/home/src/llm/llama.cpp/build/bin/models"
-MODEL=$(find "$MODEL_DIR" -type f | fzf --prompt="select a model: ")
+
+MODELS_DIR="/home/src/llm/llama.cpp/build/bin/models"
+
+MODEL=$(find "$MODELS_DIR" -type f | fzf --prompt="select a model: ")
 
 [ -z "$MODEL" ] && { 
 	printf "no model selected...\n"
