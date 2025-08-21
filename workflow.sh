@@ -27,7 +27,7 @@ fm2m() {
 }
 
 case "$1" in
-	start-branch)
+	start)
 		printf "enter new branch name:\n"
 		read branch
 		[ -z "$branch" ] && printf "branch name cannot be empty\n" && exit 1
