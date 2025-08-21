@@ -9,7 +9,7 @@ fusage() {
 	printf '\tpush\t\tpush commits to remote\n'
 	printf '\tpull\t\tpull changes from remote\n'
 	printf '\tmerge\t\tmerge a branch into the current branch\n'
-	printf '\tm2m\tmerge the current branch into main branch and push\n'
+	printf '\tm2m\t\tmerge the current branch into main branch and push\n'
 	exit 1
 }
 
