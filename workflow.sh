@@ -1,15 +1,15 @@
 #!/bin/sh
 
 fusage() {
-	printf 'usage: %s {start-branch|add|commit|push|pull|merge|merge-to-main}\n' "$0"
+	printf 'usage: %s <start|add|commit|push|pull|merge|m2m>\n' "$0"
 	printf 'commands:\n'
-	printf '\tstart-branch\tcreate and switch to a new branch\n'
+	printf '\tstart\t\tcreate and switch to a new branch\n'
 	printf '\tadd\t\tstage changes\n'
 	printf '\tcommit\t\tcommit staged changes\n'
 	printf '\tpush\t\tpush commits to remote\n'
 	printf '\tpull\t\tpull changes from remote\n'
 	printf '\tmerge\t\tmerge a branch into the current branch\n'
-	printf '\tmerge-to-main\tmerge the current branch into main branch and push\n'
+	printf '\tm2m\tmerge the current branch into main branch and push\n'
 	exit 1
 }
 
