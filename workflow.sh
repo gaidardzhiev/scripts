@@ -59,7 +59,7 @@ case "$1" in
 		[ -z "$branch" ] && printf "branch name cannot be empty\n" && exit 1
 		git merge "$branch" || exit 1
 		;;
-	merge-to-main)
+	m2m)
 		fm2m
 		;;
 	*)
