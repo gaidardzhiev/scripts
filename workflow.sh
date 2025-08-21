@@ -1,7 +1,7 @@
 #!/bin/sh
 
 fusage() {
-	printf 'usage: %s <start|add|commit|push|pull|merge|m2m>\n' "$0"
+	printf 'usage: \n\t%s <start|add|commit|push|pull|merge|m2m>\n' "$0"
 	printf 'commands:\n'
 	printf '\tstart\t\tcreate and switch to a new branch\n'
 	printf '\tadd\t\tstage changes\n'
