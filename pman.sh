@@ -47,6 +47,6 @@ case "$1" in
 		fget "$2"
 		;;
 	*)
-		printf "usage: $0 <add|get> <name> <key>\n"
+		printf "usage: %s <add|get> <name> <key>\n" "$0"
 		;;
 esac
