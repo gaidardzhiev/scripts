@@ -19,18 +19,18 @@ fusage() {
 }
 
 
-fm2m() {
-	current=$(git branch --show-current)
-	[ -z "$current" ] && printf "could not detect current branch\n" && exit 1
-	[ "$current" = "main" ] && printf "you are already on main branch. Nothing to merge.\n" && exit 1
-	printf "checking out main branch...\n"
-	git checkout main || { printf "failed to checkout main branch\n"; exit 1; }
-	printf "merging branch '%s' into main...\n" "$current"
-	git merge --no-ff "$current" || { printf "merge failed... resolve conflicts manually...\n"; exit 1; }
-	printf "pushing main branch to remote...\n"
-	git push origin main || { printf "push failed\n"; exit 1; }
-	printf "successfully merged branch '%s' into main and pushed.\n" "$current"
-}
+#fm2m() {
+#	current=$(git branch --show-current)
+#	[ -z "$current" ] && printf "could not detect current branch\n" && exit 1
+#	[ "$current" = "main" ] && printf "you are already on main branch. Nothing to merge.\n" && exit 1
+#	printf "checking out main branch...\n"
+#	git checkout main || { printf "failed to checkout main branch\n"; exit 1; }
+#	printf "merging branch '%s' into main...\n" "$current"
+#	git merge --no-ff "$current" || { printf "merge failed... resolve conflicts manually...\n"; exit 1; }
+#	printf "pushing main branch to remote...\n"
+#	git push origin main || { printf "push failed\n"; exit 1; }
+#	printf "successfully merged branch '%s' into main and pushed.\n" "$current"
+#}
 
 case "$1" in
 	start)
