@@ -1,36 +1,9 @@
 #!/bin/sh
 
-#fusage() {
-#	printf 'usage: \n\t%s <start|add|commit|push|pull|merge|m2m>\n\n' "$0"
-#	printf 'commands:\n'
-#	printf '\tstart\t\tcreate and switch to a new branch\n'
-#	printf '\tadd\t\tstage changes\n'
-#	printf '\tcommit\t\tcommit staged changes\n'
-#	printf '\tpush\t\tpush commits to remote\n'
-#	printf '\tpull\t\tpull changes from remote\n'
-#	printf '\tmerge\t\tmerge a branch into the current branch\n'
-#	printf '\tm2m\t\tmerge the current branch into main branch and push\n'
-#	exit 1
-#}
-
 fusage() {
 	printf 'usage: \n\t%s <start|add|commit|push|pull|merge|m2m>\n\ncommands:\n\tstart\t\tcreate and switch to a new branch\n\tadd\t\tstage changes\n\tcommit\t\tcommit staged changes\n\tpush\t\tpush commits to remote\n\tpull\t\tpull changes from remote\n\tmerge\t\tmerge a branch into the current branch\n\tm2m\t\tmerge the current branch into main branch and push\n' "$0"
 	exit 1
 }
-
-
-#fm2m() {
-#	current=$(git branch --show-current)
-#	[ -z "$current" ] && printf "could not detect current branch\n" && exit 1
-#	[ "$current" = "main" ] && printf "you are already on main branch. Nothing to merge.\n" && exit 1
-#	printf "checking out main branch...\n"
-#	git checkout main || { printf "failed to checkout main branch\n"; exit 1; }
-#	printf "merging branch '%s' into main...\n" "$current"
-#	git merge --no-ff "$current" || { printf "merge failed... resolve conflicts manually...\n"; exit 1; }
-#	printf "pushing main branch to remote...\n"
-#	git push origin main || { printf "push failed\n"; exit 1; }
-#	printf "successfully merged branch '%s' into main and pushed.\n" "$current"
-#}
 
 case "$1" in
 	start)
