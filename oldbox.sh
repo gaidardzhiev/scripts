@@ -156,7 +156,7 @@ case $CMD in
 		$DIR/clear "$@"
 		;;
 	*)
-		printf "unsupported command: '$CMD'\n"
+		printf "unsupported command: %s\n" "$CMD"
 		fusage
 		;;
 esac
