@@ -83,7 +83,7 @@ alias manfzf='man -k . | fzf | awk '\''{print $1}'\'' | xargs man'
 fflow() {
 	find . -type f -exec sh -c 'echo "==> $1 <=="; cat "$1"' _ {} \;
 }
-alias fflow='fflow'
+alias flow='fflow'
 
 export LESSOPEN="| /usr/bin/less.sh %s"
 export LESS=' -R '
