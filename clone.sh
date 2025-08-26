@@ -31,7 +31,10 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		tmdv \
 		getprand \
 		scb \
-		shell;
+		shell \
+		slug \
+		rop \
+		tortoise;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
