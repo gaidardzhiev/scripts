@@ -1,9 +1,9 @@
 #!/bin/sh
 #custom arch linux iso build
 
-export DIR=/root/arch
-export HASH=/root/hash
-export USER_HASH=/root/user_hash
+export DIR="/root/arch"
+export HASH="/root/hash"
+export USER_HASH="/root/user_hash"
 
 mkdir $DIR
 pacman -S archiso openssl
