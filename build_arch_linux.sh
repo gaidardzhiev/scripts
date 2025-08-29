@@ -5,30 +5,30 @@ export DIR="/root/arch"
 export HASH="/root/hash"
 export USER_HASH="/root/user_hash"
 
-mkdir $DIR
+mkdir "$DIR"
 pacman -S archiso openssl
-cp -r /usr/share/archiso/configs/releng/* $DIR
-touch $HASH
-touch $USER_HASH
+cp -r /usr/share/archiso/configs/releng/* "$DIR"
+touch "$HASH"
+touch "$USER_HASH"
 
 pacman -Q \
 	| awk '{print $1}' \
-	| sort -n > $DIR/packages.x86_64
+	| sort -n > "$DIR"/packages.x86_64
 
-cat > $DIR/airootfs/etc/passwd << eof
+cat > "$DIR"/airootfs/etc/passwd << eof
 root:x:0:0:root:/root:/usr/bin/zsh
 user:x:1000:1000::/home/user:/usr/bin/zsh
 eof
 
 openssl passwd -6 \
-	| tee >(tail -n 1 > $HASH)
+	| tee >(tail -n 1 > "$HASH")
 
-sed -e 's|^|user:|; s|$|::::::|' $HASH > $USER_HASH
+sed -e 's|^|user:|; s|$|::::::|' "$HASH" > "$USER_HASH"
 
-cat $USER_HASH \
-	| tee -a $DIR/airootfs/etc/shadow
+cat "$USER_HASH" \
+	| tee -a "$DIR"/airootfs/etc/shadow
 
-rm $HASH $USER_HASH
+rm "$HASH" "$USER_HASH"
 
 touch /root/arch/airootfs/etc/gshadow
 cat > /root/arch/airootfs/etc/gshadow << eof
@@ -64,4 +64,4 @@ file_permissions=(
 )
 eof
 
-mkarchiso -v -w $DIR/work -o $DIR/out $DIR
+mkarchiso -v -w "$DIR"/work -o "$DIR"/out "$DIR"
