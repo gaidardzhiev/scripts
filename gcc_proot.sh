@@ -4,7 +4,7 @@
 export DIR="/home/src/binutils_gcc_av7l"
 export PREFIX="/opt/binutils_gcc_armv7l"
 export TARGET="armv7l-unknown-none"
-export PATH=$PATH:$PREFIX/bin
+export PATH="$PATH:$PREFIX/bin"
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export BINUTILS=2.42
