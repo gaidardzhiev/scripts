@@ -12,7 +12,7 @@ export GCC="13.2.0"
 
 
 fbinutils() {
-        mkdir -p $DIR
+        mkdir -p "$DIR"
         mkdir -p $PREFIX
         cd $DIR
         wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.bz2
