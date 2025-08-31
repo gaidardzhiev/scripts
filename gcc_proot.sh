@@ -8,7 +8,7 @@ export PATH="$PATH:$PREFIX/bin"
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export BINUTILS="2.42"
-export GCC=13.2.0
+export GCC="13.2.0"
 
 
 fbinutils() {
