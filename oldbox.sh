@@ -14,7 +14,7 @@ fdir() {
 }
 
 fusage() {
-	printf "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem|test|clear|lsblk> <options>\n"
+	printf "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem|test|clear|lsblk|systrace> <options>\n"
 	exit 1
 }
 
@@ -157,6 +157,9 @@ case $CMD in
 		;;
 	lsblk)
 		$DIR/lsblk "$@"
+		;;
+	systrace)
+		$DIR/systrace "$@"
 		;;
 	*)
 		printf "unsupported command: %s\n" "$CMD"
