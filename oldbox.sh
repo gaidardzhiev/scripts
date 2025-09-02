@@ -120,7 +120,7 @@ case "$CMD" in
 		"$DIR"/strings "$@"
 		;;
 	ls)
-		$DIR/ls "$@"
+		"$DIR"/ls "$@"
 		;;
 	xoda)
 		$DIR/xoda "$@"
