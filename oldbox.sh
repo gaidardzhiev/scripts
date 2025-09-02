@@ -105,7 +105,7 @@ case "$CMD" in
 		"$DIR"/ascii2hex "$@"
 		;;
 	hexdump)
-		$DIR/hexdump "$@"
+		"$DIR"/hexdump "$@"
 		;;
 	false)
 		$DIR/false "$@"
