@@ -111,7 +111,7 @@ case "$CMD" in
 		"$DIR"/false "$@"
 		;;
 	replace)
-		$DIR/replace "$@"
+		"$DIR"/replace "$@"
 		;;
 	readelf)
 		$DIR/readelf "$@"
