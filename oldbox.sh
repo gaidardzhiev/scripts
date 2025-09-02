@@ -123,7 +123,7 @@ case "$CMD" in
 		"$DIR"/ls "$@"
 		;;
 	xoda)
-		$DIR/xoda "$@"
+		"$DIR"/xoda "$@"
 		;;
 	cc)
 		/usr/local/bin/tcc "$@"
