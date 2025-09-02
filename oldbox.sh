@@ -60,7 +60,7 @@ case "$CMD" in
 		"$DIR"/sync "$@"
 		;;
 	tee)
-		$DIR/tee "$@"
+		"$DIR"/tee "$@"
 		;;
 	touch)
 		$DIR/touch "$@"
