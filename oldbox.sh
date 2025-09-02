@@ -117,7 +117,7 @@ case "$CMD" in
 		"$DIR"/readelf "$@"
 		;;
 	strings)
-		$DIR/strings "$@"
+		"$DIR"/strings "$@"
 		;;
 	ls)
 		$DIR/ls "$@"
