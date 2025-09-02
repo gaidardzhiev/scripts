@@ -102,7 +102,7 @@ case "$CMD" in
 		"$DIR"/rm "$@"
 		;;
 	ascii2hex)
-		$DIR/ascii2hex "$@"
+		"$DIR"/ascii2hex "$@"
 		;;
 	hexdump)
 		$DIR/hexdump "$@"
