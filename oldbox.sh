@@ -141,7 +141,7 @@ case "$CMD" in
 		"$DIR"/kmsg "$@"
 		;;
 	file)
-		$DIR/file "$@"
+		"$DIR"/file "$@"
 		;;
 	magic)
 		$DIR/magic "$@"
