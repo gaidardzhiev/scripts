@@ -39,7 +39,7 @@ case "$CMD" in
 		"$DIR"/kill "$@"
 		;;
 	ln)
-		$DIR/ln "$@"
+		"$DIR"/ln "$@"
 		;;
 	mount)
 		$DIR/mount "$@"
