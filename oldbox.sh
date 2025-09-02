@@ -129,7 +129,7 @@ case "$CMD" in
 		/usr/local/bin/tcc "$@"
 		;;
 	id)
-		$DIR/id "$@"
+		"$DIR"/id "$@"
 		;;
 	cmp)
 		$DIR/cmp "$@"
