@@ -81,7 +81,7 @@ case "$CMD" in
 		"$DIR"/wc "$@"
 		;;
 	yes)
-		$DIR/yes "$@"
+		"$DIR"/yes "$@"
 		;;
 	shell)
 		$DIR/shell "$@"
