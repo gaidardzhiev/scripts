@@ -132,7 +132,7 @@ case "$CMD" in
 		"$DIR"/id "$@"
 		;;
 	cmp)
-		$DIR/cmp "$@"
+		"$DIR"/cmp "$@"
 		;;
 	tree)
 		$DIR/tree "$@"
