@@ -22,7 +22,7 @@ fusage() {
 
 shift
 
-case $CMD in
+case "$CMD" in
 	echo)
 		$DIR/echo "$@"
 		;;
