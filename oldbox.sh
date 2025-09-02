@@ -108,7 +108,7 @@ case "$CMD" in
 		"$DIR"/hexdump "$@"
 		;;
 	false)
-		$DIR/false "$@"
+		"$DIR"/false "$@"
 		;;
 	replace)
 		$DIR/replace "$@"
