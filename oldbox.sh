@@ -36,7 +36,7 @@ case "$CMD" in
 		"$DIR"/basename "$@"
 		;;
 	kill)
-		$DIR/kill "$@"
+		"$DIR"/kill "$@"
 		;;
 	ln)
 		$DIR/ln "$@"
