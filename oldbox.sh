@@ -27,7 +27,7 @@ case "$CMD" in
 		"$DIR"/echo "$@"
 		;;
 	cat)
-		$DIR/cat "$@"
+		"$DIR"/cat "$@"
 		;;
 	cp)
 		$DIR/cp "$@"
