@@ -156,7 +156,7 @@ case "$CMD" in
 		"$DIR"/clear "$@"
 		;;
 	lsblk)
-		$DIR/lsblk "$@"
+		"$DIR"/lsblk "$@"
 		;;
 	systrace)
 		$DIR/systrace "$@"
