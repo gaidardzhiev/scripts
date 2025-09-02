@@ -78,7 +78,7 @@ case "$CMD" in
 		"$DIR"/umount "$@"
 		;;
 	wc)
-		$DIR/wc "$@"
+		"$DIR"/wc "$@"
 		;;
 	yes)
 		$DIR/yes "$@"
