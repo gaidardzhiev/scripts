@@ -159,7 +159,7 @@ case "$CMD" in
 		"$DIR"/lsblk "$@"
 		;;
 	systrace)
-		$DIR/systrace "$@"
+		"$DIR"/systrace "$@"
 		;;
 	*)
 		printf "unsupported command: %s\n" "$CMD"
