@@ -24,7 +24,7 @@ shift
 
 case "$CMD" in
 	echo)
-		$DIR/echo "$@"
+		"$DIR"/echo "$@"
 		;;
 	cat)
 		$DIR/cat "$@"
