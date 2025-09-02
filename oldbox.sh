@@ -87,7 +87,7 @@ case "$CMD" in
 		"$DIR"/shell "$@"
 		;;
 	pwd)
-		$DIR/pwd "$@"
+		"$DIR"/pwd "$@"
 		;;
 	ps)
 		$DIR/ps "$@"
