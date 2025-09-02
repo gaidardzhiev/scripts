@@ -144,7 +144,7 @@ case "$CMD" in
 		"$DIR"/file "$@"
 		;;
 	magic)
-		$DIR/magic "$@"
+		"$DIR"/magic "$@"
 		;;
 	mem)
 		$DIR/mem "$@"
