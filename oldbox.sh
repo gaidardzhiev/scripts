@@ -135,7 +135,7 @@ case "$CMD" in
 		"$DIR"/cmp "$@"
 		;;
 	tree)
-		$DIR/tree "$@"
+		"$DIR"/tree "$@"
 		;;
 	kmsg)
 		$DIR/kmsg "$@"
