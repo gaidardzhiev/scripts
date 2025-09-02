@@ -150,7 +150,7 @@ case "$CMD" in
 		"$DIR"/mem "$@"
 		;;
 	test)
-		$DIR/test "$@"
+		"$DIR"/test "$@"
 		;;
 	clear)
 		$DIR/clear "$@"
