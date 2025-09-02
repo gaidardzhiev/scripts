@@ -66,7 +66,7 @@ case "$CMD" in
 		"$DIR"/touch "$@"
 		;;
 	tr)
-		$DIR/tr "$@"
+		"$DIR"/tr "$@"
 		;;
 	true)
 		$DIR/true "$@"
