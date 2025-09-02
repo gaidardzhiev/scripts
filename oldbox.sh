@@ -93,7 +93,7 @@ case "$CMD" in
 		"$DIR"/ps "$@"
 		;;
 	grep)
-		$DIR/grep "$@"
+		"$DIR"/grep "$@"
 		;;
 	du)
 		$DIR/du "$@"
