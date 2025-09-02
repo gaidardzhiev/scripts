@@ -153,7 +153,7 @@ case "$CMD" in
 		"$DIR"/test "$@"
 		;;
 	clear)
-		$DIR/clear "$@"
+		"$DIR"/clear "$@"
 		;;
 	lsblk)
 		$DIR/lsblk "$@"
