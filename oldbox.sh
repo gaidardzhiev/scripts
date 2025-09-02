@@ -96,7 +96,7 @@ case "$CMD" in
 		"$DIR"/grep "$@"
 		;;
 	du)
-		$DIR/du "$@"
+		"$DIR"/du "$@"
 		;;
 	rm)
 		$DIR/rm "$@"
