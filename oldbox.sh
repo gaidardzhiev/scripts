@@ -69,7 +69,7 @@ case "$CMD" in
 		"$DIR"/tr "$@"
 		;;
 	true)
-		$DIR/true "$@"
+		"$DIR"/true "$@"
 		;;
 	tty)
 		$DIR/tty "$@"
