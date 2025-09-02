@@ -90,7 +90,7 @@ case "$CMD" in
 		"$DIR"/pwd "$@"
 		;;
 	ps)
-		$DIR/ps "$@"
+		"$DIR"/ps "$@"
 		;;
 	grep)
 		$DIR/grep "$@"
