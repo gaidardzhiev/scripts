@@ -99,7 +99,7 @@ case "$CMD" in
 		"$DIR"/du "$@"
 		;;
 	rm)
-		$DIR/rm "$@"
+		"$DIR"/rm "$@"
 		;;
 	ascii2hex)
 		$DIR/ascii2hex "$@"
