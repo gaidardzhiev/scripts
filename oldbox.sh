@@ -45,7 +45,7 @@ case "$CMD" in
 		"$DIR"/mount "$@"
 		;;
 	nice)
-		$DIR/nice "$@"
+		"$DIR"/nice "$@"
 		;;
 	printf)
 		$DIR/printf "$@"
