@@ -63,7 +63,7 @@ case "$CMD" in
 		"$DIR"/tee "$@"
 		;;
 	touch)
-		$DIR/touch "$@"
+		"$DIR"/touch "$@"
 		;;
 	tr)
 		$DIR/tr "$@"
