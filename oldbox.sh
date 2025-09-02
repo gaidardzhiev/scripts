@@ -57,7 +57,7 @@ case "$CMD" in
 		"$DIR"/sleep "$@"
 		;;
 	sync)
-		$DIR/sync "$@"
+		"$DIR"/sync "$@"
 		;;
 	tee)
 		$DIR/tee "$@"
