@@ -51,7 +51,7 @@ case "$CMD" in
 		"$DIR"/printf "$@"
 		;;
 	rev)
-		$DIR/rev "$@"
+		"$DIR"/rev "$@"
 		;;
 	sleep)
 		$DIR/sleep "$@"
