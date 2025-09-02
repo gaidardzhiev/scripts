@@ -42,7 +42,7 @@ case "$CMD" in
 		"$DIR"/ln "$@"
 		;;
 	mount)
-		$DIR/mount "$@"
+		"$DIR"/mount "$@"
 		;;
 	nice)
 		$DIR/nice "$@"
