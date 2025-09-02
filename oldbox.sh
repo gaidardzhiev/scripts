@@ -30,7 +30,7 @@ case "$CMD" in
 		"$DIR"/cat "$@"
 		;;
 	cp)
-		$DIR/cp "$@"
+		"$DIR"/cp "$@"
 		;;
 	basename)
 		$DIR/basename "$@"
