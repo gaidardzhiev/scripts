@@ -72,7 +72,7 @@ case "$CMD" in
 		"$DIR"/true "$@"
 		;;
 	tty)
-		$DIR/tty "$@"
+		"$DIR"/tty "$@"
 		;;
 	umount)
 		$DIR/umount "$@"
