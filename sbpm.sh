@@ -1113,8 +1113,8 @@ fbuild_src(){
 			rm strace-"$STRACE".tar.xz
 			cd strace-"$STRACE"
 			./configure && \
-				make "$JOBS"
-				cp strace "$BIN"/strace"$TARGET"
+				make "$JOBS" && \
+				cp src/strace "$BIN"/strace"$TARGET"
 			;;
 		*)
 			printf "unsupported package: %s\n\n" "$PKG"
