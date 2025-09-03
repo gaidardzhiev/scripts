@@ -1109,7 +1109,7 @@ fbuild_src(){
 		strace)
 			cd "$SRC"
 			wget https://github.com/strace/strace/releases/download/v"$STRACE"/strace-"$STRACE".tar.xz
-			tar xfv wget strace-"$STRACE".tar.xz
+			tar xfv strace-"$STRACE".tar.xz
 			rm strace-"$STRACE".tar.xz
 			cd strace-"$STRACE"
 			./configure && \
