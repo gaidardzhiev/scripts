@@ -47,7 +47,7 @@ LINUX="6.13.1"
 DIFF="3.11"
 TCSH="6.24.15"
 SHELLCHECK="0.10.0"
-STRACE="5.14"
+STRACE="6.16"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
