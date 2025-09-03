@@ -1107,8 +1107,13 @@ fbuild_src(){
 			;;
 		strace)
 			cd "$SRC"
-			git clone --depth=1 https://gitlab.com/strace/strace
-			cd strace
+			wget https://github.com/strace/strace/releases/download/v5.14/strace-5.14.tar.xz
+			tar xfv wget strace-5.14.tar.xz
+			rm strace-5.14.tar.xz
+			cd strace-5.14
+			./configure && \
+				make "$JOBS"
+				cp strace "$BIN"/strace"$TARGET"
 			;;
 		*)
 			printf "unsupported package: %s\n\n" "$PKG"
