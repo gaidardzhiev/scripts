@@ -47,6 +47,7 @@ LINUX="6.13.1"
 DIFF="3.11"
 TCSH="6.24.15"
 SHELLCHECK="0.10.0"
+STRACE="5.14"
 
 fusage() {
 	printf "usage: $0 <operation> <package>\n"
@@ -1107,10 +1108,10 @@ fbuild_src(){
 			;;
 		strace)
 			cd "$SRC"
-			wget https://github.com/strace/strace/releases/download/v5.14/strace-5.14.tar.xz
-			tar xfv wget strace-5.14.tar.xz
-			rm strace-5.14.tar.xz
-			cd strace-5.14
+			wget https://github.com/strace/strace/releases/download/v"$STRACE"/strace-"$STRACE".tar.xz
+			tar xfv wget strace-"$STRACE".tar.xz
+			rm strace-"$STRACE".tar.xz
+			cd strace-"$STRACE"
 			./configure && \
 				make "$JOBS"
 				cp strace "$BIN"/strace"$TARGET"
