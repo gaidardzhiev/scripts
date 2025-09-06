@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# ========================================== #
+#                                            #
+#                  WARNING                   #
+# 	       work in progress              #
+#     do not use or rely on this script      #
+#                                            #
+# ========================================== #
+
+
 server_dir="/home/src/llm/llama.cpp/build/bin"
 
 models_dir="/home/src/llm/llama.cpp/build/bin/models"
