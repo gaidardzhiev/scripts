@@ -34,7 +34,8 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		shell \
 		slug \
 		rop \
-		tortoise;
+		tortoise \
+		prand;
 	do
 		$CLONE/$REPO || {
 			printf "failed to clone $REPO...\n"
