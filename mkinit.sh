@@ -1,6 +1,14 @@
 #!/bin/sh
 #the script creates a minimal initramfs based on toybox
 
+# ========================================== #
+#                                            #
+#                  WARNING                   #
+#              work in progress              #
+#     do not use or rely on this script      #
+#                                            #
+# ========================================== #
+
 INIT="initramfs.cpio.gz"
 DIR=$(mktemp -d)
 TARGET=$(uname -m)
