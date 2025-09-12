@@ -21,7 +21,7 @@ case "$1" in
 		[ -z "$files" ] && \
 			printf "no files specified\n" && \
 			exit 1
-		git add $files || \
+		git add "$files" || \
 			exit 1
 		;;
 	commit)
