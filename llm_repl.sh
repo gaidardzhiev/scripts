@@ -139,7 +139,7 @@ last_code=""
 loop_count=0
 max_loops=10
 
-while [ $loop_count -lt $max_loops ]; do
+while [ "$loop_count" -lt "$max_loops" ]; do
 	loop_count=$((loop_count+1))
 	echo "----- iteration $loop_count -----"
 	prompt=$(build_prompt "$errors" "$last_code")
