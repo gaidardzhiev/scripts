@@ -1,10 +1,10 @@
 #!/bin/sh
 #very crude source based package manager boasting only two essential dependencies a POSIX compliant shell and wget
 
-ARG=$1
-PKG=$2
-GET=$2
-UPD=$2
+ARG="$1"
+PKG="$2"
+GET="$2"
+UPD="$2"
 DIR="/opt/sbpm"
 SRC="/opt/sbpm/src"
 BIN="/opt/sbpm/bin"
