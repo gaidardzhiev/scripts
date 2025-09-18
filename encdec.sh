@@ -1,11 +1,11 @@
 #!/bin/sh
 
-export ARG=$1
-export TEXT=$2
-export PASS=$3
+export ARG="$1"
+export TEXT="$2"
+export PASS="$3"
 
 fusage() {
-	printf "usage: $0 <encrypt|decrypt> <text> <password>\n"
+	printf "usage: %s <encrypt|decrypt> <text> <password>\n" "$0"
 	printf "  encrypt: encrypts the provided <text> using the provided <password>\n"
 	printf "  decrypt: decrypts the provided <text> using the provided <password>\n"
 	exit 1
@@ -29,7 +29,7 @@ case "$ARG" in
 		d
 		;;
 	*)
-		printf "error: invalid argument '$ARG'\n"
+		printf "error: invalid argument %s\n" "$ARG"
 		fusage
 		;;
 esac
