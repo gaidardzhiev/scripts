@@ -62,7 +62,7 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export VISUAL=vim;
 export EDITOR=vim;
-export PATH=$PATH:/home/src/compilers/gcc-linaro-4.9-2015.02-3-x86_64_arm-linux-gnueabihf
+export PATH=$PATH:/home/src/compilers/gcc-linaro-4.9-2015.02-3-x86_64_arm-linux-gnueabihf/bin
 
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
