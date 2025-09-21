@@ -1,24 +1,24 @@
 #!/bin/sh
 
-DIR=/home/src/1v4n/oldbox
-REPO=https://github.com/gaidardzhiev/oldbox
-CMD=$1
+DIR="/home/src/1v4n/oldbox"
+REPO="https://github.com/gaidardzhiev/oldbox"
+CMD="$1"
 
 fdir() {
 	[ ! -d "$DIR" ] && {
 		cd /home/src/1v4n/;
-		git clone $REPO;
+		git clone "$REPO";
 		cd oldbox;
 		make;
 	} || return 0
 }
 
 fusage() {
-	printf "usage: $0 <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem|test|clear|lsblk|systrace|bundle|xargs> <options>\n"
+	printf "usage: %s <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem|test|clear|lsblk|systrace|bundle|xargs> <options>\n" "$0"
 	exit 1
 }
 
-{ [ $# -lt 1 ] && fusage; fdir; }
+{ [ "$#" -lt 1 ] && fusage; fdir; }
 
 shift
 
