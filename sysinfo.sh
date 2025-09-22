@@ -69,7 +69,7 @@ get_pkg_manager() {
 			pkg_manager="none"
 			;;
 		*)
-			pkg_manager="Unknown"
+			pkg_manager="unknown"
 			;;
 	esac
 	print_info "package manager" "$pkg_manager"
