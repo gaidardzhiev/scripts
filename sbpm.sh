@@ -1,5 +1,6 @@
 #!/bin/sh
-#very crude source based package manager boasting only two essential dependencies a POSIX compliant shell and wget
+#Copyright (C) 2025 Ivan Gaydardzhiev
+#Licensed under the GPL-3.0-only
 
 ARG="$1"
 PKG="$2"
