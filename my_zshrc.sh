@@ -52,11 +52,12 @@ alias clean='paccache -rk1'
 alias yay_fzf='yay -Slq | fzf --multi --preview "yay -Si {1}" | xargs -ro yay -S'
 alias manfzf='man -k . | fzf | awk '\''{print $1}'\'' | xargs man'
 
-fflow() {
-	find . -type f -exec sh -c 'echo "==> $1 <=="; cat "$1"' _ {} \;
+show_files() {
+	find . \
+		-path '*/.*' -prune -o \
+		-type f -exec sh -c 'echo "==> $1 <=="; cat "$1"' _ {} \;
 }
-alias flow='fflow'
-
+alias flow='show_files'
 
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
