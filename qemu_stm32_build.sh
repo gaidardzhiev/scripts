@@ -1,7 +1,7 @@
 #!/bin/sh
 #the script builds the qemu emulator for stm32
 
-export DIR=/opt/qemu_stm32
+export DIR="/opt/qemu_stm32"
 export NUMCPUS='grep -c '^processor' /proc/cpuinfo'
 export JOBS='-j '$NUMCPUS''
 
