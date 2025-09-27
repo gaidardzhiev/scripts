@@ -1,10 +1,10 @@
 #!/bin/sh
 #the script builds statically linked midnight commander
 
-export MC_VER=4.7.5.6
+export MC_VER="4.7.5.6"
 export NUMCPUS=$(grep -c '^processor' /proc/cpuinfo)
 export JOBS="-j $NUMCPUS"
-export DIR=/opt/mc
+export DIR="/opt/mc"
 
 fexit() {
 	printf "error: $1\n"
