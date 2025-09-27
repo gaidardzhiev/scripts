@@ -1,9 +1,9 @@
 #!/bin/bash
 
-SSH=~/.ssh/id_ed25519
-SLIRP=~/.slirprc
-DIR=$HOME/src/uml
-export TMPDIR=/tmp
+export SSH="~/.ssh/id_ed25519"
+export SLIRP="~/.slirprc"
+export DIR="/home/src/uml"
+export TMPDIR="/tmp"
 
 [ ! -f "$SSH" ] && ssh-keygen -t ed25519 -N "$1" -f "$SSH"
 
