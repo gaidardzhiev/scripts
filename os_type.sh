@@ -20,4 +20,4 @@ case `uname -s` in
 	exit 1
 esac
 
-{ printf "$OS\n" && exit 0; }
+{ printf "%s\n" "$OS" && exit 0; }
