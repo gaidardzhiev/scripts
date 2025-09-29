@@ -2,11 +2,11 @@
 
 CLONE="git clone https://github.com/gaidardzhiev"
 
-[ -d $1 ] && {
-	printf "$1 exists...\n"
+[ -d "$1" ] && {
+	printf "%s exists...\n" "$1"
 	exit 1
 } || {
-	mkdir -p $1 && cd $1 || exit 8
+	mkdir -p "$1" && cd "$1" || exit 8
 	for REPO in \
 		shellcode \
 		scripts \
