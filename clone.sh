@@ -35,10 +35,12 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		slug \
 		rop \
 		tortoise \
-		prand;
+		prand \
+		bfelfx64 \
+		linker0trust;
 	do
-		$CLONE/$REPO || {
-			printf "failed to clone $REPO...\n"
+		"$CLONE"/"$REPO" || {
+			printf "failed to clone %s...\n" "$REPO"
 			exit 16
 		}
 	done
