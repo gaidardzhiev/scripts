@@ -2,11 +2,11 @@
 
 URL="https://github.com/gaidardzhiev"
 
-[ -d "$1" ] && {
-	printf "%s exists...\n" "$1"
+[ -d "${1}" ] && {
+	printf "%s exists...\n" "${1}"
 	exit 1
 } || {
-	mkdir -p "$1" && cd "$1" || exit 8
+	mkdir -p "${1}" && cd "${1}" || exit 8
 	for REPO in \
 		shellcode \
 		scripts \
@@ -39,8 +39,8 @@ URL="https://github.com/gaidardzhiev"
 		bfelfx64 \
 		linker0trust;
 	do
-		git clone "$URL/$REPO" || {
-			printf "failed to clone %s...\n" "$REPO"
+		git clone "${URL}/${REPO}" || {
+			printf "failed to clone %s...\n" "${REPO}"
 			exit 16
 		}
 	done
