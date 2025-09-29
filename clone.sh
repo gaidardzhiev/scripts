@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CLONE="git clone https://github.com/gaidardzhiev"
+URL="https://github.com/gaidardzhiev"
 
 [ -d "$1" ] && {
 	printf "%s exists...\n" "$1"
@@ -39,7 +39,7 @@ CLONE="git clone https://github.com/gaidardzhiev"
 		bfelfx64 \
 		linker0trust;
 	do
-		"$CLONE"/"$REPO" || {
+		git clone "$URL/$REPO" || {
 			printf "failed to clone %s...\n" "$REPO"
 			exit 16
 		}
