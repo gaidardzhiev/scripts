@@ -11,11 +11,11 @@ export BINUTILS="2.40"
 export DIR="/home/src/compilers/arm_gcc_binutils"
 
 fprep() {
-	mkdir -p "$DIR"
-	cd "$DIR"
-	wget https://ftp.gnu.org/gnu/binutils/binutils-"$BINUTILS".tar.gz
-	wget https://ftp.gnu.org/gnu/gcc/gcc-"$GCC"/gcc-"$GCC".tar.gz
-	tar xf binutils-"$BINUTILS".tar.gz
+	mkdir -p "${DIR}"
+	cd "${DIR}"
+	wget https://ftp.gnu.org/gnu/binutils/binutils-"${BINUTILS}".tar.gz
+	wget https://ftp.gnu.org/gnu/gcc/gcc-"${GCC}"/gcc-"${GCC}".tar.gz
+	tar xf binutils-"${BINUTILS}".tar.gz
 	tar xf gcc-"$GCC".tar.gz
 	ln -s binutils-"$BINUTILS" binutils-patch
 	patch -p0 < arm-patch && return 0 || return 2
