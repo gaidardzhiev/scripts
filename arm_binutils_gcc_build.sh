@@ -50,4 +50,6 @@ fgcc() {
         make install-target-libgcc && return 0 || return 4
 }
 
-{ fprep && fbinutils && fgcc && exit 0; } || exit 1
+{ fprep && fbinutils && fgcc; RET="${?}"; } || exit 1
+
+[ "${RET}" -eq 0 ] 2>/dev/null || printf "%s\n" "${RET}"
