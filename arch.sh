@@ -3,4 +3,4 @@
 
 ARCH=$(grep -m 1 'model name' /proc/cpuinfo | awk -F ': ' '{print $2}' | awk '{print $1}')
 
-printf "%s\n" "$ARCH" && exit 0 || exit 1
+printf "%s\n" "${ARCH}" && exit 0 || exit 1
