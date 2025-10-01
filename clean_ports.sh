@@ -3,6 +3,6 @@
 
 for i in `find /usr/ports -name work -type d`
 do
-        cd `echo "$i" | sed 's/\/[^\/]*$/\//'`
+        cd `echo "${i}" | sed 's/\/[^\/]*$/\//'`
         make clean
 done
