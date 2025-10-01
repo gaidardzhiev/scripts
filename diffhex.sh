@@ -6,7 +6,7 @@
 }
 
 [ ! -f "${1}" ] && {
-	printf "error: file %s does not exist...\n" "$1";
+	printf "error: file %s does not exist...\n" "${1}";
 	exit 2;
 }
 
