@@ -6,7 +6,7 @@ WHITE="https://paste.c-net.org/UnplugDominant"
 
 cd "${TMPDIR}"
 
-[ -e "${FILE}" ] && rm "$FILE"
+[ -e "${FILE}" ] && rm "${FILE}"
 
 if uname -m | grep "arm"; then
 	wget "$WHITE" -O whitespace
