@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ "$#" -ne 2 ] && {
+[ "${#}" -ne 2 ] && {
 	printf "usage: $0 <file1> <file2>\n";
 	exit 1;
 }
