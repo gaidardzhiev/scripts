@@ -10,7 +10,7 @@
 	exit 2;
 }
 
-[ ! -f "$2" ] && {
+[ ! -f "${2}" ] && {
 	printf "error: file %s does not exist....\n" "$2";
 	exit 3;
 }
