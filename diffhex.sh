@@ -1,11 +1,11 @@
 #!/bin/sh
 
 [ "${#}" -ne 2 ] && {
-	printf "usage: $0 <file1> <file2>\n";
+	printf "usage: %s <file1> <file2>\n" "${1}";
 	exit 1;
 }
 
-[ ! -f "$1" ] && {
+[ ! -f "${1}" ] && {
 	printf "error: file %s does not exist...\n" "$1";
 	exit 2;
 }
