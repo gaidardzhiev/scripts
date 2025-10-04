@@ -9,7 +9,7 @@ print_info() {
 }
 
 get_hostname() {
-	hostname=$(hostname) && print_info "hostname" "$hostname" || print_info "hostname" "unknown"
+	hostname=$(hostname) && print_info "hostname" "${hostname}" || print_info "hostname" "unknown"
 }
 
 get_os_info() {
