@@ -5,7 +5,7 @@ GREEN="\\033[32m"
 RESET="\\033[0m"
 
 print_info() {
-	printf "${RED}%-15s${RESET} : ${GREEN}%s\\n" "$1" "$2"
+	printf "${RED}%-15s${RESET} : ${GREEN}%s\\n" "${1}" "${2}"
 }
 
 get_hostname() {
