@@ -4,7 +4,7 @@
 #set vars
 export TARGET="i686-elf"
 export PREFIX="/opt/toyos_gcc_binutils"
-export PATH=$PATH:$PREFIX/bin
+export PATH="${PATH}":"${PREFIX}/bin"
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
 export GCC="12.2.0"
