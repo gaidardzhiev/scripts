@@ -35,7 +35,7 @@ sed -i 's/START OF targmatch.h/& \
     ;;/g' ../binutils-"${BINUTILS}"/bfd/config.bfd 
 sed -i 's/case ${generic_target} in/& \
   i386-*-toyos*)			fmt=elf ;;/g' ../binutils-"${BINUTILS}"/gas/configure.tgt
-touch ../binutils-$BINUTILS/ld/emulparams/elf_i386_toyos.sh
+touch ../binutils-"${BINUTILS}"/ld/emulparams/elf_i386_toyos.sh
 cat > ../binutils-$BINUTILS/ld/emulparams/elf_i386_toyos.sh << eof
 source_sh ${srcdir}/emulparams/elf_i386.sh
 TEXT_START_ADDR=0x08000000
