@@ -40,7 +40,7 @@ cat > ../binutils-"${BINUTILS}"/ld/emulparams/elf_i386_toyos.sh << eof
 source_sh ${srcdir}/emulparams/elf_i386.sh
 TEXT_START_ADDR=0x08000000
 eof
-touch ../binutils-$BINUTILS/ld/emulparams/elf_x86_64_toyos.sh
+touch ../binutils-"${BINUTILS}"/ld/emulparams/elf_x86_64_toyos.sh
 cat > ../binutils-$BINUTILS/ld/emulparams/elf_x86_64_toyos.sh << eof
 source_sh ${srcdir}/emulparams/elf_x86_64.sh
 eof
