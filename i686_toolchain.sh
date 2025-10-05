@@ -13,7 +13,7 @@ export DIR="/home/src/compilers/toyos_gcc_binutils"
 
 #create and go to work directory
 mkdir -p "${DIR}"
-cd $DIR
+cd "${DIR}"
 
 #get archives
 wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS.tar.gz
