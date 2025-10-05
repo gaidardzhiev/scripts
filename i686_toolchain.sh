@@ -34,7 +34,7 @@ sed -i 's/START OF targmatch.h/& \
     targ64_selvecs=bfd_elf64_x86_64_vec\
     ;;/g' ../binutils-"${BINUTILS}"/bfd/config.bfd 
 sed -i 's/case ${generic_target} in/& \
-  i386-*-toyos*)			fmt=elf ;;/g' ../binutils-$BINUTILS/gas/configure.tgt
+  i386-*-toyos*)			fmt=elf ;;/g' ../binutils-"${BINUTILS}"/gas/configure.tgt
 touch ../binutils-$BINUTILS/ld/emulparams/elf_i386_toyos.sh
 cat > ../binutils-$BINUTILS/ld/emulparams/elf_i386_toyos.sh << eof
 source_sh ${srcdir}/emulparams/elf_i386.sh
