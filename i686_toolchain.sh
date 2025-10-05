@@ -20,7 +20,7 @@ wget https://ftp.gnu.org/gnu/binutils/binutils-"${BINUTILS}".tar.gz
 wget https://ftp.gnu.org/gnu/gcc/gcc-"${GCC}"/gcc-"${GCC}".tar.gz
 
 #extract archives
-tar xf binutils-$BINUTILS.tar.gz
+tar xf binutils-"${BINUTILS}".tar.gz
 tar xf gcc-$GCC.tar.gz
 
 #build binutils
