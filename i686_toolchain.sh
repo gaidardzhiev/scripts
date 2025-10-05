@@ -47,7 +47,7 @@ eof
 sed -i 's/ALL_EMULATION_SOURCES/& \
 	eelf_i386_toyos.c/g' ../binutils-"${BINUTILS}"/ld/Makefile.am
 sed -i 's/ALL_64_EMULATION_SOURCES/& \
-	eelf_x86_64_toyos.c/g' ../binutils-$BINUTILS/ld/Makefile.am
+	eelf_x86_64_toyos.c/g' ../binutils-"${BINUTILS}"/ld/Makefile.am
 
 ../binutils-$BINUTILS/configure --targer=$TARGET --prefix=$PREFIX
 echo "MAKEINFO = :" >> Makefile
