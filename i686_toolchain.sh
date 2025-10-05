@@ -26,7 +26,7 @@ tar xf gcc-"${GCC}".tar.gz
 #build binutils
 mkdir build_binutils
 cd build_binutils
-sed -i 's/fiwix*/toyos*/g' ../binutils-$BINUTILS/config.sub
+sed -i 's/fiwix*/toyos*/g' ../binutils-"${BINUTILS}"/config.sub
 sed -i 's/START OF targmatch.h/& \
   i[3-7]86-*-toyos*)\
     targ_defvec=bfd_elf32_i386_vec\
