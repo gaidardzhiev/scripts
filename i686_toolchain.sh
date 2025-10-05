@@ -51,24 +51,24 @@ sed -i 's/ALL_64_EMULATION_SOURCES/& \
 
 ../binutils-"${BINUTILS}"/configure --targer="${TARGET}" --prefix="${PREFIX}"
 echo "MAKEINFO = :" >> Makefile
-make $JOBS all
+make "${JOBS}" all
 make install
 
 #build gcc
 mkdir ../build_gcc
 cd ../build_gcc
-../gcc-$GCC/configure \
-	--target=$TARGET \
-       	--prefix=$PREFIX  \
+../gcc-"${GCC}"/configure \
+	--target="${TARGET}" \
+       	--prefix="${PREFIX}"  \
 	--without-headers \
 	--with-newlib \
 	--with-gnu-as \
 	--with-gnu-ld \
 	--enable-languages='c' \
 	--enable-frame-pointer=no
-make $JOBS all-gcc
+make "${JOBS}" all-gcc
 make install-gcc
 
 #build libgcc.a
-make $JOBS all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
+make "${JOBS}" all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 make install-target-libgcc
