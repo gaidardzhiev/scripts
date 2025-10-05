@@ -2,14 +2,14 @@
 #the script builds a toolchain that specifically targets https://github.com/gaidardzhiev/x86_kernel
 
 #set vars
-export TARGET=i686-elf
-export PREFIX=/opt/toyos_gcc_binutils
+export TARGET="i686-elf"
+export PREFIX="/opt/toyos_gcc_binutils"
 export PATH=$PATH:$PREFIX/bin
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 export JOBS='-j '$GETNUMCPUS''
-export GCC=12.2.0
-export BINUTILS=2.40
-export DIR=/home/src/compilers/toyos_gcc_binutils
+export GCC="12.2.0"
+export BINUTILS="2.40"
+export DIR="/home/src/compilers/toyos_gcc_binutils"
 
 #create and go to work directory
 mkdir -p $DIR
