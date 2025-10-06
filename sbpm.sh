@@ -2,10 +2,10 @@
 #Copyright (C) 2025 Ivan Gaydardzhiev
 #Licensed under the GPL-3.0-only
 
-ARG="$1"
-PKG="$2"
-GET="$2"
-UPD="$2"
+ARG="${1}"
+PKG="${2}"
+GET="${2}"
+UPD="${2}"
 DIR="/opt/sbpm"
 SRC="/opt/sbpm/src"
 BIN="/opt/sbpm/bin"
@@ -21,7 +21,7 @@ MNT="/opt/sbpm/mnt"
 USR="/opt/sbpm/usr"
 TARGET=$(uname -m)
 GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
-JOBS='-j '$GETNUMCPUS''
+JOBS='-j '${GETNUMCPUS}''
 GCC="12.2.0"
 BINUTILS="2.40"
 MAKE="4.4"
@@ -51,7 +51,7 @@ SHELLCHECK="0.10.0"
 STRACE="6.16"
 
 fusage() {
-	printf "usage: $0 <operation> <package>\n"
+	printf "usage: ${0} <operation> <package>\n"
 	printf "\n"
 	printf "operations:\n"
 	printf "		 build-src | get-bin | delete-src | delete-bin | update-src\n"
@@ -61,64 +61,64 @@ fusage() {
 	exit 1
 }
 
-mkdir -p "$DIR" "$SRC" "$BIN" "$LIB" "$ETC" "$SBIN" "$INC" "$CROSS" "$SHR" "$NATIVE" "$MNT" "$USR"
+mkdir -p "${DIR}" "${SRC}" "${BIN}" "${LIB}" "${ETC}" "${SBIN}" "${INC}" "${CROSS}" "${SHR}" "${NATIVE}" "${MNT}" "${USR}"
 
 [ $# -lt 1 ] && fusage
 
 shift
 
 fbuild_src(){
-	case "$PKG" in
+	case "${PKG}" in
 		make)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/make/make-"$MAKE".tar.gz
-			tar xfv make-"$MAKE".tar.gz
-			rm make-"$MAKE".tar.gz
-			cd make-"$MAKE"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/make/make-"${MAKE}".tar.gz
+			tar xfv make-"${MAKE}".tar.gz
+			rm make-"${MAKE}".tar.gz
+			cd make-"${MAKE}"
 			./configure \
-				--prefix="$DIR"
+				--prefix="${DIR}"
 			./build.sh
-			cp make "$BIN"/make-"$MAKE"-"$TARGET"
+			cp make "${BIN}"/make-"${MAKE}"-"${TARGET}"
 			;;
 		gcc)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/gcc/gcc-"$GCC"/gcc-"$GCC".tar.gz
-			tar xf gcc-"$GCC".tar.gz
-			rm gcc-"$GCC".tar.gz
-			cd gcc-"$GCC"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/gcc/gcc-"${GCC}"/gcc-"${GCC}".tar.gz
+			tar xf gcc-"${GCC}".tar.gz
+			rm gcc-"${GCC}".tar.gz
+			cd gcc-"${GCC}"
 			./configure \
-				--prefix="$DIR" \
-				--target="$TARGET"-elf \
+				--prefix="${DIR}" \
+				--target="${TARGET}"-elf \
 				--without-headers \
 				--with-newlib \
 				--with-gnu-as \
 				--with-gnu-ld \
 				--enable-languages='c' \
 				--enable-frame-pointer=no
-			make "$JOBS" all-gcc && \
-				cp gcc "$BIN"/gcc-"$GCC"-"$TARGET"-elf
-			make "$JOBS" all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
+			make "${JOBS}" all-gcc && \
+				cp gcc "${BIN}"/gcc-"${GCC}"-"${TARGET}"-elf
+			make "${JOBS}" all-target-libgcc CFLAGS_FOR_TARGET="-g -02"
 			;;
 		strongswan)
-			cd "$SRC"
-			wget https://download.strongswan.org/strongswan-"$STRONGSWAN".tar.bz2
-			bzip2 -d strongswan-"$STRONGSWAN".tar.bz2
-			tar xfv strongswan-"$STRONGSWAN".tar
-			rm strongswan-"$STRONGSWAN".tar
-			cd strongswan-"$STRONGSWAN"
+			cd "${SRC}"
+			wget https://download.strongswan.org/strongswan-"${STRONGSWAN}".tar.bz2
+			bzip2 -d strongswan-"${STRONGSWAN}".tar.bz2
+			tar xfv strongswan-"${STRONGSWAN}".tar
+			rm strongswan-"${STRONGSWAN}".tar
+			cd strongswan-"${STRONGSWAN}"
 			./configure \
-				--prefix="$DIR" \
+				--prefix="${DIR}" \
 				--enable-systemd \
 				--enable-swanctl
-			make "$JOBS" && \
-				cp strongswan "$BIN"/strongswan-"$STRONGSWAN"-"$TARGET"
+			make "${JOBS}" && \
+				cp strongswan "${BIN}"/strongswan-"${STRONGSWAN}"-"${TARGET}"
 			;;
 		mc)
-			cd "$SRC"
-			wget http://ftp.midnight-commander.org/mc-"$MC".tar.xz
-			tar xfv mc-"$MC".tar.xz
-			rm mc-"$MC".tar.xz
-			cd mc-"$MC"
+			cd "${SRC}"
+			wget http://ftp.midnight-commander.org/mc-"${MC}".tar.xz
+			tar xfv mc-"${MC}".tar.xz
+			rm mc-"${MC}".tar.xz
+			cd mc-"${MC}"
 			./configure \
 				--without-x \
 				--disable-shared \
@@ -127,162 +127,162 @@ fbuild_src(){
 			CXX='g++ -static -static-libgcc -fno-exceptions' \
 			LDFLAGS='-Wl,-static -static -lc' \
 			LIBS='-lc' \
-			make "$JOBS" && \
-				cp src/mc "$BIN"/mc-"$MC"-"$TARGET"
+			make "${JOBS}" && \
+				cp src/mc "${BIN}"/mc-"${MC}"-"${TARGET}"
 			;;
 		tcc)
-			cd "$SRC"
-			wget https://download.savannah.gnu.org/releases/tinycc/tcc-"$TCC".tar.bz2
-			bzip2 -d tcc-"$TCC".tar.bz2
-			tar xfv tcc-"$TCC".tar
-			rm tcc-"$TCC".tar
-			cd tcc-"$TCC"
+			cd "${SRC}"
+			wget https://download.savannah.gnu.org/releases/tinycc/tcc-"${TCC}".tar.bz2
+			bzip2 -d tcc-"${TCC}".tar.bz2
+			tar xfv tcc-"${TCC}".tar
+			rm tcc-"${TCC}".tar
+			cd tcc-"${TCC}"
 			./configure \
-				--prefix="$DIR"
-			make "$JOBS" && \
-				cp tcc "$BIN"/tcc-"$TCC"-"$TARGET"
+				--prefix="${DIR}"
+			make "${JOBS}" && \
+				cp tcc "${BIN}"/tcc-"${TCC}"-"${TARGET}"
 			;;
 		oldbox)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/gaidardzhiev/oldbox
 			cd oldbox
 			sed -i 's|/home/src/1v4n/oldbox|/opt/sbpm/src/oldbox|g' oldbox.c
 			./build_toolchain.sh
-			make "$JOBS" && \
-				cp oldbox "$BIN"/oldbox-"$TARGET"
+			make "${JOBS}" && \
+				cp oldbox "${BIN}"/oldbox-"${TARGET}"
 			;;
 		musl)
-			cd "$SRC"
-			wget https://musl.libc.org/releases/musl-"$MUSL".tar.gz
-			tar xfv musl-"$MUSL".tar.gz
-			rm musl-"$MUSL".tar.gz
-			cd musl-"$MUSL"
+			cd "${SRC}"
+			wget https://musl.libc.org/releases/musl-"${MUSL}".tar.gz
+			tar xfv musl-"${MUSL}".tar.gz
+			rm musl-"${MUSL}".tar.gz
+			cd musl-"${MUSL}"
 			./configure && {
-				make "$JOBS";
+				make "${JOBS}";
 				make install;
 				cp /usr/local/musl/bin/musl-gcc /usr/bin;
 			}
 			;;
 		sed)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 git://git.sv.gnu.org/sed
 			cd sed
 			./bootstrap
 			./configure \
-				--prefix="$DIR" \
+				--prefix="${DIR}" \
 				--quiet \
 				--disable-gcc-warnings
-			make "$JOBS" && \
-				cp sed "$BIN"/sed-"$TARGET"
+			make "${JOBS}" && \
+				cp sed "${BIN}"/sed-"${TARGET}"
 			;;
 		binutils)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/binutils/binutils-"$BINUTILS".tar.gz
-			tar xfv binutils-"$BINUTILS".tar.gz
-			rm binutils-"$BINUTILS".tar.gz
-			cd binutils-"$BINUTILS"
-			make "$JOBS"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/binutils/binutils-"${BINUTILS}".tar.gz
+			tar xfv binutils-"${BINUTILS}".tar.gz
+			rm binutils-"${BINUTILS}".tar.gz
+			cd binutils-"${BINUTILS}"
+			make "${JOBS}"
 			;;
 		dietlibc)
-			cd "$SRC"
+			cd "${SRC}"
 			cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co dietlibc
 			cd dietlibc
-			make "$JOBS" && \
-				install bin-"$TARGET"/diet /usr/local/bin
+			make "${JOBS}" && \
+				install bin-"${TARGET}"/diet /usr/local/bin
 			;;
 		dmenu)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 git://git.suckless.org/dmenu
 			cd dmenu
-			make "$JOBS" && \
-				cp dmenu "$BIN"/dmenu-"$TARGET"
+			make "${JOBS}" && \
+				cp dmenu "${BIN}"/dmenu-"${TARGET}"
 			;;
 		git)
-			cd "$SRC"
-			wget https://www.kernel.org/pub/software/scm/git/git-"$GIT".tar.gz
-			tar xfv git-"$GIT".tar.gz
-			rm git-"$GIT".tar.gz
-			cd git-"$GIT"
+			cd "${SRC}"
+			wget https://www.kernel.org/pub/software/scm/git/git-"${GIT}".tar.gz
+			tar xfv git-"${GIT}".tar.gz
+			rm git-"${GIT}".tar.gz
+			cd git-"${GIT}"
 			make configure
 			./configure \
-				--prefix="$DIR"
-			make "$JOBS" && \
-				cp git "$SRC"/git
+				--prefix="${DIR}"
+			make "${JOBS}" && \
+				cp git "${SRC}"/git
 			;;
 		dash)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/danishprakash/dash
 			cd dash
-			make "$JOBS" && \
-				cp dash "$BIN"/dash-"$TARGET"
+			make "${JOBS}" && \
+				cp dash "${BIN}"/dash-"${TARGET}"
 			;;
 		awk)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/onetrueawk/awk
 			cd awk
-			make "$JOBS" && {
+			make "${JOBS}" && {
 				mv a.out awk;
-				cp awk "$BIN"/awk-"$TARGET";
+				cp awk "${BIN}"/awk-"${TARGET}";
 			}
 			;;
 		grep)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/grep/grep-"$GREP".tar.gz
-			tar xfv grep-"$GREP".tar.gz
-			rm grep-"$GREP".tar.gz
-			cd grep-"$GREP"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/grep/grep-"${GREP}".tar.gz
+			tar xfv grep-"${GREP}".tar.gz
+			rm grep-"${GREP}".tar.gz
+			cd grep-"${GREP}"
 			./configure \
-				--prefix="$DIR"
-			make "$JOBS" && {
-				cp src/grep "$BIN"/grep-"$TARGET";
-				cp src/egrep "$BIN"/egrep-"$TARGET";
-				cp src/fgrep "$BIN"/fgrep-"$TARGET";
+				--prefix="${DIR}"
+			make "${JOBS}" && {
+				cp src/grep "${BIN}"/grep-"${TARGET}";
+				cp src/egrep "${BIN}"/egrep-"${TARGET}";
+				cp src/fgrep "${BIN}"/fgrep-"${TARGET}";
 			}
 			;;
 		busybox)
-			cd "$SRC"
+			cd "${SRC}"
 			wget https://busybox.net/downloads/busybox-snapshot.tar.bz2
 			bzip2 -d busybox-snapshot.tar.bz2
 			tar xfv busybox-snapshot.tar
 			rm busybox-snapshot.tar
 			cd busybox
 			make defconfig
-			make "$JOBS" && \
-				cp busybox "$BIN"/busybox-"$TARGET"
+			make "${JOBS}" && \
+				cp busybox "${BIN}"/busybox-"${TARGET}"
 			;;
 		qbe)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/8l/qbe
 			cd qbe
-			make "$JOBS" && \
-				cp obj/qbe "$BIN"/qbe-"$TARGET"
+			make "${JOBS}" && \
+				cp obj/qbe "${BIN}"/qbe-"${TARGET}"
 			;;
 		wget)
-			cd "$SRC"
+			cd "${SRC}"
 			curl https://ftp.gnu.org/gnu/wget/wget2-latest.tar.gz -o wget2-latest.tar.gz
 			tar xfv wget2-latest.tar.gz
 			rm wget2-latest.tar.gz
 			cd wget*
 			./configure \
-				--prefix="$DIR"
-			make "$JOBS"
+				--prefix="${DIR}"
+			make "${JOBS}"
 			;;
 		curl)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/curl/curl.git
 			cd curl
 			autoreconf -fi >&2
 			automake \
 				--add-missing
 			./configure \
-				--prefix="$DIR" \
+				--prefix="${DIR}" \
 				--without-ssl \
 				--disable-shared
-			make "$JOBS" && \
-				cp src/curl "$BIN"/curl-"$TARGET"
+			make "${JOBS}" && \
+				cp src/curl "${BIN}"/curl-"${TARGET}"
 			;;
 		coreboot)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://review.coreboot.org/coreboot
 			cd coreboot
 			make crossgcc-i386 CPUS=$(nproc)
@@ -291,41 +291,41 @@ fbuild_src(){
 			make menuconfig
 			make savedefconfig
 			cat defconfig
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		toybox)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/landley/toybox
 			cd toybox
 			make defconfig
-			make "$JOBS" && \
-				cp toybox "$BIN"/toybox
+			make "${JOBS}" && \
+				cp toybox "${BIN}"/toybox
 			;;
 		uclibc)
-			cd "$SRC"
+			cd "${SRC}"
 			wget https://uclibc.org/downloads/uClibc-snapshot.tar.bz2
 			tar xfv uClibc-snapshot.tar.bz2
 			rm uClibc-snapshot.tar.bz2
 			cd uClibc
 			make defconfig
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		john)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/openwall/john
 			cd john
 			./configure
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		nmap)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/nmap/nmap
 			cd nmap
 			./configure
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		lambda-delta)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/dseagrav/ld
 			cd ld
 			aclocal && {
@@ -336,10 +336,10 @@ fbuild_src(){
 				--add-missing
 			./configure || \
 				autoreconf -i
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		tmg)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/amakukha/tmg
 			cd tmg
 			cd src && \
@@ -347,41 +347,41 @@ fbuild_src(){
 			./tmg.sh ../examples/hello_world.t
 			touch input
 			./a.out input
-			cp tmgl1 tmgl2 "$BIN"
+			cp tmgl1 tmgl2 "${BIN}"
 			;;
 		subc)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/DoctorWkt/SubC
 			cd SubC
 			./configure
 			cd src
-			make "$JOBS" && {
+			make "${JOBS}" && {
 				make scc;
-				cp scc "$BIN"/subc-"$TARGET";
+				cp scc "${BIN}"/subc-"${TARGET}";
 			}
 			;;
 		cc500)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/8l/cc500
 			cd cc500
 			tcc cc500.c -o cc500 && \
-				cp cc500 "$BIN"
+				cp cc500 "${BIN}"
 			;;
 		scc)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/8l/scc
 			cd scc
-			make "$JOBS" && \
-				cp bin/scc "$BIN"/scc-"$TARGET"
+			make "${JOBS}" && \
+				cp bin/scc "${BIN}"/scc-"${TARGET}"
 			cd tests && \
-				make "$JOBS"
+				make "${JOBS}"
 			;;
 		c)
-			[ "$TARGET" = x86_64 ] && {
-				cd "$SRC";
+			[ "${TARGET}" = x86_64 ] && {
+				cd "${SRC}";
 				git clone https://github.com/andrewchambers/c;
 				cd c;
-				make "$JOBS";
+				make "${JOBS}";
 				make test;
 				make selfhost;
 			} || {
@@ -390,96 +390,96 @@ fbuild_src(){
 			}
 			;;
 		cproc)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/michaelforney/cproc
 			cd cproc
 			./configure && \
-				make "$JOBS"
+				make "${JOBS}"
 			;;
 		tinycc)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://repo.or.cz/tinycc.git
 			cd tinycc
 			./configure \
-				--prefix="$DIR" \
-				--bindir="$BIN" \
-				--libdir="$LIB" \
-				--includedir="$INC" \
-				--source-path="$SRC"/tinycc \
+				--prefix="${DIR}" \
+				--bindir="${BIN}" \
+				--libdir="${LIB}" \
+				--includedir="${INC}" \
+				--source-path="${SRC}"/tinycc \
 				--cc=tcc \
 				--disable-static \
 				--enable-cross
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			;;
 		9base)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://git.suckless.org/9base
 			cd 9base
-			make "$JOBS"
-			cp ascii/ascii "$BIN"/ascii-"$P9"
-			cp awk/awk "$BIN"/awk-"$P9"
-			cp basename/basename "$BIN"/basename-"$P9"
-			cp bc/bc "$BIN"/bc-"$P9"
-			cp cat/cat "$BIN"/cat-"$P9"
-			cp cmp/cmp "$BIN"/cmp-"$P9"
-			cp date/date "$BIN"/date-"$P9"
-			cp dd/dd "$BIN"/dd-"$P9"
-			#cp diff/diff "$BIN"/diff-"$P9"
-			cp du/du "$BIN"/du-"$P9"
-			#cp echo/echo "$BIN"/echo-"$P9"
+			make "${JOBS}"
+			cp ascii/ascii "${BIN}"/ascii-"${P9}"
+			cp awk/awk "${BIN}"/awk-"${P9}"
+			cp basename/basename "${BIN}"/basename-"${P9}"
+			cp bc/bc "${BIN}"/bc-"${P9}"
+			cp cat/cat "${BIN}"/cat-"${P9}"
+			cp cmp/cmp "${BIN}"/cmp-"${P9}"
+			cp date/date "${BIN}"/date-"${P9}"
+			cp dd/dd "${BIN}"/dd-"${P9}"
+			#cp diff/diff "${BIN}"/diff-"${P9}"
+			cp du/du "${BIN}"/du-"${P9}"
+			#cp echo/echo "${BIN}"/echo-"${P9}"
 			;;
 		airgeddon)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/v1s1t0r1sh3r3/airgeddon
-			cp airgeddon/airgeddon.sh "$BIN"
+			cp airgeddon/airgeddon.sh "${BIN}"
 			;;
 		masscan)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/robertdavidgraham/masscan
 			cd masscan
-			make "$JOBS"
-			cp bin/masscan "$BIN"/masscan-"$TARGET"
+			make "${JOBS}"
+			cp bin/masscan "${BIN}"/masscan-"${TARGET}"
 			;;
 		kexec)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/horms/kexec-tools
 			cd kexec-tools
 			./bootstrap
 			./configure
-			make "$JOBS"
-			cp build/sbin/* "$SBIN"
+			make "${JOBS}"
+			cp build/sbin/* "${SBIN}"
 			;;
 		otcc)
-			case "$TARGET" in
+			case "${TARGET}" in
 				x86)
-					cd "$SRC"
+					cd "${SRC}"
 					git clone https://github.com/8l/otcc
 					cd otcc
 					gcc -O2 otcc.c -o otcc -ldl gcc -O2 otccelf.c -o otccelf
 					./otccelf otccelf.c otccelf1
 					;;
 				*)
-					printf "unsupported architecture: %s\n" "$TARGET"
+					printf "unsupported architecture: %s\n" "${TARGET}"
 					exit 1
 					;;
 			esac
 			;;
 		hping)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/antirez/hping
 			cd hping
 			./configure
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		qemu)
-			cd "$SRC"
-			wget https://download.qemu.org/qemu-"$QEMU".tar.xz
-			tar xf qemu-"$QEMU".tar.xz
-			rm qemu-"$QEMU".tar.xz
-			cd "$SRC"/qemu-"$QEMU"
+			cd "${SRC}"
+			wget https://download.qemu.org/qemu-"${QEMU}".tar.xz
+			tar xf qemu-"${QEMU}".tar.xz
+			rm qemu-"${QEMU}".tar.xz
+			cd "${SRC}"/qemu-"${QEMU}"
 			./configure \
-				--prefix="$DIR"
+				--prefix="${DIR}"
 				--target-list=aarch64_be-linux-user \
 				aarch64-linux-user \
 				alpha-linux-user \
@@ -552,31 +552,31 @@ fbuild_src(){
 				--enable-libudev \
 				--enable-libssh \
 				--enable-debug
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		esolangs)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/gaidardzhiev/esolangs
 			cd esolangs && \
-				make "$JOBS"
-			cp brainf "$BIN"/brainf-"$TARGET"
-			cp whitespace "$BIN"/whitespace-"$TARGET"
+				make "${JOBS}"
+			cp brainf "${BIN}"/brainf-"${TARGET}"
+			cp whitespace "${BIN}"/whitespace-"${TARGET}"
 			;;
 		interceptor)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/gaidardzhiev/interceptor
 			cd interceptor && {
 				make;
-				cp intercept.so "$LIB";
-				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "$LIB";
+				cp intercept.so "${LIB}";
+				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "${LIB}";
 			}
 			;;
 		bash)
-			cd "$SRC"
-			wget wget https://fosszone.csd.auth.gr/gnu/bash/bash-"$BASH".tar.gz
-			tar xfv bash-"$BASH".tar.gz
-			rm bash-"$BASH".tar.gz
-			cd bash-"$BASH"
+			cd "${SRC}"
+			wget wget https://fosszone.csd.auth.gr/gnu/bash/bash-"${BASH}".tar.gz
+			tar xfv bash-"${BASH}".tar.gz
+			rm bash-"${BASH}".tar.gz
+			cd bash-"${BASH}"
 			./configure \
 				--enable-directory-stack=yes \
 				--enable-strict-posix-default=yes \
@@ -584,129 +584,129 @@ fbuild_src(){
 				--enable-net-redirections=yes \
 				--enable-cond-command=yes \
 				--enable-cond-regexp=yes
-			make "$JOBS"
-			cp bash "$BIN"/bash-"$TARGET"
+			make "${JOBS}"
+			cp bash "${BIN}"/bash-"${TARGET}"
 			;;
 		gnupg)
-			cd "$SRC"
-			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-"$GNUPG".tar.bz2
-			bzip2 -d https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-"$GNUPG".tar.bz2
-			tar xfv gnupg-"$GNUPG".tar
-			rm gnupg-"$GNUPG".tar
-			cd gnupg-"$GNUPG"
+			cd "${SRC}"
+			wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-"${GNUPG}".tar.bz2
+			bzip2 -d https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-"${GNUPG}".tar.bz2
+			tar xfv gnupg-"${GNUPG}".tar
+			rm gnupg-"${GNUPG}".tar
+			cd gnupg-"${GNUPG}"
 			mkdir build
 			cd build
 			../configure && {
-				make "$JOBS";
+				make "${JOBS}";
 				make check;
 			}
 			;;
 		go)
-			cd "$SRC"
-			wget https://dl.google.com/go/go"$GO"-bootstrap-20171003.tar.gz
-			tar xfv go"$GO"-bootstrap-20171003.tar.gz
-			rm go"$GO"-bootstrap-20171003.tar.gz
+			cd "${SRC}"
+			wget https://dl.google.com/go/go"${GO}"-bootstrap-20171003.tar.gz
+			tar xfv go"${GO}"-bootstrap-20171003.tar.gz
+			rm go"${GO}"-bootstrap-20171003.tar.gz
 			cd go/src
 			./make.bash
-			cp ../bin/go "$BIN"/go-"$GO"
-			cp ../bin/gofmt "$BIN"/gofmt-"$GO"
+			cp ../bin/go "${BIN}"/go-"${GO}"
+			cp ../bin/gofmt "${BIN}"/gofmt-"${GO}"
 			;;
 		oyacc)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/ibara/yacc oyacc
 			cd oyacc && {
 				./configure;
-				make "$JOBS";
-				cp oyacc "$BIN"/oyacc-"$TARGET";
+				make "${JOBS}";
+				cp oyacc "${BIN}"/oyacc-"${TARGET}";
 			}
 			;;
 		libosmocore)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://gitea.osmocom.org/osmocom/libosmocore.git
 			cd libosmocore
 			autoreconf -i
 			./configure \
 				--disable-pcsc
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			ldconfig -i
 			;;
 		libosmo-gprs)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://gitea.osmocom.org/osmocom/libosmo-gprs.git
 			cd libosmo-gprs
 			autoreconf -i
 			./configure
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			ldconfig -i
 			;;
 		gapk)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://gitea.osmocom.org/osmocom/gapk
 			cd gapk
 			autoreconf -i
 			./configure \
 				--enable-gsmhr
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			ldconfig
 			;;
 		osmocom-bb)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://gitea.osmocom.org/phone-side/osmocom-bb.git
 			cd osmocom-bb
 			git pull --rebase
 			cd src
-			make "$JOBS" -e CROSS_TOOL_PREFIX=arm-none-eabi-
+			make "${JOBS}" -e CROSS_TOOL_PREFIX=arm-none-eabi-
 			cd host/osmocon
-			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/"$PHONE"/"$FIRMWARE".compalram.bin
+			./osmocon -p /dev/ttyUSB0 -m c123xor ../../target/firmware/board/"${PHONE}"/"${FIRMWARE}".compalram.bin
 			;;
 		aircrack-ng)
-			cd "$SRC"
-			wget https://download.aircrack-ng.org/aircrack-ng-$AIR.tar.gz
-			tar -zxvf aircrack-ng-"$AIR".tar.gz
-			rm aircrack-ng-"$AIR".tar.gz
-			cd aircrack-ng-"$AIR"
+			cd "${SRC}"
+			wget https://download.aircrack-ng.org/aircrack-ng-${AIR}.tar.gz
+			tar -zxvf aircrack-ng-"${AIR}".tar.gz
+			rm aircrack-ng-"${AIR}".tar.gz
+			cd aircrack-ng-"${AIR}"
 			autoreconf -i
 			./configure --with-experimental
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			ldconfig
 			;;
 		smartmontools)
-			cd "$SRC"
+			cd "${SRC}"
 			svn co https://svn.code.sf.net/p/smartmontools/code/trunk/smartmontools smartmontools
 			cd smartmontools
 			./autogen.sh
 			./configure
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			;;
 		gdb)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/gdb/gdb-"$GDB".tar.gz
-			tar xfv gdb-"$GDB".tar.gz
-			rm gdb-"$GDB".tar.gz
-			cd gdb-"$GDB"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/gdb/gdb-"${GDB}".tar.gz
+			tar xfv gdb-"${GDB}".tar.gz
+			rm gdb-"${GDB}".tar.gz
+			cd gdb-"${GDB}"
 			./configure \
-				--target="$TARGET" \
+				--target="${TARGET}" \
 				--disable-werror
 			make all-gdb
 			;;
 		zsh)
-			cd "$SRC"
-			wget https://www.zsh.org/pub/zsh-$ZSH.tar.xz
-			tar xfv zsh-"$ZSH".tar.xz
-			rm zsh-"$ZSH".tar.xz
-			cd zsh-"$ZSH"
+			cd "${SRC}"
+			wget https://www.zsh.org/pub/zsh-${ZSH}.tar.xz
+			tar xfv zsh-"${ZSH}".tar.xz
+			rm zsh-"${ZSH}".tar.xz
+			cd zsh-"${ZSH}"
 			./configure \
-				--prefix="$DIR"
-			make "$JOBS" && \
+				--prefix="${DIR}"
+			make "${JOBS}" && \
 				make install
 			;;
 		kmod)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/kmod-project/kmod
 			cd kmod
 			./autogen.sh
@@ -722,48 +722,48 @@ fbuild_src(){
 				--with-zlib \
 				--with-openssl \
 				--disable-manpages
-			make "$JOBS" && \
+			make "${JOBS}" && \
 				make install
 			;;
 		gzip)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/gzip/gzip-"$GZIP".tar.gz
-			tar xfv gzip-"$GZIP".tar.gz
-			rm gzip-"$GZIP".tar.gz
-			cd gzip-"$GZIP"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/gzip/gzip-"${GZIP}".tar.gz
+			tar xfv gzip-"${GZIP}".tar.gz
+			rm gzip-"${GZIP}".tar.gz
+			cd gzip-"${GZIP}"
 			./configure
-			make "$JOBS" && \
-				cp gzip "$BIN"/gzip-"$TARGET"
+			make "${JOBS}" && \
+				cp gzip "${BIN}"/gzip-"${TARGET}"
 			;;
 		rsync)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/rsyncproject/rsync
 			cd rsync
 			./configure \
 				--disable-md2man
-			make "$JOBS" && \
-				cp rsync "$BIN"/rsync-"$TARGET"
+			make "${JOBS}" && \
+				cp rsync "${BIN}"/rsync-"${TARGET}"
 			;;
 		xz)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/tukaani-project/xz
 			cd xz
 			./autogen.sh
 			./configure \
 				--enable-debug \
 				--disable-shared
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		bc)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/gavinhoward/bc
 			cd bc
 			./configure.sh
-			make "$JOBS" && \
-				cp bin/bc "$BIN"/bc-"$TARGET"
+			make "${JOBS}" && \
+				cp bin/bc "${BIN}"/bc-"${TARGET}"
 			;;
 		lzip)
-			cd "$SRC"
+			cd "${SRC}"
 			wget https://download.savannah.gnu.org/releases/lzip/lzip-1.25.tar.gz
 			tar xfv lzip-1.25.tar.gz
 			rm lzip-1.25.tar.gz
@@ -774,19 +774,19 @@ fbuild_src(){
 			}
 			;;
 		elfutils)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 git://sourceware.org/git/elfutils.git
 			cd elfutils
 			autoreconf -i -f && {
 				./configure \
 					--enable-maintainer-mode;
-				make "$JOBS";
+				make "${JOBS}";
 				make check;
 				make install;
 			}
 			;;
 		pahole)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/acmel/dwarves
 			cd dwarves
 			mkdir build && {
@@ -796,13 +796,13 @@ fbuild_src(){
 			}
 			;;
 		tar)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://git.savannah.gnu.org/git/tar.git
 			cd tar
 			./bootstrap
 			;;
 		bzip2)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://gitlab.com/bzip2/bzip2
 			cd bzip2
 			mkdir build && {
@@ -811,11 +811,11 @@ fbuild_src(){
 			}
 			;;
 		linux-kernel)
-			cd "$SRC"
-			wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-$LINUX.tar.xz
-			tar xfv linux-"$LINUX".tar.xz
-			rm linux-"$LINUX".tar.xz
-			cd linux-"$LINUX"
+			cd "${SRC}"
+			wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${LINUX}.tar.xz
+			tar xfv linux-"${LINUX}".tar.xz
+			rm linux-"${LINUX}".tar.xz
+			cd linux-"${LINUX}"
 			make tinyconfig
 			sed -i 's/^# CONFIG_TTY is not set/CONFIG_TTY=y/' .config
 			sed -i 's/^# CONFIG_64BIT is not set/CONFIG_64BIT=y/' .config
@@ -838,17 +838,17 @@ fbuild_src(){
 			grep "CONFIG_INITRAMFS_PRESERVE_MTIME=y" .config || exit 1
 			grep "=y" .config | wc -l
 			grep "=m" .config | wc -l
-			time make "$JOBS"
+			time make "${JOBS}"
 			;;
 		initramfs)
-			cd "$SRC"
+			cd "${SRC}"
 			wget https://busybox.net/downloads/busybox-1.26.2.tar.bz2
 			tar -xvf busybox-1.26.2.tar.bz2
 			rm busybox-1.26.2.tar.bz2
 			cd busybox-1.26.2
 			make defconfig
 			make menuconfig
-			make "$JOBS" && {
+			make "${JOBS}" && {
 				file busybox;
 				make install;
 				cd _install;
@@ -868,11 +868,11 @@ fbuild_src(){
 			find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz
 			;;
 		vim)
-			cd "$SRC"
+			cd "${SRC}"
 			wget https://ftp.nluug.nl/pub/vim/unix/vim-9.0.tar.bz2
 			cd vim90
 			./configure \
-				--prefix="$SPM" \
+				--prefix="${SPM}" \
 				--disable-darwin \
 				--disable-smack \
 				--disable-selinux \
@@ -887,14 +887,14 @@ fbuild_src(){
 				--disable-acl \
 				--disable-sysmouse \
 				--disable-nls
-			(make || (cd "$SRC"/vim90/src && make)) && make install
+			(make || (cd "${SRC}"/vim90/src && make)) && make install
 			;;
 		avr-toolchain)
-			PREFIX="$SPM"
+			PREFIX="${SPM}"
 			export PREFIX
-			PATH="$PATH":"$PREFIX"/bin
-			export "$PATH"
-			mkdir "$SRC"/avr && cd "$SRC"/avr
+			PATH="${PATH}":"${PREFIX}"/bin
+			export "${PATH}"
+			mkdir "${SRC}"/avr && cd "${SRC}"/avr
 			binutils() {
 				wget https://ftp.gnu.org/gnu/binutils/binutils-2.44.tar.gz
 				tar xfv binutils-2.44.tar.gz
@@ -903,18 +903,18 @@ fbuild_src(){
 				mkdir binutils-2.44-avr
 				cd binutils-2.44-avr
 				../configure \
-				 	--prefix="$PREFIX" \
+				 	--prefix="${PREFIX}" \
 					--target=avr \
 					--disable-nls \
 					--disable-sim \
 					--disable-gdb \
 					--disable-werror && {
-						make "$JOBS";
+						make "${JOBS}";
 						make install;
 					}
 			}
 			gcc() {
-				cd "$SRC"/avr
+				cd "${SRC}"/avr
 				wget https://ftp.cc.uoc.gr/mirrors/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.gz
 				tar xfv gcc-14.2.0.tar.gz
 				rm gcc-14.2.0.tar.gz
@@ -923,7 +923,7 @@ fbuild_src(){
 				mkdir gcc-14.2.0-avr
 				cd gcc-14.2.0
 				../configure \
-					--prefix="$PREFIX" \
+					--prefix="${PREFIX}" \
 					--target=avr \
 					--enable-languages=c \
 					--disable-nls \
@@ -932,82 +932,82 @@ fbuild_src(){
 					--with-gnu-as \
 					--with-gnu-ld \
 					--with-dwarf2 && {
-						make "$JOBS";
+						make "${JOBS}";
 						make install-strip;
 					}
 			}
 			avr_libc() {
-				cd "$SRC"/avr
+				cd "${SRC}"/avr
 				git clone https://github.com/avrdudes/avr-libc
 				cd avr-libc
 				./bootstrap
 				mkdir avr-libc-2.2.0
 				cd avr-libc-2.2.0
 				./configure \
-					--prefix="$PREFIX" \
-					--build="$TARGET"-pc-linux-gnu \
+					--prefix="${PREFIX}" \
+					--build="${TARGET}"-pc-linux-gnu \
 					--host=avr && {
-						make "$JOBS";
+						make "${JOBS}";
 						make install;
 				}
 			}
 			{ binutils && gcc && avr_libc; } || exit 1
 			;;
 		diff)
-			cd "$SRC"
-			wget https://ftp.gnu.org/gnu/diffutils/diffutils-"$DIFF".tar.xz
-			tar xfv diffutils-"$DIFF".tar.xz
-			rm diffutils-"$DIFF".tar.xz
-			cd diffutils-"$DIFF"
+			cd "${SRC}"
+			wget https://ftp.gnu.org/gnu/diffutils/diffutils-"${DIFF}".tar.xz
+			tar xfv diffutils-"${DIFF}".tar.xz
+			rm diffutils-"${DIFF}".tar.xz
+			cd diffutils-"${DIFF}"
 			./configure \
-				--prefix="$SPM" \
-				--host="$TARGET" \
+				--prefix="${SPM}" \
+				--host="${TARGET}" \
 				--enable-threads=isoc+posix \
 				--disable-threads && {
-					make "$JOBS";
-					cp src/diff "$BIN"/diff-"$TARGET";
+					make "${JOBS}";
+					cp src/diff "${BIN}"/diff-"${TARGET}";
 				}
 			;;
 		tcsh)
-			cd "$SRC"
-			wget https://astron.com/pub/tcsh/tcsh-"$TCSH".tar.gz
-			tar xfv tcsh-"$TCSH".tar.gz
-			rm tcsh-"$TCSH".tar.gz
-			cd tcsh-"$TCSH"
+			cd "${SRC}"
+			wget https://astron.com/pub/tcsh/tcsh-"${TCSH}".tar.gz
+			tar xfv tcsh-"${TCSH}".tar.gz
+			rm tcsh-"${TCSH}".tar.gz
+			cd tcsh-"${TCSH}"
 			./configure && {
 				make;
-				cp tcsh "$BIN"/tcsh-"$TARGET";
+				cp tcsh "${BIN}"/tcsh-"${TARGET}";
 				printf "tcsh is not POSIX compliant...\n";
 			}
 			;;
 		jfsutils)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/cwuensch/jfsutils
 			cd jfsutils
 			./configure && \
-				make "$JOBS"
+				make "${JOBS}"
 			;;
 		squashfs-tools)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/plougher/squashfs-tools
 			cd squashfs-tools/squashfs-tools
-			make "$JOBS" && {
-				cp mksquashfs "$BIN"/mksquashfs-"$TARGET";
-				cp unsquashfs "$BIN"/unsquashfs-"$TARGET";
+			make "${JOBS}" && {
+				cp mksquashfs "${BIN}"/mksquashfs-"${TARGET}";
+				cp unsquashfs "${BIN}"/unsquashfs-"${TARGET}";
 			}
 			;;
 		iptables)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://git.netfilter.org/iptables
 			cd iptables
 			autoreconf -fi
 			./configure \
 				--enable-static \
 				--disable-shared
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		grub)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://git.savannah.gnu.org/git/grub.git
 			cd grub
 			autoreconf -if
@@ -1029,20 +1029,20 @@ fbuild_src(){
 				TARGET_NM=arm-linux-gnueabihf-nm \
 				TARGET_RANLIB=arm-linux-gnueabihf-ranlib \
 				LEX=flex
-			make "$JOBS"
+			make "${JOBS}"
 			;;
 		pcmciautils)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/retroprom/pcmciautils
 			cd pcmciautils 
 			make && {
-				cp pccardctl "$BIN"/pccardctl;
-				cp pcmcia-check-broken-cis "$BIN"/pcmcia-check-broken-cis;
-				cp pcmcia-socket-startup "$BIN"/pcmcia-socket-startup;
+				cp pccardctl "${BIN}"/pccardctl;
+				cp pcmcia-check-broken-cis "${BIN}"/pcmcia-check-broken-cis;
+				cp pcmcia-socket-startup "${BIN}"/pcmcia-socket-startup;
 			}
 			;;
 		shkd)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/baskerville/shkd
 			cd shkd
 			sed -i 's/CC *= *gcc/CC = tcc/' Makefile && {
@@ -1052,86 +1052,86 @@ fbuild_src(){
 			}
 			;;
 		riscv32-gnu)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/riscv-collab/riscv-gnu-toolchain
 			cd riscv-gnu-toolchain
 			./configure \
-				--prefix="$CROSS"/riscv \
+				--prefix="${CROSS}"/riscv \
 				--with-arch=rv32gc \
 				--with-abi=ilp32d
 			make linux
 			;;
 		toolbox)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone https://github.com/gaidardzhiev/toolbox
 			cd toolbox
 			make && \
 				make strip && \
 				make install && \
-				cp toolbox "$BIN"/toolbox-"$TARGET"
+				cp toolbox "${BIN}"/toolbox-"${TARGET}"
 			;;
 		getprand)
-			[ "$TARGET" = armv8l ] && {
-				cd "$SRC"
+			[ "${TARGET}" = armv8l ] && {
+				cd "${SRC}"
 				git clone https://github.com/gaidardzhiev/getprand
 				cd getprand
 				make
 				make install;
 			} || {
-				printf "unsupported %s CPU architecture...\n" "$TARGET";
+				printf "unsupported %s CPU architecture...\n" "${TARGET}";
 				exit 1;
 			}
 			;;
 		llama_cpp)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/ggml-org/llama.cpp
 			cd llama.cpp
-			case "$TARGET" in
+			case "${TARGET}" in
 				armv8l)
 					git checkout b1616
 					cmake --build build -j8
-					cmake --build build "$JOBS"
+					cmake --build build "${JOBS}"
 					;;
 				*)
 					cmake -B build
-					cmake --build build --config Release "$JOBS"
+					cmake --build build --config Release "${JOBS}"
 					;;
 			esac
 			;;
 		tmux)
-			cd "$SRC"
+			cd "${SRC}"
 			git clone --depth=1 https://github.com/tmux/tmux
 			cd tmux
 			./autogen.sh && \
 				./configure && \
-				make "$JOBS" && \
-				cp tmux "$BIN"/tmux-"$TARGET"
+				make "${JOBS}" && \
+				cp tmux "${BIN}"/tmux-"${TARGET}"
 			;;
 		strace)
-			cd "$SRC"
-			wget https://github.com/strace/strace/releases/download/v"$STRACE"/strace-"$STRACE".tar.xz
-			tar xfv strace-"$STRACE".tar.xz
-			rm strace-"$STRACE".tar.xz
-			cd strace-"$STRACE"
+			cd "${SRC}"
+			wget https://github.com/strace/strace/releases/download/v"${STRACE}"/strace-"${STRACE}".tar.xz
+			tar xfv strace-"${STRACE}".tar.xz
+			rm strace-"${STRACE}".tar.xz
+			cd strace-"${STRACE}"
 			./configure && \
-				make "$JOBS" && \
-				cp src/strace "$BIN"/strace"$TARGET"
+				make "${JOBS}" && \
+				cp src/strace "${BIN}"/strace"${TARGET}"
 			;;
 		*)
-			printf "unsupported package: %s\n\n" "$PKG"
+			printf "unsupported package: %s\n\n" "${PKG}"
 			fusage
 			;;
 	esac
 }
 
 fdelete_src() {
-	printf "you will delete all the source code in %s \n" "$SRC"
+	printf "you will delete all the source code in %s \n" "${SRC}"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
-	case "$RSP" in
+	case "${RSP}" in
 		[y]* )
-			rm -r "$SRC"/*
-			printf "%s deleted...\n" "$SRC"
+			rm -r "${SRC}"/*
+			printf "%s deleted...\n" "${SRC}"
 			;;
 		[n]* )
 			printf "deletion canceld...\n"
@@ -1144,66 +1144,66 @@ fdelete_src() {
 }
 
 fbin() {
-	case "$GET" in
+	case "${GET}" in
 		toybox)
-			case "$TARGET" in
+			case "${TARGET}" in
 				armv8l)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv7m
 					chmod +x toybox-armv7m
 					./toybox
 					;;
 				x86_64)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-x86_64
 					chmod +x toybox-x86_64
 					./toybox-x86_64
 					;;
 				x86)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-i686
 					chmod +x toybox-i686
 					./toybox-i686
 					;;
 				mips)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-mips
 					chmod +x toybox-mips
 					./toybox-mips
 					;;
 				aarch64)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-aarch64
 					chmod +x toybox-aarch64
 					./toybox-aarch64
 					;;
 				armv4l)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv4l
 					chmod +x toybox-armv4l
 					./toybox-armv4l
 					;;
 				armv5l)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-armv5l
 					chmod +x toybox-armv5l
 					./toybox-armv5l
 					;;
 				powerpc)
-					cd "$BIN"
+					cd "${BIN}"
 					wget https://landley.net/toybox/downloads/binaries/latest/toybox-powerpc
 					chmod +x toybox-powerpc
 					./toybox-powerpc
 					;;
 				*)
-					printf "unsupported %s CPU architecture...\n" "$TARGET"
+					printf "unsupported %s CPU architecture...\n" "${TARGET}"
 					;;
 			esac
 			;;
 		cross-compiler)
-			case "$TARGET" in
+			case "${TARGET}" in
 				x86_64)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-cross.tar.xz
 					tar xfv x86_64-linux-musl-cross.tar.xz
 					rm x86_64-linux-musl-cross.tar.xz
@@ -1216,7 +1216,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				x86)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-cross.tar.xz
 					tar xfv i686-linux-musl-cross.tar.xz
 					rm i686-linux-musl-cross.tar.xz
@@ -1229,7 +1229,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				aarch64)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-cross.tar.xz
 					tar xfv aarch64-linux-musleabi-cross.tar.xz
 					rm aarch64-linux-musleabi-cross.tar.xz
@@ -1242,7 +1242,7 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				armv7m)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/armv7m-linux-musleabi-cross.tar.xz
 					tar xfv armv7m-linux-musleabi-cross.tar.xz
 					rm armv7m-linux-musleabi-cross.tar.xz
@@ -1255,79 +1255,79 @@ fbin() {
 					printf "binutils 2.33.1\n"
 					;;
 				*)
-					printf "unsupported %s CPU architecture...\n" "$TARGET"
+					printf "unsupported %s CPU architecture...\n" "${TARGET}"
 					;;
 			esac
 			;;
 		esp-toolchain)
-			case "$TARGET" in
+			case "${TARGET}" in
 				x86_64)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					tar xfv xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
-					export PATH="$PATH":/opt/xtensa-lx106-elf/bin
+					export PATH="${PATH}":/opt/xtensa-lx106-elf/bin
 					;;
 				i686)
 					cd /opt
 					wget https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					tar xfv xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
 					rm xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-i686.tar.gz
-					export PATH="$PATH":/opt/xtensa-lx106-elf/bin
+					export PATH="${PATH}":/opt/xtensa-lx106-elf/bin
 					;;
 				*)
-					printf "unsupported architecture: %s\n" $TARGET
+					printf "unsupported architecture: %s\n" ${TARGET}
 					;;
 			esac
 			;;
 		aboriginal)
-			case "$TARGET" in
+			case "${TARGET}" in
 				armv6l)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv6l.tar.gz
 					tar xfv cross-compiler-armv6l.tar.gz
 					rm cross-compiler-armv6l.tar.gz
 					ls -la cross-compiler-armv6l
 					;;
 				x86_64)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-x86_64.tar.gz
 					tar xfv cross-compiler-x86_64.tar.gz
 					rm cross-compiler-x86_64.tar.gz
 					ls -la cross-compiler-x86_64
 					;;
 				i686)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-i686.tar.gz
 					tar xfv cross-compiler-i686.tar.gz
 					rm cross-compiler-i686.tar.gz
 					ls -la cross-compiler-i686
 					;;
 				arm4tl)
-					cd "$CROSS"
+					cd "${CROSS}"
 					wget https://landley.net/aboriginal/downloads/binaries/cross-compiler-armv4tl.tar.gz
 					tar xfv cross-compiler-armv4tl.tar.gz
 					rm cross-compiler-armv4tl.tar.gz
 					ls -la cross-compiler-armv4tl
 					;;
 				*)
-					printf "unsupported architecture: %s\n" "$TARGET"
+					printf "unsupported architecture: %s\n" "${TARGET}"
 					;;
 			esac
 			;;
 		native-compiler)
-			case "$TARGET" in
+			case "${TARGET}" in
 				i686)
-					cd "$NATIVE"
+					cd "${NATIVE}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i686-linux-musl-native.sqf
-					#mount -t squashfs -o loop i686-linux-musl-native.sqf $MNT
+					#mount -t squashfs -o loop i686-linux-musl-native.sqf ${MNT}
 					unsquashfs i686-linux-musl-native.sqf
 					rm i686-linux-musl-native.sqf
 					mv squashfs-root/* . && rm -r squashfs-root
 					cd bin && ./gcc -v
 					;;
 				i486)
-					cd "$NATIVE"
+					cd "${NATIVE}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/i486-linux-musl-native.sqf
 					unsquashfs i486-linux-musl-native.sqf
 					rm i486-linux-musl-native.sqf
@@ -1335,7 +1335,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				x86_64)
-					cd "$NATIVE"
+					cd "${NATIVE}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/x86_64-linux-musl-native.sqf
 					unsquashfs x86_64-linux-musl-native.sqf
 					rm x86_64-linux-musl-native.sqf
@@ -1343,7 +1343,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				armv8l)
-					cd "$NATIVE"
+					cd "${NATIVE}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/armv7l-linux-musleabihf-native.sqf
 					unsquashfs armv7l-linux-musleabihf-native.sqf
 					rm armv7l-linux-musleabihf-native.sqf
@@ -1351,7 +1351,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				aarch64)
-					cd "$NATIVE"
+					cd "${NATIVE}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/aarch64-linux-musleabi-native.sqf
 					unsquashfs aarch64-linux-musleabi-native.sqf
 					rm aarch64-linux-musleabi-native.sqf
@@ -1359,7 +1359,7 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				mips)
-					cd "$NATIVE"
+					cd "${NATIVE}"
 					wget https://landley.net/toybox/downloads/binaries/toolchains/latest/mips-linux-musl-native.sqf
 					unsquashfs mips-linux-musl-native.sqf
 					rm mips-linux-musl-native.sqf
@@ -1367,50 +1367,50 @@ fbin() {
 					cd bin && ./gcc -v
 					;;
 				*)
-					printf "unsupported architecture: $TARGET\n"
+					printf "unsupported architecture: ${TARGET}\n"
 					;;
 			esac
 			;;
 		mkroot)
-			cd "$USR"
-			wget https://landley.net/toybox/downloads/binaries/mkroot/latest/"$TARGET".tgz && {
-					tar xfv "$TARGET".tgz;
-					rm "$TARGET".tgz;
-					cat "$TARGET"/docs/README;
+			cd "${USR}"
+			wget https://landley.net/toybox/downloads/binaries/mkroot/latest/"${TARGET}".tgz && {
+					tar xfv "${TARGET}".tgz;
+					rm "${TARGET}".tgz;
+					cat "${TARGET}"/docs/README;
 				} || {
-					printf "unsupported architecture: %s\n" "$TARGET";
+					printf "unsupported architecture: %s\n" "${TARGET}";
 					exit 1;
 				}
 			;;
 		shellcheck)
-			cd "$BIN"
-			ARCH="$TARGET"
-			[ "$TARGET" = "armv8l" ] && ARCH="armv6hf"
-			wget https://github.com/koalaman/shellcheck/releases/download/v"$SHELLCHECK"/shellcheck-v"$SHELLCHECK".linux."$ARCH".tar.xz
-			tar xfv shellcheck-v"$SHELLCHECK".linux."$ARCH".tar.xz
-			rm shellcheck-v"$SHELLCHECK".linux."$ARCH".tar.xz
-			mv shellcheck-v"$SHELLCHECK"/shellcheck "$BIN"/shellcheck-"$ARCH"
-			rm -r shellcheck-v"$SHELLCHECK"
+			cd "${BIN}"
+			ARCH="${TARGET}"
+			[ "${TARGET}" = "armv8l" ] && ARCH="armv6hf"
+			wget https://github.com/koalaman/shellcheck/releases/download/v"${SHELLCHECK}"/shellcheck-v"${SHELLCHECK}".linux."${ARCH}".tar.xz
+			tar xfv shellcheck-v"${SHELLCHECK}".linux."${ARCH}".tar.xz
+			rm shellcheck-v"${SHELLCHECK}".linux."${ARCH}".tar.xz
+			mv shellcheck-v"${SHELLCHECK}"/shellcheck "${BIN}"/shellcheck-"${ARCH}"
+			rm -r shellcheck-v"${SHELLCHECK}"
 			;;
 		*)
-			printf "unsupported package: %s\n" "$GET"
+			printf "unsupported package: %s\n" "${GET}"
 			fusage
 			;;
 	esac
 }
 
 fdelete_bin() {
-	printf "you will delete all the bin's in: %s %s %s\n" "$BIN" "$CROSS" "$NATIVE"
+	printf "you will delete all the bin's in: %s %s %s\n" "${BIN}" "${CROSS}" "${NATIVE}"
 	printf "are you sure? (yes/no)\n"
 	read -r RSP
-	case "$RSP" in
+	case "${RSP}" in
 		[y]* )
-			rm -r "$BIN"/*
-			printf "%s deleted...\n" "$BIN"
-			rm -r "$CROSS"/*
-			printf "%s deleted...\n" "$CROSS"
-			rm -r "$NATIVE"/*
-			printf "%s deleted...\n" "$NATIVE"
+			rm -r "${BIN}"/*
+			printf "%s deleted...\n" "${BIN}"
+			rm -r "${CROSS}"/*
+			printf "%s deleted...\n" "${CROSS}"
+			rm -r "${NATIVE}"/*
+			printf "%s deleted...\n" "${NATIVE}"
 			;;
 		[n]* )
 			printf "deletion canceld...\n"
@@ -1423,115 +1423,115 @@ fdelete_bin() {
 }
 
 fupdate_src() {
-	case "$UPD" in 
+	case "${UPD}" in 
 		oldbox)
-			cd "$SRC"/oldbox && {
+			cd "${SRC}"/oldbox && {
 				sed -i 's|/opt/sbpm/src/oldbox|/home/src/1v4n/oldbox|g' oldbox.c;
 				git pull;
 				sed -i 's|/home/src/1v4n/oldbbox|/opt/sbpm/src/oldbox|g' oldbox.c;
-				make "$JOBS";
-				cp oldbox "$BIN"/oldbox-"$TARGET";
+				make "${JOBS}";
+				cp oldbox "${BIN}"/oldbox-"${TARGET}";
 			}
 			;;
 		dash)
-			cd "$SRC"/dash && {
+			cd "${SRC}"/dash && {
 				git pull;
-				make "$JOBS";
-				cp dash "$BIN"/dash-"$TARGET";
+				make "${JOBS}";
+				cp dash "${BIN}"/dash-"${TARGET}";
 			}
 			;;
 		tinycc)
-			cd "$SRC"/tinycc && {
+			cd "${SRC}"/tinycc && {
 				git pull;
 				./configure \
-					--prefix="$DIR" \
-					--bindir="$BIN" \
-					--libdir="$LIB" \
-					--includedir="$INC" \
-					--source-path="$SRC"/tinycc \
+					--prefix="${DIR}" \
+					--bindir="${BIN}" \
+					--libdir="${LIB}" \
+					--includedir="${INC}" \
+					--source-path="${SRC}"/tinycc \
 					--cc=tcc \
 					--disable-static \
 					--enable-cross;
-				make "$JOBS";
+				make "${JOBS}";
 				make install;
 			}
 			;;
 		esolangs)
-			cd "$SRC"/esolangs && {
+			cd "${SRC}"/esolangs && {
 				git pull;
-				make "$JOBS";
-				cp brainf "$BIN"/brainf-"$TARGET";
-				cp whitespace "$BIN"/whitespace-"$TARGET";
+				make "${JOBS}";
+				cp brainf "${BIN}"/brainf-"${TARGET}";
+				cp whitespace "${BIN}"/whitespace-"${TARGET}";
 			}
 			;;
 		dash)
-			cd "$SRC"/dash && {
+			cd "${SRC}"/dash && {
 				git pull;
-				make "$JOBS";
-				cp dash "$BIN"/dash-"$TARGET";
+				make "${JOBS}";
+				cp dash "${BIN}"/dash-"${TARGET}";
 			}
 			;;
 		nmap)
-			cd "$SRC"/nmap && \
-				git diff --name-only HEAD origin/main -- "$CFG" > /tmp/before.txt && \
+			cd "${SRC}"/nmap && \
+				git diff --name-only HEAD origin/main -- "${CFG}" > /tmp/before.txt && \
 				git pull && \
-				git diff --name-only HEAD@{1} HEAD -- "$CFG" > /tmp/after.txt
+				git diff --name-only HEAD@{1} HEAD -- "${CFG}" > /tmp/after.txt
 				[ -s /tmp/config_changes_after.txt ] && {
 					printf "running ./configure...\n"
 					./configure
 				} || printf "no configuration changes detected...\n"
 				rm -f /tmp/before.txt /tmp/after.txt
-				make "$JOBS" && \
-					cp nmap "$BIN"/nmap-"$TARGET"
+				make "${JOBS}" && \
+					cp nmap "${BIN}"/nmap-"${TARGET}"
 			;;
 		kexec)
-			cd "$SRC"/kexec-tools
+			cd "${SRC}"/kexec-tools
 			git pull && \
 				./bootstrap && \
 				./configure && \
-				make "$JOBS" && \
-				cp build/sbin/* "$SBIN"
+				make "${JOBS}" && \
+				cp build/sbin/* "${SBIN}"
 			;;
 		interceptor)
-			cd "$SRC"/interceptor && \
+			cd "${SRC}"/interceptor && \
 				git pull && \
 				make && \
-				cp intercept.so "$LIB" && \
-				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "$LIB"
+				cp intercept.so "${LIB}" && \
+				printf "usage: LD_PRELOAD=%s/intercept.so /bin/brave\n" "${LIB}"
 			;;
 		smartmontools)
-			cd "$SRC"/smartmontools && \
+			cd "${SRC}"/smartmontools && \
 				svn update && \
 				./autogen.sh && \
 				./configure && \
-				make "$JOBS" && \
+				make "${JOBS}" && \
 				make install
 			;;
 		*)
-			printf "unsupported package %s...\n" "$UPD"
+			printf "unsupported package %s...\n" "${UPD}"
 			fusage
 			;;
 	esac
 }
 
-case "$ARG" in
+case "${ARG}" in
 	build-src)
-		fbuild_src "$PKG"
+		fbuild_src "${PKG}"
 		;;
 	delete-src)
 		fdelete_src
 		;;
 	get-bin)
-		fbin "$GET"
+		fbin "${GET}"
 		;;
 	delete-bin)
 		fdelete_bin
 		;;
 	update-src)
-		fupdate_src "$UPD"
+		fupdate_src "${UPD}"
 		;;
 	*)
-		printf "unsupported command: %s\n" "$ARG"
+		printf "unsupported command: %s\n" "${ARG}"
 		fusage
 		;;
 esac
