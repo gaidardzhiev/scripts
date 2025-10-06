@@ -24,7 +24,7 @@ while :; do
 			break
 			;;
 		*)
-			printf "invalid input...\nplease type yes or no...\n"
+			printf "invalid input...\nplease choose yes or no...\n"
 			;;
 	esac
 done
