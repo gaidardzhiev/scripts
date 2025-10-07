@@ -6,5 +6,5 @@ command -v traceroute >/dev/null 2>&1 || { printf "traceroute is not installed..
 
 for ip in `curl -s https://ipv4.icanhazip.com`
 do
-	traceroute "$ip"
+	traceroute "${ip}"
 done
