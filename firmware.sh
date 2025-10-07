@@ -15,40 +15,40 @@ funpack() {
 }
 
 fpack() {
-	exec 3> "$1"
+	exec 3> "${1}"
 	for part in "uimage_kernel" "squashfs_1" "squashfs_2" "jffs2"
 	do
-		exec 4< "$part"
-		size=$(stat -c%s "$part")
-		dd if=/dev/fd/4 of=/dev/fd/3 bs=1 count="$size"
-		padding=$(( $(echo "$size" | awk '{print $1}') - $(stat -c%s "$part") ))
-		echo "wrote $part - $(printf '%#x' "$size") bytes"
+		exec 4< "${part}"
+		size=$(stat -c%s "${part}")
+		dd if=/dev/fd/4 of=/dev/fd/3 bs=1 count="${size}"
+		padding=$(( $(echo "${size}" | awk '{print $1}') - $(stat -c%s "${part}") ))
+		echo "wrote ${part} - $(printf '%#x' "${size}") bytes"
 		echo "padding: $(printf '%#x' "$padding")"
-		printf '\0%.0s' $(seq 1 "$padding") >> "$1"
+		printf '\0%.0s' $(seq 1 "${padding}") >> "${1}"
 		exec 4<&-
 	done
 	exec 3>&-
 }
 
 fusage() {
-	printf "usage: $0 <pack|unpack> <file>\n"
+	printf "usage: %s <pack|unpack> <file>\n" "${0}"
 }
 
-[ $# -ne 2 ] && {
+[ "${#}" -ne 2 ] && {
 	fusage;
 	exit 1;
 }
 
-case "$1" in
+case "${1}" in
 	unpack)
-		funpack "$2" || { 
-			printf "failed to unpack '$2'...\n";
+		funpack "${2}" || { 
+			printf "failed to unpack %s...\n" "${2}";
 			exit 8;
 		}
 		;;
 	pack)
-		fpack "$2" || {
-			printf "failed to pack '$2'...\n";
+		fpack "${2}" || {
+			printf "failed to pack %s...\n" "${2}";
 			exit 16;
 		}
 		;;
