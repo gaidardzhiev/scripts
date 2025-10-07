@@ -2,14 +2,14 @@
 #unpack and pack firmware
 
 funpack() {
-	exec 3< "$1"
+	exec 3< "${1}"
 	for part in "uimage_header:0:64" "uimage_kernel:64:2097152" "squashfs_1:2097152:350000" "squashfs_2:550040:65536" "jffs2:5f0040:11075648"
 	do
-		IFS=':' read -r name offset size <<< "$part"
-		exec 4> "$name"
-		dd if=/dev/fd/3 bs=1 skip="$offset" count="$size" of=/dev/fd/4
+		IFS=':' read -r name offset size <<< "${part}"
+		exec 4> "${name}"
+		dd if=/dev/fd/3 bs=1 skip="${offset}" count="${size}" of=/dev/fd/4
 		exec 4>&-
-		echo "wrote $name - $(printf '%#x' $(stat -c%s "$name")) bytes"
+		echo "wrote ${name} - $(printf '%#x' $(stat -c%s "${name}")) bytes"
 	done
 	exec 3<&-
 }
