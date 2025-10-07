@@ -1,7 +1,7 @@
 #!/bin/sh
 
 grep -a upgraded /var/log/pacman.log \
-        | grep "$1" > /tmp/lastupdates.txt
+        | grep "${1}" > /tmp/lastupdates.txt
 
 awk '{print $4}' /tmp/lastupdates.txt > /tmp/lines1
 
@@ -16,5 +16,5 @@ cd /var/cache/pacman/pkg/
 
 for i in $(cat /tmp/packages);
 do
-	sudo pacman --noconfirm -U "$i"*;
+	sudo pacman --noconfirm -U "${i}"*;
 done
