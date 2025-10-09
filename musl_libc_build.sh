@@ -1,21 +1,21 @@
 #!/bin/sh
 
 export PREFIX="/opt/musl"
-export EXEC="$PREFIX/bin"
-export LIB="$PREFIX/lib"
+export EXEC="${PREFIX}/bin"
+export LIB="${PREFIX}/lib"
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
-export JOBS='-j '$GETNUMCPUS''
+export JOBS='-j '${GETNUMCPUS}''
 export MUSL="musl-1.2.5"
 export DIR="/home/src/"
 
-[ -d "$PREFIX" ] && { printf "$PREFIX exists...\n"; exit 0; }
+[ -d "${PREFIX}" ] && { printf "%s exists...\n" "${PREFIX}"; exit 0; }
 
 fget() {
-	if cd $DIR; then
-		wget https://musl.libc.org/releases/$MUSL.tar.gz
-		tar xf $MUSL.tar.gz
-		rm $MUSL.tar.gz
-		cd $MUSL
+	if cd "${DIR}"; then
+		wget https://musl.libc.org/releases/"${MUSL}".tar.gz
+		tar xf "${MUSL}".tar.gz
+		rm "${MUSL}".tar.gz
+		cd "${MUSL}"
 		return 0
 	else
 		return 8
@@ -24,13 +24,13 @@ fget() {
 
 fbuild() {
 	if ./configure \
-		--prefix=$PREFIX \
-		--exec-prefix=$EXEC \
-		--syslibdir=$LIB \
+		--prefix="${PREFIX}" \
+		--exec-prefix="${EXEC}" \
+		--syslibdir="${LIB}" \
 		--disable-shared; then
 		make
 		make install
-		cp $EXEC/bin/musl-gcc /usr/bin/
+		cp "${EXEC}"/bin/musl-gcc /usr/bin/
 		return 0
 	else
 		return 16
@@ -38,7 +38,7 @@ fbuild() {
 }
 
 ftry() {
-	if cd $TMP; then
+	if cd "${TMP}"; then
 		cat > hello.c << EOF
 #include <stdio.h>
 int main(int argc, char **argv)
@@ -56,9 +56,9 @@ EOF
 	fi
 }
 
-{ fget && fbuild && ftry; RET=$?; } || {
+{ fget && fbuild && ftry; RET="${?}"; } || {
 	printf "something's wrong in here somewhere...\n";
 	exit 1;
 }
 
-[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
+[ "${RET}" -eq 0 ] 2>/dev/null || printf "%s\n" "${RET}"
