@@ -1,16 +1,16 @@
 #!/bin/bash
 #TODO: get rid of the evil bashisms to ensure POSIX compatibility...
 
-adbd="$HOME/.adb_device"
+ADBD="${HOME}/.adb_device"
 
-[[ -f "adbd" ]] || adb devices -l | fzf | awk '{print $1}' > "$adbd"
+[[ -f "ADBD" ]] || adb devices -l | fzf | awk '{print $1}' > "${ADBD}"
 
-device="$(head -n1 "$adbd")"
+DEVICE="$(head -n1 "${ADBD}")"
 
-file="$1"
+FILE="${1}"
 
-[[ "$file" ]] || file="$(fzf)"
+[[ "${FILE}" ]] || FILE="$(fzf)"
 
-[[ "$file" ]] || exit 1
+[[ "${FILE}" ]] || exit 1
 
-adb -s "$device" push "$file" "/sdcard"
+adb -s "${DEVICE}" push "${FILE}" "/sdcard"
