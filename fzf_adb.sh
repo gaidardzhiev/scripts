@@ -3,7 +3,7 @@
 
 ADBD="${HOME}/.adb_device"
 
-[[ -f "ADBD" ]] || adb devices -l | fzf | awk '{print $1}' > "${ADBD}"
+[[ -f "${ADBD}" ]] || adb devices -l | fzf | awk '{print $1}' > "${ADBD}"
 
 DEVICE="$(head -n1 "${ADBD}")"
 
