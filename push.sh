@@ -14,7 +14,7 @@ while :; do
 	read -r ANSWER
 	case "${ANSWER}" in
 		y*)
-			echo "enter your meaningful commit message:"
+			printf "please enter your meaningful commit message:\n"
 			read -r MESSAGE
 			COMMIT="${MESSAGE}"
 			break
