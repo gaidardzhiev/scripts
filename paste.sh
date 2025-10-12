@@ -4,39 +4,39 @@
 fusage() {
 	sed -n '2s/^.\(.*\)/\1/p' "$0";
 	printf "usage:\n"
-	printf "        $0 up     <file>\n"
-	printf "        $0 down   <name>\n"
+	printf "        %s up     <file>\n" "${0}"
+	printf "        %s down   <name>\n" "${0}"
 	return 32
 }
 
 fup() {
 	local URL='https://paste.c-net.org/'
-	local FILE="$2"
-	[ -r "$FILE" ] && {
+	local FILE="${2}"
+	[ -r "${FILE}" ] && {
 		curl -s \
-			--data-binary @"$FILE" \
+			--data-binary @"${FILE}" \
 			--header "X-FileName: ${FILE##*/}" \
-			"$URL";
+			"${URL}";
 		return 0;
 	} || {
-		printf "%s is not readable or does not exist...\n" "$FILE";
+		printf "%s is not readable or does not exist...\n" "${FILE}";
 		return 16;
 	}
 }
 
 fdown() {
 	local URL='https://paste.c-net.org/'
-	local NAME="$2"
+	local NAME="${2}"
 	curl -s "${URL}${NAME##*/}"
 }
 
-case "$1" in
+case "${1}" in
 	up)
-		{ fup "$@"; RET=$?; }
-		[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
+		{ fup "${@}"; RET="${?}"; }
+		[ "${RET}" -eq 0 ] 2>/dev/null || printf "%s\n" "${RET}"
 		;;
 	down)
-		fdown "$@"
+		fdown "${@}"
 		exit 0
 		;;
 	*)
