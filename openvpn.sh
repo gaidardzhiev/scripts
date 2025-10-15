@@ -3,7 +3,7 @@
 
 CRED="/root/.openvpncred"
 DIR="/home/openvpn"
-LIST=("$DIR"/*)
+LIST=("${DIR}"/*)
 NUM=${#LIST[@]}
 PRAND=$(od -An -N2 -i /dev/urandom | awk -v max="$NUM" '{print $1 % max}')
 
@@ -13,14 +13,14 @@ printf "(yes/no)\n"
 
 read -r RSP
 
-case $RSP in
+case "${RSP}" in
 	[y]* )
-		FILE=$(find "$DIR" -type f | fzf)
-		printf "$FILE configuration file choosed manualy...\n"
+		FILE=$(find "${DIR}" -type f | fzf)
+		printf "%s configuration file choosed manualy...\n" "${FILE}"
 		;;
 	[n]* )
 		FILE="${LIST[$PRAND]}"
-		printf "$FILE configuration file choosed pseudo randomly...\n"
+		printf "%s configuration file choosed pseudo randomly...\n" "${FILE}"
 		;;
 	*)
 		printf "invalid response...\n"
@@ -32,16 +32,16 @@ printf "enter the password to access the credentials:\n"
 
 read -s DEC
 
-[ -f "$CRED" ] && {
-	USER=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | head -n 1) || exit -1
-	PASS=$(openssl enc -d -aes-256-cbc -in "$CRED" -pass pass:"$DEC" -pbkdf2 | tail -n 1) || exit -2
+[ -f "${CRED}" ] && {
+	USER=$(openssl enc -d -aes-256-cbc -in "${CRED}" -pass pass:"${DEC}" -pbkdf2 | head -n 1) || exit -1
+	PASS=$(openssl enc -d -aes-256-cbc -in "${CRED}" -pass pass:"${DEC}" -pbkdf2 | tail -n 1) || exit -2
 } || {
 	printf "credentials file not found...\n";
 	printf "create them with: \n";
-	sed -n '2s/^.\(.*\)/\1/p' "$0";
+	sed -n '2s/^.\(.*\)/\1/p' "${0}";
 	exit 1;
 }
 
-printf "starting openvpn with configuration: $FILE\n"
+printf "starting openvpn with configuration: %s\n" "${FILE}"
 
-openvpn --config "$FILE" --auth-user-pass <(echo -e "$USER\n$PASS")
+openvpn --config "${FILE}" --auth-user-pass <(echo -e "${USER}\n${PASS}")
