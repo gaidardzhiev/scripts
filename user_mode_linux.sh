@@ -5,11 +5,11 @@ export SLIRP="~/.slirprc"
 export DIR="/home/src/uml"
 export TMPDIR="/tmp"
 
-[ ! -f "$SSH" ] && ssh-keygen -t ed25519 -N "$1" -f "$SSH"
+[ ! -f "${SSH}" ] && ssh-keygen -t ed25519 -N "${1}" -f "${SSH}"
 
-mkdir -p "$DIR"
+mkdir -p "${DIR}"
 
-cd "$DIR"
+cd "${DIR}"
 
 wget https://deb.debian.org/debian/pool/main/u/user-mode-linux/user-mode-linux_5.10um3+b1_amd64.deb
 
@@ -29,7 +29,7 @@ mv usr/lib/uml/modules .
 
 rm -r usr
 
-[ ! -f "$SLIRP" ] && echo "redir tcp 2222 22" > "$SLIRP"
+[ ! -f "${SLIRP}" ] && echo "redir tcp 2222 22" > "${SLIRP}"
 
 wget -O debian.img https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.raw
 
@@ -43,7 +43,7 @@ truncate -s 8G debian.img
 
 cat > launch.sh << eof
 #!/bin/sh
-cd "$(dirname "$0")" || exit
+cd "$(dirname "${0}")" || exit
 export TMPDIR=/tmp
 exec ./linux.uml mem=1024M root=/dev/ubda1 ubd0=debian.img eth0=slirp,52:54:00:00:01,/usr/bin/slirp-fullbolt
 eof
