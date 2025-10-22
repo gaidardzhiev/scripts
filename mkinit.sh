@@ -12,23 +12,23 @@
 INIT="initramfs.cpio.gz"
 DIR=$(mktemp -d)
 TARGET=$(uname -m)
-ARCH="armv7m" && [ "$TARGET" = "armv8l" ] || ARCH="$TARGET"
+ARCH="armv7m" && [ "${TARGET}" = "armv8l" ] || ARCH="${TARGET}"
 
-mkdir -p "$DIR"/{bin,dev,etc,proc,sys,lib,lib64,mnt/root,root,sbin,run,usr}
+mkdir -p "${DIR}"/{bin,dev,etc,proc,sys,lib,lib64,mnt/root,root,sbin,run,usr}
 
-wget https://landley.net/toybox/downloads/binaries/latest/toybox-"$ARCH"
+wget https://landley.net/toybox/downloads/binaries/latest/toybox-"${ARCH}"
 
-chmod +x toybox-"$ARCH"
+chmod +x toybox-"${ARCH}"
 
-mv toybox-"$ARCH" "$DIR"/bin/toybox
+mv toybox-"${ARCH}" "${DIR}"/bin/toybox
 
-"$DIR"/bin/toybox
+"${DIR}"/bin/toybox
 
-for cmd in $($DIR/bin/toybox); do
-	ln -sr "$DIR"/bin/toybox "$DIR/bin/$cmd"
+for CMD in $(${DIR}/bin/toybox); do
+	ln -sr "${DIR}"/bin/toybox "${DIR}/bin/${CMD}"
 done
 
-cat << eof > "$DIR"/init
+cat << eof > "${DIR}"/init
 #!/bin/sh
 mount -t devtmpfs devtmpfs /dev
 mount -t proc proc none /proc
@@ -37,20 +37,20 @@ mount -t sysfs sysfs none /sys
 exec /bin/sh
 eof
 
-chmod +x "$DIR"/init
+chmod +x "${DIR}"/init
 
 #ln -s $DIR/toybox $DIR/bin/sh
 #cp /bin/toybox /bin/sh
 #chmod 0755 /bin/sh
 
-mknod "$DIR"/dev/sda b 8 0
+mknod "${DIR}"/dev/sda b 8 0
 
-mknod "$DIR"/dev/console c 5 1
+mknod "${DIR}"/dev/console c 5 1
 
-find "$DIR" | cpio -H newc -o | gzip -9 > "$INIT"
+find "${DIR}" | cpio -H newc -o | gzip -9 > "${INIT}"
 
-rm -rf "$DIR"
+rm -rf "${DIR}"
 
-printf "\n\ninitramfs for %s created successfully: %s\n" "$ARCH" "$INIT"
+printf "\n\ninitramfs for %s created successfully: %s\n" "${ARCH}" "${INIT}"
 
-qemu-system-"$ARCH" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
+qemu-system-"${ARCH}" -kernel bzImage -initrd initramfs.cpio.gz -append "root=/dev/ram rw console=ttyS0" -nographic
