@@ -37,7 +37,9 @@ URL="https://github.com/gaidardzhiev"
 		tortoise \
 		prand \
 		bfelfx64 \
-		linker0trust;
+		linker0trust \
+		cmdflix \
+		diff;
 	do
 		git clone "${URL}/${REPO}" || {
 			printf "failed to clone %s...\n" "${REPO}"
