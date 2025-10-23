@@ -2,12 +2,12 @@
 
 RC=/etc/bash.bashrc
 
-if [ -e "$RC" ]; then
+if [ -e "${RC}" ]; then
 	printf "/etc/bash.bashrc exists...\n"
 	exit 1
 else
-	touch "$RC"
-	cat <<'EOF' >> "$RC"
+	touch "${RC}"
+	cat <<'EOF' >> "${RC}"
 # /etc/bash.bashrc
 if [[ $- != *i* ]] ; then
 	return
