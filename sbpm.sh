@@ -51,7 +51,7 @@ SHELLCHECK="0.10.0"
 STRACE="6.16"
 
 fusage() {
-	printf "usage: ${0} <operation> <package>\n"
+	printf "usage: %s <operation> <package>\n" "${0}"
 	printf "\n"
 	printf "operations:\n"
 	printf "		 build-src | get-bin | delete-src | delete-bin | update-src\n"
