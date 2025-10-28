@@ -3,7 +3,7 @@
 IN="${1}"
 OUT="${2}"
 
-[ "$#" -ne 2 ] && {
+[ "${#}" -ne 2 ] && {
 	printf "usage: %s <in.c> <out.c>\n" "${0}";
 	exit 1;
 }
