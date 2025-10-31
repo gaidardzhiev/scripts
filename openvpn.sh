@@ -44,4 +44,10 @@ read -s DEC
 
 printf "starting openvpn with configuration: %s\n" "${FILE}"
 
-openvpn --config "${FILE}" --auth-user-pass <(echo -e "${USER}\n${PASS}")
+PROTO=$(grep -E '^[ \t]*proto[ \t]+' "${FILE}" | awk '{print $2}' | head -n1)
+
+[ -z "${PROTO}" ] && PROTO="udp"
+
+PROTO4="${PROTO}4"
+
+openvpn --config "${FILE}" --auth-user-pass <(echo -e "${USER}\n${PASS}") --proto "${PROTO4}"
