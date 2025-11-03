@@ -86,6 +86,7 @@ show_files() {
 		-type f -exec sh -c 'echo "==> $1 <=="; cat "$1"' _ {} \;
 }
 alias flow='show_files'
+alias checkshell='find "${PWD}" -type f -name "*.sh" -exec shellcheck --severity=error {} +'
 
 export LESSOPEN="| /usr/bin/less.sh %s"
 export LESS=' -R '
