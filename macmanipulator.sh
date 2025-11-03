@@ -24,8 +24,7 @@ change_mac_address() {
 	ip link set dev "${DEVICE}" down && \
 	ip link set dev "${DEVICE}" address "${NEW_MAC}" && \
 	ip link set dev "${DEVICE}" up && \
-	{ printf "MAC address changed to: %s\n" "${NEW_MAC}"; return 0; } || \ 
-	{ printf "MAC address change failed...\n"; return 32; }
+	{ printf "MAC address changed to: %s\n" "${NEW_MAC}"; return 0; } || { printf "MAC address change failed...\n"; return 32; }
 }
 
 echo "old MAC address: $(mac_addr_show)"
