@@ -33,8 +33,8 @@ printf "enter the password to access the credentials:\n"
 read -s DEC
 
 [ -f "${CRED}" ] && {
-	USER=$(openssl enc -d -aes-256-cbc -in "${CRED}" -pass pass:"${DEC}" -pbkdf2 | head -n 1) || exit -1
-	PASS=$(openssl enc -d -aes-256-cbc -in "${CRED}" -pass pass:"${DEC}" -pbkdf2 | tail -n 1) || exit -2
+	USER=$(openssl enc -d -aes-256-cbc -in "${CRED}" -pass pass:"${DEC}" -pbkdf2 | head -n 1) || exit 8
+	PASS=$(openssl enc -d -aes-256-cbc -in "${CRED}" -pass pass:"${DEC}" -pbkdf2 | tail -n 1) || exit 16
 } || {
 	printf "credentials file not found...\n";
 	printf "create them with: \n";
