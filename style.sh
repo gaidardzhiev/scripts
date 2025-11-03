@@ -17,6 +17,6 @@ fastyle() {
 	}
 }
 
-{ fdepcheck astyle && fastyle; RET="$?" } || exit 1
+{ fdepcheck astyle && fastyle; RET="$?"; } || exit 1
 
 [ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
