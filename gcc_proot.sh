@@ -52,7 +52,7 @@ fgcc() {
         make install-target-libgcc && return 0 || return 3
 }
 
-{ fbinutils && fgcc; RET="${?}" } || { 
+{ fbinutils && fgcc; RET="${?}"; } || { 
 	printf "something is wrong in here somewhere...\n";
 	exit 1;
 }
