@@ -2,15 +2,15 @@
 #pseudo random string generator using RDRAND CPU instruction that generates entropy directly from hardware using thermal noise and other physical phenomena to produce high-quality randomness
 
 OUT="prand"
-EXEC="./$OUT"
-CLEAN="rm -f $OUT"
+EXEC="./${OUT}"
+CLEAN="rm -f ${OUT}"
 
 grep -q "rdrand" /proc/cpuinfo || {
 	echo "no RDRAND instruction...";
 	exit 1;
 }
 
-gcc -x c -march=native -o "$OUT" - <<eof
+gcc -x c -march=native -o "${OUT}" - <<eof
 #include <stdio.h>
 #include <stdint.h>
 #include <x86intrin.h>
@@ -35,7 +35,7 @@ printf("%s\n",r);
 return 0;}
 eof
 
-eval $EXEC && {
-	eval $CLEAN;
+eval ${EXEC} && {
+	eval ${CLEAN};
 	exit 0;
 }
