@@ -13,15 +13,15 @@ server_dir="/home/src/llm/llama.cpp/build/bin"
 
 models_dir="/home/src/llm/llama.cpp/build/bin/models"
 
-model=$(find "$models_dir" -type f | fzf --prompt="select a model: ")
+model=$(find "${models_dir}" -type f | fzf --prompt="select a model: ")
 
-[ -z "$model" ] && { echo "no model selected, exiting."; exit 1; }
+[ -z "${model}" ] && { echo "no model selected, exiting."; exit 1; }
 
 workspace=$(find ~ -type d 2>/dev/null | fzf --prompt="select workspace directory: ")
 
-[ -z "$workspace" ] && { echo "no workspace selected, exiting."; exit 1; }
+[ -z "${workspace}" ] && { echo "no workspace selected, exiting."; exit 1; }
 
-cd "$workspace" || exit 1
+cd "${workspace}" || exit 1
 
 # initialize git repo if needed
 if [ ! -d .git ]; then
@@ -32,29 +32,29 @@ if [ ! -d .git ]; then
 fi
 
 # start llama server in background
-"$server_dir"/llama-server -m "$model" --host 127.0.0.1 --port 8080 &
-llama_pid=$!
+"${server_dir}"/llama-server -m "${model}" --host 127.0.0.1 --port 8080 &
+llama_pid="${!}"
 
 echo "enter the program specification and requirements (end with ctrl+d):"
 task_spec=$(cat)
 
 # helper: build prompt for llm with spec, previous code, and errors
 build_prompt() {
-	errors="$1"
-	last_code="$2"
+	errors="${1}"
+	last_code="${2}"
 	prompt="you are a c programming assistant assigned to accomplish the following specification exactly:
-$task_spec
+"${task_spec}"
 
 "
-	[ -n "$last_code" ] && prompt="${prompt}here is the previous code submission across files:
+	[ -n "${last_code}" ] && prompt="${prompt}here is the previous code submission across files:
 \`\`\`c
 $last_code
 \`\`\`
 
 "
-	if [ -n "$errors" ]; then
+	if [ -n "${errors}" ]; then
 		prompt="${prompt}the latest compilation and test attempt resulted in errors:
-$errors
+"${errors}"
 
 please fix all issues in the entire code and provide a complete, clean multi-file c project. for any testing code required, include an inline test script file named 'test.sh' that compiles and tests the project automatically. provide all code enclosed in markdown triple backticks for each file separately with filename comment headers like:
 \`\`\`c
@@ -69,16 +69,16 @@ or for shell scripts:
 
 respond only with the source code blocks, nothing else."
 	fi
-	echo "$prompt"
+	echo "${prompt}"
 }
 
 # save llm response code files from stdout string
 save_code_files() {
-	llmsrc="$1"
+	llmsrc="${1}"
 	# for safety cleanup old generated files (excluding vcs and scripts)
 	find . -maxdepth 1 -type f ! -name '.gitignore' ! -name 'test.sh' ! -name '*.c' -exec rm -f {} +
 	# parse code blocks with filenames to separate files
-	echo "$llmsrc" | awk '
+	echo "${llmsrc}" | awk '
 	BEGIN {RS="```
 	NR % 2 == 0 {
 		split($0, lines, "\n");
@@ -139,10 +139,10 @@ last_code=""
 loop_count=0
 max_loops=10
 
-while [ "$loop_count" -lt "$max_loops" ]; do
+while [ "${loop_count}" -lt "${max_loops}" ]; do
 	loop_count=$((loop_count+1))
-	echo "----- iteration $loop_count -----"
-	prompt=$(build_prompt "$errors" "$last_code")
+	echo "----- iteration "${loop_count}" -----"
+	prompt=$(build_prompt "${errors}" "${last_code}")
 	response=$(curl -s -X POST http://127.0.0.1:8080/v1/completions -H 'content-type: application/json' -d "
 {
 	\"model\": \"$model\",
@@ -150,36 +150,36 @@ while [ "$loop_count" -lt "$max_loops" ]; do
 	\"max_tokens\": 2048,
 	\"temperature\": 0.2
 }")
-	raw_text=$(echo "$response" | grep -oP '"text":"\K.*?(?=")')
-	raw_text=$(printf '%b' "$raw_text")
-	save_code_files "$raw_text"
+	raw_text=$(echo "${response}" | grep -oP '"text":"\K.*?(?=")')
+	raw_text=$(printf '%b' "${raw_text}")
+	save_code_files "${raw_text}"
 	# aggregate all .c files content for next prompt context
 	last_code=$(cat ./*.c | head -c 8000) # limit to first 8k chars
 	compile_and_test
-	result=$?
-	if [ $result -eq 0 ]; then
-		echo "program compiled and passed all tests on iteration $loop_count!"
+	result="${?}"
+	if [ "${result}" -eq 0 ]; then
+		echo "program compiled and passed all tests on iteration ${loop_count}!"
 		commit_and_push
 		break
 	else
-		if [ $result -eq 1 ]; then
+		if [ "${result}" -eq 1 ]; then
 			errors=$(cat compile_errors.txt)
 			echo "compilation errors detected:"
-		elif [ $result -eq 2 ]; then
+		elif [ "${result}" -eq 2 ]; then
 			errors="test script test.sh failed."
-			echo "$errors"
+			echo "${errors}"
 		else
 			errors=$(cat test_output.txt)
 			echo "runtime errors detected:"
 		fi
-		echo "$errors"
+		echo "${errors}"
 		echo "feeding back errors for next iteration fixes..."
 	fi
 done
 
-if [ $loop_count -ge $max_loops ]; then
-	echo "reached max iteration count ($max_loops) without successful build."
+if [ "${loop_count}" -ge "${max_loops}" ]; then
+	echo "reached max iteration count ("${max_loops}") without successful build."
 fi
 
 echo "stopping llama server..."
-kill $llama_pid
+kill "${llama_pid}"
