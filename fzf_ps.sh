@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ps axo pid,args ww --no-headers | \
-	fzf --height=50% --layout=reverse --multi \
+	fzf --height=100% --layout=reverse --multi \
 	--with-nth=1,2 \
 	--preview="ps -p {1} -o pid,ppid,user,group,uid,%cpu,%mem,vsz,rss,stat,pri,nice,etime,start,time,tty,args ww --no-headers | awk '{
 		print \"PID: \" \$1 \"\nPPID: \" \$2 \"\nUser: \" \$3 \"\nGroup: \" \$4 \"\nUID: \" \$5;
