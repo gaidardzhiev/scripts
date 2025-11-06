@@ -1,8 +1,8 @@
 #!/bin/sh
 
 fdepcheck() {
-	command -v "$1" >/dev/null 2>&1 || {
-		printf >&2 "error: $1 is not installed...\n";
+	command -v "${1}" >/dev/null 2>&1 || {
+		printf >&2 "error: %s is not installed...\n" "${1}";
 		return 16;
 	}
 }
@@ -17,6 +17,6 @@ fastyle() {
 	}
 }
 
-{ fdepcheck astyle && fastyle; RET="$?"; } || exit 1
+{ fdepcheck astyle && fastyle; RET="${?}"; } || exit 1
 
-[ "$RET" -eq 0 ] 2>/dev/null || printf "%s\n" "$RET"
+[ "${RET}" -eq 0 ] 2>/dev/null || printf "%s\n" "${RET}"
