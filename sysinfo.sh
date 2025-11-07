@@ -35,7 +35,7 @@ get_os_info() {
 			pkg_manager="brew"
 			;;
 		*)
-			distro="$os_name"
+			distro="${os_name}"
 			;;
 	esac
 	print_info "OS" "${distro}"
@@ -72,7 +72,7 @@ get_pkg_manager() {
 			pkg_manager="unknown"
 			;;
 	esac
-	print_info "package manager" "$pkg_manager"
+	print_info "package manager" "${pkg_manager}"
 }
 
 count_packages() {
