@@ -2,173 +2,173 @@
 
 DIR="/home/src/1v4n/oldbox"
 REPO="https://github.com/gaidardzhiev/oldbox"
-CMD="$1"
+CMD="${1}"
 
 fdir() {
-	[ ! -d "$DIR" ] && {
+	[ ! -d "${DIR}" ] && {
 		cd /home/src/1v4n/;
-		git clone "$REPO";
+		git clone "${REPO}";
 		cd oldbox;
 		make;
 	} || return 0
 }
 
 fusage() {
-	printf "usage: %s <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem|test|clear|lsblk|systrace|bundle|xargs> <options>\n" "$0"
+	printf "usage: %s <echo|cat|cp|basename|kill|ln|mount|nice|printf|rev|sleep|sync|tee|touch|tr|true|tty|umount|wc|yes|shell|pwd|ps|grep|du|rm|ascii2hex|hexdump|false|replace|readelf|strings|ls|xoda|cc|id|cmp|tree|kmsg|file|magic|mem|test|clear|lsblk|systrace|bundle|xargs> <options>\n" "${0}"
 	exit 1
 }
 
-{ [ "$#" -lt 1 ] && fusage; fdir; }
+{ [ "${#}" -lt 1 ] && fusage; fdir; }
 
 shift
 
-case "$CMD" in
+case "${CMD}" in
 	echo)
-		"$DIR"/echo "$@"
+		"${DIR}"/echo "${@}"
 		;;
 	cat)
-		"$DIR"/cat "$@"
+		"${DIR}"/cat "${@}"
 		;;
 	cp)
-		"$DIR"/cp "$@"
+		"${DIR}"/cp "${@}"
 		;;
 	basename)
-		"$DIR"/basename "$@"
+		"${DIR}"/basename "${@}"
 		;;
 	kill)
-		"$DIR"/kill "$@"
+		"${DIR}"/kill "${@}"
 		;;
 	ln)
-		"$DIR"/ln "$@"
+		"${DIR}"/ln "${@}"
 		;;
 	mount)
-		"$DIR"/mount "$@"
+		"${DIR}"/mount "${@}"
 		;;
 	nice)
-		"$DIR"/nice "$@"
+		"${DIR}"/nice "${@}"
 		;;
 	printf)
-		"$DIR"/printf "$@"
+		"${DIR}"/printf "${@}"
 		;;
 	rev)
-		"$DIR"/rev "$@"
+		"${DIR}"/rev "${@}"
 		;;
 	sleep)
-		"$DIR"/sleep "$@"
+		"${DIR}"/sleep "${@}"
 		;;
 	sync)
-		"$DIR"/sync "$@"
+		"${DIR}"/sync "${@}"
 		;;
 	tee)
-		"$DIR"/tee "$@"
+		"${DIR}"/tee "${@}"
 		;;
 	touch)
-		"$DIR"/touch "$@"
+		"${DIR}"/touch "${@}"
 		;;
 	tr)
-		"$DIR"/tr "$@"
+		"${DIR}"/tr "${@}"
 		;;
 	true)
-		"$DIR"/true "$@"
+		"${DIR}"/true "${@}"
 		;;
 	tty)
-		"$DIR"/tty "$@"
+		"${DIR}"/tty "${@}"
 		;;
 	umount)
-		"$DIR"/umount "$@"
+		"${DIR}"/umount "${@}"
 		;;
 	wc)
-		"$DIR"/wc "$@"
+		"${DIR}"/wc "${@}"
 		;;
 	yes)
-		"$DIR"/yes "$@"
+		"${DIR}"/yes "${@}"
 		;;
 	shell)
-		"$DIR"/shell "$@"
+		"${DIR}"/shell "${@}"
 		;;
 	pwd)
-		"$DIR"/pwd "$@"
+		"${DIR}"/pwd "${@}"
 		;;
 	ps)
-		"$DIR"/ps "$@"
+		"${DIR}"/ps "${@}"
 		;;
 	grep)
-		"$DIR"/grep "$@"
+		"${DIR}"/grep "${@}"
 		;;
 	du)
-		"$DIR"/du "$@"
+		"${DIR}"/du "${@}"
 		;;
 	rm)
-		"$DIR"/rm "$@"
+		"${DIR}"/rm "${@}"
 		;;
 	ascii2hex)
-		"$DIR"/ascii2hex "$@"
+		"${DIR}"/ascii2hex "${@}"
 		;;
 	hexdump)
-		"$DIR"/hexdump "$@"
+		"${DIR}"/hexdump "${@}"
 		;;
 	false)
-		"$DIR"/false "$@"
+		"${DIR}"/false "${@}"
 		;;
 	replace)
-		"$DIR"/replace "$@"
+		"${DIR}"/replace "${@}"
 		;;
 	readelf)
-		"$DIR"/readelf "$@"
+		"${DIR}"/readelf "${@}"
 		;;
 	strings)
-		"$DIR"/strings "$@"
+		"${DIR}"/strings "${@}"
 		;;
 	ls)
-		"$DIR"/ls "$@"
+		"${DIR}"/ls "${@}"
 		;;
 	xoda)
-		"$DIR"/xoda "$@"
+		"${DIR}"/xoda "${@}"
 		;;
 	cc)
-		/usr/local/bin/tcc "$@"
+		/usr/local/bin/tcc "${@}"
 		;;
 	id)
-		"$DIR"/id "$@"
+		"${DIR}"/id "${@}"
 		;;
 	cmp)
-		"$DIR"/cmp "$@"
+		"${DIR}"/cmp "${@}"
 		;;
 	tree)
-		"$DIR"/tree "$@"
+		"${DIR}"/tree "${@}"
 		;;
 	kmsg)
-		"$DIR"/kmsg "$@"
+		"${DIR}"/kmsg "${@}"
 		;;
 	file)
-		"$DIR"/file "$@"
+		"${DIR}"/file "${@}"
 		;;
 	magic)
-		"$DIR"/magic "$@"
+		"${DIR}"/magic "${@}"
 		;;
 	mem)
-		"$DIR"/mem "$@"
+		"${DIR}"/mem "${@}"
 		;;
 	test)
-		"$DIR"/test "$@"
+		"${DIR}"/test "${@}"
 		;;
 	clear)
-		"$DIR"/clear "$@"
+		"${DIR}"/clear "${@}"
 		;;
 	lsblk)
-		"$DIR"/lsblk "$@"
+		"${DIR}"/lsblk "${@}"
 		;;
 	systrace)
-		"$DIR"/systrace "$@"
+		"${DIR}"/systrace "${@}"
 		;;
 	oldbox)
-		"$DIR"/bundle "$@"
+		"${DIR}"/bundle "${@}"
 		;;
 	xargs)
-		"$DIR"/xargs "$@"
+		"${DIR}"/xargs "${@}"
 		;;
 	*)
-		printf "unsupported command: %s\n" "$CMD"
+		printf "unsupported command: %s\n" "${CMD}"
 		fusage
 		;;
 esac
