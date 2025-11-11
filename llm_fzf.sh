@@ -11,4 +11,11 @@ MODEL=$(find "${MODELS_DIR}" -type f | fzf --prompt="select a model: ")
 	exit 1
 }
 
-"${SERVER_DIR}"/llama-server -m "${MODEL}" --host 127.0.0.1 --port 8080
+"${SERVER_DIR}"/llama-server \
+	-m "${MODEL}" \
+	--host 127.0.0.1 \
+	--port 8080 \
+	--threads 4 \
+	--batch-size 8 \
+	--prompt-cache \
+	--low-vram
