@@ -5,9 +5,9 @@ export DIR="/opt/qemu_stm32"
 export NUMCPUS='grep -c '^processor' /proc/cpuinfo'
 export JOBS='-j '$NUMCPUS''
 
-mkdir "$DIR"
+mkdir "${DIR}"
 
-cd "$DIR"
+cd "${DIR}"
 
 git clone https://github.com/beckus/qemu_stm32
 
@@ -27,4 +27,4 @@ cd qemu_stm32
 	--extra-cflags=-DDEBUG_GIC \
 	--python=/usr/bin/python2.7
 
-{ make "$JOBS" && make install; } || exit 1
+{ make "${JOBS}" && make install; } || exit 1
