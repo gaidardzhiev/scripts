@@ -1,5 +1,6 @@
 #!/bin/sh
- 
+#inject a custom syscall in the linux kernel
+
 set -xe
  
 export DIR=/home/src/1v4n/syscall
@@ -7,18 +8,18 @@ export VER=$(uname -r | cut -d '-' -f1)
 export TABLE=arch/x86/entry/syscalls/syscall_64.tbl
 export SYS=kernel/sys.c
 export GETNUMCPUS=`grep -c '^processor' /proc/cpuinfo`
-export JOBS='-j '$GETNUMCPUS''
+export JOBS='-j '${GETNUMCPUS}''
 export SUFFIX="-V4N"
  
 fbefore() {
-mkdir -p $DIR
-cd $DIR
-wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-$VER.tar.xz
-tar xf linux-$VER.tar.xz
-cd linux-$VER
+mkdir -p "${DIR}"
+cd "${DIR}"
+wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/linux-"${VER}".tar.xz
+tar xf linux-"${VER}".tar.xz
+cd linux-"${VER}"
 zcat /proc/config.gz > .config
 sed -i 's/CONFIG_LOCALVERSION=""/CONFIG_LOCALVERSION="-V4N"/g' .config
-sed -i '381i 457        common  print_kernel sys_print_kernel' $TABLE
+sed -i '381i 457        common  print_kernel sys_print_kernel' "${TABLE}"
 echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
 {
         char buf[256];
@@ -27,25 +28,25 @@ echo "SYSCALL_DEFINE1(print_kernel, char *, msg)
         return -EFAULT;
         printk(KERN_INFO "print_kernel syscall called with \"%s\"\n", buf);
         return 0;
-}" >> $DIR/linux-$VER/$SYS
-make $JOBS
+}" >> "${DIR}"/linux-"${VER}"/"${SYS}"
+make "${JOBS}"
 make modules_install
-cp arch/x86_64/boot/bzImage /boot/vmlinuz-linux$SUFFIX
-sed s/linux/linux$SUFFIX/g \
+cp arch/x86_64/boot/bzImage /boot/vmlinuz-linux"${SUFFIX}"
+sed s/linux/linux"${SUFFIX}"/g \
 </etc/mkinitcpio.d/linux.preset \
->/etc/mkinitcpio.d/linux$SUFFIX.preset
-mkinitcpio -p linux$SUFFIX
+>/etc/mkinitcpio.d/linux"${SUFFIX}".preset
+mkinitcpio -p linux"${SUFFIX}"
 grub-mkconfig -o /boot/grub/grub.cfg
-kexec -l /boot/vmlinuz-linux$SUFFIX \
+kexec -l /boot/vmlinuz-linux"${SUFFIX}" \
     --initrd=/boot/initramfs-linux.img \
     --resuse-cmdline
 kexec -e
 }
  
 fafter() {
-cd $DIR
+cd "${DIR}"
 touch test.c
-cat > $DIR/test.c << EOF
+cat > "${DIR}"/test.c << EOF
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <sys/syscall.h>
@@ -70,4 +71,4 @@ gcc test.c -o the_test
 dmesg | tail -n 1 | grep -q "print_kernel syscall" && printf "success\n" || printf "error\n"
 }
 
-uname -r | grep -q "$SUFFIX" || { fbefore && fafter && exit 0; }
+uname -r | grep -q "${SUFFIX}" || { fbefore && fafter && exit 0; }
