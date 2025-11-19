@@ -17,3 +17,5 @@ MODEL=$(find "${MODELS_DIR}" -type f | fzf --prompt="select a model: ")
 	--port 8080 \
 	--threads 4 \
 	--batch-size 8 \
+	--batch-size 4 \
+	--ctx-size 1024 \
