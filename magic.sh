@@ -14,7 +14,7 @@ z() {
 	echo
 	echo -n "human readable ASCII: "
 	i="0"
-	while [ ${i} -lt 16 ];
+	while [ "${i}" -lt 16 ];
 	do
 		c="${x:i:1}"
 		case "$c" in
