@@ -14,10 +14,6 @@ mac_addr_show() {
 	ip addr show | grep -A 1 "${DEVICE}" | head --lines 2 | tail --lines 1 | sed 's/^ \+//' | cut -f2 -d ' '
 }
 
-#mac_addr_show() {
-#	ip link show "${DEVICE}" | awk '/ether/ { print $2 }'
-#}
-
 change_mac_address() {
 	local NEW_MAC
 	NEW_MAC=$(rand_mac_address)
