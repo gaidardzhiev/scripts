@@ -59,7 +59,8 @@ show_files() {
 }
 alias flow='show_files'
 alias checkshell='find "${PWD}" -type f -name "*.sh" -exec shellcheck --severity=error {} +'
-alias c89serve='/opt/c89/serve.sh | xargs -I {} brave-bin {}'
+alias c89_serve='/opt/specs/c89/serve.sh | xargs -I {} brave-bin {}'
+alias posix_shell_serve='/opt/specs/posix_shell/serve.sh | xargs -I {} brave-bin {}'
 
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '

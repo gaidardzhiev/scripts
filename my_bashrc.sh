@@ -79,7 +79,8 @@ alias tmux='tmux new-session \; \split-window -v \; \'
 alias clean='paccache -rk1'
 alias ego='cd /home/src/1v4n/ && find . -type f \( -name "*.c" -o -name "*.sh" -o -name "Makefile" \) | wc -l'
 alias manfzf='man -k . | fzf | awk '\''{print $1}'\'' | xargs man'
-alias c89serve='/opt/c89/serve.sh | xargs -I {} brave-bin {}'
+alias c89_serve='/opt/specs/c89/serve.sh | xargs -I {} brave-bin {}'
+alias posix_shell_serve='/opt/specs/posix_shell/serve.sh | xargs -I {} brave-bin {}'
 
 show_files() {
 	find . \
