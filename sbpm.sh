@@ -63,7 +63,7 @@ fusage() {
 
 mkdir -p "${DIR}" "${SRC}" "${BIN}" "${LIB}" "${ETC}" "${SBIN}" "${INC}" "${CROSS}" "${SHR}" "${NATIVE}" "${MNT}" "${USR}"
 
-[ $# -lt 1 ] && fusage
+[ "${#}" -lt 1 ] && fusage
 
 shift
 
