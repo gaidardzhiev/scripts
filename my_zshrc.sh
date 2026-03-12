@@ -61,6 +61,7 @@ alias flow='show_files'
 alias checkshell='find "${PWD}" -type f -name "*.sh" -exec shellcheck --severity=error {} +'
 alias c89_serve='/opt/specs/c89/serve.sh | xargs -I {} brave-bin {}'
 alias posix_shell_serve='/opt/specs/posix_shell/serve.sh | xargs -I {} brave-bin {}'
+alias srv='ls | awk "{print \"<a href=\" \$1 \">\" \$1 \"</a><br>\"}" > index.html && printf "http://localhost:8080\n" && trap "rm -f index.html" INT; busybox httpd -f -p 8080; rm -f index.html'
 
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '

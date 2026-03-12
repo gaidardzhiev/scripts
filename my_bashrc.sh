@@ -89,6 +89,7 @@ show_files() {
 }
 alias flow='show_files'
 alias checkshell='find "${PWD}" -type f -name "*.sh" -exec shellcheck --severity=error {} +'
+alias srv='ls | awk "{print \"<a href=\" \$1 \">\" \$1 \"</a><br>\"}" > index.html && printf "http://localhost:8080\n" && trap "rm -f index.html" INT; busybox httpd -f -p 8080; rm -f index.html'
 
 export LESSOPEN="| /usr/bin/less.sh %s"
 export LESS=' -R '
