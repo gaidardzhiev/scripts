@@ -5,19 +5,18 @@ flatex() {
 	read X
 	case "${X}" in
 		[y]*)
-			printf "building LaTeX from source...\n"
-			printf "please choose pdflatex or xelatex\n"
+			printf "building LaTeX from source...\nplease choose pdflatex or xelatex:\n"
 			while :; do
 				read Y
 				case "${Y}" in
 					xelatex)
 						xelatex "${1}" || return 8
-						cp latex.pdf /home/tower/Downloads || return 32
+						cp latex.pdf /home/tower/Downloads || return 16
 						break
 						;;
 					pdflatex)
-						pdflatex "${1}" || return 16
-						cp latex.pdf /home/tower/Downloads || return 32
+						pdflatex "${1}" || return 32
+						cp latex.pdf /home/tower/Downloads || return 64
 						break
 						;;
 					*)
