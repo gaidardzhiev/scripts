@@ -11,12 +11,12 @@ flatex() {
 				case "${Y}" in
 					xelatex)
 						xelatex "${1}" || return 8
-						cp latex.pdf /home/tower/Downloads || return 16
+						cp "${1%.tex}.pdf" /home/tower/Downloads || return 16
 						break
 						;;
 					pdflatex)
 						pdflatex "${1}" || return 32
-						cp latex.pdf /home/tower/Downloads || return 64
+						cp "${1%.tex}.pdf" /home/tower/Downloads || return 64
 						break
 						;;
 					*)
